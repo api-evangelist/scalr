@@ -1,0 +1,37 @@
+aid: scalr
+name: Scalr
+description: >-
+  Scalr is a remote Terraform operations platform providing cost estimation,
+  policy enforcement, and collaborative infrastructure management.
+type: Index
+image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - FinOps
+  - Infrastructure as Code
+url: >-
+  https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/apis.yml
+created: '2026-03-27'
+modified: '2026-03-27'
+specificationVersion: '0.19'
+apis:
+  - aid: scalr:scalr
+    name: Scalr
+    description: >-
+      Scalr is a remote Terraform operations platform providing cost estimation,
+      policy enforcement, and collaborative infrastructure management.
+    humanURL: https://www.scalr.com/
+    tags:
+      - FinOps
+    properties:
+      - type: Documentation
+        url: https://docs.scalr.com/
+      - type: Getting Started
+        url: https://docs.scalr.com/
+common:
+  - type: Website
+    url: https://www.scalr.com/
+  - type: Documentation
+    url: https://docs.scalr.com/
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
