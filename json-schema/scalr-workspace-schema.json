@@ -1,0 +1,131 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/scalr/main/json-schema/scalr-workspace-schema.json",
+  "title": "Scalr Workspace",
+  "description": "A Scalr workspace representing a single Terraform/OpenTofu root module execution context with state, variables, and run configuration",
+  "type": "object",
+  "required": ["id", "name", "environment"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique identifier of the workspace",
+      "pattern": "^ws-[a-zA-Z0-9]+$"
+    },
+    "name": {
+      "type": "string",
+      "description": "Workspace name",
+      "maxLength": 255
+    },
+    "environment": {
+      "type": "object",
+      "description": "Parent environment reference",
+      "properties": {
+        "id": {
+          "type": "string",
+          "pattern": "^env-[a-zA-Z0-9]+$"
+        }
+      }
+    },
+    "status": {
+      "type": "string",
+      "enum": ["Active", "Inactive", "Active_Execution"],
+      "description": "Current workspace status"
+    },
+    "terraform_version": {
+      "type": "string",
+      "description": "Terraform or OpenTofu version to use",
+      "examples": ["1.9.0", "1.8.0"]
+    },
+    "auto_apply": {
+      "type": "boolean",
+      "description": "Whether to automatically apply plans without manual confirmation"
+    },
+    "auto_queue_runs": {
+      "type": "string",
+      "enum": ["skip_first", "always", "never"],
+      "description": "Auto-queuing behavior when workspace is created or configured"
+    },
+    "execution_mode": {
+      "type": "string",
+      "enum": ["remote", "local", "agent"],
+      "description": "How Terraform operations are executed"
+    },
+    "vcs_provider": {
+      "type": "object",
+      "description": "VCS integration configuration",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "repo": {
+          "type": "string",
+          "description": "Repository path (org/repo)"
+        },
+        "branch": {
+          "type": "string",
+          "description": "Default branch to trigger runs from"
+        },
+        "path": {
+          "type": "string",
+          "description": "Relative path within repo to the Terraform root module"
+        }
+      }
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "description": "Tags for workspace organization and policy targeting"
+    },
+    "operations": {
+      "type": "boolean",
+      "description": "Whether remote operations are enabled"
+    },
+    "cost_estimation_enabled": {
+      "type": "boolean",
+      "description": "Whether cost estimation runs before apply"
+    },
+    "has_active_run": {
+      "type": "boolean",
+      "description": "Whether a run is currently active"
+    },
+    "current_run": {
+      "type": "object",
+      "description": "Reference to the current active run",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "latest_run": {
+      "type": "object",
+      "description": "Reference to the most recent run",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

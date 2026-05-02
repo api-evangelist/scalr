@@ -1,0 +1,89 @@
+{
+  "name": "Scalr Workspace",
+  "description": "Structure of a Scalr workspace for Terraform/OpenTofu execution",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string",
+      "pattern": "ws-*",
+      "description": "Workspace identifier",
+      "required": true
+    },
+    {
+      "name": "name",
+      "type": "string",
+      "description": "Workspace name",
+      "required": true
+    },
+    {
+      "name": "environment",
+      "type": "object",
+      "description": "Parent environment",
+      "required": true,
+      "fields": [
+        {"name": "id", "type": "string", "pattern": "env-*"}
+      ]
+    },
+    {
+      "name": "status",
+      "type": "enum",
+      "values": ["Active", "Inactive", "Active_Execution"]
+    },
+    {
+      "name": "terraform_version",
+      "type": "string",
+      "description": "Terraform or OpenTofu version"
+    },
+    {
+      "name": "auto_apply",
+      "type": "boolean",
+      "description": "Auto-apply plans"
+    },
+    {
+      "name": "execution_mode",
+      "type": "enum",
+      "values": ["remote", "local", "agent"]
+    },
+    {
+      "name": "vcs_provider",
+      "type": "object",
+      "description": "VCS integration",
+      "fields": [
+        {"name": "id", "type": "string"},
+        {"name": "repo", "type": "string"},
+        {"name": "branch", "type": "string"},
+        {"name": "path", "type": "string"}
+      ]
+    },
+    {
+      "name": "tags",
+      "type": "array",
+      "description": "Workspace tags"
+    },
+    {
+      "name": "cost_estimation_enabled",
+      "type": "boolean"
+    },
+    {
+      "name": "has_active_run",
+      "type": "boolean"
+    },
+    {
+      "name": "current_run",
+      "type": "object",
+      "fields": [
+        {"name": "id", "type": "string", "pattern": "run-*"}
+      ]
+    },
+    {
+      "name": "created_at",
+      "type": "string",
+      "format": "date-time"
+    },
+    {
+      "name": "updated_at",
+      "type": "string",
+      "format": "date-time"
+    }
+  ]
+}

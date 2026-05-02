@@ -1,0 +1,160 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Scalr User API"
+  description: "Manage Scalr user-level resources including farms, farm roles, servers, events, and cloud deployments via the v1beta0 cloud management API."
+  tags:
+    - Cloud Management
+    - Farms
+    - Infrastructure
+    - Scalr
+    - Servers
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SCALR_API_KEY: SCALR_API_KEY
+      SCALR_ACCOUNT: SCALR_ACCOUNT
+
+capability:
+  consumes:
+    - type: http
+      namespace: scalr-user
+      baseUri: https://my.scalr.com/api/v1beta0/user
+      description: "Scalr User API for farm and server management"
+      authentication:
+        type: apikey
+        key: X-Auth-Token
+        value: "{{SCALR_API_KEY}}"
+        placement: header
+      resources:
+        - name: farms
+          path: /{envId}/farms
+          description: "Farm management"
+          operations:
+            - name: list-farms
+              method: GET
+              description: "List Farms"
+              inputParameters:
+                - name: envId
+                  in: path
+                  type: string
+                  required: true
+                  description: "Environment ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-farm
+              method: POST
+              description: "Create Farm"
+              inputParameters:
+                - name: envId
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  name: "{{tools.name}}"
+        - name: farm-actions
+          path: /{envId}/farms/{farmId}/actions/{action}
+          description: "Farm lifecycle actions"
+          operations:
+            - name: execute-farm-action
+              method: POST
+              description: "Execute Farm Action (launch, suspend, terminate)"
+              inputParameters:
+                - name: envId
+                  in: path
+                  type: string
+                  required: true
+                - name: farmId
+                  in: path
+                  type: string
+                  required: true
+                - name: action
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: servers
+          path: /{envId}/farm-roles/{farmRoleId}/servers
+          description: "Server management"
+          operations:
+            - name: list-servers
+              method: GET
+              description: "List Servers in Farm Role"
+              inputParameters:
+                - name: envId
+                  in: path
+                  type: string
+                  required: true
+                - name: farmRoleId
+                  in: path
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8110
+      namespace: scalr-user-rest
+      resources:
+        - path: /v1/farms
+          name: farms
+          operations:
+            - method: GET
+              name: list-farms
+              description: "List Scalr farms"
+              call: "scalr-user.list-farms"
+              with:
+                envId: "rest.envId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9110
+      namespace: scalr-user-mcp
+      transport: http
+      tools:
+        - name: list-farms
+          description: "List Scalr cloud management farms"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-user.list-farms"
+          with:
+            envId: "tools.envId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-servers
+          description: "List servers in a Scalr farm role"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "scalr-user.list-servers"
+          with:
+            envId: "tools.envId"
+            farmRoleId: "tools.farmRoleId"
+          outputParameters:
+            - type: object
+              mapping: "$."

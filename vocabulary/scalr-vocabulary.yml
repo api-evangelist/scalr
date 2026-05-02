@@ -1,0 +1,146 @@
+name: Scalr
+description: >-
+  Vocabulary for Scalr, an enterprise remote Terraform and OpenTofu operations
+  platform providing IaC governance, policy enforcement, and collaborative infrastructure management.
+created: '2026-05-02'
+modified: '2026-05-02'
+terms:
+  - term: Account
+    definition: >-
+      The top-level entity in Scalr's three-tier hierarchy. An account represents
+      a company or organization within Scalr, containing multiple environments and
+      enforcing account-wide policies, roles, and billing.
+    tags:
+      - Hierarchy
+      - Organization
+
+  - term: Environment
+    definition: >-
+      The second tier in Scalr's hierarchy, representing an isolated workspace group
+      (e.g., development, staging, production). Environments contain workspaces and
+      support environment-level policy enforcement and access control.
+    tags:
+      - Hierarchy
+      - Isolation
+
+  - term: Workspace
+    definition: >-
+      The fundamental unit of IaC execution in Scalr. A workspace maps to a single
+      Terraform/OpenTofu root module, stores state, manages variables, and executes runs.
+      Compatible with Terraform Cloud workspace concepts.
+    tags:
+      - Infrastructure as Code
+      - Terraform
+      - State Management
+
+  - term: Run
+    definition: >-
+      A single execution of a Terraform plan, apply, or destroy operation within a workspace.
+      Runs have a lifecycle of states: pending, plan_queued, planning, planned, apply_queued,
+      applying, applied, discarded, errored.
+    tags:
+      - Execution
+      - Terraform
+
+  - term: State
+    definition: >-
+      The Terraform state file storing the current infrastructure configuration managed by
+      a workspace. Scalr provides secure remote state storage, versioning, and locking.
+    tags:
+      - State Management
+      - Terraform
+
+  - term: Policy Group
+    definition: >-
+      A collection of OPA (Open Policy Agent) or Sentinel policies applied to a workspace
+      or environment. Policy groups enforce governance rules before infrastructure changes
+      are applied.
+    tags:
+      - Governance
+      - OPA
+      - Policy
+
+  - term: Provider Configuration
+    definition: >-
+      A stored cloud provider credential configuration (AWS, Azure, GCP, etc.) that can be
+      shared across workspaces without exposing raw credentials to workspace operators.
+    tags:
+      - Credentials
+      - Infrastructure as Code
+      - Security
+
+  - term: Variable
+    definition: >-
+      A key-value configuration parameter for Terraform (HCL variable) or environment
+      variable scoped to a workspace, environment, or account with optional sensitivity marking.
+    tags:
+      - Configuration
+      - Terraform
+
+  - term: Service Account Token
+    definition: >-
+      A non-personal API token for CI/CD integrations, automation, and service-to-service
+      communication with the Scalr API. Preferred over personal tokens for automation.
+    tags:
+      - Authentication
+      - Security
+
+  - term: GitOps
+    definition: >-
+      Workflow where infrastructure changes are triggered by version control system events
+      (pull requests, merges). Scalr supports GitOps workflows with GitHub, GitLab,
+      Bitbucket, and Azure DevOps.
+    tags:
+      - Automation
+      - CI/CD
+      - Git
+
+  - term: OIDC
+    definition: >-
+      OpenID Connect authentication allowing Scalr API access using ID tokens from external
+      identity providers including GitHub Actions, GitLab CI, AWS IAM, and Azure Managed
+      Identity, eliminating the need for static API tokens.
+    tags:
+      - Authentication
+      - Security
+
+  - term: Farm
+    definition: >-
+      Legacy Scalr term (v1beta0 API) for a group of cloud servers sharing configuration
+      and lifecycle management. Analogous to an infrastructure stack.
+    tags:
+      - Legacy
+      - Cloud Management
+
+  - term: Farm Role
+    definition: >-
+      Legacy Scalr term (v1beta0 API) for a role within a Farm defining the server type,
+      scaling configuration, and orchestration for a group of cloud instances.
+    tags:
+      - Legacy
+      - Cloud Management
+
+  - term: Orchestration Rule
+    definition: >-
+      An automation rule defining actions to execute in response to server lifecycle events
+      (scaling up/down, termination). Part of Scalr's legacy cloud management API.
+    tags:
+      - Automation
+      - Legacy
+
+  - term: MCP Server
+    definition: >-
+      Scalr's Model Context Protocol server integration allowing AI assistants and LLMs
+      to interact with Scalr workspaces, runs, and state via the MCP protocol.
+    tags:
+      - AI
+      - Automation
+      - MCP
+
+  - term: Cost Estimation
+    definition: >-
+      Scalr's pre-apply cost analysis that estimates the monthly infrastructure spend
+      impact of a Terraform plan before it is applied.
+    tags:
+      - FinOps
+      - Governance

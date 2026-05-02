@@ -1,0 +1,119 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "scalr": "https://scalr.com/vocabulary/",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "ScalrWorkspace": {
+      "@id": "scalr:Workspace",
+      "@type": "schema:SoftwareApplication"
+    },
+    "ScalrRun": {
+      "@id": "scalr:Run",
+      "@type": "schema:Action"
+    },
+    "ScalrEnvironment": {
+      "@id": "scalr:Environment",
+      "@type": "schema:Project"
+    },
+    "ScalrAccount": {
+      "@id": "scalr:Account",
+      "@type": "schema:Organization"
+    },
+    "ScalrVariable": {
+      "@id": "scalr:Variable",
+      "@type": "schema:PropertyValue"
+    },
+    "ScalrPolicy": {
+      "@id": "scalr:Policy",
+      "@type": "schema:DigitalDocument"
+    },
+
+    "id": "@id",
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "schema:status",
+      "@type": "xsd:string"
+    },
+    "workspace": {
+      "@id": "scalr:workspace",
+      "@type": "@id"
+    },
+    "environment": {
+      "@id": "scalr:environment",
+      "@type": "@id"
+    },
+    "account": {
+      "@id": "scalr:account",
+      "@type": "@id"
+    },
+    "terraform_version": {
+      "@id": "scalr:terraformVersion",
+      "@type": "xsd:string"
+    },
+    "auto_apply": {
+      "@id": "scalr:autoApply",
+      "@type": "xsd:boolean"
+    },
+    "is_destroy": {
+      "@id": "scalr:isDestroy",
+      "@type": "xsd:boolean"
+    },
+    "plan_only": {
+      "@id": "scalr:planOnly",
+      "@type": "xsd:boolean"
+    },
+    "message": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "trigger_reason": {
+      "@id": "scalr:triggerReason",
+      "@type": "xsd:string"
+    },
+    "cost_estimate": {
+      "@id": "scalr:costEstimate",
+      "@type": "schema:MonetaryAmount"
+    },
+    "proposed_monthly_cost": {
+      "@id": "scalr:proposedMonthlyCost",
+      "@type": "xsd:string"
+    },
+    "prior_monthly_cost": {
+      "@id": "scalr:priorMonthlyCost",
+      "@type": "xsd:string"
+    },
+    "delta_monthly_cost": {
+      "@id": "scalr:deltaMonthlyCost",
+      "@type": "xsd:string"
+    },
+    "vcs_provider": {
+      "@id": "scalr:vcsProvider",
+      "@type": "schema:SoftwareApplication"
+    },
+    "execution_mode": {
+      "@id": "scalr:executionMode",
+      "@type": "xsd:string"
+    },
+    "tags": {
+      "@id": "schema:keywords",
+      "@container": "@list"
+    },
+    "created_at": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "updated_at": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    }
+  }
+}

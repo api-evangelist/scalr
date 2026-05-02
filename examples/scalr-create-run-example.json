@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "POST",
+    "url": "https://{account}.scalr.io/api/v2/runs",
+    "headers": {
+      "Authorization": "Bearer {{SCALR_TOKEN}}",
+      "Content-Type": "application/vnd.api+json"
+    },
+    "body": {
+      "data": {
+        "type": "runs",
+        "attributes": {
+          "message": "Deploy production EKS cluster update",
+          "auto-apply": false,
+          "plan-only": false,
+          "is-destroy": false
+        },
+        "relationships": {
+          "workspace": {
+            "data": {
+              "id": "ws-TF82HS648w4G2w4N",
+              "type": "workspaces"
+            }
+          }
+        }
+      }
+    }
+  },
+  "response": {
+    "status": 201,
+    "body": {
+      "data": {
+        "id": "run-CZcmD7eagjhyX0vN",
+        "type": "runs",
+        "attributes": {
+          "status": "pending",
+          "message": "Deploy production EKS cluster update",
+          "auto-apply": false,
+          "plan-only": false,
+          "is-destroy": false,
+          "trigger-reason": "api",
+          "created-at": "2026-05-02T12:00:00.000Z",
+          "updated-at": "2026-05-02T12:00:00.000Z"
+        },
+        "relationships": {
+          "workspace": {
+            "data": {
+              "id": "ws-TF82HS648w4G2w4N",
+              "type": "workspaces"
+            }
+          },
+          "plan": {
+            "data": {
+              "id": "plan-mRdjqXHbJpRbzZuF",
+              "type": "plans"
+            }
+          }
+        }
+      }
+    }
+  }
+}

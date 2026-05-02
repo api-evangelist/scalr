@@ -1,0 +1,91 @@
+rules:
+  scalr-summary-title-case:
+    description: Scalr operation summaries should use Title Case
+    message: "Summary '{{value}}' should use Title Case"
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z]"
+
+  scalr-path-kebab-case:
+    description: Scalr API paths should use kebab-case for resource names
+    message: "Path should use lowercase kebab-case"
+    severity: warn
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^/api/"
+
+  scalr-response-200-defined:
+    description: All GET operations must define a 200 response
+    message: "GET operation missing 200 response"
+    severity: error
+    given: "$.paths[*].get"
+    then:
+      field: responses.200
+      function: defined
+
+  scalr-swagger-version:
+    description: Scalr legacy API uses Swagger 2.0
+    message: "Scalr legacy API uses Swagger 2.0 format"
+    severity: info
+    given: "$"
+    then:
+      field: swagger
+      function: defined
+
+  scalr-env-id-path-param:
+    description: Scalr APIs use envId path parameter for environment scoping
+    message: "Environment-scoped operations should use envId path parameter"
+    severity: info
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "envId"
+
+  scalr-pagination-filter:
+    description: List operations should support filtering and pagination
+    message: "List operations should include filter and page parameters"
+    severity: warn
+    given: "$.paths[*].get.parameters[*]"
+    then:
+      function: defined
+
+  scalr-bearer-auth:
+    description: Scalr API uses API key Bearer token authentication
+    message: "Scalr API should use API key authentication"
+    severity: warn
+    given: "$.securityDefinitions"
+    then:
+      function: defined
+
+  scalr-info-description:
+    description: API info must include a description
+    message: "API info.description is required"
+    severity: error
+    given: "$.info"
+    then:
+      field: description
+      function: defined
+
+  scalr-farm-resource-naming:
+    description: Scalr farm resources use consistent naming conventions
+    message: "Farm-related operations should follow farmId/farmRoleId naming"
+    severity: hint
+    given: "$.paths"
+    then:
+      function: defined
+
+  scalr-actions-sub-path:
+    description: Scalr uses /actions/ sub-path for operations like launch, terminate, clone
+    message: "Non-CRUD operations should be under /actions/ sub-path"
+    severity: hint
+    given: "$.paths"
+    then:
+      function: pattern
+      functionOptions:
+        match: "/actions/"

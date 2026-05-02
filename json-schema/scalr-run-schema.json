@@ -1,0 +1,111 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/scalr/main/json-schema/scalr-run-schema.json",
+  "title": "Scalr Run",
+  "description": "A Scalr run representing a single Terraform plan and/or apply execution",
+  "type": "object",
+  "required": ["id", "status", "workspace"],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Unique run identifier",
+      "pattern": "^run-[a-zA-Z0-9]+$"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "pending", "plan_queued", "planning", "planned", "cost_estimating",
+        "cost_estimated", "policy_checking", "policy_override", "policy_soft_failed",
+        "policy_checked", "confirmed", "apply_queued", "applying", "applied",
+        "discarded", "errored", "canceled", "force_canceled"
+      ],
+      "description": "Current run status"
+    },
+    "workspace": {
+      "type": "object",
+      "description": "Parent workspace reference",
+      "properties": {
+        "id": {
+          "type": "string"
+        }
+      }
+    },
+    "plan_only": {
+      "type": "boolean",
+      "description": "Whether this is a plan-only run (no apply)"
+    },
+    "is_destroy": {
+      "type": "boolean",
+      "description": "Whether this run destroys all managed infrastructure"
+    },
+    "message": {
+      "type": "string",
+      "description": "Human-readable description of why the run was triggered"
+    },
+    "trigger_reason": {
+      "type": "string",
+      "enum": ["manual", "vcs", "api", "schedule"],
+      "description": "What triggered this run"
+    },
+    "auto_apply": {
+      "type": "boolean",
+      "description": "Whether apply was automatically triggered after plan"
+    },
+    "plan": {
+      "type": "object",
+      "description": "Plan execution details",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "resource_additions": {
+          "type": "integer"
+        },
+        "resource_changes": {
+          "type": "integer"
+        },
+        "resource_destructions": {
+          "type": "integer"
+        }
+      }
+    },
+    "apply": {
+      "type": "object",
+      "description": "Apply execution details",
+      "properties": {
+        "id": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "cost_estimate": {
+      "type": "object",
+      "description": "Cost estimation results",
+      "properties": {
+        "proposed_monthly_cost": {
+          "type": "string"
+        },
+        "prior_monthly_cost": {
+          "type": "string"
+        },
+        "delta_monthly_cost": {
+          "type": "string"
+        }
+      }
+    },
+    "created_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "updated_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  }
+}

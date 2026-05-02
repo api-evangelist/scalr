@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://{account}.scalr.io/api/v2/workspaces",
+    "headers": {
+      "Authorization": "Bearer {{SCALR_TOKEN}}",
+      "Content-Type": "application/vnd.api+json",
+      "Prefer": "respond-async"
+    },
+    "parameters": {
+      "filter[environment]": "env-abc123",
+      "page[size]": 20,
+      "page[number]": 1
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "data": [
+        {
+          "id": "ws-TF82HS648w4G2w4N",
+          "type": "workspaces",
+          "attributes": {
+            "name": "production-eks-cluster",
+            "status": "Active",
+            "terraform-version": "1.9.0",
+            "auto-apply": false,
+            "execution-mode": "remote",
+            "operations": true,
+            "cost-estimation-enabled": true,
+            "has-active-run": false,
+            "created-at": "2026-01-10T08:00:00.000Z",
+            "updated-at": "2026-04-15T14:30:00.000Z"
+          },
+          "relationships": {
+            "environment": {
+              "data": {
+                "id": "env-abc123",
+                "type": "environments"
+              }
+            },
+            "current-run": {
+              "data": null
+            }
+          }
+        }
+      ],
+      "meta": {
+        "pagination": {
+          "current-page": 1,
+          "total-count": 1,
+          "total-pages": 1
+        }
+      }
+    }
+  }
+}

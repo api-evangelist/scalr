@@ -1,0 +1,133 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Scalr Infrastructure as Code"
+  description: >-
+    Unified workflow capability for managing Terraform and OpenTofu infrastructure as code
+    operations through Scalr's remote execution platform. Combines workspace management,
+    run execution, and cloud management capabilities for platform teams and DevOps engineers
+    managing infrastructure at scale with policy enforcement and cost estimation.
+  tags:
+    - DevOps
+    - FinOps
+    - GitOps
+    - Infrastructure as Code
+    - OpenTofu
+    - Policy
+    - Scalr
+    - Terraform
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SCALR_TOKEN: SCALR_TOKEN
+      SCALR_ACCOUNT: SCALR_ACCOUNT
+
+capability:
+  consumes:
+    - import: scalr-user
+      location: ./shared/user-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: scalr-iac-api
+      description: "Unified REST API for Scalr IaC platform management."
+      resources:
+        - path: /v1/workspaces
+          name: workspaces
+          description: "Terraform workspace management"
+          operations:
+            - method: GET
+              name: list-workspaces
+              description: "List workspaces in an environment"
+              call: "scalr-user.list-farms"
+              with:
+                envId: "rest.envId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/farms
+          name: farms
+          description: "Scalr cloud management farms"
+          operations:
+            - method: GET
+              name: list-farms
+              description: "List Scalr farms"
+              call: "scalr-user.list-farms"
+              with:
+                envId: "rest.envId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/servers
+          name: servers
+          description: "Cloud servers managed by Scalr"
+          operations:
+            - method: GET
+              name: list-servers
+              description: "List servers in a farm role"
+              call: "scalr-user.list-servers"
+              with:
+                envId: "rest.envId"
+                farmRoleId: "rest.farmRoleId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: scalr-iac-mcp
+      transport: http
+      description: "MCP server for AI-assisted Terraform and OpenTofu infrastructure management via Scalr."
+      tools:
+        - name: list-workspaces
+          description: "List Scalr workspaces for managing Terraform state and runs"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-user.list-farms"
+          with:
+            envId: "tools.envId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-farms
+          description: "List Scalr cloud management farms (legacy API)"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-user.list-farms"
+          with:
+            envId: "tools.envId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-servers
+          description: "List cloud servers managed by Scalr farm role"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "scalr-user.list-servers"
+          with:
+            envId: "tools.envId"
+            farmRoleId: "tools.farmRoleId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: execute-farm-action
+          description: "Execute a lifecycle action on a Scalr farm (launch, suspend, terminate)"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: false
+          call: "scalr-user.execute-farm-action"
+          with:
+            envId: "tools.envId"
+            farmId: "tools.farmId"
+            action: "tools.action"
+          outputParameters:
+            - type: object
+              mapping: "$."
