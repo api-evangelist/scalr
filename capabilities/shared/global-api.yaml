@@ -1,0 +1,153 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Scalr Global API"
+  description: "Manage global-level Scalr resources including images, roles, and projects that span the entire Scalr installation."
+  tags:
+    - Cloud Management
+    - Global
+    - Images
+    - Roles
+    - Scalr
+  created: "2026-05-02"
+  modified: "2026-05-02"
+
+binds:
+  - namespace: env
+    keys:
+      SCALR_API_KEY: SCALR_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: scalr-global
+      baseUri: https://my.scalr.com/api/v1beta0
+      description: "Scalr Global API for installation-wide resources"
+      authentication:
+        type: apikey
+        key: X-Auth-Token
+        value: "{{SCALR_API_KEY}}"
+        placement: header
+      resources:
+        - name: global-images
+          path: /images
+          description: "Global image management"
+          operations:
+            - name: list-global-images
+              method: GET
+              description: "List global images available across all accounts"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: global-roles
+          path: /roles
+          description: "Global role management"
+          operations:
+            - name: list-global-roles
+              method: GET
+              description: "List global roles available across all accounts"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: projects
+          path: /projects
+          description: "Project management"
+          operations:
+            - name: list-global-projects
+              method: GET
+              description: "List global projects"
+              inputParameters:
+                - name: page
+                  in: query
+                  type: integer
+                  required: false
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: global-variables
+          path: /global-variables
+          description: "Global variable management"
+          operations:
+            - name: list-global-variables
+              method: GET
+              description: "List global variables"
+              inputParameters: []
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8121
+      namespace: scalr-global-rest
+      resources:
+        - path: /v1/global-images
+          name: global-images
+          operations:
+            - method: GET
+              name: list-global-images
+              description: "List global images"
+              call: "scalr-global.list-global-images"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9121
+      namespace: scalr-global-mcp
+      transport: http
+      tools:
+        - name: list-global-images
+          description: "List images available globally across all Scalr accounts"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-global.list-global-images"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-global-roles
+          description: "List roles defined globally in Scalr"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-global.list-global-roles"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-global-projects
+          description: "List global projects in Scalr"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-global.list-global-projects"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-global-variables
+          description: "List global variables available across all Scalr environments"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-global.list-global-variables"
+          outputParameters:
+            - type: object
+              mapping: "$."

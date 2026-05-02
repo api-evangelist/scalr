@@ -75,10 +75,12 @@ Infrastructure as Code, OpenTofu, Policy, Runs, Scalr, Terraform, Workspaces
 Naftiko capability definitions for AI-assisted Terraform infrastructure management:
 
 **Shared Definitions:**
-- [capabilities/shared/user-api.yaml](capabilities/shared/user-api.yaml) — Scalr User API consumer (legacy cloud management)
+- [capabilities/shared/user-api.yaml](capabilities/shared/user-api.yaml) — Scalr User API consumer (user-level farms, servers, and cloud management)
+- [capabilities/shared/account-api.yaml](capabilities/shared/account-api.yaml) — Scalr Account API consumer (environments, cloud credentials, roles)
+- [capabilities/shared/global-api.yaml](capabilities/shared/global-api.yaml) — Scalr Global API consumer (global images, roles, projects, variables)
 
 **Workflow Capabilities:**
-- [capabilities/infrastructure-as-code.yaml](capabilities/infrastructure-as-code.yaml) — Unified IaC workflow (4 tools) for DevOps teams managing Terraform workspaces and infrastructure
+- [capabilities/infrastructure-as-code.yaml](capabilities/infrastructure-as-code.yaml) — Unified IaC workflow (12 tools) for DevOps teams managing Terraform environments, workspaces, farms, cloud credentials, and global configuration
 
 ## Rules
 

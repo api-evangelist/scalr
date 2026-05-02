@@ -5,8 +5,9 @@ info:
   description: >-
     Unified workflow capability for managing Terraform and OpenTofu infrastructure as code
     operations through Scalr's remote execution platform. Combines workspace management,
-    run execution, and cloud management capabilities for platform teams and DevOps engineers
-    managing infrastructure at scale with policy enforcement and cost estimation.
+    environment management, run execution, cloud management, and account-level configuration
+    for platform teams and DevOps engineers managing infrastructure at scale with policy
+    enforcement and cost estimation.
   tags:
     - DevOps
     - FinOps
@@ -23,12 +24,17 @@ binds:
   - namespace: env
     keys:
       SCALR_TOKEN: SCALR_TOKEN
+      SCALR_API_KEY: SCALR_API_KEY
       SCALR_ACCOUNT: SCALR_ACCOUNT
 
 capability:
   consumes:
     - import: scalr-user
       location: ./shared/user-api.yaml
+    - import: scalr-account
+      location: ./shared/account-api.yaml
+    - import: scalr-global
+      location: ./shared/global-api.yaml
 
   exposes:
     - type: rest
@@ -36,22 +42,45 @@ capability:
       namespace: scalr-iac-api
       description: "Unified REST API for Scalr IaC platform management."
       resources:
-        - path: /v1/workspaces
-          name: workspaces
-          description: "Terraform workspace management"
+        - path: /v1/environments
+          name: environments
+          description: "Environment management (account-level)"
           operations:
             - method: GET
-              name: list-workspaces
-              description: "List workspaces in an environment"
-              call: "scalr-user.list-farms"
+              name: list-environments
+              description: "List Scalr environments"
+              call: "scalr-account.list-environments"
               with:
-                envId: "rest.envId"
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-environment
+              description: "Create a Scalr environment"
+              call: "scalr-account.create-environment"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/environments/{id}
+          name: environment
+          description: "Manage a specific environment"
+          operations:
+            - method: GET
+              name: get-environment
+              description: "Get environment details"
+              call: "scalr-account.get-environment"
+              with:
+                accountId: "rest.accountId"
+                envId: "rest.id"
               outputParameters:
                 - type: object
                   mapping: "$."
         - path: /v1/farms
           name: farms
-          description: "Scalr cloud management farms"
+          description: "Cloud management farms (user-level)"
           operations:
             - method: GET
               name: list-farms
@@ -59,6 +88,30 @@ capability:
               call: "scalr-user.list-farms"
               with:
                 envId: "rest.envId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-farm
+              description: "Create a Scalr farm"
+              call: "scalr-user.create-farm"
+              with:
+                envId: "rest.envId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/farms/{id}/actions/{action}
+          name: farm-action
+          description: "Execute farm lifecycle actions"
+          operations:
+            - method: POST
+              name: execute-farm-action
+              description: "Execute a farm lifecycle action (launch, suspend, terminate)"
+              call: "scalr-user.execute-farm-action"
+              with:
+                envId: "rest.envId"
+                farmId: "rest.id"
+                action: "rest.action"
               outputParameters:
                 - type: object
                   mapping: "$."
@@ -76,6 +129,43 @@ capability:
               outputParameters:
                 - type: object
                   mapping: "$."
+        - path: /v1/cloud-credentials
+          name: cloud-credentials
+          description: "Cloud provider credentials"
+          operations:
+            - method: GET
+              name: list-cloud-credentials
+              description: "List cloud credentials"
+              call: "scalr-account.list-cloud-credentials"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/roles
+          name: roles
+          description: "Role definitions"
+          operations:
+            - method: GET
+              name: list-roles
+              description: "List account roles"
+              call: "scalr-account.list-roles"
+              with:
+                accountId: "rest.accountId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/global-variables
+          name: global-variables
+          description: "Global variables"
+          operations:
+            - method: GET
+              name: list-global-variables
+              description: "List global variables"
+              call: "scalr-global.list-global-variables"
+              outputParameters:
+                - type: object
+                  mapping: "$."
 
     - type: mcp
       port: 9090
@@ -83,8 +173,43 @@ capability:
       transport: http
       description: "MCP server for AI-assisted Terraform and OpenTofu infrastructure management via Scalr."
       tools:
-        - name: list-workspaces
-          description: "List Scalr workspaces for managing Terraform state and runs"
+        - name: list-environments
+          description: "List Scalr environments within an account"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-account.list-environments"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-environment
+          description: "Create a new Scalr environment"
+          hints:
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "scalr-account.create-environment"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-environment
+          description: "Get details of a specific Scalr environment"
+          hints:
+            readOnly: true
+            openWorld: false
+          call: "scalr-account.get-environment"
+          with:
+            accountId: "tools.accountId"
+            envId: "tools.envId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-farms
+          description: "List Scalr cloud management farms"
           hints:
             readOnly: true
             openWorld: true
@@ -94,14 +219,29 @@ capability:
           outputParameters:
             - type: object
               mapping: "$."
-        - name: list-farms
-          description: "List Scalr cloud management farms (legacy API)"
+        - name: create-farm
+          description: "Create a new Scalr farm"
           hints:
-            readOnly: true
-            openWorld: true
-          call: "scalr-user.list-farms"
+            readOnly: false
+            destructive: false
+            idempotent: false
+          call: "scalr-user.create-farm"
           with:
             envId: "tools.envId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: execute-farm-action
+          description: "Execute a lifecycle action on a Scalr farm (launch, suspend, terminate)"
+          hints:
+            readOnly: false
+            destructive: true
+            idempotent: false
+          call: "scalr-user.execute-farm-action"
+          with:
+            envId: "tools.envId"
+            farmId: "tools.farmId"
+            action: "tools.action"
           outputParameters:
             - type: object
               mapping: "$."
@@ -117,17 +257,52 @@ capability:
           outputParameters:
             - type: object
               mapping: "$."
-        - name: execute-farm-action
-          description: "Execute a lifecycle action on a Scalr farm (launch, suspend, terminate)"
+        - name: list-cloud-credentials
+          description: "List cloud provider credentials configured in Scalr"
           hints:
-            readOnly: false
-            destructive: true
-            idempotent: false
-          call: "scalr-user.execute-farm-action"
+            readOnly: true
+            openWorld: true
+          call: "scalr-account.list-cloud-credentials"
           with:
-            envId: "tools.envId"
-            farmId: "tools.farmId"
-            action: "tools.action"
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-roles
+          description: "List roles defined in Scalr account"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-account.list-roles"
+          with:
+            accountId: "tools.accountId"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-global-variables
+          description: "List global variables available across all Scalr environments"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-global.list-global-variables"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-global-images
+          description: "List images available globally across all Scalr accounts"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-global.list-global-images"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-global-roles
+          description: "List roles defined globally in Scalr"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "scalr-global.list-global-roles"
           outputParameters:
             - type: object
               mapping: "$."
