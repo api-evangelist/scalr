@@ -4,104 +4,41 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Scalr
 providerId: scalr
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: false
 tags:
-  - FinOps
-  - GitOps
-  - Infrastructure as Code
-  - Kubernetes
-  - OPA
-  - OpenTofu
-  - Policy
   - Terraform
+  - OpenTofu
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Scalr API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Scalr offers a JSON:API-style REST API for managing workspaces, runs, modules,
+  and policies. Rate limits are not centrally documented on the public Scalr pricing or
+  docs landing pages reachable in this reconciliation pass; consumers should treat 429 responses
+  as authoritative and follow standard exponential-backoff guidance. Plan-level concurrency
+  is described by Scalr as "unlimited" on Business and Enterprise.
+sources:
+  - https://www.scalr.com/pricing
+  - https://docs.scalr.io/
+notes: Public rate-limit values for the Scalr API were not reachable in this reconciliation
+  pass; this artifact records the policy surface only and should be revisited when Scalr
+  publishes per-endpoint rate limits.
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Scalr User API
-      - Scalr Account API
-      - Scalr Global API
-      - Scalr IaC Management API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Scalr User API
-      - Scalr Account API
-      - Scalr Global API
-      - Scalr IaC Management API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Scalr User API
-      - Scalr Account API
-      - Scalr Global API
-      - Scalr IaC Management API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Scalr User API
-      - Scalr Account API
-      - Scalr Global API
-      - Scalr IaC Management API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Scalr User API
-      - Scalr Account API
-      - Scalr Global API
-      - Scalr IaC Management API
+  - name: API rate limits
+    scope: account
+    metric: varies
+    limit: 'not centrally published; honor 429 responses'
+    notes: Concurrency and runs are billed (not throttled) on Scalr; HTTP 429 responses
+      should be honored where they appear.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Authentication
+    description: Scalr API uses bearer-token authentication issued from the Scalr UI.
+  - name: Backoff on 429
+    description: Clients should implement exponential backoff with jitter on HTTP 429 responses.
+  - name: Concurrency
+    description: Scalr advertises unlimited concurrency on Business and Enterprise plans;
+      runs are billed monthly rather than rate-throttled.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+    url: https://apievangelist.com
