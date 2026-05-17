@@ -101,7 +101,7 @@ apis:
     properties:
       - type: Documentation
         url: https://docs.scalr.io/reference/overview-1
-      - type: Getting Started
+      - type: GettingStarted
         url: https://docs.scalr.io/docs/introduction
       - type: Authentication
         url: https://docs.scalr.io/reference/api-tokens
@@ -110,7 +110,7 @@ common:
     url: https://scalr.com/
   - type: Documentation
     url: https://docs.scalr.io/
-  - type: API Reference
+  - type: APIReference
     url: https://docs.scalr.io/reference/overview-1
   - type: API Explorer
     url: https://api-explorer.scalr.com/
@@ -118,7 +118,7 @@ common:
     url: https://github.com/scalr
   - type: Blog
     url: https://scalr.com/blog/
-  - type: Changelog
+  - type: ChangeLog
     url: https://updates.scalr.io/
   - type: MCP Server
     url: https://docs.scalr.io/docs/mcp-server
