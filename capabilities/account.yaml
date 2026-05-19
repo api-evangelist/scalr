@@ -1,0 +1,3447 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Scalr Account API
+  description: 'Scalr Account API. 105 operations. Lead operation: Scalr Account API. Self-contained Naftiko capability covering
+    one Scalr business surface.'
+  tags:
+  - Scalr
+  - Scalr Account API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCALR_API_KEY: SCALR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: account
+    baseUri: ''
+    description: Scalr Account API business capability. Self-contained, no shared references.
+    resources:
+    - name: accountId-acl-roles
+      path: /{accountId}/acl-roles/
+      operations:
+      - name: get
+        method: GET
+        description: List the ACL Roles in this account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-ansible-tower-configurations
+      path: /{accountId}/ansible-tower/configurations/
+      operations:
+      - name: get
+        method: GET
+        description: List all Ansible Tower Configurations in the Account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Add a new Ansible Tower Configuration in the Account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ansibleTowerConfigurationObject
+          in: body
+          type: string
+          description: The JSON representation of a AnsibleTowerConfiguration object.
+          required: true
+    - name: accountId-ansible-tower-configurations-ansibleTowerConfigurationId
+      path: /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete the Ansible Tower Configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Ansible Tower Configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the Ansible Tower Configuration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: ansibleTowerConfigurationObject
+          in: body
+          type: string
+          description: The JSON representation of a AnsibleTowerConfiguration object.
+          required: true
+    - name: accountId-ansible-tower-servers
+      path: /{accountId}/ansible-tower/servers/
+      operations:
+      - name: get
+        method: GET
+        description: List all Ansible Tower Servers in the Account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-cloud-credentials
+      path: /{accountId}/cloud-credentials/
+      operations:
+      - name: get
+        method: GET
+        description: List all Cloud Credentials available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create new Cloud Credentials at this Account's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloudCredentialsObject
+          in: body
+          type: string
+          description: The JSON representation of a CloudCredentials object.
+          required: true
+    - name: accountId-cloud-credentials-cloudCredentialsId
+      path: /{accountId}/cloud-credentials/{cloudCredentialsId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete the specified Cloud Credentials from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about given Cloud Credentials. You can only obtain information about Cloud
+          Credentials defined in this Account's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of given Cloud Credentials.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloudCredentialsObject
+          in: body
+          type: string
+          description: The JSON representation of a CloudCredentials object.
+          required: true
+    - name: accountId-cost-centers
+      path: /{accountId}/cost-centers/
+      operations:
+      - name: get
+        method: GET
+        description: List the Cost Centers available in the Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-cost-centers-costCenterId
+      path: /{accountId}/cost-centers/{costCenterId}/
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Cost Center.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-environments
+      path: /{accountId}/environments/
+      operations:
+      - name: get
+        method: GET
+        description: List Environments available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Environment in the Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: environmentObject
+          in: body
+          type: string
+          description: The JSON representation of a Environment object.
+          required: true
+    - name: accountId-environments-envId
+      path: /{accountId}/environments/{envId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an Environment from the Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Update the attributes of an Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: environmentObject
+          in: body
+          type: string
+          description: The JSON representation of a Environment object.
+          required: true
+    - name: accountId-environments-envId-clouds
+      path: /{accountId}/environments/{envId}/clouds/
+      operations:
+      - name: get
+        method: GET
+        description: List the Clouds this environment has access to.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-environments-envId-clouds-cloud
+      path: /{accountId}/environments/{envId}/clouds/{cloud}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Detaches Cloud Credentials from this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about given Cloud Credentials that this Environment is using.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Associate or replace Cloud Credentials with this Environment for the given Cloud.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloudCredentialsForeignKeyObject
+          in: body
+          type: string
+          description: The JSON representation of a CloudCredentialsForeignKey object.
+          required: true
+    - name: accountId-environments-envId-teams
+      path: /{accountId}/environments/{envId}/teams/
+      operations:
+      - name: get
+        method: GET
+        description: List the Teams that have access to this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Grants a Team access to this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: environmentTeamObject
+          in: body
+          type: string
+          description: The JSON representation of a EnvironmentTeam object.
+          required: true
+    - name: accountId-environments-envId-teams-teamId
+      path: /{accountId}/environments/{envId}/teams/{teamId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Withhold a Team's access to this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Update the attributes of an Team access on this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: environmentTeamObject
+          in: body
+          type: string
+          description: The JSON representation of a EnvironmentTeam object.
+          required: true
+    - name: accountId-events
+      path: /{accountId}/events/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Events available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Custom Event in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventObject
+          in: body
+          type: string
+          description: The JSON representation of a Event object.
+          required: true
+        - name: replace
+          in: query
+          type: boolean
+          description: Replace all Events declared at a lower scope with the same name with this one.
+    - name: accountId-events-eventId
+      path: /{accountId}/events/{eventId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a given Event from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Event.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Event.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventObject
+          in: body
+          type: string
+          description: The JSON representation of a Event object.
+          required: true
+    - name: accountId-global-variables
+      path: /{accountId}/global-variables/
+      operations:
+      - name: get
+        method: GET
+        description: List Global Variables declared in account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Declare a new Global Variable for this account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: accountId-global-variables-globalVariableName
+      path: /{accountId}/global-variables/{globalVariableName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Global Variable from account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Global Variable declared in account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Global Variable declared in account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: accountId-images
+      path: /{accountId}/images/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Images available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Register a new Image in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: imageObject
+          in: body
+          type: string
+          description: The JSON representation of a Image object.
+          required: true
+    - name: accountId-images-imageId
+      path: /{accountId}/images/{imageId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Remove an Image from this Account. This does not remove the underlying machine image from the Cloud it
+          resides in.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about an image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of an Image. Currently only the name of the Image can be changed.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: image
+          in: body
+          type: string
+          description: The updated definition.
+          required: true
+    - name: accountId-images-imageId-actions-copy
+      path: /{accountId}/images/{imageId}/actions/copy/
+      operations:
+      - name: post
+        method: POST
+        description: Copy an Image from one EC2 region to another.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: copyImageRequest
+          in: body
+          type: string
+          description: Copy Image options.
+          required: true
+    - name: accountId-images-imageId-actions-replace
+      path: /{accountId}/images/{imageId}/actions/replace/
+      operations:
+      - name: post
+        method: POST
+        description: Replace the current Image with a specified one for all Roles which use this Image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replaceImageRequest
+          in: body
+          type: string
+          description: Replace image options.
+          required: true
+    - name: accountId-orchestration-rules
+      path: /{accountId}/orchestration-rules/
+      operations:
+      - name: get
+        method: GET
+        description: List the Orchestration Rules in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Orchestration Rule for this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: accountId-orchestration-rules-orchestrationRuleId
+      path: /{accountId}/orchestration-rules/{orchestrationRuleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an Orchestration Rule from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Orchestration Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify an Orchestration Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: accountId-os
+      path: /{accountId}/os/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Operating Systems definitions available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-os-osId
+      path: /{accountId}/os/{osId}/
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given OS.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-projects
+      path: /{accountId}/projects/
+      operations:
+      - name: get
+        method: GET
+        description: List the Projects available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Project in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectObject
+          in: body
+          type: string
+          description: The JSON representation of a Project object.
+          required: true
+    - name: accountId-projects-projectId
+      path: /{accountId}/projects/{projectId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Project from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of the Project.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: projectObject
+          in: body
+          type: string
+          description: The JSON representation of a Project object.
+          required: true
+    - name: accountId-role-categories
+      path: /{accountId}/role-categories/
+      operations:
+      - name: get
+        method: GET
+        description: List the Role Categories available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Role Category in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleCategoryObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleCategory object.
+          required: true
+    - name: accountId-role-categories-roleCategoryId
+      path: /{accountId}/role-categories/{roleCategoryId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Role Category from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Role Category.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Role Category.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleCategoryObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleCategory object.
+          required: true
+    - name: accountId-roles
+      path: /{accountId}/roles/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Roles available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Role in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountRoleObject
+          in: body
+          type: string
+          description: The JSON representation of a AccountRole object.
+          required: true
+    - name: accountId-roles-roleId
+      path: /{accountId}/roles/{roleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Role from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: accountRoleObject
+          in: body
+          type: string
+          description: The JSON representation of a AccountRole object.
+          required: true
+    - name: accountId-roles-roleId-actions-clone
+      path: /{accountId}/roles/{roleId}/actions/clone/
+      operations:
+      - name: post
+        method: POST
+        description: Make a copy of an existing Role by cloning it.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloneRoleRequest
+          in: body
+          type: string
+          description: Role cloning options.
+          required: true
+    - name: accountId-roles-roleId-actions-deprecate
+      path: /{accountId}/roles/{roleId}/actions/deprecate/
+      operations:
+      - name: post
+        method: POST
+        description: Deprecate a Role and set another Role to replace it.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deprecateRoleRequest
+          in: body
+          type: string
+          description: Deprecate Role options.
+    - name: accountId-roles-roleId-global-variables
+      path: /{accountId}/roles/{roleId}/global-variables/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Global Variables associated with a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Declare a new Global Variable for this Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: accountId-roles-roleId-global-variables-globalVariableName
+      path: /{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Global Variable from a given Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about Global Variable in the Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Global Variable in the Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: accountId-roles-roleId-images
+      path: /{accountId}/roles/{roleId}/images/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Images associated with a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Associate a new Image with a given Role. This will fail if an Image associated to the Role is in the
+          same location than the Image you are trying to add.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleImageObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleImage object.
+          required: true
+    - name: accountId-roles-roleId-images-imageId
+      path: /{accountId}/roles/{roleId}/images/{imageId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Dis-associate an Image from a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about an Image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-roles-roleId-images-imageId-actions-replace
+      path: /{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+      operations:
+      - name: post
+        method: POST
+        description: Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate
+          it and then associate a new one, which may not be possible if a Farm Role is currently using this Image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleImageObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleImage object.
+          required: true
+    - name: accountId-roles-roleId-orchestration-rules
+      path: /{accountId}/roles/{roleId}/orchestration-rules/
+      operations:
+      - name: get
+        method: GET
+        description: List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those
+          are read-only).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Orchestration Rule associated to a Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: accountId-roles-roleId-orchestration-rules-orchestrationRuleId
+      path: /{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an Orchestration Rule from the Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Orchestration Rule associated to this Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Orchestration Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: accountId-scaling-metrics
+      path: /{accountId}/scaling-metrics/
+      operations:
+      - name: get
+        method: GET
+        description: List all Scaling metrics in the Account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Add a new custom Scaling metric in the Account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scalingMetricObject
+          in: body
+          type: string
+          description: The JSON representation of a ScalingMetric object.
+          required: true
+    - name: accountId-scaling-metrics-metricName
+      path: /{accountId}/scaling-metrics/{metricName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Scaling metric.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Scaling metric.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the Scaling metric.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scalingMetricObject
+          in: body
+          type: string
+          description: The JSON representation of a ScalingMetric object.
+          required: true
+    - name: accountId-scripts
+      path: /{accountId}/scripts/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Scripts available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Script in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptObject
+          in: body
+          type: string
+          description: The JSON representation of a Script object.
+          required: true
+    - name: accountId-scripts-scriptId
+      path: /{accountId}/scripts/{scriptId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a given Script from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptObject
+          in: body
+          type: string
+          description: The JSON representation of a Script object.
+          required: true
+    - name: accountId-scripts-scriptId-script-versions
+      path: /{accountId}/scripts/{scriptId}/script-versions/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Script Versions for the specified Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Script Version for a given Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptVersionObject
+          in: body
+          type: string
+          description: The JSON representation of a ScriptVersion object.
+          required: true
+    - name: accountId-scripts-scriptId-script-versions-scriptVersionNumber
+      path: /{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a given Script Version from this Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Script Version.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Script Version
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptVersionObject
+          in: body
+          type: string
+          description: The JSON representation of a ScriptVersion object.
+          required: true
+    - name: accountId-teams
+      path: /{accountId}/teams/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Teams in this account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Creates a new Team in the Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teamObject
+          in: body
+          type: string
+          description: The JSON representation of a Team object.
+          required: true
+    - name: accountId-teams-teamId
+      path: /{accountId}/teams/{teamId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Team from this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Update the attributes of the specified Team.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: teamObject
+          in: body
+          type: string
+          description: The JSON representation of a Team object.
+          required: true
+    - name: accountId-users
+      path: /{accountId}/users/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Users available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: accountId-webhook-endpoints
+      path: /{accountId}/webhook-endpoints/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Webhook endpoints available in this Account.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: account-rest
+    port: 8080
+    description: REST adapter for Scalr Account API. One Spectral-compliant resource per consumed operation, prefixed with
+      /v1.
+    resources:
+    - path: /v1/{accountid}/acl-roles
+      name: accountid-acl-roles
+      description: REST surface for accountId-acl-roles.
+      operations:
+      - method: GET
+        name: get
+        description: List the ACL Roles in this account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/ansible-tower/configurations
+      name: accountid-ansible-tower-configurations
+      description: REST surface for accountId-ansible-tower-configurations.
+      operations:
+      - method: GET
+        name: get
+        description: List all Ansible Tower Configurations in the Account scope.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Add a new Ansible Tower Configuration in the Account scope.
+        call: account.post
+        with:
+          ansibleTowerConfigurationObject: rest.ansibleTowerConfigurationObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/ansible-tower/configurations/{ansibletowerconfigurationid}
+      name: accountid-ansible-tower-configurations-ansibletowerconfigurationid
+      description: REST surface for accountId-ansible-tower-configurations-ansibleTowerConfigurationId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete the Ansible Tower Configuration.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Ansible Tower Configuration.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the Ansible Tower Configuration.
+        call: account.patch
+        with:
+          ansibleTowerConfigurationObject: rest.ansibleTowerConfigurationObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/ansible-tower/servers
+      name: accountid-ansible-tower-servers
+      description: REST surface for accountId-ansible-tower-servers.
+      operations:
+      - method: GET
+        name: get
+        description: List all Ansible Tower Servers in the Account scope.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/cloud-credentials
+      name: accountid-cloud-credentials
+      description: REST surface for accountId-cloud-credentials.
+      operations:
+      - method: GET
+        name: get
+        description: List all Cloud Credentials available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create new Cloud Credentials at this Account's scope.
+        call: account.post
+        with:
+          cloudCredentialsObject: rest.cloudCredentialsObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/cloud-credentials/{cloudcredentialsid}
+      name: accountid-cloud-credentials-cloudcredentialsid
+      description: REST surface for accountId-cloud-credentials-cloudCredentialsId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete the specified Cloud Credentials from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about given Cloud Credentials. You can only obtain information about Cloud
+          Credentials defined in this Account's scope.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of given Cloud Credentials.
+        call: account.patch
+        with:
+          cloudCredentialsObject: rest.cloudCredentialsObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/cost-centers
+      name: accountid-cost-centers
+      description: REST surface for accountId-cost-centers.
+      operations:
+      - method: GET
+        name: get
+        description: List the Cost Centers available in the Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/cost-centers/{costcenterid}
+      name: accountid-cost-centers-costcenterid
+      description: REST surface for accountId-cost-centers-costCenterId.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Cost Center.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/environments
+      name: accountid-environments
+      description: REST surface for accountId-environments.
+      operations:
+      - method: GET
+        name: get
+        description: List Environments available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Environment in the Account.
+        call: account.post
+        with:
+          environmentObject: rest.environmentObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/environments/{envid}
+      name: accountid-environments-envid
+      description: REST surface for accountId-environments-envId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an Environment from the Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Environment.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Update the attributes of an Environment.
+        call: account.patch
+        with:
+          environmentObject: rest.environmentObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/environments/{envid}/clouds
+      name: accountid-environments-envid-clouds
+      description: REST surface for accountId-environments-envId-clouds.
+      operations:
+      - method: GET
+        name: get
+        description: List the Clouds this environment has access to.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/environments/{envid}/clouds/{cloud}
+      name: accountid-environments-envid-clouds-cloud
+      description: REST surface for accountId-environments-envId-clouds-cloud.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Detaches Cloud Credentials from this Environment.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about given Cloud Credentials that this Environment is using.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Associate or replace Cloud Credentials with this Environment for the given Cloud.
+        call: account.post
+        with:
+          cloudCredentialsForeignKeyObject: rest.cloudCredentialsForeignKeyObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/environments/{envid}/teams
+      name: accountid-environments-envid-teams
+      description: REST surface for accountId-environments-envId-teams.
+      operations:
+      - method: GET
+        name: get
+        description: List the Teams that have access to this Environment.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Grants a Team access to this Environment.
+        call: account.post
+        with:
+          environmentTeamObject: rest.environmentTeamObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/environments/{envid}/teams/{teamid}
+      name: accountid-environments-envid-teams-teamid
+      description: REST surface for accountId-environments-envId-teams-teamId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Withhold a Team's access to this Environment.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Update the attributes of an Team access on this Environment.
+        call: account.patch
+        with:
+          environmentTeamObject: rest.environmentTeamObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/events
+      name: accountid-events
+      description: REST surface for accountId-events.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Events available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Custom Event in this Account.
+        call: account.post
+        with:
+          eventObject: rest.eventObject
+          replace: rest.replace
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/events/{eventid}
+      name: accountid-events-eventid
+      description: REST surface for accountId-events-eventId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a given Event from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Event.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Event.
+        call: account.patch
+        with:
+          eventObject: rest.eventObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/global-variables
+      name: accountid-global-variables
+      description: REST surface for accountId-global-variables.
+      operations:
+      - method: GET
+        name: get
+        description: List Global Variables declared in account scope.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Declare a new Global Variable for this account scope.
+        call: account.post
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/global-variables/{globalvariablename}
+      name: accountid-global-variables-globalvariablename
+      description: REST surface for accountId-global-variables-globalVariableName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Global Variable from account scope.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Global Variable declared in account scope.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Global Variable declared in account scope.
+        call: account.patch
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/images
+      name: accountid-images
+      description: REST surface for accountId-images.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Images available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Register a new Image in this Account.
+        call: account.post
+        with:
+          imageObject: rest.imageObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/images/{imageid}
+      name: accountid-images-imageid
+      description: REST surface for accountId-images-imageId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Remove an Image from this Account. This does not remove the underlying machine image from the Cloud it
+          resides in.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about an image.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of an Image. Currently only the name of the Image can be changed.
+        call: account.patch
+        with:
+          image: rest.image
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/images/{imageid}/actions/copy
+      name: accountid-images-imageid-actions-copy
+      description: REST surface for accountId-images-imageId-actions-copy.
+      operations:
+      - method: POST
+        name: post
+        description: Copy an Image from one EC2 region to another.
+        call: account.post
+        with:
+          copyImageRequest: rest.copyImageRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/images/{imageid}/actions/replace
+      name: accountid-images-imageid-actions-replace
+      description: REST surface for accountId-images-imageId-actions-replace.
+      operations:
+      - method: POST
+        name: post
+        description: Replace the current Image with a specified one for all Roles which use this Image.
+        call: account.post
+        with:
+          replaceImageRequest: rest.replaceImageRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/orchestration-rules
+      name: accountid-orchestration-rules
+      description: REST surface for accountId-orchestration-rules.
+      operations:
+      - method: GET
+        name: get
+        description: List the Orchestration Rules in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Orchestration Rule for this Account.
+        call: account.post
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/orchestration-rules/{orchestrationruleid}
+      name: accountid-orchestration-rules-orchestrationruleid
+      description: REST surface for accountId-orchestration-rules-orchestrationRuleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an Orchestration Rule from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Orchestration Rule.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify an Orchestration Rule.
+        call: account.patch
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/os
+      name: accountid-os
+      description: REST surface for accountId-os.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Operating Systems definitions available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/os/{osid}
+      name: accountid-os-osid
+      description: REST surface for accountId-os-osId.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given OS.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/projects
+      name: accountid-projects
+      description: REST surface for accountId-projects.
+      operations:
+      - method: GET
+        name: get
+        description: List the Projects available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Project in this Account.
+        call: account.post
+        with:
+          projectObject: rest.projectObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/projects/{projectid}
+      name: accountid-projects-projectid
+      description: REST surface for accountId-projects-projectId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Project from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Project.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of the Project.
+        call: account.patch
+        with:
+          projectObject: rest.projectObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/role-categories
+      name: accountid-role-categories
+      description: REST surface for accountId-role-categories.
+      operations:
+      - method: GET
+        name: get
+        description: List the Role Categories available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Role Category in this Account.
+        call: account.post
+        with:
+          roleCategoryObject: rest.roleCategoryObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/role-categories/{rolecategoryid}
+      name: accountid-role-categories-rolecategoryid
+      description: REST surface for accountId-role-categories-roleCategoryId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Role Category from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Role Category.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Role Category.
+        call: account.patch
+        with:
+          roleCategoryObject: rest.roleCategoryObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles
+      name: accountid-roles
+      description: REST surface for accountId-roles.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Roles available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Role in this Account.
+        call: account.post
+        with:
+          accountRoleObject: rest.accountRoleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}
+      name: accountid-roles-roleid
+      description: REST surface for accountId-roles-roleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Role from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Role.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Role.
+        call: account.patch
+        with:
+          accountRoleObject: rest.accountRoleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/actions/clone
+      name: accountid-roles-roleid-actions-clone
+      description: REST surface for accountId-roles-roleId-actions-clone.
+      operations:
+      - method: POST
+        name: post
+        description: Make a copy of an existing Role by cloning it.
+        call: account.post
+        with:
+          cloneRoleRequest: rest.cloneRoleRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/actions/deprecate
+      name: accountid-roles-roleid-actions-deprecate
+      description: REST surface for accountId-roles-roleId-actions-deprecate.
+      operations:
+      - method: POST
+        name: post
+        description: Deprecate a Role and set another Role to replace it.
+        call: account.post
+        with:
+          deprecateRoleRequest: rest.deprecateRoleRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/global-variables
+      name: accountid-roles-roleid-global-variables
+      description: REST surface for accountId-roles-roleId-global-variables.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Global Variables associated with a given Role.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Declare a new Global Variable for this Role.
+        call: account.post
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/global-variables/{globalvariablename}
+      name: accountid-roles-roleid-global-variables-globalvariablename
+      description: REST surface for accountId-roles-roleId-global-variables-globalVariableName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Global Variable from a given Role's scope.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about Global Variable in the Role's scope.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Global Variable in the Role's scope.
+        call: account.patch
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/images
+      name: accountid-roles-roleid-images
+      description: REST surface for accountId-roles-roleId-images.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Images associated with a given Role.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Associate a new Image with a given Role. This will fail if an Image associated to the Role is in the
+          same location than the Image you are trying to add.
+        call: account.post
+        with:
+          roleImageObject: rest.roleImageObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/images/{imageid}
+      name: accountid-roles-roleid-images-imageid
+      description: REST surface for accountId-roles-roleId-images-imageId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Dis-associate an Image from a given Role.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about an Image.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/images/{imageid}/actions/replace
+      name: accountid-roles-roleid-images-imageid-actions-replace
+      description: REST surface for accountId-roles-roleId-images-imageId-actions-replace.
+      operations:
+      - method: POST
+        name: post
+        description: Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate
+          it and then associate a new one, which may not be possible if a Farm Role is currently using this Image.
+        call: account.post
+        with:
+          roleImageObject: rest.roleImageObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/orchestration-rules
+      name: accountid-roles-roleid-orchestration-rules
+      description: REST surface for accountId-roles-roleId-orchestration-rules.
+      operations:
+      - method: GET
+        name: get
+        description: List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those
+          are read-only).
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Orchestration Rule associated to a Role.
+        call: account.post
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/roles/{roleid}/orchestration-rules/{orchestrationruleid}
+      name: accountid-roles-roleid-orchestration-rules-orchestrationruleid
+      description: REST surface for accountId-roles-roleId-orchestration-rules-orchestrationRuleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an Orchestration Rule from the Role.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Orchestration Rule associated to this Role.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Orchestration Rule.
+        call: account.patch
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/scaling-metrics
+      name: accountid-scaling-metrics
+      description: REST surface for accountId-scaling-metrics.
+      operations:
+      - method: GET
+        name: get
+        description: List all Scaling metrics in the Account scope.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Add a new custom Scaling metric in the Account scope.
+        call: account.post
+        with:
+          scalingMetricObject: rest.scalingMetricObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/scaling-metrics/{metricname}
+      name: accountid-scaling-metrics-metricname
+      description: REST surface for accountId-scaling-metrics-metricName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Scaling metric.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Scaling metric.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the Scaling metric.
+        call: account.patch
+        with:
+          scalingMetricObject: rest.scalingMetricObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/scripts
+      name: accountid-scripts
+      description: REST surface for accountId-scripts.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Scripts available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Script in this Account.
+        call: account.post
+        with:
+          scriptObject: rest.scriptObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/scripts/{scriptid}
+      name: accountid-scripts-scriptid
+      description: REST surface for accountId-scripts-scriptId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a given Script from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Script.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Script.
+        call: account.patch
+        with:
+          scriptObject: rest.scriptObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/scripts/{scriptid}/script-versions
+      name: accountid-scripts-scriptid-script-versions
+      description: REST surface for accountId-scripts-scriptId-script-versions.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Script Versions for the specified Script.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Script Version for a given Script.
+        call: account.post
+        with:
+          scriptVersionObject: rest.scriptVersionObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/scripts/{scriptid}/script-versions/{scriptversionnumber}
+      name: accountid-scripts-scriptid-script-versions-scriptversionnumber
+      description: REST surface for accountId-scripts-scriptId-script-versions-scriptVersionNumber.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a given Script Version from this Script.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Script Version.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Script Version
+        call: account.patch
+        with:
+          scriptVersionObject: rest.scriptVersionObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/teams
+      name: accountid-teams
+      description: REST surface for accountId-teams.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Teams in this account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Creates a new Team in the Account.
+        call: account.post
+        with:
+          teamObject: rest.teamObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/teams/{teamid}
+      name: accountid-teams-teamid
+      description: REST surface for accountId-teams-teamId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Team from this Account.
+        call: account.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Team.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Update the attributes of the specified Team.
+        call: account.patch
+        with:
+          teamObject: rest.teamObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/users
+      name: accountid-users
+      description: REST surface for accountId-users.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Users available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{accountid}/webhook-endpoints
+      name: accountid-webhook-endpoints
+      description: REST surface for accountId-webhook-endpoints.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Webhook endpoints available in this Account.
+        call: account.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: account-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Scalr Account API. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-acl-roles-this-account
+      description: List the ACL Roles in this account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-ansible-tower-configurations
+      description: List all Ansible Tower Configurations in the Account scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-ansible-tower-configuration
+      description: Add a new Ansible Tower Configuration in the Account scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        ansibleTowerConfigurationObject: tools.ansibleTowerConfigurationObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-ansible-tower-configuration
+      description: Delete the Ansible Tower Configuration.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given
+      description: Retrieve detailed information about a given Ansible Tower Configuration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-ansible-tower-configuration
+      description: Modify the Ansible Tower Configuration.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        ansibleTowerConfigurationObject: tools.ansibleTowerConfigurationObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-ansible-tower-servers
+      description: List all Ansible Tower Servers in the Account scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-cloud-credentials-available
+      description: List all Cloud Credentials available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-cloud-credentials-this
+      description: Create new Cloud Credentials at this Account's scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        cloudCredentialsObject: tools.cloudCredentialsObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-specified-cloud-credentials-this
+      description: Delete the specified Cloud Credentials from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-2
+      description: Retrieve detailed information about given Cloud Credentials. You can only obtain information about Cloud
+        Credentials defined in this Account's scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-cloud-credentials
+      description: Modify the attributes of given Cloud Credentials.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        cloudCredentialsObject: tools.cloudCredentialsObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-cost-centers-available-account
+      description: List the Cost Centers available in the Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-3
+      description: Retrieve detailed information about a given Cost Center.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-environments-available-this-account
+      description: List Environments available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-environment-account
+      description: Create a new Environment in the Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        environmentObject: tools.environmentObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-environment-account
+      description: Delete an Environment from the Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-4
+      description: Retrieve detailed information about a given Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-attributes-environment
+      description: Update the attributes of an Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        environmentObject: tools.environmentObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-clouds-this-environment-has
+      description: List the Clouds this environment has access to.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: detaches-cloud-credentials-this-environment
+      description: Detaches Cloud Credentials from this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-5
+      description: Retrieve detailed information about given Cloud Credentials that this Environment is using.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: associate-replace-cloud-credentials-this
+      description: Associate or replace Cloud Credentials with this Environment for the given Cloud.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        cloudCredentialsForeignKeyObject: tools.cloudCredentialsForeignKeyObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-teams-that-have-access
+      description: List the Teams that have access to this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: grants-team-access-this-environment
+      description: Grants a Team access to this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        environmentTeamObject: tools.environmentTeamObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: withhold-team-s-access-this-environment
+      description: Withhold a Team's access to this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-attributes-team-access-this
+      description: Update the attributes of an Team access on this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        environmentTeamObject: tools.environmentTeamObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-events-available-this
+      description: List all the Events available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-custom-event-this
+      description: Create a new Custom Event in this Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        eventObject: tools.eventObject
+        replace: tools.replace
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-given-event-this-account
+      description: Delete a given Event from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-6
+      description: Retrieve detailed information about a given Event.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-event
+      description: Modify the attributes of a given Event.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        eventObject: tools.eventObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-global-variables-declared-account
+      description: List Global Variables declared in account scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declare-new-global-variable-this
+      description: Declare a new Global Variable for this account scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-global-variable-account-scope
+      description: Delete a Global Variable from account scope.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-global
+      description: Retrieve detailed information about a Global Variable declared in account scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-global-variable-declared
+      description: Modify the attributes of a Global Variable declared in account scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-images-available-this
+      description: List all the Images available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-new-image-this-account
+      description: Register a new Image in this Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        imageObject: tools.imageObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-image-this-account-this
+      description: Remove an Image from this Account. This does not remove the underlying machine image from the Cloud it
+        resides in.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-image
+      description: Retrieve detailed information about an image.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-image-currently-only
+      description: Modify the attributes of an Image. Currently only the name of the Image can be changed.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        image: tools.image
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copy-image-one-ec2-region
+      description: Copy an Image from one EC2 region to another.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        copyImageRequest: tools.copyImageRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replace-current-image-specified-one
+      description: Replace the current Image with a specified one for all Roles which use this Image.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        replaceImageRequest: tools.replaceImageRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-orchestration-rules-this-account
+      description: List the Orchestration Rules in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-orchestration-rule-this
+      description: Create a new Orchestration Rule for this Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-orchestration-rule-this-account
+      description: Delete an Orchestration Rule from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-7
+      description: Retrieve detailed information about a given Orchestration Rule.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-orchestration-rule
+      description: Modify an Orchestration Rule.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-operating-systems-definitions
+      description: List all the Operating Systems definitions available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-8
+      description: Retrieve detailed information about a given OS.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-projects-available-this-account
+      description: List the Projects available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-project-this-account
+      description: Create a new Project in this Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        projectObject: tools.projectObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-project-this-account
+      description: Delete a Project from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-project
+      description: Retrieve detailed information about a Project.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-project
+      description: Modify the attributes of the Project.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        projectObject: tools.projectObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-role-categories-available-this
+      description: List the Role Categories available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-role-category-this
+      description: Create a new Role Category in this Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        roleCategoryObject: tools.roleCategoryObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-role-category-this-account
+      description: Delete a Role Category from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-9
+      description: Retrieve detailed information about a given Role Category.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-role-category
+      description: Modify the attributes of a given Role Category.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        roleCategoryObject: tools.roleCategoryObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-roles-available-this
+      description: List all the Roles available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-role-this-account
+      description: Create a new Role in this Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        accountRoleObject: tools.accountRoleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-role-this-account
+      description: Delete a Role from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-10
+      description: Retrieve detailed information about a given Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-role
+      description: Modify the attributes of a given Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        accountRoleObject: tools.accountRoleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: make-copy-existing-role-cloning
+      description: Make a copy of an existing Role by cloning it.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        cloneRoleRequest: tools.cloneRoleRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deprecate-role-and-set-another
+      description: Deprecate a Role and set another Role to replace it.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        deprecateRoleRequest: tools.deprecateRoleRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-global-variables-associated
+      description: List all the Global Variables associated with a given Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declare-new-global-variable-this-2
+      description: Declare a new Global Variable for this Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-global-variable-given-role-s
+      description: Delete a Global Variable from a given Role's scope.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-global-2
+      description: Retrieve detailed information about Global Variable in the Role's scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-global-variable-role-s
+      description: Modify the attributes of a Global Variable in the Role's scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-images-associated-given
+      description: List all the Images associated with a given Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: associate-new-image-given-role
+      description: Associate a new Image with a given Role. This will fail if an Image associated to the Role is in the same
+        location than the Image you are trying to add.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        roleImageObject: tools.roleImageObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dis-associate-image-given-role
+      description: Dis-associate an Image from a given Role.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-image-2
+      description: Retrieve detailed information about an Image.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replace-image-place-given-role
+      description: Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate
+        it and then associate a new one, which may not be possible if a Farm Role is currently using this Image.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        roleImageObject: tools.roleImageObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-orchestration-rules-associated-given
+      description: List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those are
+        read-only).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-orchestration-rule-associated
+      description: Create a new Orchestration Rule associated to a Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-orchestration-rule-role
+      description: Delete an Orchestration Rule from the Role.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-11
+      description: Retrieve detailed information about a given Orchestration Rule associated to this Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-orchestration-rule
+      description: Modify the attributes of a given Orchestration Rule.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-scaling-metrics-account
+      description: List all Scaling metrics in the Account scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-custom-scaling-metric
+      description: Add a new custom Scaling metric in the Account scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        scalingMetricObject: tools.scalingMetricObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-scaling-metric
+      description: Delete a Scaling metric.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-12
+      description: Retrieve detailed information about a given Scaling metric.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-scaling-metric
+      description: Modify the Scaling metric.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        scalingMetricObject: tools.scalingMetricObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-scripts-available-this
+      description: List all the Scripts available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-script-this-account
+      description: Create a new Script in this Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        scriptObject: tools.scriptObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-given-script-this-account
+      description: Delete a given Script from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-13
+      description: Retrieve detailed information about a given Script.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-script
+      description: Modify the attributes of a given Script.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        scriptObject: tools.scriptObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-script-versions-specified
+      description: List all the Script Versions for the specified Script.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-script-version-given
+      description: Create a new Script Version for a given Script.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        scriptVersionObject: tools.scriptVersionObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-given-script-version-this
+      description: Delete a given Script Version from this Script.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-14
+      description: Retrieve detailed information about a given Script Version.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-script-version
+      description: Modify the attributes of a given Script Version
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        scriptVersionObject: tools.scriptVersionObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-teams-this-account
+      description: List all the Teams in this account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: creates-new-team-account
+      description: Creates a new Team in the Account.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: account.post
+      with:
+        teamObject: tools.teamObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-team-this-account
+      description: Delete a Team from this Account.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: account.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-15
+      description: Retrieve detailed information about a given Team.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: update-attributes-specified-team
+      description: Update the attributes of the specified Team.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: account.patch
+      with:
+        teamObject: tools.teamObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-users-available-this
+      description: List all the Users available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-webhook-endpoints-available
+      description: List all the Webhook endpoints available in this Account.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: account.get
+      outputParameters:
+      - type: object
+        mapping: $.

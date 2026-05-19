@@ -1,0 +1,4927 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Scalr User API
+  description: 'Scalr User API. 148 operations. Lead operation: Get Scaling Configuration. Self-contained Naftiko capability
+    covering one Scalr business surface.'
+  tags:
+  - Scalr
+  - Scalr User API
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    SCALR_API_KEY: SCALR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: user
+    baseUri: ''
+    description: Scalr User API business capability. Self-contained, no shared references.
+    resources:
+    - name: envId-clouds-cloudPlatform-cloud-locations
+      path: /{envId}/clouds/{cloudPlatform}/cloud-locations/
+      operations:
+      - name: get
+        method: GET
+        description: The list of the Cloud Locations.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-clouds-cloudPlatform-cloud-locations-cloudLocation-instance-types
+      path: /{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+      operations:
+      - name: get
+        method: GET
+        description: The list of all Instance Types available for the specified Cloud Location.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-cost-centers-costCenterId
+      path: /{envId}/cost-centers/{costCenterId}/
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Cost Center.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-event-logs
+      path: /{envId}/event-logs/
+      operations:
+      - name: get
+        method: GET
+        description: List of all Event logs.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-event-logs-eventLogEntryId
+      path: /{envId}/event-logs/{eventLogEntryId}/
+      operations:
+      - name: get
+        method: GET
+        description: Describes detailed information about the Event that has been fired.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-events
+      path: /{envId}/events/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Events available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Custom Event in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventObject
+          in: body
+          type: string
+          description: The JSON representation of a Event object.
+          required: true
+    - name: envId-events-eventId
+      path: /{envId}/events/{eventId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an Event from this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Event.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of an Event.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: eventObject
+          in: body
+          type: string
+          description: The JSON representation of a Event object.
+          required: true
+    - name: envId-events-eventId-actions-fire
+      path: /{envId}/events/{eventId}/actions/fire/
+      operations:
+      - name: post
+        method: POST
+        description: It fires the Custom Event on the Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: fireEventRequest
+          in: body
+          type: string
+          description: Fire Event options.
+          required: true
+    - name: envId-farm-roles-farmRoleId
+      path: /{envId}/farm-roles/{farmRoleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Remove a given Farm Role from its Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: farmRoleObject
+          in: body
+          type: string
+          description: The JSON representation of a FarmRole object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-actions-clone
+      path: /{envId}/farm-roles/{farmRoleId}/actions/clone/
+      operations:
+      - name: post
+        method: POST
+        description: Clone a given FarmRole within current Farm or to another Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloneFarmRoleRequest
+          in: body
+          type: string
+          description: FarmRole cloning options.
+          required: true
+    - name: envId-farm-roles-farmRoleId-actions-generate-template
+      path: /{envId}/farm-roles/{farmRoleId}/actions/generate-template/
+      operations:
+      - name: get
+        method: GET
+        description: Get FarmRole Template body for given FarmRole.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-farm-roles-farmRoleId-actions-import-server
+      path: /{envId}/farm-roles/{farmRoleId}/actions/import-server/
+      operations:
+      - name: post
+        method: POST
+        description: Import a running server from a Cloud Platform to a Scalr Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: importServerRequest
+          in: body
+          type: string
+          description: Server import settings.
+          required: true
+    - name: envId-farm-roles-farmRoleId-global-variables
+      path: /{envId}/farm-roles/{farmRoleId}/global-variables/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Global Variables associated with this Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Declare a new Global Variable for this Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-global-variables-globalVariableName
+      path: /{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Global Variable from this Farm Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Global Variable in this Farm Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Global Variable in this Farm Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-orchestration-rules
+      path: /{envId}/farm-roles/{farmRoleId}/orchestration-rules/
+      operations:
+      - name: get
+        method: GET
+        description: List all Orchestration Rules associated with this Farm Role, including Rules from higher Scopes (those
+          are read-only).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Orchestration Rule associated to this Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-orchestration-rules-orchestrationRuleId
+      path: /{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an Orchestration Rule from this Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about an Orchestration Rule associated to this Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of an Orchestration Rule associated to this Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-scaling
+      path: /{envId}/farm-roles/{farmRoleId}/scaling/
+      operations:
+      - name: get
+        method: GET
+        description: Get Scaling Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Edit Scaling Configuration
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scalingConfigurationObject
+          in: body
+          type: string
+          description: The JSON representation of a ScalingConfiguration object.
+          required: true
+      - name: post
+        method: POST
+        description: Create Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scalingRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a ScalingRule object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-scaling-metricName
+      path: /{envId}/farm-roles/{farmRoleId}/scaling/{metricName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Get Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Edit Rule
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scalingRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a ScalingRule object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-servers
+      path: /{envId}/farm-roles/{farmRoleId}/servers/
+      operations:
+      - name: get
+        method: GET
+        description: Describes all the Servers associated to a Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Launch a new Server for the specified Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-farm-roles-farmRoleId-storage
+      path: /{envId}/farm-roles/{farmRoleId}/storage/
+      operations:
+      - name: get
+        method: GET
+        description: Describe the Storage configuration of the Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Add a new storage configuration to the Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storageConfigurationObject
+          in: body
+          type: string
+          description: The JSON representation of a StorageConfiguration object.
+          required: true
+    - name: envId-farm-roles-farmRoleId-storage-storageConfigurationId
+      path: /{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete the storage configuration from the Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve a specific storage configuration of the Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the storage configuration of the Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: storageConfigurationObject
+          in: body
+          type: string
+          description: The JSON representation of a StorageConfiguration object.
+          required: true
+    - name: envId-farms
+      path: /{envId}/farms/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Farms available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Farm in this Environment. Farm and FarmTemplate objects are acceptable.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: farmObject
+          in: body
+          type: string
+          description: The JSON representation of a Farm object.
+          required: true
+    - name: envId-farms-farmId
+      path: /{envId}/farms/{farmId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Farm from this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: farmObject
+          in: body
+          type: string
+          description: The JSON representation of a Farm object.
+          required: true
+    - name: envId-farms-farmId-actions-clone
+      path: /{envId}/farms/{farmId}/actions/clone/
+      operations:
+      - name: post
+        method: POST
+        description: Clone a given Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloneFarmRequest
+          in: body
+          type: string
+          description: Farm cloning options.
+          required: true
+    - name: envId-farms-farmId-actions-generate-template
+      path: /{envId}/farms/{farmId}/actions/generate-template/
+      operations:
+      - name: get
+        method: GET
+        description: Get Farm Template body for given Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-farms-farmId-actions-launch
+      path: /{envId}/farms/{farmId}/actions/launch/
+      operations:
+      - name: post
+        method: POST
+        description: Launch a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-farms-farmId-actions-lock
+      path: /{envId}/farms/{farmId}/actions/lock/
+      operations:
+      - name: post
+        method: POST
+        description: Lock a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: lockFarmRequest
+          in: body
+          type: string
+          description: Lock Farm options.
+          required: true
+    - name: envId-farms-farmId-actions-resume
+      path: /{envId}/farms/{farmId}/actions/resume/
+      operations:
+      - name: post
+        method: POST
+        description: Resume a suspended Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-farms-farmId-actions-suspend
+      path: /{envId}/farms/{farmId}/actions/suspend/
+      operations:
+      - name: post
+        method: POST
+        description: Suspend a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-farms-farmId-actions-terminate
+      path: /{envId}/farms/{farmId}/actions/terminate/
+      operations:
+      - name: post
+        method: POST
+        description: Terminate a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: terminateFarmRequest
+          in: body
+          type: string
+          description: Terminate Farm options.
+    - name: envId-farms-farmId-actions-unlock
+      path: /{envId}/farms/{farmId}/actions/unlock/
+      operations:
+      - name: post
+        method: POST
+        description: Unlock a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-farms-farmId-cloud-services
+      path: /{envId}/farms/{farmId}/cloud-services/
+      operations:
+      - name: get
+        method: GET
+        description: List of the Cloud Services linked to the current Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Link Cloud Service to the current Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: farmCloudServiceLinkObject
+          in: body
+          type: string
+          description: The JSON representation of a FarmCloudServiceLink object.
+          required: true
+    - name: envId-farms-farmId-cloud-services-farmCloudServiceLinkId
+      path: /{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Unlink Cloud Service from the current Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about linked Cloud Service to the current Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify Cloud Service attributes.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: farmCloudServiceLinkObject
+          in: body
+          type: string
+          description: The JSON representation of a FarmCloudServiceLink object.
+          required: true
+    - name: envId-farms-farmId-farm-roles
+      path: /{envId}/farms/{farmId}/farm-roles/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Farm Roles in a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Farm Role in a Farm. FarmRole and FarmRoleTemplate objects are acceptable.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: farmRoleObject
+          in: body
+          type: string
+          description: The JSON representation of a FarmRole object.
+          required: true
+    - name: envId-farms-farmId-global-variables
+      path: /{envId}/farms/{farmId}/global-variables/
+      operations:
+      - name: get
+        method: GET
+        description: List all Global Variables associated to a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Declare a new Global Variable for this Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-farms-farmId-global-variables-globalVariableName
+      path: /{envId}/farms/{farmId}/global-variables/{globalVariableName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Global Variable from a given Farm's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Global Variable in the Farm's scope
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Global Variable's in the Farm's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-farms-farmId-servers
+      path: /{envId}/farms/{farmId}/servers/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Servers associated to a Farm.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-global-variables
+      path: /{envId}/global-variables/
+      operations:
+      - name: get
+        method: GET
+        description: List Global Variables declared in environment scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Declare a new Global Variable for this environment scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-global-variables-globalVariableName
+      path: /{envId}/global-variables/{globalVariableName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Global Variable from environment scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Global Variable declared in environment scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Global Variable declared in environment scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-images
+      path: /{envId}/images/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Images available in the Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Register a new Image in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: imageObject
+          in: body
+          type: string
+          description: The JSON representation of a Image object.
+          required: true
+    - name: envId-images-imageId
+      path: /{envId}/images/{imageId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Remove an Image from the Environment. By default this does not delete the underlying machine image from
+          the Cloud it resides in.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deleteFromCloud
+          in: query
+          type: boolean
+          description: Attempt to also delete this Image from the Cloud.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about an Image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of an Images. Currently only the name of the Image be can changed.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: image
+          in: body
+          type: string
+          description: The updated definition.
+          required: true
+    - name: envId-images-imageId-actions-copy
+      path: /{envId}/images/{imageId}/actions/copy/
+      operations:
+      - name: post
+        method: POST
+        description: Copy an Image from one EC2 region to another.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: copyImageRequest
+          in: body
+          type: string
+          description: The EC2 region to copy this Image to.
+          required: true
+    - name: envId-images-imageId-actions-replace
+      path: /{envId}/images/{imageId}/actions/replace/
+      operations:
+      - name: post
+        method: POST
+        description: Replace the current Image with a specified one for all Roles which use this Image. The Image will be
+          replaced only within the Environment scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: replaceImageRequest
+          in: body
+          type: string
+          description: Replace image options.
+          required: true
+    - name: envId-orchestration-logs
+      path: /{envId}/orchestration-logs/
+      operations:
+      - name: get
+        method: GET
+        description: List of all Orchestration logs.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-orchestration-logs-logEntryId
+      path: /{envId}/orchestration-logs/{logEntryId}/
+      operations:
+      - name: get
+        method: GET
+        description: Describes detailed information about a result of the orchestration.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-orchestration-rules
+      path: /{envId}/orchestration-rules/
+      operations:
+      - name: get
+        method: GET
+        description: List the Orchestration Rules in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Orchestration Rule for this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: envId-orchestration-rules-orchestrationRuleId
+      path: /{envId}/orchestration-rules/{orchestrationRuleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete an Orchestration Rule from this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Orchestration Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify an Orchestration Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: envId-os
+      path: /{envId}/os/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Operating Systems definitions available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-os-osId
+      path: /{envId}/os/{osId}/
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given OS.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-role-categories
+      path: /{envId}/role-categories/
+      operations:
+      - name: get
+        method: GET
+        description: List the Role Categories available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Role Category in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleCategoryObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleCategory object.
+          required: true
+    - name: envId-role-categories-roleCategoryId
+      path: /{envId}/role-categories/{roleCategoryId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Role Category from this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Role Category.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Role Category.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleCategoryObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleCategory object.
+          required: true
+    - name: envId-roles
+      path: /{envId}/roles/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Roles available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Role in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleObject
+          in: body
+          type: string
+          description: The JSON representation of a Role object.
+          required: true
+    - name: envId-roles-roleId
+      path: /{envId}/roles/{roleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Role from this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleObject
+          in: body
+          type: string
+          description: The JSON representation of a Role object.
+          required: true
+    - name: envId-roles-roleId-actions-clone
+      path: /{envId}/roles/{roleId}/actions/clone/
+      operations:
+      - name: post
+        method: POST
+        description: Make a copy of an existing Role by cloning it.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: cloneRoleRequest
+          in: body
+          type: string
+          description: Role cloning options.
+          required: true
+    - name: envId-roles-roleId-actions-deprecate
+      path: /{envId}/roles/{roleId}/actions/deprecate/
+      operations:
+      - name: post
+        method: POST
+        description: Deprecate a Role and set another Role to replace it.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: deprecateRoleRequest
+          in: body
+          type: string
+          description: Deprecate Role options.
+    - name: envId-roles-roleId-actions-promote
+      path: /{envId}/roles/{roleId}/actions/promote/
+      operations:
+      - name: post
+        method: POST
+        description: Promote Role to account scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-roles-roleId-global-variables
+      path: /{envId}/roles/{roleId}/global-variables/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Global Variables associated with a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Declares a new Global Variable for this Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-roles-roleId-global-variables-globalVariableName
+      path: /{envId}/roles/{roleId}/global-variables/{globalVariableName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Deletes a Global Variable from this Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about Global Variable in the Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Global Variable in the Role's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-roles-roleId-images
+      path: /{envId}/roles/{roleId}/images/
+      operations:
+      - name: get
+        method: GET
+        description: List all Images associated with a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Associates a new Image with a given Role. This will fail if an Image associated to the Role is in the
+          same location than the Image you are trying to add.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleImageObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleImage object.
+          required: true
+    - name: envId-roles-roleId-images-imageId
+      path: /{envId}/roles/{roleId}/images/{imageId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Dis-associates an Image from a given Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about an Image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-roles-roleId-images-imageId-actions-replace
+      path: /{envId}/roles/{roleId}/images/{imageId}/actions/replace/
+      operations:
+      - name: post
+        method: POST
+        description: Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate
+          it and then associate a new one, which may not be possible if a Farm Role is currently using this Image.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: roleImageObject
+          in: body
+          type: string
+          description: The JSON representation of a RoleImage object.
+          required: true
+    - name: envId-roles-roleId-orchestration-rules
+      path: /{envId}/roles/{roleId}/orchestration-rules/
+      operations:
+      - name: get
+        method: GET
+        description: List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those
+          are read-only).
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Orchestration Rule associated to a Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: envId-roles-roleId-orchestration-rules-orchestrationRuleId
+      path: /{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete the specified Orchestration Rule from the Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve a given Orchestration Rule associated to a Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a given Orchestration Rule.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: orchestrationRuleObject
+          in: body
+          type: string
+          description: The JSON representation of a OrchestrationRule object.
+          required: true
+    - name: envId-scaling-metrics
+      path: /{envId}/scaling-metrics/
+      operations:
+      - name: get
+        method: GET
+        description: List all Scaling metrics available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Add a new custom Scaling metric to this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scalingMetricObject
+          in: body
+          type: string
+          description: The JSON representation of a ScalingMetric object.
+          required: true
+    - name: envId-scaling-metrics-metricName
+      path: /{envId}/scaling-metrics/{metricName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Scaling metric.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a given Scaling metric.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Scaling metric.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scalingMetricObject
+          in: body
+          type: string
+          description: The JSON representation of a ScalingMetric object.
+          required: true
+    - name: envId-script-executions-scriptExecutionId
+      path: /{envId}/script-executions/{scriptExecutionId}/
+      operations:
+      - name: get
+        method: GET
+        description: Describes detailed information about a state of the script execution.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-scripts
+      path: /{envId}/scripts/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Scripts available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Script in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptObject
+          in: body
+          type: string
+          description: The JSON representation of a Script object.
+          required: true
+    - name: envId-scripts-scriptId
+      path: /{envId}/scripts/{scriptId}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Deletes a given Script from this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptObject
+          in: body
+          type: string
+          description: The JSON representation of a Script object.
+          required: true
+    - name: envId-scripts-scriptId-actions-execute
+      path: /{envId}/scripts/{scriptId}/actions/execute/
+      operations:
+      - name: post
+        method: POST
+        description: It executes the latest version of the Script on the Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptExecutionRequestObject
+          in: body
+          type: string
+          description: The JSON representation of a ScriptExecutionRequest object.
+          required: true
+    - name: envId-scripts-scriptId-script-versions
+      path: /{envId}/scripts/{scriptId}/script-versions/
+      operations:
+      - name: get
+        method: GET
+        description: List all Script Versions for the specified Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Create a new Script Version for a given Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptVersionObject
+          in: body
+          type: string
+          description: The JSON representation of a ScriptVersion object.
+          required: true
+    - name: envId-scripts-scriptId-script-versions-scriptVersionNumber
+      path: /{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Script Version from this Script.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a specified Script Version.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Script Version.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptVersionObject
+          in: body
+          type: string
+          description: The JSON representation of a ScriptVersion object.
+          required: true
+    - name: envId-scripts-scriptId-script-versions-scriptVersionNumber-actions-execute
+      path: /{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/actions/execute/
+      operations:
+      - name: post
+        method: POST
+        description: It executes the specified version of the Script on the Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scriptExecutionRequestObject
+          in: body
+          type: string
+          description: The JSON representation of a ScriptExecutionRequest object.
+          required: true
+    - name: envId-servers
+      path: /{envId}/servers/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Servers that exist in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Launch a new Server for the specified Farm Role.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serverLaunchRequest
+          in: body
+          type: string
+          description: Server launch options.
+          required: true
+    - name: envId-servers-serverId
+      path: /{envId}/servers/{serverId}/
+      operations:
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: 'Modify the Instance type of the Server. Server status before this action depends on CloudPlatform: -
+          For EC2 and OpenStack instance type change requires server status "suspended". - For VMware instance type change
+          requires server status "ru'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serverObject
+          in: body
+          type: string
+          description: The JSON representation of a Server object.
+          required: true
+    - name: envId-servers-serverId-actions-reboot
+      path: /{envId}/servers/{serverId}/actions/reboot/
+      operations:
+      - name: post
+        method: POST
+        description: Reboot a Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serverRebootOptions
+          in: body
+          type: string
+          description: Additional options for the Server reboot.
+    - name: envId-servers-serverId-actions-resume
+      path: /{envId}/servers/{serverId}/actions/resume/
+      operations:
+      - name: post
+        method: POST
+        description: Resume a suspended Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-servers-serverId-actions-suspend
+      path: /{envId}/servers/{serverId}/actions/suspend/
+      operations:
+      - name: post
+        method: POST
+        description: Suspend a Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-servers-serverId-actions-sync
+      path: /{envId}/servers/{serverId}/actions/sync/
+      operations:
+      - name: post
+        method: POST
+        description: Sync the Ansible Tower Configuration on the Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: envId-servers-serverId-actions-terminate
+      path: /{envId}/servers/{serverId}/actions/terminate/
+      operations:
+      - name: post
+        method: POST
+        description: Terminate a Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: serverTerminationOptions
+          in: body
+          type: string
+          description: Additional options for the Server termination.
+    - name: envId-servers-serverId-global-variables
+      path: /{envId}/servers/{serverId}/global-variables/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Global Variables associated with this Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: post
+        method: POST
+        description: Declare a new Global Variable for this Server.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-servers-serverId-global-variables-globalVariableName
+      path: /{envId}/servers/{serverId}/global-variables/{globalVariableName}/
+      operations:
+      - name: delete
+        method: DELETE
+        description: Delete a Global Variable from this Server's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: get
+        method: GET
+        description: Retrieve detailed information about a Global Variable in this Server's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: patch
+        method: PATCH
+        description: Modify the attributes of a Global Variable in this Server's scope.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: globalVariableObject
+          in: body
+          type: string
+          description: The JSON representation of a GlobalVariable object.
+          required: true
+    - name: envId-webhook-endpoints
+      path: /{envId}/webhook-endpoints/
+      operations:
+      - name: get
+        method: GET
+        description: List all the Webhook endpoints available in this Environment.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: user-rest
+    port: 8080
+    description: REST adapter for Scalr User API. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/{envid}/clouds/{cloudplatform}/cloud-locations
+      name: envid-clouds-cloudplatform-cloud-locations
+      description: REST surface for envId-clouds-cloudPlatform-cloud-locations.
+      operations:
+      - method: GET
+        name: get
+        description: The list of the Cloud Locations.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/clouds/{cloudplatform}/cloud-locations/{cloudlocation}/instance-types
+      name: envid-clouds-cloudplatform-cloud-locations-cloudlocation-instance-types
+      description: REST surface for envId-clouds-cloudPlatform-cloud-locations-cloudLocation-instance-types.
+      operations:
+      - method: GET
+        name: get
+        description: The list of all Instance Types available for the specified Cloud Location.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/cost-centers/{costcenterid}
+      name: envid-cost-centers-costcenterid
+      description: REST surface for envId-cost-centers-costCenterId.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Cost Center.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/event-logs
+      name: envid-event-logs
+      description: REST surface for envId-event-logs.
+      operations:
+      - method: GET
+        name: get
+        description: List of all Event logs.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/event-logs/{eventlogentryid}
+      name: envid-event-logs-eventlogentryid
+      description: REST surface for envId-event-logs-eventLogEntryId.
+      operations:
+      - method: GET
+        name: get
+        description: Describes detailed information about the Event that has been fired.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/events
+      name: envid-events
+      description: REST surface for envId-events.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Events available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Custom Event in this Environment.
+        call: user.post
+        with:
+          eventObject: rest.eventObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/events/{eventid}
+      name: envid-events-eventid
+      description: REST surface for envId-events-eventId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an Event from this Environment.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Event.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of an Event.
+        call: user.patch
+        with:
+          eventObject: rest.eventObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/events/{eventid}/actions/fire
+      name: envid-events-eventid-actions-fire
+      description: REST surface for envId-events-eventId-actions-fire.
+      operations:
+      - method: POST
+        name: post
+        description: It fires the Custom Event on the Server.
+        call: user.post
+        with:
+          fireEventRequest: rest.fireEventRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}
+      name: envid-farm-roles-farmroleid
+      description: REST surface for envId-farm-roles-farmRoleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Remove a given Farm Role from its Farm.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Farm Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Farm Role.
+        call: user.patch
+        with:
+          farmRoleObject: rest.farmRoleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/actions/clone
+      name: envid-farm-roles-farmroleid-actions-clone
+      description: REST surface for envId-farm-roles-farmRoleId-actions-clone.
+      operations:
+      - method: POST
+        name: post
+        description: Clone a given FarmRole within current Farm or to another Farm.
+        call: user.post
+        with:
+          cloneFarmRoleRequest: rest.cloneFarmRoleRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/actions/generate-template
+      name: envid-farm-roles-farmroleid-actions-generate-template
+      description: REST surface for envId-farm-roles-farmRoleId-actions-generate-template.
+      operations:
+      - method: GET
+        name: get
+        description: Get FarmRole Template body for given FarmRole.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/actions/import-server
+      name: envid-farm-roles-farmroleid-actions-import-server
+      description: REST surface for envId-farm-roles-farmRoleId-actions-import-server.
+      operations:
+      - method: POST
+        name: post
+        description: Import a running server from a Cloud Platform to a Scalr Farm Role.
+        call: user.post
+        with:
+          importServerRequest: rest.importServerRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/global-variables
+      name: envid-farm-roles-farmroleid-global-variables
+      description: REST surface for envId-farm-roles-farmRoleId-global-variables.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Global Variables associated with this Farm Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Declare a new Global Variable for this Farm Role.
+        call: user.post
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/global-variables/{globalvariablename}
+      name: envid-farm-roles-farmroleid-global-variables-globalvariablename
+      description: REST surface for envId-farm-roles-farmRoleId-global-variables-globalVariableName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Global Variable from this Farm Role's scope.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Global Variable in this Farm Role's scope.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Global Variable in this Farm Role's scope.
+        call: user.patch
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/orchestration-rules
+      name: envid-farm-roles-farmroleid-orchestration-rules
+      description: REST surface for envId-farm-roles-farmRoleId-orchestration-rules.
+      operations:
+      - method: GET
+        name: get
+        description: List all Orchestration Rules associated with this Farm Role, including Rules from higher Scopes (those
+          are read-only).
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Orchestration Rule associated to this Farm Role.
+        call: user.post
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/orchestration-rules/{orchestrationruleid}
+      name: envid-farm-roles-farmroleid-orchestration-rules-orchestrationruleid
+      description: REST surface for envId-farm-roles-farmRoleId-orchestration-rules-orchestrationRuleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an Orchestration Rule from this Farm Role.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about an Orchestration Rule associated to this Farm Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of an Orchestration Rule associated to this Farm Role.
+        call: user.patch
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/scaling
+      name: envid-farm-roles-farmroleid-scaling
+      description: REST surface for envId-farm-roles-farmRoleId-scaling.
+      operations:
+      - method: GET
+        name: get
+        description: Get Scaling Configuration
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Edit Scaling Configuration
+        call: user.patch
+        with:
+          scalingConfigurationObject: rest.scalingConfigurationObject
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create Rule
+        call: user.post
+        with:
+          scalingRuleObject: rest.scalingRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/scaling/{metricname}
+      name: envid-farm-roles-farmroleid-scaling-metricname
+      description: REST surface for envId-farm-roles-farmRoleId-scaling-metricName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete Rule
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Get Rule
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Edit Rule
+        call: user.patch
+        with:
+          scalingRuleObject: rest.scalingRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/servers
+      name: envid-farm-roles-farmroleid-servers
+      description: REST surface for envId-farm-roles-farmRoleId-servers.
+      operations:
+      - method: GET
+        name: get
+        description: Describes all the Servers associated to a Farm Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Launch a new Server for the specified Farm Role.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/storage
+      name: envid-farm-roles-farmroleid-storage
+      description: REST surface for envId-farm-roles-farmRoleId-storage.
+      operations:
+      - method: GET
+        name: get
+        description: Describe the Storage configuration of the Farm Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Add a new storage configuration to the Farm Role.
+        call: user.post
+        with:
+          storageConfigurationObject: rest.storageConfigurationObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farm-roles/{farmroleid}/storage/{storageconfigurationid}
+      name: envid-farm-roles-farmroleid-storage-storageconfigurationid
+      description: REST surface for envId-farm-roles-farmRoleId-storage-storageConfigurationId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete the storage configuration from the Farm Role.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve a specific storage configuration of the Farm Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the storage configuration of the Farm Role.
+        call: user.patch
+        with:
+          storageConfigurationObject: rest.storageConfigurationObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms
+      name: envid-farms
+      description: REST surface for envId-farms.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Farms available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Farm in this Environment. Farm and FarmTemplate objects are acceptable.
+        call: user.post
+        with:
+          farmObject: rest.farmObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}
+      name: envid-farms-farmid
+      description: REST surface for envId-farms-farmId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Farm from this Environment.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Farm.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Farm.
+        call: user.patch
+        with:
+          farmObject: rest.farmObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/clone
+      name: envid-farms-farmid-actions-clone
+      description: REST surface for envId-farms-farmId-actions-clone.
+      operations:
+      - method: POST
+        name: post
+        description: Clone a given Farm.
+        call: user.post
+        with:
+          cloneFarmRequest: rest.cloneFarmRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/generate-template
+      name: envid-farms-farmid-actions-generate-template
+      description: REST surface for envId-farms-farmId-actions-generate-template.
+      operations:
+      - method: GET
+        name: get
+        description: Get Farm Template body for given Farm.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/launch
+      name: envid-farms-farmid-actions-launch
+      description: REST surface for envId-farms-farmId-actions-launch.
+      operations:
+      - method: POST
+        name: post
+        description: Launch a Farm.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/lock
+      name: envid-farms-farmid-actions-lock
+      description: REST surface for envId-farms-farmId-actions-lock.
+      operations:
+      - method: POST
+        name: post
+        description: Lock a Farm.
+        call: user.post
+        with:
+          lockFarmRequest: rest.lockFarmRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/resume
+      name: envid-farms-farmid-actions-resume
+      description: REST surface for envId-farms-farmId-actions-resume.
+      operations:
+      - method: POST
+        name: post
+        description: Resume a suspended Farm.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/suspend
+      name: envid-farms-farmid-actions-suspend
+      description: REST surface for envId-farms-farmId-actions-suspend.
+      operations:
+      - method: POST
+        name: post
+        description: Suspend a Farm.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/terminate
+      name: envid-farms-farmid-actions-terminate
+      description: REST surface for envId-farms-farmId-actions-terminate.
+      operations:
+      - method: POST
+        name: post
+        description: Terminate a Farm.
+        call: user.post
+        with:
+          terminateFarmRequest: rest.terminateFarmRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/actions/unlock
+      name: envid-farms-farmid-actions-unlock
+      description: REST surface for envId-farms-farmId-actions-unlock.
+      operations:
+      - method: POST
+        name: post
+        description: Unlock a Farm.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/cloud-services
+      name: envid-farms-farmid-cloud-services
+      description: REST surface for envId-farms-farmId-cloud-services.
+      operations:
+      - method: GET
+        name: get
+        description: List of the Cloud Services linked to the current Farm.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Link Cloud Service to the current Farm.
+        call: user.post
+        with:
+          farmCloudServiceLinkObject: rest.farmCloudServiceLinkObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/cloud-services/{farmcloudservicelinkid}
+      name: envid-farms-farmid-cloud-services-farmcloudservicelinkid
+      description: REST surface for envId-farms-farmId-cloud-services-farmCloudServiceLinkId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Unlink Cloud Service from the current Farm.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about linked Cloud Service to the current Farm.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify Cloud Service attributes.
+        call: user.patch
+        with:
+          farmCloudServiceLinkObject: rest.farmCloudServiceLinkObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/farm-roles
+      name: envid-farms-farmid-farm-roles
+      description: REST surface for envId-farms-farmId-farm-roles.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Farm Roles in a Farm.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Farm Role in a Farm. FarmRole and FarmRoleTemplate objects are acceptable.
+        call: user.post
+        with:
+          farmRoleObject: rest.farmRoleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/global-variables
+      name: envid-farms-farmid-global-variables
+      description: REST surface for envId-farms-farmId-global-variables.
+      operations:
+      - method: GET
+        name: get
+        description: List all Global Variables associated to a Farm.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Declare a new Global Variable for this Farm.
+        call: user.post
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/global-variables/{globalvariablename}
+      name: envid-farms-farmid-global-variables-globalvariablename
+      description: REST surface for envId-farms-farmId-global-variables-globalVariableName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Global Variable from a given Farm's scope.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Global Variable in the Farm's scope
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Global Variable's in the Farm's scope.
+        call: user.patch
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/farms/{farmid}/servers
+      name: envid-farms-farmid-servers
+      description: REST surface for envId-farms-farmId-servers.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Servers associated to a Farm.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/global-variables
+      name: envid-global-variables
+      description: REST surface for envId-global-variables.
+      operations:
+      - method: GET
+        name: get
+        description: List Global Variables declared in environment scope.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Declare a new Global Variable for this environment scope.
+        call: user.post
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/global-variables/{globalvariablename}
+      name: envid-global-variables-globalvariablename
+      description: REST surface for envId-global-variables-globalVariableName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Global Variable from environment scope.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Global Variable declared in environment scope.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Global Variable declared in environment scope.
+        call: user.patch
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/images
+      name: envid-images
+      description: REST surface for envId-images.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Images available in the Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Register a new Image in this Environment.
+        call: user.post
+        with:
+          imageObject: rest.imageObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/images/{imageid}
+      name: envid-images-imageid
+      description: REST surface for envId-images-imageId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Remove an Image from the Environment. By default this does not delete the underlying machine image from
+          the Cloud it resides in.
+        call: user.delete
+        with:
+          deleteFromCloud: rest.deleteFromCloud
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about an Image.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of an Images. Currently only the name of the Image be can changed.
+        call: user.patch
+        with:
+          image: rest.image
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/images/{imageid}/actions/copy
+      name: envid-images-imageid-actions-copy
+      description: REST surface for envId-images-imageId-actions-copy.
+      operations:
+      - method: POST
+        name: post
+        description: Copy an Image from one EC2 region to another.
+        call: user.post
+        with:
+          copyImageRequest: rest.copyImageRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/images/{imageid}/actions/replace
+      name: envid-images-imageid-actions-replace
+      description: REST surface for envId-images-imageId-actions-replace.
+      operations:
+      - method: POST
+        name: post
+        description: Replace the current Image with a specified one for all Roles which use this Image. The Image will be
+          replaced only within the Environment scope.
+        call: user.post
+        with:
+          replaceImageRequest: rest.replaceImageRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/orchestration-logs
+      name: envid-orchestration-logs
+      description: REST surface for envId-orchestration-logs.
+      operations:
+      - method: GET
+        name: get
+        description: List of all Orchestration logs.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/orchestration-logs/{logentryid}
+      name: envid-orchestration-logs-logentryid
+      description: REST surface for envId-orchestration-logs-logEntryId.
+      operations:
+      - method: GET
+        name: get
+        description: Describes detailed information about a result of the orchestration.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/orchestration-rules
+      name: envid-orchestration-rules
+      description: REST surface for envId-orchestration-rules.
+      operations:
+      - method: GET
+        name: get
+        description: List the Orchestration Rules in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Orchestration Rule for this Environment.
+        call: user.post
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/orchestration-rules/{orchestrationruleid}
+      name: envid-orchestration-rules-orchestrationruleid
+      description: REST surface for envId-orchestration-rules-orchestrationRuleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete an Orchestration Rule from this Environment.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Orchestration Rule.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify an Orchestration Rule.
+        call: user.patch
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/os
+      name: envid-os
+      description: REST surface for envId-os.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Operating Systems definitions available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/os/{osid}
+      name: envid-os-osid
+      description: REST surface for envId-os-osId.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given OS.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/role-categories
+      name: envid-role-categories
+      description: REST surface for envId-role-categories.
+      operations:
+      - method: GET
+        name: get
+        description: List the Role Categories available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Role Category in this Environment.
+        call: user.post
+        with:
+          roleCategoryObject: rest.roleCategoryObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/role-categories/{rolecategoryid}
+      name: envid-role-categories-rolecategoryid
+      description: REST surface for envId-role-categories-roleCategoryId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Role Category from this Environment.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Role Category.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Role Category.
+        call: user.patch
+        with:
+          roleCategoryObject: rest.roleCategoryObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles
+      name: envid-roles
+      description: REST surface for envId-roles.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Roles available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Role in this Environment.
+        call: user.post
+        with:
+          roleObject: rest.roleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}
+      name: envid-roles-roleid
+      description: REST surface for envId-roles-roleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Role from this Environment.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Role.
+        call: user.patch
+        with:
+          roleObject: rest.roleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/actions/clone
+      name: envid-roles-roleid-actions-clone
+      description: REST surface for envId-roles-roleId-actions-clone.
+      operations:
+      - method: POST
+        name: post
+        description: Make a copy of an existing Role by cloning it.
+        call: user.post
+        with:
+          cloneRoleRequest: rest.cloneRoleRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/actions/deprecate
+      name: envid-roles-roleid-actions-deprecate
+      description: REST surface for envId-roles-roleId-actions-deprecate.
+      operations:
+      - method: POST
+        name: post
+        description: Deprecate a Role and set another Role to replace it.
+        call: user.post
+        with:
+          deprecateRoleRequest: rest.deprecateRoleRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/actions/promote
+      name: envid-roles-roleid-actions-promote
+      description: REST surface for envId-roles-roleId-actions-promote.
+      operations:
+      - method: POST
+        name: post
+        description: Promote Role to account scope.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/global-variables
+      name: envid-roles-roleid-global-variables
+      description: REST surface for envId-roles-roleId-global-variables.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Global Variables associated with a given Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Declares a new Global Variable for this Role.
+        call: user.post
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/global-variables/{globalvariablename}
+      name: envid-roles-roleid-global-variables-globalvariablename
+      description: REST surface for envId-roles-roleId-global-variables-globalVariableName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Deletes a Global Variable from this Role's scope.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about Global Variable in the Role's scope.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Global Variable in the Role's scope.
+        call: user.patch
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/images
+      name: envid-roles-roleid-images
+      description: REST surface for envId-roles-roleId-images.
+      operations:
+      - method: GET
+        name: get
+        description: List all Images associated with a given Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Associates a new Image with a given Role. This will fail if an Image associated to the Role is in the
+          same location than the Image you are trying to add.
+        call: user.post
+        with:
+          roleImageObject: rest.roleImageObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/images/{imageid}
+      name: envid-roles-roleid-images-imageid
+      description: REST surface for envId-roles-roleId-images-imageId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Dis-associates an Image from a given Role.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about an Image.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/images/{imageid}/actions/replace
+      name: envid-roles-roleid-images-imageid-actions-replace
+      description: REST surface for envId-roles-roleId-images-imageId-actions-replace.
+      operations:
+      - method: POST
+        name: post
+        description: Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate
+          it and then associate a new one, which may not be possible if a Farm Role is currently using this Image.
+        call: user.post
+        with:
+          roleImageObject: rest.roleImageObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/orchestration-rules
+      name: envid-roles-roleid-orchestration-rules
+      description: REST surface for envId-roles-roleId-orchestration-rules.
+      operations:
+      - method: GET
+        name: get
+        description: List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those
+          are read-only).
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Orchestration Rule associated to a Role.
+        call: user.post
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/roles/{roleid}/orchestration-rules/{orchestrationruleid}
+      name: envid-roles-roleid-orchestration-rules-orchestrationruleid
+      description: REST surface for envId-roles-roleId-orchestration-rules-orchestrationRuleId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete the specified Orchestration Rule from the Role.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve a given Orchestration Rule associated to a Role.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a given Orchestration Rule.
+        call: user.patch
+        with:
+          orchestrationRuleObject: rest.orchestrationRuleObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scaling-metrics
+      name: envid-scaling-metrics
+      description: REST surface for envId-scaling-metrics.
+      operations:
+      - method: GET
+        name: get
+        description: List all Scaling metrics available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Add a new custom Scaling metric to this Environment.
+        call: user.post
+        with:
+          scalingMetricObject: rest.scalingMetricObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scaling-metrics/{metricname}
+      name: envid-scaling-metrics-metricname
+      description: REST surface for envId-scaling-metrics-metricName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Scaling metric.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a given Scaling metric.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Scaling metric.
+        call: user.patch
+        with:
+          scalingMetricObject: rest.scalingMetricObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/script-executions/{scriptexecutionid}
+      name: envid-script-executions-scriptexecutionid
+      description: REST surface for envId-script-executions-scriptExecutionId.
+      operations:
+      - method: GET
+        name: get
+        description: Describes detailed information about a state of the script execution.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scripts
+      name: envid-scripts
+      description: REST surface for envId-scripts.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Scripts available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Script in this Environment.
+        call: user.post
+        with:
+          scriptObject: rest.scriptObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scripts/{scriptid}
+      name: envid-scripts-scriptid
+      description: REST surface for envId-scripts-scriptId.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Deletes a given Script from this Environment.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Script.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Script.
+        call: user.patch
+        with:
+          scriptObject: rest.scriptObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scripts/{scriptid}/actions/execute
+      name: envid-scripts-scriptid-actions-execute
+      description: REST surface for envId-scripts-scriptId-actions-execute.
+      operations:
+      - method: POST
+        name: post
+        description: It executes the latest version of the Script on the Server.
+        call: user.post
+        with:
+          scriptExecutionRequestObject: rest.scriptExecutionRequestObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scripts/{scriptid}/script-versions
+      name: envid-scripts-scriptid-script-versions
+      description: REST surface for envId-scripts-scriptId-script-versions.
+      operations:
+      - method: GET
+        name: get
+        description: List all Script Versions for the specified Script.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Create a new Script Version for a given Script.
+        call: user.post
+        with:
+          scriptVersionObject: rest.scriptVersionObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scripts/{scriptid}/script-versions/{scriptversionnumber}
+      name: envid-scripts-scriptid-script-versions-scriptversionnumber
+      description: REST surface for envId-scripts-scriptId-script-versions-scriptVersionNumber.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Script Version from this Script.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a specified Script Version.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Script Version.
+        call: user.patch
+        with:
+          scriptVersionObject: rest.scriptVersionObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/scripts/{scriptid}/script-versions/{scriptversionnumber}/actions/execute
+      name: envid-scripts-scriptid-script-versions-scriptversionnumber-actions-execute
+      description: REST surface for envId-scripts-scriptId-script-versions-scriptVersionNumber-actions-execute.
+      operations:
+      - method: POST
+        name: post
+        description: It executes the specified version of the Script on the Server.
+        call: user.post
+        with:
+          scriptExecutionRequestObject: rest.scriptExecutionRequestObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers
+      name: envid-servers
+      description: REST surface for envId-servers.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Servers that exist in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Launch a new Server for the specified Farm Role.
+        call: user.post
+        with:
+          serverLaunchRequest: rest.serverLaunchRequest
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}
+      name: envid-servers-serverid
+      description: REST surface for envId-servers-serverId.
+      operations:
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Server.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: 'Modify the Instance type of the Server. Server status before this action depends on CloudPlatform: -
+          For EC2 and OpenStack instance type change requires server status "suspended". - For VMware instance type change
+          requires server status "ru'
+        call: user.patch
+        with:
+          serverObject: rest.serverObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}/actions/reboot
+      name: envid-servers-serverid-actions-reboot
+      description: REST surface for envId-servers-serverId-actions-reboot.
+      operations:
+      - method: POST
+        name: post
+        description: Reboot a Server.
+        call: user.post
+        with:
+          serverRebootOptions: rest.serverRebootOptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}/actions/resume
+      name: envid-servers-serverid-actions-resume
+      description: REST surface for envId-servers-serverId-actions-resume.
+      operations:
+      - method: POST
+        name: post
+        description: Resume a suspended Server.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}/actions/suspend
+      name: envid-servers-serverid-actions-suspend
+      description: REST surface for envId-servers-serverId-actions-suspend.
+      operations:
+      - method: POST
+        name: post
+        description: Suspend a Server.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}/actions/sync
+      name: envid-servers-serverid-actions-sync
+      description: REST surface for envId-servers-serverId-actions-sync.
+      operations:
+      - method: POST
+        name: post
+        description: Sync the Ansible Tower Configuration on the Server.
+        call: user.post
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}/actions/terminate
+      name: envid-servers-serverid-actions-terminate
+      description: REST surface for envId-servers-serverId-actions-terminate.
+      operations:
+      - method: POST
+        name: post
+        description: Terminate a Server.
+        call: user.post
+        with:
+          serverTerminationOptions: rest.serverTerminationOptions
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}/global-variables
+      name: envid-servers-serverid-global-variables
+      description: REST surface for envId-servers-serverId-global-variables.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Global Variables associated with this Server.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: post
+        description: Declare a new Global Variable for this Server.
+        call: user.post
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/servers/{serverid}/global-variables/{globalvariablename}
+      name: envid-servers-serverid-global-variables-globalvariablename
+      description: REST surface for envId-servers-serverId-global-variables-globalVariableName.
+      operations:
+      - method: DELETE
+        name: delete
+        description: Delete a Global Variable from this Server's scope.
+        call: user.delete
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: get
+        description: Retrieve detailed information about a Global Variable in this Server's scope.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PATCH
+        name: patch
+        description: Modify the attributes of a Global Variable in this Server's scope.
+        call: user.patch
+        with:
+          globalVariableObject: rest.globalVariableObject
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/{envid}/webhook-endpoints
+      name: envid-webhook-endpoints
+      description: REST surface for envId-webhook-endpoints.
+      operations:
+      - method: GET
+        name: get
+        description: List all the Webhook endpoints available in this Environment.
+        call: user.get
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: user-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Scalr User API. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: list-cloud-locations
+      description: The list of the Cloud Locations.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-instance-types-available
+      description: The list of all Instance Types available for the specified Cloud Location.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given
+      description: Retrieve detailed information about a given Cost Center.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-event-logs
+      description: List of all Event logs.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describes-detailed-information-about-event
+      description: Describes detailed information about the Event that has been fired.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-events-available-this
+      description: List all the Events available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-custom-event-this
+      description: Create a new Custom Event in this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        eventObject: tools.eventObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-event-this-environment
+      description: Delete an Event from this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-2
+      description: Retrieve detailed information about a given Event.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-event
+      description: Modify the attributes of an Event.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        eventObject: tools.eventObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: it-fires-custom-event-server
+      description: It fires the Custom Event on the Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        fireEventRequest: tools.fireEventRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-given-farm-role-its
+      description: Remove a given Farm Role from its Farm.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-3
+      description: Retrieve detailed information about a given Farm Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-farm-role
+      description: Modify the attributes of a Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        farmRoleObject: tools.farmRoleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: clone-given-farmrole-within-current
+      description: Clone a given FarmRole within current Farm or to another Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        cloneFarmRoleRequest: tools.cloneFarmRoleRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-farmrole-template-body-given
+      description: Get FarmRole Template body for given FarmRole.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: import-running-server-cloud-platform
+      description: Import a running server from a Cloud Platform to a Scalr Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        importServerRequest: tools.importServerRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-global-variables-associated
+      description: List all the Global Variables associated with this Farm Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declare-new-global-variable-this
+      description: Declare a new Global Variable for this Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-global-variable-this-farm
+      description: Delete a Global Variable from this Farm Role's scope.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-global
+      description: Retrieve detailed information about a Global Variable in this Farm Role's scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-global-variable-this
+      description: Modify the attributes of a Global Variable in this Farm Role's scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-orchestration-rules-associated
+      description: List all Orchestration Rules associated with this Farm Role, including Rules from higher Scopes (those
+        are read-only).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-orchestration-rule-associated
+      description: Create a new Orchestration Rule associated to this Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-orchestration-rule-this-farm
+      description: Delete an Orchestration Rule from this Farm Role.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-orchestration
+      description: Retrieve detailed information about an Orchestration Rule associated to this Farm Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-orchestration-rule-associated
+      description: Modify the attributes of an Orchestration Rule associated to this Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-scaling-configuration
+      description: Get Scaling Configuration
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: edit-scaling-configuration
+      description: Edit Scaling Configuration
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        scalingConfigurationObject: tools.scalingConfigurationObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-rule
+      description: Create Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        scalingRuleObject: tools.scalingRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-rule
+      description: Delete Rule
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-rule
+      description: Get Rule
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: edit-rule
+      description: Edit Rule
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        scalingRuleObject: tools.scalingRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describes-all-servers-associated-farm
+      description: Describes all the Servers associated to a Farm Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: launch-new-server-specified-farm
+      description: Launch a new Server for the specified Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describe-storage-configuration-farm-role
+      description: Describe the Storage configuration of the Farm Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-storage-configuration-farm
+      description: Add a new storage configuration to the Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        storageConfigurationObject: tools.storageConfigurationObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-storage-configuration-farm-role
+      description: Delete the storage configuration from the Farm Role.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-specific-storage-configuration-farm
+      description: Retrieve a specific storage configuration of the Farm Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-storage-configuration-farm-role
+      description: Modify the storage configuration of the Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        storageConfigurationObject: tools.storageConfigurationObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-farms-available-this
+      description: List all the Farms available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-farm-this-environment
+      description: Create a new Farm in this Environment. Farm and FarmTemplate objects are acceptable.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        farmObject: tools.farmObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-farm-this-environment
+      description: Delete a Farm from this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-4
+      description: Retrieve detailed information about a given Farm.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-farm
+      description: Modify the attributes of a Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        farmObject: tools.farmObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: clone-given-farm
+      description: Clone a given Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        cloneFarmRequest: tools.cloneFarmRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-farm-template-body-given
+      description: Get Farm Template body for given Farm.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: launch-farm
+      description: Launch a Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: lock-farm
+      description: Lock a Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        lockFarmRequest: tools.lockFarmRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resume-suspended-farm
+      description: Resume a suspended Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspend-farm
+      description: Suspend a Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminate-farm
+      description: Terminate a Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        terminateFarmRequest: tools.terminateFarmRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unlock-farm
+      description: Unlock a Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-cloud-services-linked-current
+      description: List of the Cloud Services linked to the current Farm.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: link-cloud-service-current-farm
+      description: Link Cloud Service to the current Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        farmCloudServiceLinkObject: tools.farmCloudServiceLinkObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: unlink-cloud-service-current-farm
+      description: Unlink Cloud Service from the current Farm.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-linked
+      description: Retrieve detailed information about linked Cloud Service to the current Farm.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-cloud-service-attributes
+      description: Modify Cloud Service attributes.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        farmCloudServiceLinkObject: tools.farmCloudServiceLinkObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-farm-roles-farm
+      description: List all the Farm Roles in a Farm.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-farm-role-farm
+      description: Create a new Farm Role in a Farm. FarmRole and FarmRoleTemplate objects are acceptable.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        farmRoleObject: tools.farmRoleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-global-variables-associated-2
+      description: List all Global Variables associated to a Farm.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declare-new-global-variable-this-2
+      description: Declare a new Global Variable for this Farm.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-global-variable-given-farm-s
+      description: Delete a Global Variable from a given Farm's scope.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-global-2
+      description: Retrieve detailed information about a Global Variable in the Farm's scope
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-global-variable-s-farm-s
+      description: Modify the attributes of a Global Variable's in the Farm's scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-servers-associated-farm
+      description: List all the Servers associated to a Farm.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-global-variables-declared-environment
+      description: List Global Variables declared in environment scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declare-new-global-variable-this-3
+      description: Declare a new Global Variable for this environment scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-global-variable-environment-scope
+      description: Delete a Global Variable from environment scope.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-global-3
+      description: Retrieve detailed information about a Global Variable declared in environment scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-global-variable-declared
+      description: Modify the attributes of a Global Variable declared in environment scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-images-available-environment
+      description: List all the Images available in the Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: register-new-image-this-environment
+      description: Register a new Image in this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        imageObject: tools.imageObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: remove-image-environment-default-this
+      description: Remove an Image from the Environment. By default this does not delete the underlying machine image from
+        the Cloud it resides in.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      with:
+        deleteFromCloud: tools.deleteFromCloud
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-image
+      description: Retrieve detailed information about an Image.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-images-currently-only
+      description: Modify the attributes of an Images. Currently only the name of the Image be can changed.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        image: tools.image
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: copy-image-one-ec2-region
+      description: Copy an Image from one EC2 region to another.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        copyImageRequest: tools.copyImageRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replace-current-image-specified-one
+      description: Replace the current Image with a specified one for all Roles which use this Image. The Image will be replaced
+        only within the Environment scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        replaceImageRequest: tools.replaceImageRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-orchestration-logs
+      description: List of all Orchestration logs.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describes-detailed-information-about-result
+      description: Describes detailed information about a result of the orchestration.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-orchestration-rules-this-environment
+      description: List the Orchestration Rules in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-orchestration-rule-this
+      description: Create a new Orchestration Rule for this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-orchestration-rule-this-environment
+      description: Delete an Orchestration Rule from this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-5
+      description: Retrieve detailed information about a given Orchestration Rule.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-orchestration-rule
+      description: Modify an Orchestration Rule.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-operating-systems-definitions
+      description: List all the Operating Systems definitions available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-6
+      description: Retrieve detailed information about a given OS.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-role-categories-available-this
+      description: List the Role Categories available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-role-category-this
+      description: Create a new Role Category in this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        roleCategoryObject: tools.roleCategoryObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-role-category-this-environment
+      description: Delete a Role Category from this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-7
+      description: Retrieve detailed information about a given Role Category.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-role-category
+      description: Modify the attributes of a given Role Category.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        roleCategoryObject: tools.roleCategoryObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-roles-available-this
+      description: List all the Roles available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-role-this-environment
+      description: Create a new Role in this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        roleObject: tools.roleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-role-this-environment
+      description: Delete a Role from this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-8
+      description: Retrieve detailed information about a given Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-role
+      description: Modify the attributes of a given Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        roleObject: tools.roleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: make-copy-existing-role-cloning
+      description: Make a copy of an existing Role by cloning it.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        cloneRoleRequest: tools.cloneRoleRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deprecate-role-and-set-another
+      description: Deprecate a Role and set another Role to replace it.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        deprecateRoleRequest: tools.deprecateRoleRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: promote-role-account-scope
+      description: Promote Role to account scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-global-variables-associated-3
+      description: List all the Global Variables associated with a given Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declares-new-global-variable-this
+      description: Declares a new Global Variable for this Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-global-variable-this-role-s
+      description: Deletes a Global Variable from this Role's scope.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-global-4
+      description: Retrieve detailed information about Global Variable in the Role's scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-global-variable-role-s
+      description: Modify the attributes of a Global Variable in the Role's scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-images-associated-given
+      description: List all Images associated with a given Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: associates-new-image-given-role
+      description: Associates a new Image with a given Role. This will fail if an Image associated to the Role is in the same
+        location than the Image you are trying to add.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        roleImageObject: tools.roleImageObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: dis-associates-image-given-role
+      description: Dis-associates an Image from a given Role.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-image-2
+      description: Retrieve detailed information about an Image.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: replace-image-place-given-role
+      description: Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate
+        it and then associate a new one, which may not be possible if a Farm Role is currently using this Image.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        roleImageObject: tools.roleImageObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-orchestration-rules-associated-given
+      description: List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those are
+        read-only).
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-orchestration-rule-associated-2
+      description: Create a new Orchestration Rule associated to a Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-specified-orchestration-rule-role
+      description: Delete the specified Orchestration Rule from the Role.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-given-orchestration-rule-associated
+      description: Retrieve a given Orchestration Rule associated to a Role.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-given-orchestration-rule
+      description: Modify the attributes of a given Orchestration Rule.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        orchestrationRuleObject: tools.orchestrationRuleObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-scaling-metrics-available
+      description: List all Scaling metrics available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: add-new-custom-scaling-metric
+      description: Add a new custom Scaling metric to this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        scalingMetricObject: tools.scalingMetricObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-scaling-metric
+      description: Delete a Scaling metric.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-given-9
+      description: Retrieve detailed information about a given Scaling metric.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-scaling-metric
+      description: Modify the attributes of a Scaling metric.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        scalingMetricObject: tools.scalingMetricObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: describes-detailed-information-about-state
+      description: Describes detailed information about a state of the script execution.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-scripts-available-this
+      description: List all the Scripts available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-script-this-environment
+      description: Create a new Script in this Environment.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        scriptObject: tools.scriptObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: deletes-given-script-this-environment
+      description: Deletes a given Script from this Environment.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-script
+      description: Retrieve detailed information about a Script.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-script
+      description: Modify the attributes of a Script.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        scriptObject: tools.scriptObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: it-executes-latest-version-script
+      description: It executes the latest version of the Script on the Server.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        scriptExecutionRequestObject: tools.scriptExecutionRequestObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-script-versions-specified
+      description: List all Script Versions for the specified Script.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: create-new-script-version-given
+      description: Create a new Script Version for a given Script.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        scriptVersionObject: tools.scriptVersionObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-script-version-this-script
+      description: Delete a Script Version from this Script.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-specified
+      description: Retrieve detailed information about a specified Script Version.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-script-version
+      description: Modify the attributes of a Script Version.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        scriptVersionObject: tools.scriptVersionObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: it-executes-specified-version-script
+      description: It executes the specified version of the Script on the Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        scriptExecutionRequestObject: tools.scriptExecutionRequestObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-servers-that-exist
+      description: List all the Servers that exist in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: launch-new-server-specified-farm-2
+      description: Launch a new Server for the specified Farm Role.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        serverLaunchRequest: tools.serverLaunchRequest
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-server
+      description: Retrieve detailed information about a Server.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-instance-type-server-server
+      description: 'Modify the Instance type of the Server. Server status before this action depends on CloudPlatform: - For
+        EC2 and OpenStack instance type change requires server status "suspended". - For VMware instance type change requires
+        server status "ru'
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        serverObject: tools.serverObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: reboot-server
+      description: Reboot a Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        serverRebootOptions: tools.serverRebootOptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: resume-suspended-server
+      description: Resume a suspended Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: suspend-server
+      description: Suspend a Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: sync-ansible-tower-configuration-server
+      description: Sync the Ansible Tower Configuration on the Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: terminate-server
+      description: Terminate a Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        serverTerminationOptions: tools.serverTerminationOptions
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-global-variables-associated-4
+      description: List all the Global Variables associated with this Server.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: declare-new-global-variable-this-4
+      description: Declare a new Global Variable for this Server.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: user.post
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: delete-global-variable-this-server-s
+      description: Delete a Global Variable from this Server's scope.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: user.delete
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: retrieve-detailed-information-about-global-5
+      description: Retrieve detailed information about a Global Variable in this Server's scope.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: modify-attributes-global-variable-this-2
+      description: Modify the attributes of a Global Variable in this Server's scope.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: user.patch
+      with:
+        globalVariableObject: tools.globalVariableObject
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: list-all-webhook-endpoints-available
+      description: List all the Webhook endpoints available in this Environment.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: user.get
+      outputParameters:
+      - type: object
+        mapping: $.
