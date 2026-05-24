@@ -131,6 +131,8 @@ common:
   url: https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/rules/scalr-rules.yml
 - type: NaftikoCapabilities
   url: https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/capabilities/infrastructure-as-code.yaml
+- type: LLMsTxt
+  url: https://docs.scalr.io/llms.txt
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
