@@ -1,0 +1,2551 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GET /{accountId}/acl-roles/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/acl-roles/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List the ACL Roles in this account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/ansible-tower/configurations/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all Ansible Tower Configurations in the Account scope."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/ansible-tower/configurations/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Add a new Ansible Tower Configuration in the Account scope."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "ansibleTowerConfigurationId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a AnsibleTowerConfiguration object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Ansible Tower Configuration."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "ansibleTowerConfigurationId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a AnsibleTowerConfiguration object."
+          }
+        ]
+      },
+      "docs": "Modify the Ansible Tower Configuration."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "ansibleTowerConfigurationId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a AnsibleTowerConfiguration object."
+          }
+        ]
+      },
+      "docs": "Delete the Ansible Tower Configuration."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/ansible-tower/servers/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/ansible-tower/servers/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all Ansible Tower Servers in the Account scope."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/cloud-credentials/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/cloud-credentials/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all Cloud Credentials available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/cloud-credentials/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/cloud-credentials/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Create new Cloud Credentials at this Account's scope."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/cloud-credentials/{cloudCredentialsId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/cloud-credentials/:cloudCredentialsId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "cloudCredentialsId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a CloudCredentials object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about given Cloud Credentials. You can only obtain information about Cloud Credentials defined in this Account's scope."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/cloud-credentials/{cloudCredentialsId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/cloud-credentials/:cloudCredentialsId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "cloudCredentialsId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a CloudCredentials object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of given Cloud Credentials."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/cloud-credentials/{cloudCredentialsId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/cloud-credentials/:cloudCredentialsId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "cloudCredentialsId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a CloudCredentials object."
+          }
+        ]
+      },
+      "docs": "Delete the specified Cloud Credentials from this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/cost-centers/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/cost-centers/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List the Cost Centers available in the Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/cost-centers/{costCenterId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/cost-centers/:costCenterId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "costCenterId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a CostCenter object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Cost Center."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/environments/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/environments/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List Environments available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/environments/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/environments/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Environment in the Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/environments/{envId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Environment."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/environments/{envId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          }
+        ]
+      },
+      "docs": "Update the attributes of an Environment."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/environments/{envId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          }
+        ]
+      },
+      "docs": "Delete an Environment from the Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/environments/{envId}/clouds/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          }
+        ]
+      },
+      "docs": "List the Clouds this environment has access to."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/environments/{envId}/clouds/{cloud}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/:cloud/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          },
+          {
+            "name": "cloud",
+            "value": "",
+            "type": "path",
+            "description": "The name of the cloud."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about given Cloud Credentials that this Environment is using."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/environments/{envId}/clouds/{cloud}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/:cloud/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          },
+          {
+            "name": "cloud",
+            "value": "",
+            "type": "path",
+            "description": "The name of the cloud."
+          }
+        ]
+      },
+      "docs": "Associate or replace Cloud Credentials with this Environment for the given Cloud."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/environments/{envId}/clouds/{cloud}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/:cloud/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          },
+          {
+            "name": "cloud",
+            "value": "",
+            "type": "path",
+            "description": "The name of the cloud."
+          }
+        ]
+      },
+      "docs": "Detaches Cloud Credentials from this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/environments/{envId}/teams/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/teams/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          }
+        ]
+      },
+      "docs": "List the Teams that have access to this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/environments/{envId}/teams/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/teams/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          }
+        ]
+      },
+      "docs": "Grants a Team access to this Environment."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/environments/{envId}/teams/{teamId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/teams/:teamId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          },
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Team object."
+          }
+        ]
+      },
+      "docs": "Update the attributes of an Team access on this Environment."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/environments/{envId}/teams/{teamId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/environments/:envId/teams/:teamId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment being accessed."
+          },
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Team object."
+          }
+        ]
+      },
+      "docs": "Withhold a Team's access to this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/events/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/events/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Events available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/events/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/events/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "replace",
+            "value": "",
+            "type": "query",
+            "description": "Replace all Events declared at a lower scope with the same name with this one."
+          }
+        ]
+      },
+      "docs": "Create a new Custom Event in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/events/{eventId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/events/:eventId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Event object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Event."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/events/{eventId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/events/:eventId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Event object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Event."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/events/{eventId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/events/:eventId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Event object."
+          }
+        ]
+      },
+      "docs": "Delete a given Event from this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/global-variables/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List Global Variables declared in account scope."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/global-variables/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Declare a new Global Variable for this account scope."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Global Variable declared in account scope."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Global Variable declared in account scope."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a Global Variable from account scope."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/images/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Images available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/images/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Register a new Image in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/images/:imageId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about an image."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/images/:imageId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of an Image. Currently only the name of the Image can be changed."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/images/:imageId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Remove an Image from this Account. This does not remove the underlying machine image from the Cloud it resides in."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/images/{imageId}/actions/copy/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/images/:imageId/actions/copy/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Copy an Image from one EC2 region to another."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/images/{imageId}/actions/replace/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/images/:imageId/actions/replace/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the old Image object."
+          }
+        ]
+      },
+      "docs": "Replace the current Image with a specified one for all Roles which use this Image."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/orchestration-rules/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List the Orchestration Rules in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/orchestration-rules/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Orchestration Rule for this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Orchestration Rule."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Modify an Orchestration Rule."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Delete an Orchestration Rule from this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/os/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/os/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Operating Systems definitions available in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/os/{osId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/os/:osId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "osId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Os object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given OS."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/projects/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/projects/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List the Projects available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/projects/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/projects/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Project in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/projects/{projectId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/projects/:projectId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "projectId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Project object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Project."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/projects/{projectId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/projects/:projectId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "projectId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Project object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of the Project."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/projects/{projectId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/projects/:projectId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "projectId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Project object."
+          }
+        ]
+      },
+      "docs": "Delete a Project from this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/role-categories/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/role-categories/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List the Role Categories available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/role-categories/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/role-categories/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Role Category in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/role-categories/{roleCategoryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/role-categories/:roleCategoryId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleCategoryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a RoleCategory object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Role Category."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/role-categories/{roleCategoryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/role-categories/:roleCategoryId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleCategoryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a RoleCategory object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Role Category."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/role-categories/{roleCategoryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/role-categories/:roleCategoryId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleCategoryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a RoleCategory object."
+          }
+        ]
+      },
+      "docs": "Delete a Role Category from this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Roles available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/roles/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/roles/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Role in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/{roleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Role."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/roles/{roleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Role."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/roles/{roleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Delete a Role from this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/roles/{roleId}/actions/clone/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/actions/clone/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Make a copy of an existing Role by cloning it."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/roles/{roleId}/actions/deprecate/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/actions/deprecate/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Deprecate a Role and set another Role to replace it."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/{roleId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "List all the Global Variables associated with a given Role."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/roles/{roleId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Declare a new Global Variable for this Role."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/{roleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about Global Variable in the Role's scope."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/roles/{roleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Global Variable in the Role's scope."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/roles/{roleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a Global Variable from a given Role's scope."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/{roleId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/images/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "List all the Images associated with a given Role."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/roles/{roleId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/images/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Associate a new Image with a given Role. This will fail if an Image associated to the Role is in the same location than the Image you are trying to add."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/{roleId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/images/:imageId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about an Image."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/roles/{roleId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/images/:imageId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Dis-associate an Image from a given Role."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/roles/{roleId}/images/{imageId}/actions/replace/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/images/:imageId/actions/replace/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate it and then associate a new one, which may not be possible if a Farm Role is currently using this Image."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/{roleId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those are read-only)."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/roles/{roleId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Create a new Orchestration Rule associated to a Role."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Orchestration Rule associated to this Role."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Orchestration Rule."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Delete an Orchestration Rule from the Role."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/scaling-metrics/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/scaling-metrics/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all Scaling metrics in the Account scope."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/scaling-metrics/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/scaling-metrics/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Add a new custom Scaling metric in the Account scope."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/scaling-metrics/{metricName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/scaling-metrics/:metricName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Scaling metric."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/scaling-metrics/{metricName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/scaling-metrics/:metricName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Modify the Scaling metric."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/scaling-metrics/{metricName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/scaling-metrics/:metricName/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Delete a Scaling metric."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/scripts/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/scripts/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Scripts available in this Account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/scripts/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/scripts/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Script in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/scripts/{scriptId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Script."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/scripts/{scriptId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Script."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/scripts/{scriptId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Delete a given Script from this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/scripts/{scriptId}/script-versions/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/script-versions/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "List all the Script Versions for the specified Script."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/scripts/{scriptId}/script-versions/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/script-versions/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Create a new Script Version for a given Script."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/script-versions/:scriptVersionNumber/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          },
+          {
+            "name": "scriptVersionNumber",
+            "value": "",
+            "type": "path",
+            "description": "The version number of the Script Version being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Script Version."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/script-versions/:scriptVersionNumber/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          },
+          {
+            "name": "scriptVersionNumber",
+            "value": "",
+            "type": "path",
+            "description": "The version number of the Script Version being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Script Version"
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/scripts/:scriptId/script-versions/:scriptVersionNumber/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          },
+          {
+            "name": "scriptVersionNumber",
+            "value": "",
+            "type": "path",
+            "description": "The version number of the Script Version being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a given Script Version from this Script."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/teams/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/teams/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Teams in this account."
+    },
+    {
+      "info": {
+        "name": "POST /{accountId}/teams/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:accountId/teams/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "Creates a new Team in the Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/teams/{teamId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/teams/:teamId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Team object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Team."
+    },
+    {
+      "info": {
+        "name": "PATCH /{accountId}/teams/{teamId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:accountId/teams/:teamId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Team object."
+          }
+        ]
+      },
+      "docs": "Update the attributes of the specified Team."
+    },
+    {
+      "info": {
+        "name": "DELETE /{accountId}/teams/{teamId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:accountId/teams/:teamId/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          },
+          {
+            "name": "teamId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Team object."
+          }
+        ]
+      },
+      "docs": "Delete a Team from this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/users/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/users/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Users available in this Account."
+    },
+    {
+      "info": {
+        "name": "GET /{accountId}/webhook-endpoints/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:accountId/webhook-endpoints/",
+        "params": [
+          {
+            "name": "accountId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Account scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Webhook endpoints available in this Account."
+    }
+  ],
+  "bundled": true
+}

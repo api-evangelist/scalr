@@ -1,0 +1,3782 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr User API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "GET /{envId}/clouds/{cloudPlatform}/cloud-locations/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/clouds/:cloudPlatform/cloud-locations/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "cloudPlatform",
+            "value": "",
+            "type": "path",
+            "description": "The Cloud Platform this resource resides in."
+          }
+        ]
+      },
+      "docs": "The list of the Cloud Locations."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/clouds/:cloudPlatform/cloud-locations/:cloudLocation/instance-types/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "cloudPlatform",
+            "value": "",
+            "type": "path",
+            "description": "The Cloud Platform this resource resides in."
+          },
+          {
+            "name": "cloudLocation",
+            "value": "",
+            "type": "path",
+            "description": "Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`."
+          }
+        ]
+      },
+      "docs": "The list of all Instance Types available for the specified Cloud Location."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/cost-centers/{costCenterId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/cost-centers/:costCenterId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "costCenterId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a CostCenter object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Cost Center."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/event-logs/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/event-logs/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List of all Event logs."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/event-logs/{eventLogEntryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/event-logs/:eventLogEntryId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "eventLogEntryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a EventLogEntry object."
+          }
+        ]
+      },
+      "docs": "Describes detailed information about the Event that has been fired."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/events/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/events/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Events available in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/events/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/events/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Custom Event in this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/events/{eventId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/events/:eventId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Event object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Event."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/events/{eventId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/events/:eventId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Event object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of an Event."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/events/{eventId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/events/:eventId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Event object."
+          }
+        ]
+      },
+      "docs": "Delete an Event from this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/events/{eventId}/actions/fire/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/events/:eventId/actions/fire/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "eventId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Event object."
+          }
+        ]
+      },
+      "docs": "It fires the Custom Event on the Server."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Farm Role."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/farm-roles/{farmRoleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Farm Role."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/farm-roles/{farmRoleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Remove a given Farm Role from its Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farm-roles/{farmRoleId}/actions/clone/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/actions/clone/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Clone a given FarmRole within current Farm or to another Farm."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/actions/generate-template/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/actions/generate-template/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Get FarmRole Template body for given FarmRole."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farm-roles/{farmRoleId}/actions/import-server/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/actions/import-server/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Import a running server from a Cloud Platform to a Scalr Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "List all the Global Variables associated with this Farm Role."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farm-roles/{farmRoleId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Declare a new Global Variable for this Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Global Variable in this Farm Role's scope."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Global Variable in this Farm Role's scope."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a Global Variable from this Farm Role's scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "List all Orchestration Rules associated with this Farm Role, including Rules from higher Scopes (those are read-only)."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farm-roles/{farmRoleId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Create a new Orchestration Rule associated to this Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about an Orchestration Rule associated to this Farm Role."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of an Orchestration Rule associated to this Farm Role."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Delete an Orchestration Rule from this Farm Role."
+    },
+    {
+      "info": {
+        "name": "Get Scaling Configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Retrieve the Scaling configuration of a Farm Role."
+    },
+    {
+      "info": {
+        "name": "Create Rule",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Add a new Scaling Rule to a Farm Role."
+    },
+    {
+      "info": {
+        "name": "Edit Scaling Configuration",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Modify the Scaling configuration of a Farm Role."
+    },
+    {
+      "info": {
+        "name": "Get Rule",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/:metricName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Retrieve the Scaling rules of the Farm Role."
+    },
+    {
+      "info": {
+        "name": "Edit Rule",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/:metricName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Modify a Scaling Rule of a Farm Role."
+    },
+    {
+      "info": {
+        "name": "Delete Rule",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/:metricName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Delete a Scaling Rule from a Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/servers/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/servers/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Describes all the Servers associated to a Farm Role."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farm-roles/{farmRoleId}/servers/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/servers/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Launch a new Server for the specified Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/storage/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Describe the Storage configuration of the Farm Role."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farm-roles/{farmRoleId}/storage/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          }
+        ]
+      },
+      "docs": "Add a new storage configuration to the Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/:storageConfigurationId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "storageConfigurationId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a StorageConfiguration object."
+          }
+        ]
+      },
+      "docs": "Retrieve a specific storage configuration of the Farm Role."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/:storageConfigurationId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "storageConfigurationId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a StorageConfiguration object."
+          }
+        ]
+      },
+      "docs": "Modify the storage configuration of the Farm Role."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/:storageConfigurationId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmRoleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmRole object."
+          },
+          {
+            "name": "storageConfigurationId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a StorageConfiguration object."
+          }
+        ]
+      },
+      "docs": "Delete the storage configuration from the Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Farms available in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Farm in this Environment. Farm and FarmTemplate objects are acceptable."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Farm."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/farms/{farmId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Farm."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/farms/{farmId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Delete a Farm from this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/actions/clone/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/clone/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Clone a given Farm."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/actions/generate-template/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/generate-template/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Get Farm Template body for given Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/actions/launch/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/launch/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Launch a Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/actions/lock/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/lock/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Lock a Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/actions/resume/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/resume/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Resume a suspended Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/actions/suspend/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/suspend/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Suspend a Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/actions/terminate/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/terminate/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Terminate a Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/actions/unlock/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/actions/unlock/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Unlock a Farm."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/cloud-services/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "List of the Cloud Services linked to the current Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/cloud-services/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Link Cloud Service to the current Farm."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/:farmCloudServiceLinkId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          },
+          {
+            "name": "farmCloudServiceLinkId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmCloudServiceLink object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about linked Cloud Service to the current Farm."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/:farmCloudServiceLinkId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          },
+          {
+            "name": "farmCloudServiceLinkId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmCloudServiceLink object."
+          }
+        ]
+      },
+      "docs": "Modify Cloud Service attributes."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/:farmCloudServiceLinkId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          },
+          {
+            "name": "farmCloudServiceLinkId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a FarmCloudServiceLink object."
+          }
+        ]
+      },
+      "docs": "Unlink Cloud Service from the current Farm."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/farm-roles/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/farm-roles/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "List all the Farm Roles in a Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/farm-roles/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/farm-roles/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Create a new Farm Role in a Farm. FarmRole and FarmRoleTemplate objects are acceptable."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "List all Global Variables associated to a Farm."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/farms/{farmId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "Declare a new Global Variable for this Farm."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Global Variable in the Farm's scope"
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/farms/{farmId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Global Variable's in the Farm's scope."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/farms/{farmId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a Global Variable from a given Farm's scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/farms/{farmId}/servers/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/farms/:farmId/servers/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "farmId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Farm object."
+          }
+        ]
+      },
+      "docs": "List all the Servers associated to a Farm."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List Global Variables declared in environment scope."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Declare a new Global Variable for this environment scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Global Variable declared in environment scope."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Global Variable declared in environment scope."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a Global Variable from environment scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/images/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Images available in the Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/images/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Register a new Image in this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/images/:imageId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about an Image."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/images/:imageId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of an Images. Currently only the name of the Image be can changed."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/images/:imageId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          },
+          {
+            "name": "deleteFromCloud",
+            "value": "",
+            "type": "query",
+            "description": "Attempt to also delete this Image from the Cloud."
+          }
+        ]
+      },
+      "docs": "Remove an Image from the Environment. By default this does not delete the underlying machine image from the Cloud it resides in."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/images/{imageId}/actions/copy/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/images/:imageId/actions/copy/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Copy an Image from one EC2 region to another."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/images/{imageId}/actions/replace/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/images/:imageId/actions/replace/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The identifier of the old Image object."
+          }
+        ]
+      },
+      "docs": "Replace the current Image with a specified one for all Roles which use this Image. The Image will be replaced only within the Environment scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/orchestration-logs/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/orchestration-logs/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List of all Orchestration logs."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/orchestration-logs/{logEntryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/orchestration-logs/:logEntryId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "logEntryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a LogEntry object."
+          }
+        ]
+      },
+      "docs": "Describes detailed information about a result of the orchestration."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/orchestration-rules/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List the Orchestration Rules in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/orchestration-rules/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Orchestration Rule for this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Orchestration Rule."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Modify an Orchestration Rule."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Delete an Orchestration Rule from this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/os/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/os/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Operating Systems definitions available in this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/os/{osId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/os/:osId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "osId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Os object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given OS."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/role-categories/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/role-categories/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List the Role Categories available in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/role-categories/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/role-categories/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Role Category in this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/role-categories/{roleCategoryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/role-categories/:roleCategoryId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleCategoryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a RoleCategory object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Role Category."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/role-categories/{roleCategoryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/role-categories/:roleCategoryId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleCategoryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a RoleCategory object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Role Category."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/role-categories/{roleCategoryId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/role-categories/:roleCategoryId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleCategoryId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a RoleCategory object."
+          }
+        ]
+      },
+      "docs": "Delete a Role Category from this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Roles available in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Role in this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/{roleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Role."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/roles/{roleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Role."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/roles/{roleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Delete a Role from this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/{roleId}/actions/clone/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/actions/clone/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Make a copy of an existing Role by cloning it."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/{roleId}/actions/deprecate/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/actions/deprecate/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Deprecate a Role and set another Role to replace it."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/{roleId}/actions/promote/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/actions/promote/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Promote Role to account scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/{roleId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "List all the Global Variables associated with a given Role."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/{roleId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Declares a new Global Variable for this Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/{roleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about Global Variable in the Role's scope."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/roles/{roleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Global Variable in the Role's scope."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/roles/{roleId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Deletes a Global Variable from this Role's scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/{roleId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/images/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "List all Images associated with a given Role."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/{roleId}/images/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/images/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Associates a new Image with a given Role. This will fail if an Image associated to the Role is in the same location than the Image you are trying to add."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/{roleId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/images/:imageId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about an Image."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/roles/{roleId}/images/{imageId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/images/:imageId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Dis-associates an Image from a given Role."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/{roleId}/images/{imageId}/actions/replace/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/images/:imageId/actions/replace/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "imageId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Image object."
+          }
+        ]
+      },
+      "docs": "Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate it and then associate a new one, which may not be possible if a Farm Role is currently using this Image."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/{roleId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those are read-only)."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/roles/{roleId}/orchestration-rules/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          }
+        ]
+      },
+      "docs": "Create a new Orchestration Rule associated to a Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Retrieve a given Orchestration Rule associated to a Role."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a given Orchestration Rule."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "roleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Role object."
+          },
+          {
+            "name": "orchestrationRuleId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a OrchestrationRule object."
+          }
+        ]
+      },
+      "docs": "Delete the specified Orchestration Rule from the Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/scaling-metrics/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/scaling-metrics/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all Scaling metrics available in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/scaling-metrics/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/scaling-metrics/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Add a new custom Scaling metric to this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/scaling-metrics/{metricName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/scaling-metrics/:metricName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a given Scaling metric."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/scaling-metrics/{metricName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/scaling-metrics/:metricName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Scaling metric."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/scaling-metrics/{metricName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/scaling-metrics/:metricName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "metricName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Scaling Metric."
+          }
+        ]
+      },
+      "docs": "Delete a Scaling metric."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/script-executions/{scriptExecutionId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/script-executions/:scriptExecutionId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptExecutionId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a ScriptExecution object."
+          }
+        ]
+      },
+      "docs": "Describes detailed information about a state of the script execution."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/scripts/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/scripts/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Scripts available in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/scripts/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/scripts/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Create a new Script in this Environment."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/scripts/{scriptId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Script."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/scripts/{scriptId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Script."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/scripts/{scriptId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Deletes a given Script from this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/scripts/{scriptId}/actions/execute/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/actions/execute/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "It executes the latest version of the Script on the Server."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/scripts/{scriptId}/script-versions/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/script-versions/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "List all Script Versions for the specified Script."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/scripts/{scriptId}/script-versions/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/script-versions/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          }
+        ]
+      },
+      "docs": "Create a new Script Version for a given Script."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/script-versions/:scriptVersionNumber/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          },
+          {
+            "name": "scriptVersionNumber",
+            "value": "",
+            "type": "path",
+            "description": "The version number of the Script Version being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a specified Script Version."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/script-versions/:scriptVersionNumber/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          },
+          {
+            "name": "scriptVersionNumber",
+            "value": "",
+            "type": "path",
+            "description": "The version number of the Script Version being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Script Version."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/script-versions/:scriptVersionNumber/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          },
+          {
+            "name": "scriptVersionNumber",
+            "value": "",
+            "type": "path",
+            "description": "The version number of the Script Version being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a Script Version from this Script."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/actions/execute/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/scripts/:scriptId/script-versions/:scriptVersionNumber/actions/execute/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "scriptId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Script object."
+          },
+          {
+            "name": "scriptVersionNumber",
+            "value": "",
+            "type": "path",
+            "description": "The version number of the Script Version being accessed."
+          }
+        ]
+      },
+      "docs": "It executes the specified version of the Script on the Server."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/servers/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/servers/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Servers that exist in this Environment."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/servers/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/servers/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "Launch a new Server for the specified Farm Role."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/servers/{serverId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Server."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/servers/{serverId}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Modify the Instance type of the Server. Server status before this action depends on CloudPlatform: - For EC2 and OpenStack instance type change requires server status \"suspended\". - For VMware instance type change requires server status \"running\" or \"suspended\"."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/servers/{serverId}/actions/reboot/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/actions/reboot/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Reboot a Server."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/servers/{serverId}/actions/resume/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/actions/resume/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Resume a suspended Server."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/servers/{serverId}/actions/suspend/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/actions/suspend/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Suspend a Server."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/servers/{serverId}/actions/sync/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/actions/sync/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Sync the Ansible Tower Configuration on the Server."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/servers/{serverId}/actions/terminate/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/actions/terminate/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Terminate a Server."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/servers/{serverId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "List all the Global Variables associated with this Server."
+    },
+    {
+      "info": {
+        "name": "POST /{envId}/servers/{serverId}/global-variables/",
+        "type": "http"
+      },
+      "http": {
+        "method": "POST",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          }
+        ]
+      },
+      "docs": "Declare a new Global Variable for this Server."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/servers/{serverId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Retrieve detailed information about a Global Variable in this Server's scope."
+    },
+    {
+      "info": {
+        "name": "PATCH /{envId}/servers/{serverId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "PATCH",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Modify the attributes of a Global Variable in this Server's scope."
+    },
+    {
+      "info": {
+        "name": "DELETE /{envId}/servers/{serverId}/global-variables/{globalVariableName}/",
+        "type": "http"
+      },
+      "http": {
+        "method": "DELETE",
+        "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/:globalVariableName/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          },
+          {
+            "name": "serverId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of a Server object."
+          },
+          {
+            "name": "globalVariableName",
+            "value": "",
+            "type": "path",
+            "description": "The name of the Global Variable being accessed."
+          }
+        ]
+      },
+      "docs": "Delete a Global Variable from this Server's scope."
+    },
+    {
+      "info": {
+        "name": "GET /{envId}/webhook-endpoints/",
+        "type": "http"
+      },
+      "http": {
+        "method": "GET",
+        "url": "{{baseUrl}}/:envId/webhook-endpoints/",
+        "params": [
+          {
+            "name": "envId",
+            "value": "",
+            "type": "path",
+            "description": "The ID of the Environment scoping this request."
+          }
+        ]
+      },
+      "docs": "List all the Webhook endpoints available in this Environment."
+    }
+  ],
+  "bundled": true
+}
