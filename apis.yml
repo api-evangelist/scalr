@@ -128,7 +128,7 @@ common:
     url: https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/json-ld/scalr-context.jsonld
   - type: SpectralRules
     url: https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/rules/scalr-rules.yml
-  - type: LLMsTxt
+  - type: LlmsText
     url: https://docs.scalr.io/llms.txt
 maintainers:
   - FN: Kin Lane
