@@ -98,6 +98,8 @@ apis:
       - type: Authentication
         url: https://docs.scalr.io/reference/api-tokens
 common:
+  - type: DomainSecurity
+    url: security/scalr-domain-security.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/scalr
   - type: Website
