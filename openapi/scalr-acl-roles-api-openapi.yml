@@ -1,0 +1,311 @@
+swagger: '2.0'
+info:
+  description: Manage Roles, Images, Environments and etc.
+  title: Scalr Account Acl Roles API
+  version: 1.0.0
+basePath: /api/v1beta0/account
+produces:
+- application/json
+tags:
+- name: Acl Roles
+paths:
+  /{accountId}/acl-roles/:
+    parameters:
+    - description: The ID of the Account scoping this request.
+      in: path
+      name: accountId
+      required: true
+      type: integer
+    get:
+      description: List the ACL Roles in this account.
+      responses:
+        200:
+          description: A list of AclRole objects.
+          schema:
+            $ref: '#/definitions/AclRoleListResponse'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+      tags:
+      - Acl Roles
+definitions:
+  ApiErrorResponse:
+    description: Common response for erroneous requests.
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-usedIn:
+    - /account/{accountId}/global-variables/
+    - /account/{accountId}/global-variables/{globalVariableName}/
+    - /account/{accountId}/orchestration-rules/
+    - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+    - /account/{accountId}/cost-centers/
+    - /account/{accountId}/cost-centers/{costCenterId}/
+    - /account/{accountId}/environments/
+    - /account/{accountId}/environments/{envId}/
+    - /account/{accountId}/environments/{envId}/clouds/
+    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+    - /account/{accountId}/environments/{envId}/teams/
+    - /account/{accountId}/environments/{envId}/teams/{teamId}/
+    - /account/{accountId}/teams/
+    - /account/{accountId}/teams/{teamId}/
+    - /account/{accountId}/acl-roles/
+    - /account/{accountId}/role-categories/
+    - /account/{accountId}/role-categories/{roleCategoryId}/
+    - /account/{accountId}/roles/
+    - /account/{accountId}/roles/{roleId}/
+    - /account/{accountId}/roles/{roleId}/actions/clone/
+    - /account/{accountId}/roles/{roleId}/actions/deprecate/
+    - /account/{accountId}/roles/{roleId}/images/
+    - /account/{accountId}/roles/{roleId}/images/{imageId}/
+    - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+    - /account/{accountId}/roles/{roleId}/global-variables/
+    - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+    - /account/{accountId}/roles/{roleId}/orchestration-rules/
+    - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+    - /account/{accountId}/images/
+    - /account/{accountId}/images/{imageId}/
+    - /account/{accountId}/images/{imageId}/actions/copy/
+    - /account/{accountId}/images/{imageId}/actions/replace/
+    - /account/{accountId}/projects/
+    - /account/{accountId}/projects/{projectId}/
+    - /account/{accountId}/scripts/
+    - /account/{accountId}/scripts/{scriptId}/
+    - /account/{accountId}/scripts/{scriptId}/script-versions/
+    - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+    - /account/{accountId}/webhook-endpoints/
+    - /account/{accountId}/os/
+    - /account/{accountId}/os/{osId}/
+    - /account/{accountId}/events/
+    - /account/{accountId}/events/{eventId}/
+    - /account/{accountId}/cloud-credentials/
+    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+    - /account/{accountId}/scaling-metrics/
+    - /account/{accountId}/scaling-metrics/{metricName}/
+    - /account/{accountId}/users/
+    - /account/{accountId}/ansible-tower/servers/
+    - /account/{accountId}/ansible-tower/configurations/
+    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+  ApiMessage:
+    properties:
+      code:
+        description: A machine-readable representation of the message.
+        type: string
+      message:
+        description: A human-readable representation of the message.
+        type: string
+  ApiMetaContainer:
+    properties:
+      sample:
+        description: Actual properties TBD.
+        type: string
+  AclRole:
+    properties:
+      baseRole:
+        description: Base ACL Role to override.
+        enum:
+        - no-access
+        - full-access
+        - read-only
+        type: string
+      id:
+        description: Unique identifier for this ACL Role object.
+        maxLength: 20
+        minLength: 20
+        pattern: '[A-Fa-f0-9]+'
+        readOnly: true
+        type: string
+      name:
+        description: Name of this ACL Role.
+        type: string
+    required:
+    - name
+    x-createOnly:
+    - baseRole
+    x-filterable:
+    - id
+    - name
+    - baseRole
+  ApiPagination:
+    properties:
+      first:
+        readOnly: true
+        type: string
+      last:
+        readOnly: true
+        type: string
+      next:
+        readOnly: true
+        type: string
+      prev:
+        readOnly: true
+        type: string
+  AclRoleListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/AclRole'
+        readOnly: true
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      pagination:
+        $ref: '#/definitions/ApiPagination'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-derived:
+      $ref: '#/definitions/AclRole'
+    x-usedIn:
+    - /account/{accountId}/acl-roles/
+x-dry-yaml-definitions:
+  architecture:
+    enum:
+    - i386
+    - x86_64
+    type: string
+  cloudLocationProperties:
+    cloudLocation:
+      description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+      type: string
+    cloudPlatform:
+      description: The Cloud Platform this resource resides in.
+      enum:
+      - ec2
+      - gce
+      type: string
+  cloudstackProvider:
+    description: Cloud provider that should be specified for CloudStack based clouds.
+    enum:
+    - cloudstack
+    - idcf
+    type: string
+  openstackProvider:
+    description: Cloud provider that should be specified for OpenStack based clouds.
+    enum:
+    - openstack
+    - ocs
+    - hpcloud
+    - mirantis
+    - vio
+    - cisco
+    type: string
+  pathParamsPatterns:
+    uuid:
+      maxLength: 36
+      minLength: 36
+      pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+    uuidShort:
+      maxLength: 12
+      minLength: 12
+      pattern: '[A-Fa-f0-9]+'
+  scopeProperty:
+    enum:
+    - scalr
+    - account
+    - environment
+    - farm
+    - farmrole
+    - role
+    - server
+    type: string

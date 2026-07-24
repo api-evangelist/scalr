@@ -1,0 +1,2033 @@
+swagger: '2.0'
+info:
+  description: Manage Roles, Images, Environments and etc.
+  title: Scalr Account Acl Roles Role Categories API
+  version: 1.0.0
+basePath: /api/v1beta0/account
+produces:
+- application/json
+tags:
+- name: Role Categories
+paths:
+  /{accountId}/role-categories/:
+    parameters:
+    - description: The ID of the Account scoping this request.
+      in: path
+      name: accountId
+      required: true
+      type: integer
+    get:
+      description: List the Role Categories available in this Account.
+      responses:
+        200:
+          description: A list of RoleCategory objects.
+          schema:
+            $ref: '#/definitions/RoleCategoryListResponse'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+      tags:
+      - Role Categories
+    post:
+      description: Create a new Role Category in this Account.
+      parameters:
+      - description: The JSON representation of a RoleCategory object.
+        in: body
+        name: roleCategoryObject
+        required: true
+        schema:
+          $ref: '#/definitions/RoleCategory'
+      responses:
+        201:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+      tags:
+      - Role Categories
+  /{accountId}/role-categories/{roleCategoryId}/:
+    parameters:
+    - description: The ID of the Account scoping this request.
+      in: path
+      name: accountId
+      required: true
+      type: integer
+    - description: The ID of a RoleCategory object.
+      in: path
+      name: roleCategoryId
+      required: true
+      type: integer
+      x-references:
+        $ref: '#/definitions/RoleCategory'
+    delete:
+      description: Delete a Role Category from this Account.
+      responses:
+        204:
+          description: Successful deletion.
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+      tags:
+      - Role Categories
+    get:
+      description: Retrieve detailed information about a given Role Category.
+      responses:
+        200:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+      tags:
+      - Role Categories
+    patch:
+      description: Modify the attributes of a given Role Category.
+      parameters:
+      - description: The JSON representation of a RoleCategory object.
+        in: body
+        name: roleCategoryObject
+        required: true
+        schema:
+          $ref: '#/definitions/RoleCategory'
+      responses:
+        200:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse'
+      tags:
+      - Role Categories
+  /role-categories/:
+    get:
+      description: List the Role Categories available in the global scope.
+      responses:
+        200:
+          description: A list of RoleCategory objects.
+          schema:
+            $ref: '#/definitions/RoleCategoryListResponse_2'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+      tags:
+      - Role Categories
+    post:
+      description: Create a new Role Category in the global scope.
+      parameters:
+      - description: The JSON representation of a RoleCategory object.
+        in: body
+        name: roleCategoryObject
+        required: true
+        schema:
+          $ref: '#/definitions/RoleCategory_2'
+      responses:
+        201:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse_2'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+      tags:
+      - Role Categories
+  /role-categories/{roleCategoryId}/:
+    parameters:
+    - description: The ID of a RoleCategory object.
+      in: path
+      name: roleCategoryId
+      required: true
+      type: integer
+      x-references:
+        $ref: '#/definitions/RoleCategory_2'
+    delete:
+      description: Delete a Role Category from the global scope.
+      responses:
+        204:
+          description: Successful deletion.
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+      tags:
+      - Role Categories
+    get:
+      description: Retrieve detailed information about a given Role Category.
+      responses:
+        200:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse_2'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+      tags:
+      - Role Categories
+    patch:
+      description: Edit the attributes of a given Role Category.
+      parameters:
+      - description: The JSON representation of a RoleCategory object.
+        in: body
+        name: roleCategoryObject
+        required: true
+        schema:
+          $ref: '#/definitions/RoleCategory_2'
+      responses:
+        200:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse_2'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_2'
+      tags:
+      - Role Categories
+  /{envId}/role-categories/:
+    parameters:
+    - description: The ID of the Environment scoping this request.
+      in: path
+      name: envId
+      required: true
+      type: integer
+    get:
+      description: List the Role Categories available in this Environment.
+      responses:
+        200:
+          description: A list of RoleCategory objects.
+          schema:
+            $ref: '#/definitions/RoleCategoryListResponse_3'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of the objects or actions being access are deprecated.
+            name: Deprecated
+          - description: The action can't be perfomed in the current object's state.
+            name: UnacceptableState
+          - description: The object that you are trying to access does not exist on the cloud.
+            name: ObjectNotFoundOnCloud
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+      tags:
+      - Role Categories
+    post:
+      description: Create a new Role Category in this Environment.
+      parameters:
+      - description: The JSON representation of a RoleCategory object.
+        in: body
+        name: roleCategoryObject
+        required: true
+        schema:
+          $ref: '#/definitions/RoleCategory_3'
+      responses:
+        201:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse_3'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of the objects or actions being access are deprecated.
+            name: Deprecated
+          - description: The action can't be perfomed in the current object's state.
+            name: UnacceptableState
+          - description: The object that you are trying to access does not exist on the cloud.
+            name: ObjectNotFoundOnCloud
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+      tags:
+      - Role Categories
+  /{envId}/role-categories/{roleCategoryId}/:
+    parameters:
+    - description: The ID of the Environment scoping this request.
+      in: path
+      name: envId
+      required: true
+      type: integer
+    - description: The ID of a RoleCategory object.
+      in: path
+      name: roleCategoryId
+      required: true
+      type: integer
+      x-references:
+        $ref: '#/definitions/RoleCategory_3'
+    delete:
+      description: Delete a Role Category from this Environment.
+      responses:
+        204:
+          description: Successful deletion.
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of the objects or actions being access are deprecated.
+            name: Deprecated
+          - description: The action can't be perfomed in the current object's state.
+            name: UnacceptableState
+          - description: The object that you are trying to access does not exist on the cloud.
+            name: ObjectNotFoundOnCloud
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+      tags:
+      - Role Categories
+    get:
+      description: Retrieve detailed information about a given Role Category.
+      responses:
+        200:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse_3'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of the objects or actions being access are deprecated.
+            name: Deprecated
+          - description: The action can't be perfomed in the current object's state.
+            name: UnacceptableState
+          - description: The object that you are trying to access does not exist on the cloud.
+            name: ObjectNotFoundOnCloud
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+      tags:
+      - Role Categories
+    patch:
+      description: Modify the attributes of a given Role Category.
+      parameters:
+      - description: The JSON representation of a RoleCategory object.
+        in: body
+        name: roleCategoryObject
+        required: true
+        schema:
+          $ref: '#/definitions/RoleCategory_3'
+      responses:
+        200:
+          description: The JSON representation of a RoleCategory object.
+          schema:
+            $ref: '#/definitions/RoleCategoryDetailsResponse_3'
+        400:
+          description: A client-side error was made.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was structurally incorrect, and was not understood by the API.
+            name: InvalidStructure
+          - description: The request was understood by the API, but included invalid data.
+            name: InvalidValue
+          - description: The request wasn't understood by the API.
+            name: BadRequest
+        401:
+          description: The request was not authenticated.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: The request was not properly authenticated.
+            name: BadAuthentication
+        403:
+          description: Insufficient permissions.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This request should be made in a different Scope.
+            name: ScopeViolation
+          - description: You do not have the necessary permissions to perform this request.
+            name: PermissionViolation
+          - description: The maximum memory limit in GB has been reached.
+            name: MemoryQuotaExceeded
+          - description: The vCPUs limit has been reached.
+            name: VcpusQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume has been reached.
+            name: ServersQuotaExceeded
+          - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
+            name: ServersPerFarmQuotaExceeded
+        404:
+          description: Resource not found.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: This endpoint does not exist.
+            name: EndpointNotFound
+            noDoc: true
+          - description: The object you are trying to access does not exist.
+            name: ObjectNotFound
+        409:
+          description: Conflict with current state.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: These changes aren't possible while this object is in use.
+            name: ObjectInUse
+          - description: These changes would violate a policy.
+            name: PolicyViolation
+          - description: These changes would violate a unicity constraint.
+            name: UnicityViolation
+          - description: Some of the objects being changed are locked and cannot be changed.
+            name: Locked
+          - description: This Cloud platform is not enabled.
+            name: NotEnabledPlatform
+          - description: The Operating System does not match.
+            name: OperatingSystemMismatch
+          - description: Some of the objects or actions being access are deprecated.
+            name: Deprecated
+          - description: The action can't be perfomed in the current object's state.
+            name: UnacceptableState
+          - description: The object that you are trying to access does not exist on the cloud.
+            name: ObjectNotFoundOnCloud
+          - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
+            name: UnacceptableObjectConfiguration
+        422:
+          description: This request was well-formed but was rejected due to semantic errors.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+          x-errorCodes:
+          - description: Some of the configuration settings cannot be applied because they conflict with the current state.
+            name: ConfigurationMismatch
+        500:
+          description: A server-side error occurred.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        501:
+          description: This feature is not implemented in Scalr.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+        503:
+          description: The service is currently unavailable.
+          schema:
+            $ref: '#/definitions/ApiErrorResponse_3'
+      tags:
+      - Role Categories
+definitions:
+  ApiErrorResponse:
+    description: Common response for erroneous requests.
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-usedIn:
+    - /account/{accountId}/global-variables/
+    - /account/{accountId}/global-variables/{globalVariableName}/
+    - /account/{accountId}/orchestration-rules/
+    - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+    - /account/{accountId}/cost-centers/
+    - /account/{accountId}/cost-centers/{costCenterId}/
+    - /account/{accountId}/environments/
+    - /account/{accountId}/environments/{envId}/
+    - /account/{accountId}/environments/{envId}/clouds/
+    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+    - /account/{accountId}/environments/{envId}/teams/
+    - /account/{accountId}/environments/{envId}/teams/{teamId}/
+    - /account/{accountId}/teams/
+    - /account/{accountId}/teams/{teamId}/
+    - /account/{accountId}/acl-roles/
+    - /account/{accountId}/role-categories/
+    - /account/{accountId}/role-categories/{roleCategoryId}/
+    - /account/{accountId}/roles/
+    - /account/{accountId}/roles/{roleId}/
+    - /account/{accountId}/roles/{roleId}/actions/clone/
+    - /account/{accountId}/roles/{roleId}/actions/deprecate/
+    - /account/{accountId}/roles/{roleId}/images/
+    - /account/{accountId}/roles/{roleId}/images/{imageId}/
+    - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+    - /account/{accountId}/roles/{roleId}/global-variables/
+    - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+    - /account/{accountId}/roles/{roleId}/orchestration-rules/
+    - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+    - /account/{accountId}/images/
+    - /account/{accountId}/images/{imageId}/
+    - /account/{accountId}/images/{imageId}/actions/copy/
+    - /account/{accountId}/images/{imageId}/actions/replace/
+    - /account/{accountId}/projects/
+    - /account/{accountId}/projects/{projectId}/
+    - /account/{accountId}/scripts/
+    - /account/{accountId}/scripts/{scriptId}/
+    - /account/{accountId}/scripts/{scriptId}/script-versions/
+    - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+    - /account/{accountId}/webhook-endpoints/
+    - /account/{accountId}/os/
+    - /account/{accountId}/os/{osId}/
+    - /account/{accountId}/events/
+    - /account/{accountId}/events/{eventId}/
+    - /account/{accountId}/cloud-credentials/
+    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+    - /account/{accountId}/scaling-metrics/
+    - /account/{accountId}/scaling-metrics/{metricName}/
+    - /account/{accountId}/users/
+    - /account/{accountId}/ansible-tower/servers/
+    - /account/{accountId}/ansible-tower/configurations/
+    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+  ApiMessage:
+    properties:
+      code:
+        description: A machine-readable representation of the message.
+        type: string
+      message:
+        description: A human-readable representation of the message.
+        type: string
+  RoleCategory_2:
+    properties:
+      id:
+        description: Identifier of the Role Category.
+        readOnly: true
+        type: integer
+      name:
+        description: The name of the Role Category.
+        type: string
+      scope:
+        description: The Scope in which this Role Category is defined.
+        enum:
+        - scalr
+        - account
+        - environment
+        - farm
+        - farmrole
+        - role
+        - server
+        readOnly: true
+        type: string
+    required:
+    - name
+    x-filterable:
+    - id
+    - name
+    - scope
+    x-usedIn:
+    - /global/role-categories/
+    - /global/role-categories/{roleCategoryId}/
+  RoleCategoryDetailsResponse_2:
+    properties:
+      data:
+        $ref: '#/definitions/RoleCategory_2'
+        readOnly: true
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-derived:
+      $ref: '#/definitions/RoleCategory_2'
+    x-usedIn:
+    - /global/role-categories/
+    - /global/role-categories/{roleCategoryId}/
+  RoleCategoryListResponse:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/RoleCategory'
+        readOnly: true
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      pagination:
+        $ref: '#/definitions/ApiPagination'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-derived:
+      $ref: '#/definitions/RoleCategory'
+    x-usedIn:
+    - /account/{accountId}/role-categories/
+  ApiErrorResponse_2:
+    description: Common response for erroneous requests.
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-usedIn:
+    - /global/global-variables/
+    - /global/global-variables/{globalVariableName}/
+    - /global/role-categories/
+    - /global/role-categories/{roleCategoryId}/
+    - /global/roles/
+    - /global/roles/{roleId}/
+    - /global/roles/{roleId}/actions/deprecate/
+    - /global/roles/{roleId}/images/
+    - /global/roles/{roleId}/images/{imageId}/
+    - /global/roles/{roleId}/images/{imageId}/actions/replace/
+    - /global/roles/{roleId}/global-variables/
+    - /global/roles/{roleId}/global-variables/{globalVariableName}/
+    - /global/roles/{roleId}/orchestration-rules/
+    - /global/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+    - /global/images/
+    - /global/images/{imageId}/
+    - /global/images/{imageId}/actions/copy/
+    - /global/images/{imageId}/actions/replace/
+    - /global/os/
+    - /global/os/{osId}/
+    - /global/projects/
+    - /global/projects/{projectId}/
+    - /global/cloud-credentials/
+    - /global/cloud-credentials/{cloudCredentialsId}/
+    - /global/users/
+    - /global/ansible-tower/servers/
+    - /global/ansible-tower/configurations/
+    - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+  RoleCategoryListResponse_3:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/RoleCategory_3'
+        readOnly: true
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      pagination:
+        $ref: '#/definitions/ApiPagination'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-derived:
+      $ref: '#/definitions/RoleCategory_3'
+    x-usedIn:
+    - /user/{envId}/role-categories/
+  ApiMetaContainer:
+    properties:
+      sample:
+        description: Actual properties TBD.
+        type: string
+  ApiPagination:
+    properties:
+      first:
+        readOnly: true
+        type: string
+      last:
+        readOnly: true
+        type: string
+      next:
+        readOnly: true
+        type: string
+      prev:
+        readOnly: true
+        type: string
+  RoleCategoryDetailsResponse:
+    properties:
+      data:
+        $ref: '#/definitions/RoleCategory'
+        readOnly: true
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-derived:
+      $ref: '#/definitions/RoleCategory'
+    x-usedIn:
+    - /account/{accountId}/role-categories/
+    - /account/{accountId}/role-categories/{roleCategoryId}/
+  RoleCategoryListResponse_2:
+    properties:
+      data:
+        items:
+          $ref: '#/definitions/RoleCategory_2'
+        readOnly: true
+        type: array
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      pagination:
+        $ref: '#/definitions/ApiPagination'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-derived:
+      $ref: '#/definitions/RoleCategory_2'
+    x-usedIn:
+    - /global/role-categories/
+  RoleCategory_3:
+    properties:
+      id:
+        description: Identifier of the Role Category.
+        readOnly: true
+        type: integer
+      name:
+        description: The name of the Role Category.
+        type: string
+      scope:
+        description: The Scope in which this Role Category is defined.
+        enum:
+        - scalr
+        - account
+        - environment
+        - farm
+        - farmrole
+        - role
+        - server
+        readOnly: true
+        type: string
+    required:
+    - name
+    x-filterable:
+    - id
+    - name
+    - scope
+    x-usedIn:
+    - /user/{envId}/role-categories/
+    - /user/{envId}/role-categories/{roleCategoryId}/
+  RoleCategory:
+    properties:
+      id:
+        description: Identifier of the Role Category.
+        readOnly: true
+        type: integer
+      name:
+        description: The name of the Role Category.
+        type: string
+      scope:
+        description: The Scope in which this Role Category is defined.
+        enum:
+        - scalr
+        - account
+        - environment
+        - farm
+        - farmrole
+        - role
+        - server
+        readOnly: true
+        type: string
+    required:
+    - name
+    x-filterable:
+    - id
+    - name
+    - scope
+    x-usedIn:
+    - /account/{accountId}/role-categories/
+    - /account/{accountId}/role-categories/{roleCategoryId}/
+  ApiErrorResponse_3:
+    description: Common response for erroneous requests.
+    properties:
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-usedIn:
+    - /user/{envId}/global-variables/
+    - /user/{envId}/global-variables/{globalVariableName}/
+    - /user/{envId}/orchestration-rules/
+    - /user/{envId}/orchestration-rules/{orchestrationRuleId}/
+    - /user/{envId}/projects/
+    - /user/{envId}/projects/{projectId}/
+    - /user/{envId}/cost-centers/
+    - /user/{envId}/cost-centers/{costCenterId}/
+    - /user/{envId}/role-categories/
+    - /user/{envId}/role-categories/{roleCategoryId}/
+    - /user/{envId}/roles/
+    - /user/{envId}/roles/{roleId}/
+    - /user/{envId}/roles/{roleId}/actions/promote/
+    - /user/{envId}/roles/{roleId}/actions/clone/
+    - /user/{envId}/roles/{roleId}/actions/deprecate/
+    - /user/{envId}/roles/{roleId}/images/
+    - /user/{envId}/roles/{roleId}/images/{imageId}/
+    - /user/{envId}/roles/{roleId}/images/{imageId}/actions/replace/
+    - /user/{envId}/roles/{roleId}/global-variables/
+    - /user/{envId}/roles/{roleId}/global-variables/{globalVariableName}/
+    - /user/{envId}/roles/{roleId}/orchestration-rules/
+    - /user/{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+    - /user/{envId}/images/
+    - /user/{envId}/images/{imageId}/
+    - /user/{envId}/images/{imageId}/actions/copy/
+    - /user/{envId}/images/{imageId}/actions/replace/
+    - /user/{envId}/servers/
+    - /user/{envId}/servers/{serverId}/
+    - /user/{envId}/servers/{serverId}/actions/suspend/
+    - /user/{envId}/servers/{serverId}/actions/terminate/
+    - /user/{envId}/servers/{serverId}/actions/resume/
+    - /user/{envId}/servers/{serverId}/actions/reboot/
+    - /user/{envId}/servers/{serverId}/actions/sync/
+    - /user/{envId}/servers/{serverId}/global-variables/
+    - /user/{envId}/servers/{serverId}/global-variables/{globalVariableName}/
+    - /user/{envId}/farms/{farmId}/servers/
+    - /user/{envId}/farm-roles/{farmRoleId}/servers/
+    - /user/{envId}/scripts/
+    - /user/{envId}/scripts/{scriptId}/
+    - /user/{envId}/scripts/{scriptId}/actions/execute/
+    - /user/{envId}/scripts/{scriptId}/script-versions/
+    - /user/{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+    - /user/{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/actions/execute/
+    - /user/{envId}/script-executions/{scriptExecutionId}/
+    - /user/{envId}/orchestration-logs/
+    - /user/{envId}/orchestration-logs/{logEntryId}/
+    - /user/{envId}/event-logs/
+    - /user/{envId}/event-logs/{eventLogEntryId}/
+    - /user/{envId}/webhook-endpoints/
+    - /user/{envId}/os/
+    - /user/{envId}/os/{osId}/
+    - /user/{envId}/events/
+    - /user/{envId}/events/{eventId}/
+    - /user/{envId}/events/{eventId}/actions/fire/
+    - /user/{envId}/farms/
+    - /user/{envId}/farms/{farmId}/
+    - /user/{envId}/farms/{farmId}/cloud-services/
+    - /user/{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/
+    - /user/{envId}/farms/{farmId}/actions/generate-template/
+    - /user/{envId}/farms/{farmId}/actions/launch/
+    - /user/{envId}/farms/{farmId}/actions/suspend/
+    - /user/{envId}/farms/{farmId}/actions/resume/
+    - /user/{envId}/farms/{farmId}/actions/terminate/
+    - /user/{envId}/farms/{farmId}/actions/lock/
+    - /user/{envId}/farms/{farmId}/actions/unlock/
+    - /user/{envId}/farms/{farmId}/actions/clone/
+    - /user/{envId}/farms/{farmId}/global-variables/
+    - /user/{envId}/farms/{farmId}/global-variables/{globalVariableName}/
+    - /user/{envId}/farms/{farmId}/farm-roles/
+    - /user/{envId}/farm-roles/{farmRoleId}/
+    - /user/{envId}/farm-roles/{farmRoleId}/actions/import-server/
+    - /user/{envId}/farm-roles/{farmRoleId}/actions/generate-template/
+    - /user/{envId}/farm-roles/{farmRoleId}/actions/clone/
+    - /user/{envId}/farm-roles/{farmRoleId}/scaling/
+    - /user/{envId}/farm-roles/{farmRoleId}/scaling/{metricName}/
+    - /user/{envId}/farm-roles/{farmRoleId}/storage/
+    - /user/{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/
+    - /user/{envId}/scaling-metrics/
+    - /user/{envId}/scaling-metrics/{metricName}/
+    - /user/{envId}/farm-roles/{farmRoleId}/global-variables/
+    - /user/{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/
+    - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/
+    - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
+    - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
+    - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+  RoleCategoryDetailsResponse_3:
+    properties:
+      data:
+        $ref: '#/definitions/RoleCategory_3'
+        readOnly: true
+      errors:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+      meta:
+        $ref: '#/definitions/ApiMetaContainer'
+        readOnly: true
+      warnings:
+        items:
+          $ref: '#/definitions/ApiMessage'
+        readOnly: true
+        type: array
+    x-derived:
+      $ref: '#/definitions/RoleCategory_3'
+    x-usedIn:
+    - /user/{envId}/role-categories/
+    - /user/{envId}/role-categories/{roleCategoryId}/
+x-dry-yaml-definitions:
+  architecture:
+    enum:
+    - i386
+    - x86_64
+    type: string
+  cloudLocationProperties:
+    cloudLocation:
+      description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+      type: string
+    cloudPlatform:
+      description: The Cloud Platform this resource resides in.
+      enum:
+      - ec2
+      - gce
+      type: string
+  cloudstackProvider:
+    description: Cloud provider that should be specified for CloudStack based clouds.
+    enum:
+    - cloudstack
+    - idcf
+    type: string
+  openstackProvider:
+    description: Cloud provider that should be specified for OpenStack based clouds.
+    enum:
+    - openstack
+    - ocs
+    - hpcloud
+    - mirantis
+    - vio
+    - cisco
+    type: string
+  pathParamsPatterns:
+    uuid:
+      maxLength: 36
+      minLength: 36
+      pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+    uuidShort:
+      maxLength: 12
+      minLength: 12
+      pattern: '[A-Fa-f0-9]+'
+  scopeProperty:
+    enum:
+    - scalr
+    - account
+    - environment
+    - farm
+    - farmrole
+    - role
+    - server
+    type: string
