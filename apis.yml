@@ -7,7 +7,19 @@ description: >-
   authentication, GitOps workflows, OPA policy enforcement, and a comprehensive REST API for managing infrastructure as
   code operations at scale.
 type: Index
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: unknown
+  trial: false
+  try_now: false
+  public: false
+  label: Paid
+  confidence: medium
+  source:
+  - plans
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/scalr.png
 tags:
   - FinOps
   - GitOps
@@ -22,81 +34,304 @@ created: '2026-05-02'
 modified: '2026-05-19'
 specificationVersion: '0.19'
 apis:
-  - aid: scalr:scalr-user-api
-    name: Scalr User API
-    description: >-
-      The Scalr User API provides programmatic access to user-level resources including farms, farm roles, servers,
-      events, cloud locations, cost centers, and scaling metrics. This is the legacy cloud management API (v1beta0) for
-      managing cloud infrastructure resources across multiple cloud providers.
-    humanURL: https://api-explorer.scalr.com/
-    tags:
-      - Cloud Management
-      - Farms
-      - Infrastructure
-      - Scalr
-      - Servers
-    properties:
-      - type: Documentation
-        url: https://api-explorer.scalr.com/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/openapi/scalr-user-openapi.yml
-  - aid: scalr:scalr-account-api
-    name: Scalr Account API
-    description: >-
-      The Scalr Account API provides programmatic access to account-level resources including environments, roles,
-      images, orchestration rules, and account-wide configuration. This is the legacy cloud management API (v1beta0).
-    humanURL: https://api-explorer.scalr.com/
-    tags:
-      - Account Management
-      - Cloud Management
-      - Environments
-      - Roles
-      - Scalr
-    properties:
-      - type: Documentation
-        url: https://api-explorer.scalr.com/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/openapi/scalr-account-openapi.yml
-  - aid: scalr:scalr-global-api
-    name: Scalr Global API
-    description: >-
-      The Scalr Global API provides programmatic access to global-level resources including images and roles that span
-      the entire Scalr installation.
-    humanURL: https://api-explorer.scalr.com/
-    tags:
-      - Cloud Management
-      - Global
-      - Images
-      - Roles
-      - Scalr
-    properties:
-      - type: Documentation
-        url: https://api-explorer.scalr.com/
-      - type: OpenAPI
-        url: https://raw.githubusercontent.com/api-evangelist/scalr/refs/heads/main/openapi/scalr-global-openapi.yml
-  - aid: scalr:scalr-iac-api
-    name: Scalr IaC Management API
-    description: >-
-      The Scalr IaC Management API (TFC-compatible) provides programmatic control over workspaces, environments, runs,
-      state, variables, policies, and provider configurations. Fully compatible with Terraform Cloud API and
-      Terraform/OpenTofu CLI. Authenticates using Bearer tokens (personal or service account). Supports OIDC for GitHub,
-      GitLab, AWS, Azure, and other identity providers.
-    humanURL: https://docs.scalr.io/reference/overview-1
-    tags:
-      - Infrastructure as Code
-      - OpenTofu
-      - Policy
-      - Runs
-      - Scalr
-      - Terraform
-      - Workspaces
-    properties:
-      - type: Documentation
-        url: https://docs.scalr.io/reference/overview-1
-      - type: GettingStarted
-        url: https://docs.scalr.io/docs/introduction
-      - type: Authentication
-        url: https://docs.scalr.io/reference/api-tokens
+- aid: scalr:scalr-iac-api
+  name: Scalr IaC Management API
+  description: >-
+    The Scalr IaC Management API (TFC-compatible) provides programmatic control over workspaces, environments,
+    runs, state, variables, policies, and provider configurations. Fully compatible with Terraform Cloud
+    API and Terraform/OpenTofu CLI. Authenticates using Bearer tokens (personal or service account). Supports
+    OIDC for GitHub, GitLab, AWS, Azure, and other identity providers.
+  humanURL: https://docs.scalr.io/reference/overview-1
+  tags:
+  - Infrastructure as Code
+  - OpenTofu
+  - Policy
+  - Runs
+  - Scalr
+  - Terraform
+  - Workspaces
+  properties:
+  - type: Documentation
+    url: https://docs.scalr.io/reference/overview-1
+  - type: GettingStarted
+    url: https://docs.scalr.io/docs/introduction
+  - type: Authentication
+    url: https://docs.scalr.io/reference/api-tokens
+- aid: scalr:scalr-acl-roles-api
+  name: Scalr Acl Roles API
+  description: The Acl Roles API from Scalr — 1 operation(s) for acl roles.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Acl Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-acl-roles-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-ansible-tower-api
+  name: Scalr Ansible Tower API
+  description: The Ansible Tower API from Scalr — 6 operation(s) for ansible tower.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Ansible Tower
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-ansible-tower-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-cloud-credentials-api
+  name: Scalr Cloud Credentials API
+  description: The Cloud Credentials API from Scalr — 4 operation(s) for cloud credentials.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Cloud Credentials
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-cloud-credentials-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-clouds-api
+  name: Scalr Clouds API
+  description: The Clouds API from Scalr — 2 operation(s) for clouds.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Clouds
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-clouds-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-cost-centers-api
+  name: Scalr Cost Centers API
+  description: The Cost Centers API from Scalr — 3 operation(s) for cost centers.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Cost Centers
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-cost-centers-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-environments-api
+  name: Scalr Environments API
+  description: The Environments API from Scalr — 6 operation(s) for environments.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Environments
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-environments-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-event-logs-api
+  name: Scalr Event Logs API
+  description: The Event Logs API from Scalr — 2 operation(s) for event logs.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Event Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-event-logs-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-events-api
+  name: Scalr Events API
+  description: The Events API from Scalr — 5 operation(s) for events.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-events-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-farm-roles-api
+  name: Scalr Farm Roles API
+  description: The Farm Roles API from Scalr — 13 operation(s) for farm roles.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Farm Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-farm-roles-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-farms-api
+  name: Scalr Farms API
+  description: The Farms API from Scalr — 16 operation(s) for farms.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Farms
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-farms-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-global-variables-api
+  name: Scalr Global Variables API
+  description: The Global Variables API from Scalr — 6 operation(s) for global variables.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Global Variables
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-global-variables-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-images-api
+  name: Scalr Images API
+  description: The Images API from Scalr — 12 operation(s) for images.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Images
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-images-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-orchestration-logs-api
+  name: Scalr Orchestration Logs API
+  description: The Orchestration Logs API from Scalr — 2 operation(s) for orchestration logs.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Orchestration Logs
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-orchestration-logs-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-orchestration-rules-api
+  name: Scalr Orchestration Rules API
+  description: The Orchestration Rules API from Scalr — 4 operation(s) for orchestration rules.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Orchestration Rules
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-orchestration-rules-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-os-api
+  name: Scalr Os API
+  description: The Os API from Scalr — 6 operation(s) for os.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Os
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-os-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-projects-api
+  name: Scalr Projects API
+  description: The Projects API from Scalr — 4 operation(s) for projects.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-projects-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-role-categories-api
+  name: Scalr Role Categories API
+  description: The Role Categories API from Scalr — 6 operation(s) for role categories.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Role Categories
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-role-categories-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-roles-api
+  name: Scalr Roles API
+  description: The Roles API from Scalr — 33 operation(s) for roles.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Roles
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-roles-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-scaling-metrics-api
+  name: Scalr Scaling Metrics API
+  description: The Scaling Metrics API from Scalr — 4 operation(s) for scaling metrics.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Scaling Metrics
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-scaling-metrics-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-script-executions-api
+  name: Scalr Script Executions API
+  description: The Script Executions API from Scalr — 1 operation(s) for script executions.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Script Executions
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-script-executions-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-scripts-api
+  name: Scalr Scripts API
+  description: The Scripts API from Scalr — 10 operation(s) for scripts.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Scripts
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-scripts-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-servers-api
+  name: Scalr Servers API
+  description: The Servers API from Scalr — 9 operation(s) for servers.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Servers
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-servers-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-teams-api
+  name: Scalr Teams API
+  description: The Teams API from Scalr — 2 operation(s) for teams.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Teams
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-teams-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-users-api
+  name: Scalr Users API
+  description: The Users API from Scalr — 2 operation(s) for users.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-users-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
+- aid: scalr:scalr-webhook-endpoints-api
+  name: Scalr Webhook Endpoints API
+  description: The Webhook Endpoints API from Scalr — 2 operation(s) for webhook endpoints.
+  humanURL: https://api-explorer.scalr.com/
+  tags:
+  - Webhook Endpoints
+  properties:
+  - type: OpenAPI
+    url: openapi/scalr-webhook-endpoints-api-openapi.yml
+  - type: Documentation
+    url: https://api-explorer.scalr.com/
 common:
   - type: AgenticAccess
     url: agentic-access/scalr-agentic-access.yml
