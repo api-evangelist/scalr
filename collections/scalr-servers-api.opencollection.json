@@ -1,0 +1,374 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Servers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Servers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{envId}/servers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/servers/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Servers that exist in this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/servers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/servers/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Launch a new Server for the specified Farm Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/servers/{serverId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Server."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/servers/{serverId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Modify the Instance type of the Server. Server status before this action depends on CloudPlatform: - For EC2 and OpenStack instance type change requires server status \"suspended\". - For VMware instance type change requires server status \"running\" or \"suspended\"."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/servers/{serverId}/actions/reboot/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/actions/reboot/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Reboot a Server."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/servers/{serverId}/actions/resume/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/actions/resume/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Resume a suspended Server."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/servers/{serverId}/actions/suspend/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/actions/suspend/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Suspend a Server."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/servers/{serverId}/actions/sync/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/actions/sync/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Sync the Ansible Tower Configuration on the Server."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/servers/{serverId}/actions/terminate/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/actions/terminate/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Terminate a Server."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/servers/{serverId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "List all the Global Variables associated with this Server."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/servers/{serverId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              }
+            ]
+          },
+          "docs": "Declare a new Global Variable for this Server."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/servers/{serverId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Global Variable in this Server's scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/servers/{serverId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable in this Server's scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/servers/{serverId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/servers/:serverId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "serverId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Server object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Delete a Global Variable from this Server's scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,361 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Environments API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Environments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/environments/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/environments/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List Environments available in this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/environments/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/environments/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Environment in the Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/environments/{envId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Environment."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/environments/{envId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              }
+            ]
+          },
+          "docs": "Update the attributes of an Environment."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/environments/{envId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              }
+            ]
+          },
+          "docs": "Delete an Environment from the Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/environments/{envId}/clouds/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              }
+            ]
+          },
+          "docs": "List the Clouds this environment has access to."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/environments/{envId}/clouds/{cloud}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/:cloud/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              },
+              {
+                "name": "cloud",
+                "value": "",
+                "type": "path",
+                "description": "The name of the cloud."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about given Cloud Credentials that this Environment is using."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/environments/{envId}/clouds/{cloud}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/:cloud/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              },
+              {
+                "name": "cloud",
+                "value": "",
+                "type": "path",
+                "description": "The name of the cloud."
+              }
+            ]
+          },
+          "docs": "Associate or replace Cloud Credentials with this Environment for the given Cloud."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/environments/{envId}/clouds/{cloud}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/clouds/:cloud/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              },
+              {
+                "name": "cloud",
+                "value": "",
+                "type": "path",
+                "description": "The name of the cloud."
+              }
+            ]
+          },
+          "docs": "Detaches Cloud Credentials from this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/environments/{envId}/teams/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/teams/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              }
+            ]
+          },
+          "docs": "List the Teams that have access to this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/environments/{envId}/teams/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/teams/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              }
+            ]
+          },
+          "docs": "Grants a Team access to this Environment."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/environments/{envId}/teams/{teamId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/teams/:teamId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Team object."
+              }
+            ]
+          },
+          "docs": "Update the attributes of an Team access on this Environment."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/environments/{envId}/teams/{teamId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/environments/:envId/teams/:teamId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment being accessed."
+              },
+              {
+                "name": "teamId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Team object."
+              }
+            ]
+          },
+          "docs": "Withhold a Team's access to this Environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

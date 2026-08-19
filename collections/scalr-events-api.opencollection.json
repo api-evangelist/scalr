@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Events API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Events",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/events/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/events/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Events available in this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/events/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/events/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "replace",
+                "value": "",
+                "type": "query",
+                "description": "Replace all Events declared at a lower scope with the same name with this one."
+              }
+            ]
+          },
+          "docs": "Create a new Custom Event in this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/events/{eventId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/events/:eventId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Event object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Event."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/events/{eventId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/events/:eventId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Event object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Event."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/events/{eventId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/events/:eventId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Event object."
+              }
+            ]
+          },
+          "docs": "Delete a given Event from this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/events/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/events/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Events available in this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/events/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/events/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Custom Event in this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/events/{eventId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/events/:eventId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Event object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Event."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/events/{eventId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/events/:eventId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Event object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of an Event."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/events/{eventId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/events/:eventId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Event object."
+              }
+            ]
+          },
+          "docs": "Delete an Event from this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/events/{eventId}/actions/fire/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/events/:eventId/actions/fire/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "eventId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Event object."
+              }
+            ]
+          },
+          "docs": "It fires the Custom Event on the Server."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

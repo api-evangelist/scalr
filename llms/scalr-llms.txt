@@ -1,0 +1,566 @@
+# Scalr Documentation
+
+> Documentation for Scalr
+
+## Guides
+- [Scalr Documentation](https://docs.scalr.io/docs/introduction.md)
+- [Structuring Scalr](https://docs.scalr.io/docs/structuring-scalr.md)
+- [Remote Backend Options](https://docs.scalr.io/docs/remote-backends.md)
+- [Environments](https://docs.scalr.io/docs/creating-environments.md)
+- [Set Backend](https://docs.scalr.io/docs/set-the-backend.md)
+- [Assign VCS Providers](https://docs.scalr.io/docs/assign-a-vcs-provider.md)
+- [Assign Provider Configurations](https://docs.scalr.io/docs/assign-a-provider-configuration.md)
+- [Assign Policies](https://docs.scalr.io/docs/assign-policies.md)
+- [Assign Access Policies](https://docs.scalr.io/docs/grant-iam-access.md)
+- [Set Variables](https://docs.scalr.io/docs/set-variables.md)
+- [Enable Drift](https://docs.scalr.io/docs/enable-drift.md)
+- [Set Hooks](https://docs.scalr.io/docs/set-hooks.md)
+- [Federated Environments](https://docs.scalr.io/docs/cross-environments-access.md): Sharing state and enabling run triggers across environments
+- [Environment Locking](https://docs.scalr.io/docs/environment-locking.md)
+- [Workspaces](https://docs.scalr.io/docs/workspaces.md)
+- [Workspace Types](https://docs.scalr.io/docs/creating-a-workspace.md)
+- [VCS Workspace](https://docs.scalr.io/docs/vcs.md)
+- [CLI Workspace](https://docs.scalr.io/docs/cli.md)
+- [No Code Workspace](https://docs.scalr.io/docs/no-code.md)
+- [API Driven Workspace](https://docs.scalr.io/docs/api-driven.md)
+- [Workspace Settings](https://docs.scalr.io/docs/workspaces-4.md)
+- [Agent Pools](https://docs.scalr.io/docs/agent-pools-1.md)
+- [Auto-Apply Runs](https://docs.scalr.io/docs/auto-apply-runs.md)
+- [Auto Queue Runs](https://docs.scalr.io/docs/auto-queue-runs.md)
+- [Container Image Info](https://docs.scalr.io/docs/container-image-info.md)
+- [Custom Hooks](https://docs.scalr.io/docs/custom-hooks.md)
+- [Deletion Protection](https://docs.scalr.io/docs/deletion-protection.md)
+- [Ephemeral Workspaces](https://docs.scalr.io/docs/epehemeral-workspaces.md)
+- [Execution Mode](https://docs.scalr.io/docs/execution-mode.md)
+- [Force Runs in a PR](https://docs.scalr.io/docs/force-runs-in-a-pr.md)
+- [IAC Platform/Pipeline Settings](https://docs.scalr.io/docs/iac-platform.md)
+- [Run Scheduler](https://docs.scalr.io/docs/drift-run-scheduler.md)
+- [Run Timeout](https://docs.scalr.io/docs/run-timeout.md)
+- [Run Triggers](https://docs.scalr.io/docs/run-triggers-1.md)
+- [Sharing Outputs](https://docs.scalr.io/docs/sharing-outputs.md)
+- [SSH Keys](https://docs.scalr.io/docs/ssh-keys.md)
+- [Tags](https://docs.scalr.io/docs/tags-1.md)
+- [.terraformignore](https://docs.scalr.io/docs/terraformignore.md)
+- [Workspace Migration](https://docs.scalr.io/docs/workspace-migration.md)
+- [Workspace Type](https://docs.scalr.io/docs/environment-types.md)
+- [Workspace Dependencies](https://docs.scalr.io/docs/workspace-dependencies.md)
+- [Terraform & OpenTofu Runs](https://docs.scalr.io/docs/workspaces-runs.md)
+- [Drift Detection](https://docs.scalr.io/docs/drift-detector.md)
+- [State Management](https://docs.scalr.io/docs/state-management.md)
+- [Storage Profiles](https://docs.scalr.io/docs/storage-profiles.md)
+- [Variables](https://docs.scalr.io/docs/variables.md)
+- [Provider Configurations](https://docs.scalr.io/docs/provider-configurations.md)
+- [AWS Provider Configuration](https://docs.scalr.io/docs/aws.md)
+- [Azure Provider Configuration](https://docs.scalr.io/docs/azure.md)
+- [GCP Provider Configuration](https://docs.scalr.io/docs/google.md)
+- [Scalr Provider Configuration](https://docs.scalr.io/docs/scalr.md)
+- [Other Providers](https://docs.scalr.io/docs/custom-providers.md)
+- [Integrations](https://docs.scalr.io/docs/integrations.md)
+- [AWS EventBridge](https://docs.scalr.io/docs/aws-event-bridge.md)
+- [Azure DevOps](https://docs.scalr.io/docs/azure-devops.md)
+- [Backstage](https://docs.scalr.io/docs/backstage.md)
+- [Bitbucket Cloud](https://docs.scalr.io/docs/bitbucket-cloud.md)
+- [Bitbucket Datacenter](https://docs.scalr.io/docs/bitbucket-datacenter.md)
+- [Checkov](https://docs.scalr.io/docs/checkov.md)
+- [Datadog](https://docs.scalr.io/docs/datadog.md)
+- [Dependabot](https://docs.scalr.io/docs/dependabot.md)
+- [GitHub](https://docs.scalr.io/docs/github.md)
+- [GitLab](https://docs.scalr.io/docs/gitlab.md)
+- [Infracost](https://docs.scalr.io/docs/infracost.md)
+- [Microsoft Teams](https://docs.scalr.io/docs/msteams.md)
+- [OpenMetrics](https://docs.scalr.io/docs/openmetrics.md)
+- [OpenTofu](https://docs.scalr.io/docs/opentofu.md)
+- [Open Policy Agent](https://docs.scalr.io/docs/policy-as-code.md)
+- [Examples & Use Cases](https://docs.scalr.io/docs/examples-use-cases.md)
+- [Single Sign-On (SSO)](https://docs.scalr.io/docs/single-sign-on.md)
+- [Okta](https://docs.scalr.io/docs/okta-scim.md)
+- [Microsoft Entra](https://docs.scalr.io/docs/microsoft-entr.md)
+- [JumpCloud](https://docs.scalr.io/docs/jumpcloud.md)
+- [Google Workspace](https://docs.scalr.io/docs/google-workspace.md)
+- [Slack](https://docs.scalr.io/docs/slack.md): Enhance your Terraform workflows with the Scalr Slack integration, enabling you to approve runs, review plans, and receive real-time drift detection alerts directly in your channels. Stop context switching and respond to critical infrastructure events faster to accelerate your deployment pipeline.
+- [Terraform](https://docs.scalr.io/docs/terraform.md)
+- [Terragrunt](https://docs.scalr.io/docs/terragrunt.md)
+- [VSCode Extension](https://docs.scalr.io/docs/vscode-extension.md)
+- [Webhooks](https://docs.scalr.io/docs/webhooks.md)
+- [Wiz](https://docs.scalr.io/docs/wiz.md)
+- [Identity and Access Management](https://docs.scalr.io/docs/identity-and-access-management.md)
+- [Agent Pools](https://docs.scalr.io/docs/agent-pools.md)
+- [Requirements](https://docs.scalr.io/docs/requirements.md)
+- [Installation](https://docs.scalr.io/docs/installation.md)
+- [Configuration Options](https://docs.scalr.io/docs/configuration.md)
+- [Run Environment & Customization](https://docs.scalr.io/docs/run-environment.md)
+- [Drivers](https://docs.scalr.io/docs/drivers.md)
+- [Providers Cache](https://docs.scalr.io/docs/providers-cache.md)
+- [Modules Cache](https://docs.scalr.io/docs/modules-cache.md)
+- [Hooks](https://docs.scalr.io/docs/hooks-1.md)
+- [Logs](https://docs.scalr.io/docs/logging.md)
+- [Metrics](https://docs.scalr.io/docs/metrics.md)
+- [Tracing](https://docs.scalr.io/docs/tracing.md)
+- [Troubleshooting](https://docs.scalr.io/docs/troubleshooting.md)
+- [Changelog](https://docs.scalr.io/docs/changelog.md): All notable changes to this project will be documented in this file.
+- [Policy & Governance](https://docs.scalr.io/docs/policy-governance.md)
+- [Hooks Registry](https://docs.scalr.io/docs/hooks.md)
+- [OCI Registry](https://docs.scalr.io/docs/oci-registry.md)
+- [Private Module Registry](https://docs.scalr.io/docs/private-module-registry.md)
+- [Private Provider Registry](https://docs.scalr.io/docs/private-provider-registry.md)
+- [Reports](https://docs.scalr.io/docs/reports.md)
+- [Metrics](https://docs.scalr.io/docs/metrics-2.md)
+- [Rules](https://docs.scalr.io/docs/rules.md)
+- [Audit Logs](https://docs.scalr.io/docs/audit-logs.md)
+- [IP Allowlist](https://docs.scalr.io/docs/ip-allowlist.md)
+- [Account Ownership](https://docs.scalr.io/docs/account-ownership.md)
+- [Bring Your Own Key (BYOK)](https://docs.scalr.io/docs/encryption.md)
+- [AWS KMS](https://docs.scalr.io/docs/aws-kms.md)
+- [GCP Cloud KMS](https://docs.scalr.io/docs/gcp-kms.md)
+- [Tags](https://docs.scalr.io/docs/tags.md)
+- [Control Tower](https://docs.scalr.io/docs/control-tower.md)
+- [Migrating to Scalr](https://docs.scalr.io/docs/migrating-to-scalr.md)
+- [Overview](https://docs.scalr.io/docs/provider_overview.md)
+- [scalr_access_policy](https://docs.scalr.io/docs/provider_resource_scalr_access_policy.md)
+- [scalr_endpoint](https://docs.scalr.io/docs/provider_resource_scalr_endpoint.md)
+- [scalr_account_allowed_ips](https://docs.scalr.io/docs/provider_resource_scalr_account_allowed_ips.md)
+- [scalr_agent_pool](https://docs.scalr.io/docs/provider_resource_scalr_agent_pool.md)
+- [scalr_agent_pool_token](https://docs.scalr.io/docs/provider_resource_scalr_agent_pool_token.md)
+- [scalr_assume_service_account_policy](https://docs.scalr.io/docs/provider_resource_scalr_assume_service_account_policy.md)
+- [scalr_checkov_integration](https://docs.scalr.io/docs/provider_resource_scalr_checkov_integration.md)
+- [scalr_drift_detection](https://docs.scalr.io/docs/provider_resource_scalr_drift_detection.md)
+- [scalr_environment](https://docs.scalr.io/docs/provider_resource_scalr_environment.md)
+- [scalr_environment_hook](https://docs.scalr.io/docs/provider_resource_scalr_environment_hook.md)
+- [scalr_event_bridge_integration](https://docs.scalr.io/docs/provider_resource_scalr_event_bridge_integration.md)
+- [scalr_federated_environments](https://docs.scalr.io/docs/provider_resource_scalr_federated_environments.md)
+- [scalr_hook](https://docs.scalr.io/docs/provider_resource_scalr_hook.md)
+- [scalr_iam_team](https://docs.scalr.io/docs/provider_resource_scalr_iam_team.md)
+- [scalr_integration_infracost](https://docs.scalr.io/docs/provider_resource_scalr_integration_infracost.md)
+- [scalr_module](https://docs.scalr.io/docs/provider_resource_scalr_module.md)
+- [scalr_module_namespace](https://docs.scalr.io/docs/provider_resource_scalr_module_namespace.md)
+- [scalr_policy_group](https://docs.scalr.io/docs/provider_resource_scalr_policy_group.md)
+- [scalr_policy_group_linkage](https://docs.scalr.io/docs/provider_resource_scalr_policy_group_linkage.md)
+- [scalr_provider_configuration](https://docs.scalr.io/docs/provider_resource_scalr_provider_configuration.md)
+- [scalr_provider_configuration_default](https://docs.scalr.io/docs/provider_resource_scalr_provider_configuration_default.md)
+- [scalr_role](https://docs.scalr.io/docs/provider_resource_scalr_role.md)
+- [scalr_run_schedule_rule](https://docs.scalr.io/docs/provider_resource_scalr_run_schedule_rule.md)
+- [scalr_run_trigger](https://docs.scalr.io/docs/provider_resource_scalr_run_trigger.md)
+- [scalr_service_account](https://docs.scalr.io/docs/provider_resource_scalr_service_account.md)
+- [scalr_service_account_token](https://docs.scalr.io/docs/provider_resource_scalr_service_account_token.md)
+- [scalr_slack_integration](https://docs.scalr.io/docs/provider_resource_scalr_slack_integration.md)
+- [scalr_ssh_key](https://docs.scalr.io/docs/provider_resource_scalr_ssh_key.md)
+- [scalr_storage_profile](https://docs.scalr.io/docs/provider_resource_scalr_storage_profile.md)
+- [scalr_tag](https://docs.scalr.io/docs/provider_resource_scalr_tag.md)
+- [scalr_var_set](https://docs.scalr.io/docs/provider_resource_scalr_var_set.md)
+- [scalr_variable](https://docs.scalr.io/docs/provider_resource_scalr_variable.md)
+- [scalr_vcs_provider](https://docs.scalr.io/docs/provider_resource_scalr_vcs_provider.md)
+- [scalr_webhook](https://docs.scalr.io/docs/provider_resource_scalr_webhook.md)
+- [scalr_workload_identity_provider](https://docs.scalr.io/docs/provider_resource_scalr_workload_identity_provider.md)
+- [scalr_workspace](https://docs.scalr.io/docs/provider_resource_scalr_workspace.md)
+- [scalr_workspace_run_schedule](https://docs.scalr.io/docs/provider_resource_scalr_workspace_run_schedule.md)
+- [scalr_workspace_var_set](https://docs.scalr.io/docs/provider_resource_scalr_workspace_var_set.md)
+- [scalr_endpoint](https://docs.scalr.io/docs/provider_datasource_scalr_endpoint.md)
+- [scalr_access_policy](https://docs.scalr.io/docs/provider_datasource_scalr_access_policy.md)
+- [scalr_agent_pool](https://docs.scalr.io/docs/provider_datasource_scalr_agent_pool.md)
+- [scalr_assume_service_account_policy](https://docs.scalr.io/docs/provider_datasource_scalr_assume_service_account_policy.md)
+- [scalr_current_account](https://docs.scalr.io/docs/provider_datasource_scalr_current_account.md)
+- [scalr_current_run](https://docs.scalr.io/docs/provider_datasource_scalr_current_run.md)
+- [scalr_environment](https://docs.scalr.io/docs/provider_datasource_scalr_environment.md)
+- [scalr_environments](https://docs.scalr.io/docs/provider_datasource_scalr_environments.md)
+- [scalr_event_bridge_integration](https://docs.scalr.io/docs/provider_datasource_scalr_event_bridge_integration.md)
+- [scalr_hook](https://docs.scalr.io/docs/provider_datasource_scalr_hook.md)
+- [scalr_iam_team](https://docs.scalr.io/docs/provider_datasource_scalr_iam_team.md)
+- [scalr_iam_user](https://docs.scalr.io/docs/provider_datasource_scalr_iam_user.md)
+- [scalr_integration_infracost](https://docs.scalr.io/docs/provider_datasource_scalr_integration_infracost.md)
+- [scalr_module_namespace](https://docs.scalr.io/docs/provider_datasource_scalr_module_namespace.md)
+- [scalr_module_version](https://docs.scalr.io/docs/provider_datasource_scalr_module_version.md)
+- [scalr_module_versions](https://docs.scalr.io/docs/provider_datasource_scalr_module_versions.md)
+- [scalr_outputs](https://docs.scalr.io/docs/provider_datasource_scalr_outputs.md)
+- [scalr_policy_group](https://docs.scalr.io/docs/provider_datasource_scalr_policy_group.md)
+- [scalr_provider_configuration](https://docs.scalr.io/docs/provider_datasource_scalr_provider_configuration.md)
+- [scalr_provider_configurations](https://docs.scalr.io/docs/provider_datasource_scalr_provider_configurations.md)
+- [scalr_role](https://docs.scalr.io/docs/provider_datasource_scalr_role.md)
+- [scalr_service_account](https://docs.scalr.io/docs/provider_datasource_scalr_service_account.md)
+- [scalr_ssh_key](https://docs.scalr.io/docs/provider_datasource_scalr_ssh_key.md)
+- [scalr_storage_profile](https://docs.scalr.io/docs/provider_datasource_scalr_storage_profile.md)
+- [scalr_tag](https://docs.scalr.io/docs/provider_datasource_scalr_tag.md)
+- [scalr_var_set](https://docs.scalr.io/docs/provider_datasource_scalr_var_set.md)
+- [scalr_variable](https://docs.scalr.io/docs/provider_datasource_scalr_variable.md)
+- [scalr_variables](https://docs.scalr.io/docs/provider_datasource_scalr_variables.md)
+- [scalr_vcs_provider](https://docs.scalr.io/docs/provider_datasource_scalr_vcs_provider.md)
+- [scalr_webhook](https://docs.scalr.io/docs/provider_datasource_scalr_webhook.md)
+- [scalr_workload_identity_provider](https://docs.scalr.io/docs/provider_datasource_scalr_workload_identity_provider.md)
+- [scalr_workspace](https://docs.scalr.io/docs/provider_datasource_scalr_workspace.md)
+- [scalr_workspace_ids](https://docs.scalr.io/docs/provider_datasource_scalr_workspace_ids.md)
+- [scalr_workspaces](https://docs.scalr.io/docs/provider_datasource_scalr_workspaces.md)
+- [Scalr AI](https://docs.scalr.io/docs/scalr-ai.md)
+- [Scalr MCP Server](https://docs.scalr.io/docs/mcp-server.md)
+- [Scalr AI FAQ](https://docs.scalr.io/docs/scalr-ai-faq.md)
+- [Scalr CLI Overview](https://docs.scalr.io/docs/overview-2.md)
+- [General FAQ](https://docs.scalr.io/docs/faq.md)
+- [Security & Data FAQ](https://docs.scalr.io/docs/security-data-overview.md)
+- [Pricing FAQ](https://docs.scalr.io/docs/pricing-faq.md)
+- [Concurrency FAQ](https://docs.scalr.io/docs/concurrency-faq.md)
+- [OpenTofu FAQ](https://docs.scalr.io/docs/opentf-faq.md)
+
+## API Reference
+- [Scalr API Documentation](https://docs.scalr.io/reference/overview-1.md)
+- [API Tokens](https://docs.scalr.io/reference/api-tokens.md)
+- [List Access Policies](https://docs.scalr.io/reference/get_access_policies.md): This endpoint returns a list of [IAM](https://docs.scalr.io/docs/identity-and-access-management) access policies.
+- [Create an Access Policy](https://docs.scalr.io/reference/create_access_policy.md): Grant access for a member identity to a scope identity.  Access is a set of `roles`. Member identity might be one of `user`, `team`, or `service-account`. Scope identity is one of `account`, `environment`, or `workspace`.  Check out [identity and access management](https://docs.scalr.io/docs/identity-and-access-management) for a detailed description of the Scalr IAM model.
+- [Delete Access Policy](https://docs.scalr.io/reference/delete_access_policy.md)
+- [Get an Access Policy](https://docs.scalr.io/reference/get_access_policy.md): The endpoint returns [IAM](https://docs.scalr.io/docs/identity-and-access-management) access policy by ID.
+- [Update an Access Policy](https://docs.scalr.io/reference/update_access_policy.md)
+- [List access tokens](https://docs.scalr.io/reference/list_access_tokens.md): This endpoint lists user access tokens.
+- [Create an Access Token](https://docs.scalr.io/reference/create_access_token.md): This endpoint creates access token.
+- [Delete an Access Token](https://docs.scalr.io/reference/delete_access_token.md): Delete an access token by ID.
+- [Get an Access Token](https://docs.scalr.io/reference/get_access_token.md): Get an access token by ID.
+- [Update an Access Token](https://docs.scalr.io/reference/update_access_token.md): Update an access token by ID.
+- [List Agent Pool Access Tokens](https://docs.scalr.io/reference/list_agent_pool_access_tokens.md)
+- [Create an Agent Pool Access Token](https://docs.scalr.io/reference/create_agent_pool_token.md): This endpoint creates agent pool's access token.
+- [List access tokens of a service account](https://docs.scalr.io/reference/list_service_account_access_tokens.md): This endpoint lists service account's access tokens.
+- [Create access token for service account](https://docs.scalr.io/reference/create_service_account_token.md): This endpoint creates service account's access token.
+- [List Account to User relationships](https://docs.scalr.io/reference/get_account_users.md): This endpoint returns a list of `AccountUser` resources.  To get the list of accounts the user has access to, the `filter[user]` has to be specified. To get the list of users that have access to an account the `filter[account]` has to be specified.
+- [List Accounts](https://docs.scalr.io/reference/get_accounts.md)
+- [Get an Account](https://docs.scalr.io/reference/get_account.md): Show details of a specific account.
+- [Update Account](https://docs.scalr.io/reference/update_account.md)
+- [Shows Account Metrics](https://docs.scalr.io/reference/get_metrics.md)
+- [Delete SSO bypass users of the account](https://docs.scalr.io/reference/delete_sso_bypass_users.md): This endpoint removes given [users](users.html#the-user-resource) from the list of those who can log in to the account via password, even when SSO is enforced.
+- [List SSO bypass users of the account](https://docs.scalr.io/reference/list_sso_bypass_users.md): This endpoint returns a list of [users](users.html#the-user-resource) who can log in to the account via password, even when SSO is enforced.
+- [Replace SSO bypass users of the account](https://docs.scalr.io/reference/replace_sso_bypass_users.md): This endpoint completely replaces the list of [users](users.html#the-user-resource) who can log in to the account via password, even when SSO is enforced, with a provided list.
+- [Add SSO bypass users to the account](https://docs.scalr.io/reference/add_sso_bypass_users.md): This endpoint adds provided [users](users.html#the-user-resource) to those who can log in to the account via password, even when SSO is enforced.
+- [Invite a User to the Account](https://docs.scalr.io/reference/invite_user_to_account.md): Invite the user to the account by adding it to the account teams and/or creating access policies within the account.  If the user with a specified email does not exist - a new one will be created. The new user will be in the 'pending' status until the first login to the account.  This is the preferred way to create users.
+- [Remove a User from the Account](https://docs.scalr.io/reference/remove_user_from_account.md): Removes a user from the account. This revokes all access policies and team memberships associated with the account for that user.
+- [List Users](https://docs.scalr.io/reference/get_users.md): This endpoint returns a list of [IAM](https://docs.scalr.io/docs/identity-and-access-management) users. The response can be filtered by IdP: `filter[identity-provider]` or user ID: `filter[user]`.
+- [Create a User](https://docs.scalr.io/reference/create_user.md): Create a new [IAM](https://docs.scalr.io/docs/identity-and-access-management) user without access to any account. To invite user to the account /accounts/:id/actions/invite should be used.
+- [Delete a User](https://docs.scalr.io/reference/delete_user.md): The endpoint deletes [IAM](https://docs.scalr.io/docs/identity-and-access-management) user by ID.
+- [Get a User](https://docs.scalr.io/reference/get_user.md): This endpoint returns an [IAM](https://docs.scalr.io/docs/identity-and-access-management) user by ID.
+- [Update a User](https://docs.scalr.io/reference/update_user.md): This endpoint updates [IAM](https://docs.scalr.io/docs/identity-and-access-management) user by ID.
+- [List Agent Pools](https://docs.scalr.io/reference/get_agent_pools.md): This endpoint returns a list of [agent pools](/docs/agent-pools) by various filters.
+- [Create an Agent Pool](https://docs.scalr.io/reference/create_agent_pool.md): Create a new [agent pool](/docs/agent-pools) resource.  Agent pools can be created at the `account` or `environment` scope. The scope must be defined as part of the agent pool creation. If a pool is created at the account scope, all environments and workspaces within those environments will have access to use the pool. If a pool is created at the environment scope, then only the workspaces in that environment can use that pool.  The typical flow for configuring a new agent pool involves the following operations: * Create an agent pool * [Create an access token](create_agent_pool_token) for the pool. The pool token is needed by an agent in order to join the agent pool. During the agent<->server handshake phase, the API server will generate a unique session token for each agent which will be used for all communication with the API server. * Install/Configure an agent on the customer's network.
+- [Delete an Agent Pool](https://docs.scalr.io/reference/delete_agent_pool.md): This endpoint deletes an [agent pool](/docs/agent-pools) by ID.
+- [Get an Agent Pool](https://docs.scalr.io/reference/get_agent_pool.md): Show details of a specific [agent pool](/docs/agent-pools).
+- [Update an Agent Pool](https://docs.scalr.io/reference/update_agent_pool.md): This endpoint updates an [agent pool](/docs/agent-pools) by ID.
+- [Disable mTLS Enforcement for an Agent Pool](https://docs.scalr.io/reference/disable_mtls_enforcement.md): Disables mTLS client certificate enforcement for the specified agent pool.  Once disabled, agent sessions are no longer required to present a client certificate.
+- [Enable mTLS Enforcement for an Agent Pool](https://docs.scalr.io/reference/enable_mtls_enforcement.md): Once enabled, all agent sessions connecting to this pool must present a valid mTLS client certificate signed by the Scalr platform. Sessions without a verified certificate are rejected with ``401 Unauthorized``.
+- [Sign an Agent Pool Certificate](https://docs.scalr.io/reference/sign_csr.md): This endpoint signs a CSR for an agent pool certificate to use it for agent mTLS connection.  Example CSR generation with OpenSSL (EC P-256)::      openssl ecparam -genkey -name prime256v1 -noout -out scalr-agent.key     openssl req -new -key scalr-agent.key -out scalr-agent.csr -subj "/CN=agent-pool"
+- [List Agent Pool mTLS Certificates](https://docs.scalr.io/reference/list_mtls_certificates.md): Returns all mTLS certificates issued for the specified agent pool. Each certificate includes a computed ``status`` field derived from its ``is_active`` flag and ``not_valid_after`` expiry.
+- [Revoke an Agent Pool mTLS Certificate](https://docs.scalr.io/reference/revoke_mtls_certificate.md): Revokes an mTLS certificate by deactivating it. Agents presenting this certificate will no longer be accepted when mTLS enforcement is enabled on the pool.
+- [List Agents](https://docs.scalr.io/reference/get_agents.md): The endpoint returns a list of agents by various filters.
+- [Delete an Agent](https://docs.scalr.io/reference/delete_agent.md): This endpoint deletes an agent by ID. Only `offline` or `errored` agents can be removed from the pool.  Offline or errored agents will be removed automatically after 4 hours of inactivity.
+- [Get an Agent](https://docs.scalr.io/reference/get_agent.md): Show details of a specific agent.
+- [Get an Apply](https://docs.scalr.io/reference/get_apply.md): Show details of a specific Terraform Apply stage.
+- [Apply Log](https://docs.scalr.io/reference/get_apply_log.md): Download the raw output of the terraform apply stage.
+- [List service account assume policies](https://docs.scalr.io/reference/list_assume_service_account_policies.md): List service account assume policies.
+- [List Service Accounts](https://docs.scalr.io/reference/get_service_accounts.md): This endpoint returns a list of [IAM](https://docs.scalr.io/docs/identity-and-access-management) service accounts.
+- [Create a Service Account](https://docs.scalr.io/reference/create_service_account.md): Create a new [IAM](https://docs.scalr.io/docs/identity-and-access-management) service account.
+- [Delete a Service Account](https://docs.scalr.io/reference/delete_service_account.md): The endpoint deletes [IAM](https://docs.scalr.io/docs/identity-and-access-management) service account by ID.
+- [Get a Service Account](https://docs.scalr.io/reference/get_service_account.md): This endpoint returns an [IAM](https://docs.scalr.io/docs/identity-and-access-management) service account by ID.
+- [Update a Service Account](https://docs.scalr.io/reference/update_service_account.md): This endpoint updates [IAM](https://docs.scalr.io/docs/identity-and-access-management) service account by ID.
+- [Create an assume service account policy](https://docs.scalr.io/reference/create_assume_service_account_policy.md): Create an assume service account policy.
+- [Delete an assume service account policy](https://docs.scalr.io/reference/delete_assume_service_account_policy.md): The endpoint deletes an assume service account policy by ID.
+- [Get an assume service account policy](https://docs.scalr.io/reference/get_assume_service_account_policy.md): Get an assume service account policy.
+- [Update an assume service account policy](https://docs.scalr.io/reference/update_assume_service_account_policy.md): Update an assume service account policy.
+- [List Configuration Versions](https://docs.scalr.io/reference/get_configuration_versions.md)
+- [Create a Configuration Version](https://docs.scalr.io/reference/create_configuration_version.md): Create the new configuration version for specific workspace
+- [Get a Configuration Version](https://docs.scalr.io/reference/get_configuration_version.md): Show details of a specific Configuration Version.
+- [Download Configuration Version](https://docs.scalr.io/reference/download_configuration_version.md): Download tar.gz archive with terraform configuration templates.
+- [List container image versions](https://docs.scalr.io/reference/list_container_image_versions.md): List container image versions available to the current account.
+- [Get a container image version](https://docs.scalr.io/reference/get_container_image_version.md): Get a container image version available to the current account.
+- [List container images](https://docs.scalr.io/reference/list_container_images.md): List container images available to the current account.
+- [Get a container image](https://docs.scalr.io/reference/get_container_image.md): Get a container image available to the current account.
+- [Get a Cost Estimate](https://docs.scalr.io/reference/get_cost_estimate.md): Show details of a specific Cost Estimate phase.
+- [Cost breakdown JSON output](https://docs.scalr.io/reference/get_cost_estimate_breakdown.md): This endpoint generates a temporary public URL, that can be used to download a [JSON formatted cost breakdown](https://www.infracost.io/docs/multi_project/report/#examples).
+- [Cost Estimate log](https://docs.scalr.io/reference/get_cost_estimate_log.md): This endpoint generates a temporary public URL, that can be used to download a raw `text/plan` output of the cost estimation.
+- [Create Drift Detection Schedule](https://docs.scalr.io/reference/create_drift_detection_schedule.md): Create a new drift detection schedule.
+- [Delete a drift detection schedule](https://docs.scalr.io/reference/delete_drift_detection_schedule.md)
+- [Get a drift detection schedule](https://docs.scalr.io/reference/get_drift_detection_schedule.md)
+- [Update a drift detection schedule](https://docs.scalr.io/reference/update_drift_detection_schedule.md)
+- [List Environments](https://docs.scalr.io/reference/list_environments.md): This endpoint lists account environments.
+- [Create an Environment](https://docs.scalr.io/reference/create_environment.md): Create a new environment in the account.
+- [Delete an Environment](https://docs.scalr.io/reference/delete_environment.md)
+- [Get an Environment](https://docs.scalr.io/reference/get_environment.md): Show details of a specific environment.
+- [Update Environment](https://docs.scalr.io/reference/update_environment.md)
+- [Delete environment's tags](https://docs.scalr.io/reference/delete_environment_tags.md): This endpoint removes given [tags](/docs/tags-1) from the environment.
+- [List environment's tags](https://docs.scalr.io/reference/list_environment_tags.md): This endpoint returns a list of [tags](/docs/tags-1), assigned to an environment.
+- [Replace environment's tags](https://docs.scalr.io/reference/replace_environment_tags.md): This endpoint completely replaces environment's tags with provided list.
+- [Add tags to the environment](https://docs.scalr.io/reference/add_environment_tags.md): This endpoint assigns the list of [tags](/docs/tags-1) to the environment.
+- [Lock an Environment](https://docs.scalr.io/reference/lock_environment.md): This endpoint locks an environment.
+- [Unlock an Environment](https://docs.scalr.io/reference/unlock_environment.md): This endpoint unlocks an environment.
+- [Favorite a environment](https://docs.scalr.io/reference/add_environment_to_favorites.md): Add an environment to the current user's favorites.
+- [Unfavorite an environment](https://docs.scalr.io/reference/remove_environment_from_favorites.md): Remove an environment from the current user's favorites.
+- [Delete federated environment relationship](https://docs.scalr.io/reference/delete_federated_environment.md): This endpoint removes provided environments from a list of federated one for a given environment.
+- [List environment's federated environments relationship](https://docs.scalr.io/reference/list_federated_environments.md)
+- [Update federated environments relationships](https://docs.scalr.io/reference/replace_federated_environments.md)
+- [Create environment's federated environments relationships](https://docs.scalr.io/reference/add_federated_environments.md)
+- [List Event Definitions](https://docs.scalr.io/reference/list_event_definitions.md)
+- [List GPG keys](https://docs.scalr.io/reference/list_gpg_keys.md): This endpoint returns a list of GPG keys.
+- [Create a GPG Key](https://docs.scalr.io/reference/create_gpg_key.md): Create a new GPG key.
+- [Delete a GPG key](https://docs.scalr.io/reference/delete_gpg_key.md): The endpoint deletes a GPG key by ID.
+- [Get a GPG Key](https://docs.scalr.io/reference/get_gpg_key.md): Show details of a specific GPG key.
+- [Update a GPG Key](https://docs.scalr.io/reference/update_gpg_key.md): This endpoint updates a GPG key.
+- [List Hook Environment Links](https://docs.scalr.io/reference/list_hook_environment_links.md): List all hook-environment links.
+- [Create Hook Environment Link](https://docs.scalr.io/reference/create_hook_environment_link.md): Creates a link between a hook and an environment with enabled phases.
+- [Delete Hook Environment Link](https://docs.scalr.io/reference/delete_hook_environment_link.md): Delete a hook-environment link.
+- [Get Hook Environment Link](https://docs.scalr.io/reference/get_hook_environment_link.md): Get a hook-environment link.
+- [Update Hook Environment Link](https://docs.scalr.io/reference/update_hook_environment_link.md): Update a hook-environment link.
+- [List Hooks](https://docs.scalr.io/reference/list_hooks.md): This endpoint returns a list of hooks by various filters.
+- [Create Hook](https://docs.scalr.io/reference/create_hook.md): Creates a Hook from a VCS repository. The repository is cloned asynchronously, and the specified folder is archived and uploaded to the Blob storage.
+- [Delete Hook](https://docs.scalr.io/reference/delete_hook.md): Deletes a specific hook by its ID.
+- [Get Hook](https://docs.scalr.io/reference/get_hook.md): Retrieves details of a specific hook by its ID.
+- [Update Hook](https://docs.scalr.io/reference/update_hook.md): Updates a specific hook by its ID.
+- [Resync Hook](https://docs.scalr.io/reference/resync_hook.md): Triggers a resync of the Hook.
+- [Authenticate endpoint for signing in to an existing account.](https://docs.scalr.io/reference/oauth_signin.md)
+- [Authenticate endpoint for signing up for a new account.](https://docs.scalr.io/reference/oauth_signup.md)
+- [List AWS EventBridge Integrations](https://docs.scalr.io/reference/list_aws_event_bridge_integrations.md): This endpoint returns a list of AWS EventBridge integrations.
+- [Create AWS EventBridge Integration](https://docs.scalr.io/reference/create_aws_event_bridge_integration.md): This endpoint creates AWS EventBridge integration.
+- [Delete the AWS EventBridge integration](https://docs.scalr.io/reference/delete_aws_event_bridge_integration.md)
+- [Get AWS EventBridge Integration](https://docs.scalr.io/reference/get_aws_event_bridge_integration.md): Show details of a specific AWS EventBridge integration.
+- [Update AWS EventBridge Integrations](https://docs.scalr.io/reference/update_aws_event_bridge_integration.md): This endpoint updates AWS EventBridge integrations.
+- [List Checkov integrations](https://docs.scalr.io/reference/list_checkov_integrations.md): This endpoint returns a list of Checkov integrations.
+- [Create Checkov integration](https://docs.scalr.io/reference/create_checkov_integration.md): This endpoint creates Checkov integration.
+- [Delete the Checkov integration.](https://docs.scalr.io/reference/delete_checkov_integration.md)
+- [Get Checkov integration](https://docs.scalr.io/reference/get_checkov_integration.md): Show details of a specific Checkov Integration.
+- [Update Checkov integration](https://docs.scalr.io/reference/update_checkov_integration.md): This endpoint updates Checkov integration.
+- [Resync Checkov external checks.](https://docs.scalr.io/reference/resync_checkov_integration.md)
+- [List Datadog Integrations](https://docs.scalr.io/reference/list_datadog_integrations.md): This endpoint lists Datadog integrations.
+- [Create Datadog Integrations](https://docs.scalr.io/reference/create_datadog_integration.md): This endpoint creates Datadog integrations.
+- [Delete the Datadog integration](https://docs.scalr.io/reference/delete_datadog_integration.md)
+- [Get Datadog Integration](https://docs.scalr.io/reference/get_datadog_integration.md): Show details of a specific Datadog Integration.
+- [Update Datadog Integrations](https://docs.scalr.io/reference/update_datadog_integrations.md): This endpoint updates Datadog integrations.
+- [List Docker integrations](https://docs.scalr.io/reference/list_docker_integrations.md): List Docker integrations.
+- [Create a Docker integration](https://docs.scalr.io/reference/create_docker_integration.md): Create a Docker integration.
+- [Delete a Docker integration](https://docs.scalr.io/reference/delete_docker_integration.md): Delete a Docker integration.
+- [Get a Docker integration](https://docs.scalr.io/reference/get_docker_integration.md): Get a Docker integration.
+- [Update a Docker integration](https://docs.scalr.io/reference/update_docker_integration.md): Update a Docker integration.
+- [List Infracost integrations](https://docs.scalr.io/reference/list_infracost_integrations.md): This endpoint returns a list of Infracost integrations.
+- [Create Infracost integration](https://docs.scalr.io/reference/create_infracost_integration.md): This endpoint creates Infracost integration.
+- [Delete the Infracost integration.](https://docs.scalr.io/reference/delete_infracost_integration.md)
+- [Get Infracost integration](https://docs.scalr.io/reference/get_infracost_integration.md): Show details of a specific Infracost Integration.
+- [Update Infracost integration](https://docs.scalr.io/reference/update_infracost_integration.md): This endpoint updates Infracost integration.
+- [List SAML Integrations](https://docs.scalr.io/reference/list_saml_integrations.md): This endpoint lists SAML integrations.
+- [Create SAML Integration](https://docs.scalr.io/reference/create_saml_integration.md): Create SAML Integration.
+- [Delete SAML Integration](https://docs.scalr.io/reference/delete_saml_integration.md): Delete SAML Integration.
+- [Get SAML Integration](https://docs.scalr.io/reference/get_saml_integration.md): Show details of a specific SAML Integration.
+- [Update SAML Integration](https://docs.scalr.io/reference/update_saml_integration.md): Update SAML Integration.
+- [List Slack Integrations](https://docs.scalr.io/reference/list_slack_integrations.md): This endpoint returns a list of Slack integrations.
+- [Create Slack Integration](https://docs.scalr.io/reference/create_slack_integration.md): This endpoint creates Slack integration.
+- [Delete the Slack integration](https://docs.scalr.io/reference/delete_slack_integration.md): This endpoint deletes Slack integration.
+- [Get Slack Integration](https://docs.scalr.io/reference/get_slack_integration.md): Show details of a specific Slack integration.
+- [Update Slack Integration](https://docs.scalr.io/reference/update_slack_integration.md): This endpoint updates Slack integration.
+- [Delete Slack connection](https://docs.scalr.io/reference/delete_slack_connection.md): Remove Slack App connection for the account.
+- [Get Slack connection](https://docs.scalr.io/reference/get_slack_connection.md): Show details of account's Slack App connection.
+- [List Slack channels](https://docs.scalr.io/reference/list_slack_channels.md): Get a list of channels from associated Slack workspace.
+- [Get Slack channel](https://docs.scalr.io/reference/get_slack_channel.md): Get a specific Slack channel by ID.
+- [List Webhook Integration Deliveries](https://docs.scalr.io/reference/list_webhook_integration_deliveries.md): This endpoint returns a list of webhook integration deliveries filtered according to various criteria.
+- [Get Webhook Integration Delivery](https://docs.scalr.io/reference/get_webhook_integration_delivery.md): This endpoint returns a single webhook integration delivery.
+- [List Webhooks](https://docs.scalr.io/reference/list_webhook_integrations.md): This endpoint returns a list of webhooks.
+- [Create Webhook integration](https://docs.scalr.io/reference/create_webhook_integration.md): Create a new webhook integration
+- [Delete a Webhook integration](https://docs.scalr.io/reference/delete_webhook_integration.md): The endpoint deletes webhook by ID.
+- [Get a Webhook](https://docs.scalr.io/reference/get_webhook_integration.md): Show details of a specific webhook.
+- [Update Webhook integration](https://docs.scalr.io/reference/update_webhook_integration.md): This endpoint updates webhook by ID.
+- [List Wiz integrations](https://docs.scalr.io/reference/list_wiz_integrations.md): This endpoint returns a list of Wiz integrations.
+- [Create Wiz integration](https://docs.scalr.io/reference/create_wiz_integration.md): This endpoint creates a Wiz integration.
+- [Delete the Wiz integration.](https://docs.scalr.io/reference/delete_wiz_integration.md)
+- [Get Wiz integration](https://docs.scalr.io/reference/get_wiz_integration.md): Show details of a specific Wiz integration.
+- [Update Wiz integration](https://docs.scalr.io/reference/update_wiz_integration.md): This endpoint updates a Wiz integration.
+- [Logout the user](https://docs.scalr.io/reference/logout-1.md): Destroys user's session. In case of the SAML additionally performs SAML logout action.
+- [Shows Account Metrics in OpenMetrics format](https://docs.scalr.io/reference/get_open_metrics.md)
+- [List Module Namespaces](https://docs.scalr.io/reference/list_module_namespaces.md): This endpoint lists module namespaces by various filters.  To list module namespaces accessible from a certain environment, `filter[environment]` has to be specified. Module namespaces from the account which this environment belongs to will be listed as well.  To list module namespaces accessible from a certain account, `filter[account]` has to be specified.  If no filters were specified, all module namespaces which the user has read access to will be listed.
+- [Get a Module Namespace](https://docs.scalr.io/reference/get_module_namespace.md): Show details of a specific module namespace.
+- [Create a Module Namespace](https://docs.scalr.io/reference/create_module_namespace.md): Create a new module namespace.
+- [Delete a Module Namespace](https://docs.scalr.io/reference/delete_module_namespace.md): Delete a module namespace.
+- [Update a Module Namespace](https://docs.scalr.io/reference/update_module_namespace.md): Update an existing module namespace.
+- [Delete a Module Test Provider Configuration Link](https://docs.scalr.io/reference/delete_module_test_provider_configuration_link.md): The endpoint deletes a Module Test Provider Configuration Link by ID.
+- [Get a Module Test Provider Configuration Link](https://docs.scalr.io/reference/get_module_test_provider_configuration_link.md): Show details of a specific Module Test Provider Configuration Link.
+- [Update a Module Test Provider Configuration Link](https://docs.scalr.io/reference/update_module_test_provider_configuration_link.md): This endpoint allows updates to attributes of an existing Module Test Provider Configuration Link.
+- [List Module Test Provider Configuration Links](https://docs.scalr.io/reference/list_module_test_provider_configuration_links.md): This endpoint returns a list of Provider Configuration links to Module Test Configurations.
+- [Attach a Provider Configuration to the Module Test Configuration](https://docs.scalr.io/reference/create_module_test_provider_configuration_link.md): Attach a Provider Configuration to the Module Test Configuration.
+- [List Module Versions](https://docs.scalr.io/reference/list_module_versions.md): This endpoint lists versions of a particular module. The query parameter `filter[module]` with Module ID is required.
+- [Get a Module Version](https://docs.scalr.io/reference/get_module_version.md): Show details of a specific terraform module version.
+- [Resync a Module Version](https://docs.scalr.io/reference/resync_module_version.md): Trigger resync of the Module Version associated with the `relationships.vcs-revision`. Only modules associated with a VCS can be resynchronized.
+- [List Modules](https://docs.scalr.io/reference/list_modules.md): This endpoint lists modules by various filters.  To list modules accessible from a certain environment, `filter[environment]` has to be specified. Modules from the account which this environment belongs as well as globally published modules will be listed as well.  To list modules accessible from a certain account, `filter[account]` has to be specified. Modules published globally will be listed as well.  To list modules accessible globally, both `filter[account]=null` and `filter[environment]=null` have to be specified.  If no filters were specified, all modules which the user has read access to will be listed.
+- [Publish a Module](https://docs.scalr.io/reference/create_module.md): This endpoint creates a Module from a VCS repository.  The module's source code directory should follow the [standard module structure](https://www.terraform.io/docs/language/modules/develop/structure.html).  Scalr extracts various meta information from the module's source: * It's important to provide each `variable` and `output` blocks with a meaningful descriptions, as they will be displayed in a Module and Workspace Variables pages for your internal users. * README or README.md file will be displayed on a Module page. * Nested modules from `modules/` directory will be searchable and available though the Registry just like top-level modules.  Modules can be published on both `account` and `environment` scopes. If neither scope is specified in the request body, the module will be published in the same scope that the related `vcs-provider` is published.
+- [Unpublish a Module](https://docs.scalr.io/reference/delete_module.md): This endpoint removes the module from the registry.
+- [Get a Module](https://docs.scalr.io/reference/get_module.md): Show details of a specific terraform module.
+- [Resync a Module](https://docs.scalr.io/reference/resync_module.md): Trigger resync of the Module associated with the VCS repository.
+- [Module Changelog](https://docs.scalr.io/reference/get_module_changelog.md): Returns the changelog content for the module.
+- [List Permissions](https://docs.scalr.io/reference/get_permissions.md): This endpoint returns a list of all Scalr [IAM](/docs/identity-and-access-management) permissions, available to use in a [Role](/docs/identity-and-access-management#roles) resource.
+- [Get a Permission](https://docs.scalr.io/reference/get_permission.md): Show details of a specific Scalr IAM Permission.
+- [Ping](https://docs.scalr.io/reference/ping-1.md): Checks the connection to the API server
+- [Get a Plan](https://docs.scalr.io/reference/get_plan.md): Show details of a specific Terraform Plan stage.
+- [JSON Output](https://docs.scalr.io/reference/get_json_output.md): Download JSON formatted execution plan.
+- [Plan Log](https://docs.scalr.io/reference/get_plan_log.md): Download the raw output of the terraform plan stage.
+- [Sanitized JSON Output](https://docs.scalr.io/reference/get_sanitized_json_output.md): Download plan file in machine-readable format with sanitized sensitive values.
+- [Get a Policy](https://docs.scalr.io/reference/get_policy.md): Show details of a specific OPA policy.
+- [Get a Policy Check](https://docs.scalr.io/reference/get_policy_check.md): Show details of a specific Terraform policy check stage.
+- [Override Policy](https://docs.scalr.io/reference/override_policy.md): This endpoint overrides a soft-mandatory policy.
+- [Policy Check Log](https://docs.scalr.io/reference/get_policy_checks_log.md): Download the raw output of the OPA policy check stage.
+- [List Policy Checks](https://docs.scalr.io/reference/list_policy_checks.md): List policy checks for a specific run.
+- [List Policy Group Check results](https://docs.scalr.io/reference/get_policy_group_check_results.md): List policy check results for a specific policy group check.  Required permission: policy_groups:read
+- [List Policy Groups](https://docs.scalr.io/reference/list_policy_groups.md): This endpoint returns a list of [policy groups](/docs/policy-governance#open-policy-agent).
+- [Create a Policy Group](https://docs.scalr.io/reference/create_policy_group.md): Create a new [policy group](/docs/policy-governance#open-policy-agent) in the account.
+- [Delete a Policy Group](https://docs.scalr.io/reference/delete_policy_group.md): This endpoint deletes a [policy group](/docs/policy-governance#open-policy-agent) by ID. Only an unused policy group (that is not linked to any environment) can be removed.
+- [Get a Policy Group](https://docs.scalr.io/reference/get_policy_group.md): Show details of a specific [policy group](/docs/policy-governance#open-policy-agent).
+- [Update a Policy Group](https://docs.scalr.io/reference/update_policy_group.md): This endpoint updates a [policy group](/docs/policy-governance#open-policy-agent) by ID.
+- [List of policy group check results for pull requests.](https://docs.scalr.io/reference/list_pull_request_policy_check_results.md)
+- [Resync a Policy Group](https://docs.scalr.io/reference/resync_policy_group.md): This endpoint resyncs a [policy group](/docs/policy-governance#open-policy-agent).
+- [Update policy group environments relationships](https://docs.scalr.io/reference/update_policy_group_environments.md)
+- [Create policy group environments relationships](https://docs.scalr.io/reference/create_policy_group_environments.md)
+- [Delete policy group's environment relationship](https://docs.scalr.io/reference/delete_policy_group_environments.md)
+- [Delete a Provider configuration workspace link](https://docs.scalr.io/reference/delete_provider_configuration_workspace_link.md): The endpoint deletes a Provider configuration workspace link by ID.
+- [Get a Provider configuration link](https://docs.scalr.io/reference/get_provider_configuration_link.md): Show details of a specific Provider configuration link.
+- [Update a Provider configuration link](https://docs.scalr.io/reference/update_provider_configuration_link.md): This endpoint allows updates to attributes of an existing Provider configuration link.
+- [List Provider configuration workspace links](https://docs.scalr.io/reference/list_provider_configuration_links.md): This endpoint returns a list of Provider configuration links or configurations that are used during the workspace runs.
+- [Attach a Provider configuration to the workspace](https://docs.scalr.io/reference/create_provider_configuration_link.md): Attach a Provider configuration to the workspace.
+- [Delete a Provider configuration parameter](https://docs.scalr.io/reference/delete_provider_configuration_parameter.md): The endpoint deletes a Provider configuration parameter by ID.
+- [Get a Provider configuration parameter](https://docs.scalr.io/reference/get_provider_configuration_parameter.md): Show details of a specific Provider configuration parameter.
+- [Update a Provider configuration parameter](https://docs.scalr.io/reference/update_provider_configuration_parameter.md): This endpoint allows updates to attributes of an existing Provider configuration parameters.
+- [List Provider configuration parameters for specific provider configurations](https://docs.scalr.io/reference/list_provider_configuration_parameters.md): This endpoint returns a list of Provider configuration parameters for specific provider configuration.
+- [Create a Provider configuration parameter](https://docs.scalr.io/reference/create_provider_configuration_parameter.md): Create a new Provider configuration parameter.
+- [List Provider configurations](https://docs.scalr.io/reference/list_provider_configurations.md): This endpoint returns a list of Provider configurations by various filters.
+- [Create a Provider configuration](https://docs.scalr.io/reference/create_provider_configuration.md): Create a new Provider configuration.
+- [Delete a Provider configuration](https://docs.scalr.io/reference/delete_provider_configuration.md): The endpoint deletes a Provider configuration by ID.
+- [Get a Provider configuration](https://docs.scalr.io/reference/get_provider_configuration.md): Show details of a specific Provider configuration.
+- [Update a Provider configuration](https://docs.scalr.io/reference/update_provider_configuration.md): This endpoint updates attributes of an existing Provider configuration.
+- [Delete provider configuration's tags](https://docs.scalr.io/reference/delete_provider_configuration_tags.md): This endpoint removes given [tags](/docs/tags-1) from the provider configuration.
+- [List provider configuration's tags](https://docs.scalr.io/reference/list_provider_configuration_tags.md): This endpoint returns a list of [tags](/docs/tags-1), assigned to an provider configuration.
+- [Replace provider configuration's tags](https://docs.scalr.io/reference/replace_provider_configuration_tags.md): This endpoint completely replaces provider configuration's tags with provided list.
+- [Add tags to the provider configuration](https://docs.scalr.io/reference/add_provider_configuration_tags.md): This endpoint assigns the list of [tags](/docs/tags-1) to the provider configuration.
+- [Get provider configuration usage](https://docs.scalr.io/reference/get_provider_configuration_workspace_usage.md): Returns a list of workspaces that use the given provider configuration.
+- [List registry provider versions](https://docs.scalr.io/reference/list_provider_versions.md): This endpoint returns a list of registry provider versions.
+- [Create a registry provider version](https://docs.scalr.io/reference/create_provider_version.md): Create a new registry provider version.
+- [Delete a provider version](https://docs.scalr.io/reference/delete_provider_version.md): The endpoint deletes a registry provider version by ID.
+- [Get a provider version](https://docs.scalr.io/reference/get_provider_version.md): Show details of a specific registry provider version.
+- [List registry providers](https://docs.scalr.io/reference/list_providers.md): This endpoint returns a list of registry providers.
+- [Create a registry provider](https://docs.scalr.io/reference/create_provider.md): Create a new registry provider.
+- [Delete a registry provider](https://docs.scalr.io/reference/delete_provider.md): The endpoint deletes a registry provider by ID.
+- [Get a registry provider](https://docs.scalr.io/reference/get_provider.md): Show details of a specific registry provider.
+- [Update a registry provider](https://docs.scalr.io/reference/update_provider.md): This endpoint updates a registry provider.
+- [Get Access Token Usage](https://docs.scalr.io/reference/list_access_token_usage.md): This endpoint returns a list of access token usage on the account.
+- [Get AI Usage](https://docs.scalr.io/reference/list_ai_usage.md): This endpoint returns a list of AI usage for the account.
+- [Get AI usage](https://docs.scalr.io/reference/get_ai_usage.md): This endpoint returns instance of AI usage.
+- [List billing usages.](https://docs.scalr.io/reference/list_billing_usage.md): This endpoint returns billing usage statistics.
+- [List drifted workspaces.](https://docs.scalr.io/reference/list_drifted_workspaces_for_environment.md): This endpoint lists drifted workspaces.
+- [List terraform module usage namespaces](https://docs.scalr.io/reference/list_module_usage_namespaces.md): This endpoint lists unique terraform module usage namespaces.
+- [List terraform module sources](https://docs.scalr.io/reference/list_terraform_module_sources.md): This endpoint lists unique terraform module sources.
+- [List terraform module usages](https://docs.scalr.io/reference/list_terraform_module_usages.md): This endpoint lists terraform module usages.
+- [Get module usage](https://docs.scalr.io/reference/get_module_usage.md): This endpoint returns instance of module usage.
+- [List terraform module usage](https://docs.scalr.io/reference/list_terraform_module_usage.md): This endpoint lists terraform module usage.
+- [List unique terraform module versions](https://docs.scalr.io/reference/list_terraform_module_versions_usage.md): This endpoint lists unique terraform module versions.
+- [List unique terraform provider sources](https://docs.scalr.io/reference/list_terraform_provider_sources.md): This endpoint lists unique terraform provider sources.
+- [List terraform provider usages](https://docs.scalr.io/reference/list_terraform_provider_usages.md): This endpoint lists terraform provider usages.
+- [Get provider usage](https://docs.scalr.io/reference/get_provider_usage.md): This endpoint returns instance of provider usage.
+- [List terraform provider version usages](https://docs.scalr.io/reference/list_terraform_provider_usage.md): This endpoint lists terraform provider version usages.
+- [List unique terraform provider versions](https://docs.scalr.io/reference/list_terraform_provider_versions_usage.md): This endpoint lists unique terraform provider versions.
+- [List unique terraform resource provider types](https://docs.scalr.io/reference/list_terraform_resource_providers.md): This endpoint lists unique terraform resource provider types.
+- [List terraform resource usages](https://docs.scalr.io/reference/list_terraform_resource_usages.md): This endpoint lists terraform resource usages.
+- [Get resource usage](https://docs.scalr.io/reference/get_resource_usage.md): This endpoint returns instance of resource usage.
+- [List terraform resource instances usage](https://docs.scalr.io/reference/list_terraform_resource_instances_usage.md): This endpoint lists terraform resource instances usage.
+- [List terraform versions usage](https://docs.scalr.io/reference/list_terraform_versions_usage.md): This endpoint lists terraform versions usage.
+- [List unique terraform versions in use](https://docs.scalr.io/reference/list_terraform_versions_usage_versions.md): This endpoint lists unique terraform versions in use.
+- [List Roles](https://docs.scalr.io/reference/get_roles.md): This endpoint returns a list of [IAM](https://docs.scalr.io/docs/identity-and-access-management) roles.
+- [Create a Role](https://docs.scalr.io/reference/create_role.md): Create a new [IAM](https://docs.scalr.io/docs/identity-and-access-management) role.
+- [Delete a Role](https://docs.scalr.io/reference/delete_role.md): The endpoint deletes [IAM](https://docs.scalr.io/docs/identity-and-access-management) role by ID.
+- [Get a Role](https://docs.scalr.io/reference/get_role.md): The endpoint returns an [IAM](https://docs.scalr.io/docs/identity-and-access-management) role by ID.
+- [Update a Role](https://docs.scalr.io/reference/update_role.md): This endpoint updates [IAM](https://docs.scalr.io/docs/identity-and-access-management) role by ID.
+- [List all run schedule rules.](https://docs.scalr.io/reference/list_schedule_rules.md): This endpoint returns a list of run schedule rules.
+- [Create a Run schedule rule.](https://docs.scalr.io/reference/create_run_schedule_rule.md): Create a new run schedule rule.  In order to create a run schedule rule, the user must have `workspaces:set-schedule` permission.
+- [Delete a Schedule Rule.](https://docs.scalr.io/reference/delete_run_schedule_rule.md)
+- [Get a Run schedule rule.](https://docs.scalr.io/reference/get_run_schedule_rule.md): Show details of a specific run schedule rule.
+- [Update a Run schedule rule.](https://docs.scalr.io/reference/update_run_schedule_rule.md): Updates a specific run schedule rule based on the provided rule ID, schedule mode, and schedule. It validates the cron expression and raises an error if it's invalid.
+- [Create a Run Trigger.](https://docs.scalr.io/reference/create_run_trigger.md): Create a new run trigger.  In order to create a run trigger, the user must have `workspaces:read` permission for the upstream workspace and permissions `workspaces:update` and `runs:create` for the downstream workspace.
+- [Delete a Run Trigger](https://docs.scalr.io/reference/delete_run_trigger.md)
+- [Get a Run Trigger](https://docs.scalr.io/reference/get_run_trigger.md): Show details of a specific trigger.
+- [List Runs](https://docs.scalr.io/reference/get_runs.md): This endpoint lists runs for a specific workspace.
+- [Create a Run](https://docs.scalr.io/reference/create_run.md): A run performs terraform plan and apply using a configuration version and the workspace's current variables. If the configuration version is omitted, the run will be created using the workspace's latest configuration version. If you want to create a dry run, specify `is-dry: true` or reference configuration version with `is-dry: true` in the relationships.
+- [List Runs Queue](https://docs.scalr.io/reference/get_runs_queue.md): This endpoint lists Runs Queue on allowed scopes.
+- [Get a Run](https://docs.scalr.io/reference/get_run.md): Show details of a specific run.
+- [Apply a Run](https://docs.scalr.io/reference/confirm_run.md): Apply a run that is paused waiting for confirmation after a plan.  This includes runs in the `planned` and `policy_checked` states. This action is only required for runs that can't be auto-applied.
+- [Cancel a Run](https://docs.scalr.io/reference/cancel_run.md): Interrupt a run that is currently planning or applying.  Performing a cancel is roughly equivalent to hitting `ctrl+c` during a Terraform plan or apply on the CLI. The running Terraform process is sent an `INT` signal, which instructs Terraform to end its work and wrap up in the safest way possible.
+- [Discard a Run](https://docs.scalr.io/reference/discard_run.md): Skip any remaining work on runs that are paused waiting for confirmation or priority.  This includes runs in the `pending`, `planned`, `policy_checked` and `policy_override` states.
+- [Force Run](https://docs.scalr.io/reference/force_run.md): Cancel all previous runs in pending or waiting for confirmation statuses. If the workspace is locked by a finished run, the lock will be automatically removed to allow the forced run to proceed.
+- [Download a Policy Input](https://docs.scalr.io/reference/download_policy_input.md): Get a Zip archive with policy check input data generated for a given run.  See [Policy Input](https://docs.scalr.io/docs/policy-as-code) data structure.
+- [Get Security Rules](https://docs.scalr.io/reference/get_security_rules.md): This endpoint returns the security rules for the current account. If no security rules exist for the account, they will be automatically created with default values.
+- [Update Security Rules](https://docs.scalr.io/reference/update_security_rules.md): This endpoint updates the security rules for the current account. If no security rules exist for the account, they will be automatically created.
+- [Exchange OIDC ID token for ephemeral service account access token](https://docs.scalr.io/reference/assume_service_account.md): This endpoint creates service account's access token.
+- [List software versions](https://docs.scalr.io/reference/list_software_versions.md): This endpoint returns a list of software versions.
+- [Get a Software Version](https://docs.scalr.io/reference/get_software_version.md): Show details of a specific software version.
+- [List SSH keys](https://docs.scalr.io/reference/list_ssh_keys.md): This endpoint returns a list of SSH keys by various filters.
+- [Create a SSH Key](https://docs.scalr.io/reference/create_ssh_key.md): Create a new SSH key.
+- [Delete an SSH Key](https://docs.scalr.io/reference/delete_ssh_key.md): The endpoint deletes an SSH key by ID.
+- [Get a SSH Key](https://docs.scalr.io/reference/get_ssh_key.md): Show details of a specific SSH key.
+- [Update an SSH Key](https://docs.scalr.io/reference/update_ssh_key.md): This endpoint allows updates to attributes of an existing SSH key.
+- [List Workspace's State Versions](https://docs.scalr.io/reference/list_state_versions.md)
+- [Create a State Version](https://docs.scalr.io/reference/create_state_version.md): Create a state version and set it as the current state version for the given workspace.
+- [Get a State Version](https://docs.scalr.io/reference/get_state_version.md): Show details of a specific state version.
+- [Download State Version](https://docs.scalr.io/reference/get_state_version_download.md): Download the `terraform.tfstate`
+- [Get Workspace's Current State Version](https://docs.scalr.io/reference/get_current_state_version.md): Fetch the current state version for the given workspace.  This state version will be the input state when running terraform operations.
+- [List Storage Profiles](https://docs.scalr.io/reference/list_storage_profiles.md): List all storage profiles.
+- [Create Storage Profile](https://docs.scalr.io/reference/create_storage_profile.md): Create a new storage profile for storing blobs (source code, terraform state, logs, etc).
+- [Delete Storage Profile](https://docs.scalr.io/reference/delete_storage_profile.md): Delete a storage profile. The operation is only allowed if the storage profile is not being used by any blobs and is not set as default.
+- [Get Storage Profile](https://docs.scalr.io/reference/get_storage_profile.md): Get storage profile by id.
+- [Update Storage Profile](https://docs.scalr.io/reference/update_storage_profile.md): Update an existing storage profile. The operation is only allowed if the storage profile is not being used by any blobs.
+- [List Tags](https://docs.scalr.io/reference/list_tags.md): This endpoint returns a list of tags.
+- [Create a Tag](https://docs.scalr.io/reference/create_tag.md): Create a new tag in the account.
+- [Delete a Tag](https://docs.scalr.io/reference/delete_tag.md): The endpoint deletes tag by ID.
+- [Get a Tag](https://docs.scalr.io/reference/get_tag.md): Show details of a specific tag.
+- [Update a Tag](https://docs.scalr.io/reference/update_tag.md): This endpoint updates tag by ID.
+- [List Teams](https://docs.scalr.io/reference/get_teams.md): The endpoint returns a list of [IAM](https://docs.scalr.io/docs/identity-and-access-management) teams. The endpoint supports filtering by team name (`filter[name]`), IdP (`filter[identity-provider]`) and team ID (`filter[team]=in:team-123,team-331`).
+- [Create a Team](https://docs.scalr.io/reference/create_team.md): The endpoint creates an [IAM](https://docs.scalr.io/docs/identity-and-access-management) team. If an external IdP used, the team name must exist in that IdP.
+- [Delete a Team](https://docs.scalr.io/reference/delete_team.md): The endpoint deletes [IAM](https://docs.scalr.io/docs/identity-and-access-management) team by ID.
+- [Get a Team](https://docs.scalr.io/reference/get_team.md): This endpoint returns an [IAM](https://docs.scalr.io/docs/identity-and-access-management) team by ID.
+- [Update a Team](https://docs.scalr.io/reference/update_team.md): Update a team's attributes or users. The endpoint can be used to add or remove users from a team. If the account uses an external identity provider without SCIM provisioning, team membership cannot be managed via this endpoint - the ``users`` relationship will be ignored. Use SCIM or manage team membership directly in the identity provider.
+- [List Scalr Usage Statistics](https://docs.scalr.io/reference/list_usage_statistics.md): This endpoint returns billing usage statistics for an account within a period of time.  Required permission: accounts:billing
+- [List variable set variables](https://docs.scalr.io/reference/list_var_set_variables.md): Returns a list of variable set variables.
+- [Create a variable set variable](https://docs.scalr.io/reference/create_var_set_variable.md): Creates a new variable set variable.
+- [Delete a variable set variable](https://docs.scalr.io/reference/delete_var_set_variable.md): Deletes a variable set variable.
+- [Get a variable set variable](https://docs.scalr.io/reference/get_var_set_variable.md)
+- [Update a variable set variable](https://docs.scalr.io/reference/update_var_set_variable.md): Updates attributes of an existing variable set variable.
+- [List variable sets](https://docs.scalr.io/reference/list_var_sets.md): Returns a list of variable sets.
+- [Create a variable set](https://docs.scalr.io/reference/create_var_set.md): Creates a new variable set.
+- [Delete a variable set](https://docs.scalr.io/reference/delete_var_set.md): Deletes a variable set and all its contained variables, environment links, and workspace applications.
+- [Get a variable set](https://docs.scalr.io/reference/get_var_set.md): Returns details of a specific variable set.
+- [Update a variable set](https://docs.scalr.io/reference/update_var_set.md): Updates attributes of an existing variable set.
+- [List Variables](https://docs.scalr.io/reference/get_variables.md): This endpoint returns a list of variables.  Cloud Credentials are exposed as Terraform ENV Variables if filters are specified.
+- [Create a Variable](https://docs.scalr.io/reference/create_variable.md): Create a new terraform or ENV variable.
+- [Delete a Variable](https://docs.scalr.io/reference/delete_variable.md)
+- [Get a Variable](https://docs.scalr.io/reference/get_variable.md): Show details of a specific variable.  For `sensitive: true` variables, their actual `value` is not exposed, and `null` returned instead.
+- [Update a Variable](https://docs.scalr.io/reference/update_variable.md)
+- [List VCS Providers](https://docs.scalr.io/reference/list_vcs_providers.md): This endpoint returns a list of VCS providers by various filters.  To list VCS providers accessible from a specific environment - `filter[environment]`, or when from a specific account - `filter[account]` has to be specified.  For self-hosted Scalr there's also an option to list all VCS providers created globally - both `filter[account]=null` and `filter[environment]=null` has to be specified.  If no `environment` or `account` filters were specified, all VCS providers to which a current user has read access will be returned.
+- [Create a VCS Provider](https://docs.scalr.io/reference/create_vcs_provider.md): Create a new VCS connection between Scalr and a VCS provider.  VCS providers can be created at the Scalr account. Self-hosted Scalr also supports the creation of global VCS providers. If a VCS provider is created globally, all accounts within the self-hosted installation will have access to use the VCS provider.  Only VCS providers with `personal_token` auth type, can be created through the API. If you need to set up `oauth2` provider, you should use Scalr [web interface](/docs/github) to do this.
+- [Delete a VCS Provider](https://docs.scalr.io/reference/delete_vcs_provider.md): The endpoint deletes a VCS provider by ID.
+- [Get a VCS Provider](https://docs.scalr.io/reference/get_vcs_provider.md): Show details of a specific VCS provider.
+- [Update a VCS Provider](https://docs.scalr.io/reference/update_vcs_provider.md): This endpoint allows updates to attributes of an existing VCS provider.
+- [Create a task to queue runs from the commit for VCS-driven workspaces.](https://docs.scalr.io/reference/create_vcs_task.md)
+- [List Workload Identity Providers](https://docs.scalr.io/reference/list_workload_identity_providers.md): List Workload Identity Providers.
+- [Create a Workload Identity Provider](https://docs.scalr.io/reference/create_workload_identity_provider.md): Create a new Workload Identity Provider.
+- [Delete a Workload identity provider](https://docs.scalr.io/reference/delete_workload_identity_provider.md): The endpoint deletes a Workload identity provider by ID.
+- [Get Workload Identity Provider](https://docs.scalr.io/reference/get_workload_identity_provider.md): Get Workload Identity Provider.
+- [Update a Workload Identity Provider](https://docs.scalr.io/reference/update_workload_identity_provider.md): This endpoint updates attributes of an existing Workload Identity Provider.
+- [List Workspaces](https://docs.scalr.io/reference/get_workspaces.md)
+- [Create a Workspace](https://docs.scalr.io/reference/create_workspace.md): Workspaces represent a unit of infrastructure managed by terraform.  To create a workspace you must pass `name` attribute and `environment` relationship.  A workspace might be linked to a VCS repository, so that any git push will trigger a terraform Run in the workspace.
+- [Delete a Workspace](https://docs.scalr.io/reference/delete_workspace.md)
+- [Get a Workspace](https://docs.scalr.io/reference/get_workspace.md): Show details of a specific workspace.
+- [Update a Workspace](https://docs.scalr.io/reference/update_workspace.md)
+- [Lock a Workspace](https://docs.scalr.io/reference/lock_workspace.md): This endpoint locks a workspace.
+- [Resync a Workspace](https://docs.scalr.io/reference/resync_workspace.md): This endpoint triggers a Configuration Version resync for a Workspace associated with a VCS repository.
+- [Set scheduled runs for the workspace](https://docs.scalr.io/reference/set_schedule.md)
+- [Unlock a Workspace](https://docs.scalr.io/reference/unlock_workspace.md): This endpoint unlocks a workspace.
+- [List workspace's outputs.](https://docs.scalr.io/reference/get_workspace_outputs.md): This endpoint returns a list of outputs from current state version run output.
+- [Delete workspace's tags](https://docs.scalr.io/reference/delete_workspace_tags.md): This endpoint removes given [tags](tags.html#the-tag-resource) from the workspace.
+- [List workspace's tags](https://docs.scalr.io/reference/list_workspace_tags.md): This endpoint returns a list of [tags](tags.html#the-tag-resource), assigned to a workspace.
+- [Replace workspace's tags](https://docs.scalr.io/reference/replace_workspace_tags.md): This endpoint completely replaces workspace's tags with provided list.
+- [Add tags to the workspace](https://docs.scalr.io/reference/add_workspace_tags.md): This endpoint assigns the list of [tags](tags.html#the-tag-resource) to the workspace.
+- [Favorite a workspace](https://docs.scalr.io/reference/add_workspace_to_favorites.md): Add a workspace to the current user's favorites.
+- [Unfavorite a workspace](https://docs.scalr.io/reference/remove_workspace_from_favorites.md): Remove a workspace from the current user's favorites.
+- [Delete remote state consumers](https://docs.scalr.io/reference/delete_remote_state_consumers.md): This endpoint removes provided workspaces from a list of allowed remote state consumers for a given workspace.
+- [List remote state consumers](https://docs.scalr.io/reference/list_remote_state_consumers.md): This endpoint returns a list of other workspaces that that were explicitly added as state consumers for given workspace.
+- [Replace remote state consumers](https://docs.scalr.io/reference/replace_remote_state_consumers.md): This endpoint replaces a list of allowed remote state consumers for a given workspace.
+- [Add remote state consumers](https://docs.scalr.io/reference/add_remote_state_consumers.md): This endpoint adds provided workspaces to a list of allowed remote state consumers for a given workspace.
+- [Delete assigned variable sets from the workspace](https://docs.scalr.io/reference/delete_workspace_variable_sets.md): This endpoint removes provided variable sets from the workspace.
+- [List workspaces variable sets](https://docs.scalr.io/reference/list_workspace_variable_sets.md): This endpoint returns a list of variable sets linked to the workspace.
+- [Replace assigned variable sets on the workspace](https://docs.scalr.io/reference/replace_workspace_variable_sets.md): This endpoint replaces variable sets on the workspace with the provided values.
+- [Assign variable sets to the workspace](https://docs.scalr.io/reference/add_workspace_variable_sets.md): This endpoint adds provided variable sets to the workspace.
+- [Delete a link between a workspace and an SSH key](https://docs.scalr.io/reference/delete_workspace_ssh_key_link.md): Deletes a link between a workspace and an SSH key.
+- [Create a link between a workspace and an SSH key](https://docs.scalr.io/reference/create_workspace_ssh_key_link.md): Creates a link between a workspace and an SSH key.
+
+## Pages
+- [Migrating from Terraform Cloud](https://docs.scalr.io/page/migrating-from-terraform-cloud.md)
+- [Migrating GitHub Actions from an S3 Backend to Scalr](https://docs.scalr.io/page/migrating-github-actions-from-an-s3-backend-to-scalr.md)
+- [Using Terraform Workspace Prefixes in a Remote Backend](https://docs.scalr.io/page/using-terraform-workspace-prefixes-in-a-remote-backend.md)

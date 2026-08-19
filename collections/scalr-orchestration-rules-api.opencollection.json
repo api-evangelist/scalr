@@ -1,0 +1,244 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Orchestration Rules API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orchestration Rules",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/orchestration-rules/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List the Orchestration Rules in this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/orchestration-rules/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Orchestration Rule for this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Orchestration Rule."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Modify an Orchestration Rule."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Delete an Orchestration Rule from this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/orchestration-rules/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List the Orchestration Rules in this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/orchestration-rules/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Orchestration Rule for this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Orchestration Rule."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Modify an Orchestration Rule."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Delete an Orchestration Rule from this Environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

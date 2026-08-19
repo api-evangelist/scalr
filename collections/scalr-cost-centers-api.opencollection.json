@@ -1,0 +1,87 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Cost Centers API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Cost Centers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/cost-centers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/cost-centers/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List the Cost Centers available in the Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/cost-centers/{costCenterId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/cost-centers/:costCenterId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "costCenterId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a CostCenter object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Cost Center."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/cost-centers/{costCenterId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/cost-centers/:costCenterId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "costCenterId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a CostCenter object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Cost Center."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

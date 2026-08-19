@@ -1,0 +1,1664 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Roles available in this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/roles/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Role in this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Role."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Delete a Role from this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/roles/{roleId}/actions/clone/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/actions/clone/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Make a copy of an existing Role by cloning it."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/roles/{roleId}/actions/deprecate/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/actions/deprecate/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Deprecate a Role and set another Role to replace it."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/{roleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List all the Global Variables associated with a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/roles/{roleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Declare a new Global Variable for this Role."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about Global Variable in the Role's scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable in the Role's scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Delete a Global Variable from a given Role's scope."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/{roleId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/images/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List all the Images associated with a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/roles/{roleId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/images/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Associate a new Image with a given Role. This will fail if an Image associated to the Role is in the same location than the Image you are trying to add."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/{roleId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/images/:imageId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about an Image."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/roles/{roleId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/images/:imageId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Dis-associate an Image from a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/roles/{roleId}/images/{imageId}/actions/replace/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/images/:imageId/actions/replace/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate it and then associate a new one, which may not be possible if a Farm Role is currently using this Image."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/{roleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those are read-only)."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/roles/{roleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Create a new Orchestration Rule associated to a Role."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Orchestration Rule associated to this Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Orchestration Rule."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Delete an Orchestration Rule from the Role."
+        },
+        {
+          "info": {
+            "name": "GET /roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/"
+          },
+          "docs": "List all the Roles available in the global scope."
+        },
+        {
+          "info": {
+            "name": "POST /roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/roles/"
+          },
+          "docs": "Create a new Role in the global scope."
+        },
+        {
+          "info": {
+            "name": "GET /roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/roles/:roleId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Role."
+        },
+        {
+          "info": {
+            "name": "DELETE /roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/roles/:roleId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Delete a Role from the global scope."
+        },
+        {
+          "info": {
+            "name": "POST /roles/{roleId}/actions/deprecate/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/roles/:roleId/actions/deprecate/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Deprecate a Role and set another Role to replace it."
+        },
+        {
+          "info": {
+            "name": "GET /roles/{roleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleId/global-variables/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List all the Global Variables associated with a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /roles/{roleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/roles/:roleId/global-variables/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Declares a new Global Variable for this Role."
+        },
+        {
+          "info": {
+            "name": "GET /roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Global Variable in the Role's scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable in the Role's scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Deletes a Global Variable from a given Role's scope."
+        },
+        {
+          "info": {
+            "name": "GET /roles/{roleId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleId/images/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List all the Images associated with the specified Role."
+        },
+        {
+          "info": {
+            "name": "POST /roles/{roleId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/roles/:roleId/images/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Associate a new Image with this Role. This will fail if an Image associated to the Role is in the same location than the Image you are trying to add."
+        },
+        {
+          "info": {
+            "name": "GET /roles/{roleId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleId/images/:imageId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about an Image."
+        },
+        {
+          "info": {
+            "name": "DELETE /roles/{roleId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/roles/:roleId/images/:imageId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Dis-associates an Image from a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /roles/{roleId}/images/{imageId}/actions/replace/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/roles/:roleId/images/:imageId/actions/replace/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Replaces an Image in-place in a given Role. This allows you to replace an Image without having to dis-associate it and then associate a new one, which may not be possible if a Farm Role is currently using this Image."
+        },
+        {
+          "info": {
+            "name": "GET /roles/{roleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List the Orchestration Rules associated to a Role."
+        },
+        {
+          "info": {
+            "name": "POST /roles/{roleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/roles/:roleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Create a new Orchestration Rule associated to a Role."
+        },
+        {
+          "info": {
+            "name": "GET /roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Retrieve a given Orchestration Rule associated to a Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of the specified Orchestration Rule."
+        },
+        {
+          "info": {
+            "name": "DELETE /roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Deletes the specified Orchestration Rule from the Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Roles available in this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Role in this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Role."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/roles/{roleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Delete a Role from this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/{roleId}/actions/clone/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/actions/clone/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Make a copy of an existing Role by cloning it."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/{roleId}/actions/deprecate/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/actions/deprecate/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Deprecate a Role and set another Role to replace it."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/{roleId}/actions/promote/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/actions/promote/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Promote Role to account scope."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/{roleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List all the Global Variables associated with a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/{roleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Declares a new Global Variable for this Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about Global Variable in the Role's scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable in the Role's scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/roles/{roleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Deletes a Global Variable from this Role's scope."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/{roleId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/images/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List all Images associated with a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/{roleId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/images/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Associates a new Image with a given Role. This will fail if an Image associated to the Role is in the same location than the Image you are trying to add."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/{roleId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/images/:imageId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about an Image."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/roles/{roleId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/images/:imageId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Dis-associates an Image from a given Role."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/{roleId}/images/{imageId}/actions/replace/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/images/:imageId/actions/replace/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Replace an Image in-place in a given Role. This allows to replace an Image without having to dis-associate it and then associate a new one, which may not be possible if a Farm Role is currently using this Image."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/{roleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "List the Orchestration Rules associated with a given Role, including Rules from higher Scopes (those are read-only)."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/roles/{roleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              }
+            ]
+          },
+          "docs": "Create a new Orchestration Rule associated to a Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Retrieve a given Orchestration Rule associated to a Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Orchestration Rule."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/roles/:roleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Role object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Delete the specified Orchestration Rule from the Role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

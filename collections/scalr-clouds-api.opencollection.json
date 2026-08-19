@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Clouds API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clouds",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{envId}/clouds/{cloudPlatform}/cloud-locations/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/clouds/:cloudPlatform/cloud-locations/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "cloudPlatform",
+                "value": "",
+                "type": "path",
+                "description": "The Cloud Platform this resource resides in."
+              }
+            ]
+          },
+          "docs": "The list of the Cloud Locations."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/clouds/:cloudPlatform/cloud-locations/:cloudLocation/instance-types/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "cloudPlatform",
+                "value": "",
+                "type": "path",
+                "description": "The Cloud Platform this resource resides in."
+              },
+              {
+                "name": "cloudLocation",
+                "value": "",
+                "type": "path",
+                "description": "Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`."
+              }
+            ]
+          },
+          "docs": "The list of all Instance Types available for the specified Cloud Location."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,815 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Farm Roles API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Farm Roles",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Farm Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/farm-roles/{farmRoleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Farm Role."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/farm-roles/{farmRoleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Remove a given Farm Role from its Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farm-roles/{farmRoleId}/actions/clone/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/actions/clone/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Clone a given FarmRole within current Farm or to another Farm."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/actions/generate-template/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/actions/generate-template/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Get FarmRole Template body for given FarmRole."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farm-roles/{farmRoleId}/actions/import-server/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/actions/import-server/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Import a running server from a Cloud Platform to a Scalr Farm Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "List all the Global Variables associated with this Farm Role."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farm-roles/{farmRoleId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Declare a new Global Variable for this Farm Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Global Variable in this Farm Role's scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable in this Farm Role's scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Delete a Global Variable from this Farm Role's scope."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "List all Orchestration Rules associated with this Farm Role, including Rules from higher Scopes (those are read-only)."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farm-roles/{farmRoleId}/orchestration-rules/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Create a new Orchestration Rule associated to this Farm Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about an Orchestration Rule associated to this Farm Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of an Orchestration Rule associated to this Farm Role."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/orchestration-rules/:orchestrationRuleId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "orchestrationRuleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a OrchestrationRule object."
+              }
+            ]
+          },
+          "docs": "Delete an Orchestration Rule from this Farm Role."
+        },
+        {
+          "info": {
+            "name": "Get Scaling Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Retrieve the Scaling configuration of a Farm Role."
+        },
+        {
+          "info": {
+            "name": "Create Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Add a new Scaling Rule to a Farm Role."
+        },
+        {
+          "info": {
+            "name": "Edit Scaling Configuration",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Modify the Scaling configuration of a Farm Role."
+        },
+        {
+          "info": {
+            "name": "Get Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/:metricName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Retrieve the Scaling rules of the Farm Role."
+        },
+        {
+          "info": {
+            "name": "Edit Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/:metricName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Modify a Scaling Rule of a Farm Role."
+        },
+        {
+          "info": {
+            "name": "Delete Rule",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/scaling/:metricName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Delete a Scaling Rule from a Farm Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/servers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/servers/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Describes all the Servers associated to a Farm Role."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farm-roles/{farmRoleId}/servers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/servers/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Launch a new Server for the specified Farm Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/storage/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Describe the Storage configuration of the Farm Role."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farm-roles/{farmRoleId}/storage/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              }
+            ]
+          },
+          "docs": "Add a new storage configuration to the Farm Role."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/:storageConfigurationId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "storageConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a StorageConfiguration object."
+              }
+            ]
+          },
+          "docs": "Retrieve a specific storage configuration of the Farm Role."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/:storageConfigurationId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "storageConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a StorageConfiguration object."
+              }
+            ]
+          },
+          "docs": "Modify the storage configuration of the Farm Role."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farm-roles/:farmRoleId/storage/:storageConfigurationId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmRoleId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmRole object."
+              },
+              {
+                "name": "storageConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a StorageConfiguration object."
+              }
+            ]
+          },
+          "docs": "Delete the storage configuration from the Farm Role."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

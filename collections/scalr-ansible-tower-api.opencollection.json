@@ -1,0 +1,240 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Ansible Tower API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Ansible Tower",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/ansible-tower/configurations/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List all Ansible Tower Configurations in the Account scope."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/ansible-tower/configurations/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Add a new Ansible Tower Configuration in the Account scope."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "ansibleTowerConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a AnsibleTowerConfiguration object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Ansible Tower Configuration."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "ansibleTowerConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a AnsibleTowerConfiguration object."
+              }
+            ]
+          },
+          "docs": "Modify the Ansible Tower Configuration."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "ansibleTowerConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a AnsibleTowerConfiguration object."
+              }
+            ]
+          },
+          "docs": "Delete the Ansible Tower Configuration."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/ansible-tower/servers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/ansible-tower/servers/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List all Ansible Tower Servers in the Account scope."
+        },
+        {
+          "info": {
+            "name": "GET /ansible-tower/configurations/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ansible-tower/configurations/"
+          },
+          "docs": "List all Ansible Tower Configurations in the global scope."
+        },
+        {
+          "info": {
+            "name": "POST /ansible-tower/configurations/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/ansible-tower/configurations/"
+          },
+          "docs": "Add a new Ansible Tower Configuration in the global scope."
+        },
+        {
+          "info": {
+            "name": "GET /ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+            "params": [
+              {
+                "name": "ansibleTowerConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a AnsibleTowerConfiguration object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Ansible Tower Configuration."
+        },
+        {
+          "info": {
+            "name": "PATCH /ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+            "params": [
+              {
+                "name": "ansibleTowerConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a AnsibleTowerConfiguration object."
+              }
+            ]
+          },
+          "docs": "Modify the Ansible Tower Configuration."
+        },
+        {
+          "info": {
+            "name": "DELETE /ansible-tower/configurations/{ansibleTowerConfigurationId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/ansible-tower/configurations/:ansibleTowerConfigurationId/",
+            "params": [
+              {
+                "name": "ansibleTowerConfigurationId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a AnsibleTowerConfiguration object."
+              }
+            ]
+          },
+          "docs": "Delete the Ansible Tower Configuration."
+        },
+        {
+          "info": {
+            "name": "GET /ansible-tower/servers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/ansible-tower/servers/"
+          },
+          "docs": "List all Ansible Tower Servers in the global scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

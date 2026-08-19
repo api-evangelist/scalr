@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Role Categories API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Role Categories",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/role-categories/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/role-categories/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List the Role Categories available in this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/role-categories/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/role-categories/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Role Category in this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Role Category."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Role Category."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Delete a Role Category from this Account."
+        },
+        {
+          "info": {
+            "name": "GET /role-categories/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/role-categories/"
+          },
+          "docs": "List the Role Categories available in the global scope."
+        },
+        {
+          "info": {
+            "name": "POST /role-categories/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/role-categories/"
+          },
+          "docs": "Create a new Role Category in the global scope."
+        },
+        {
+          "info": {
+            "name": "GET /role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Role Category."
+        },
+        {
+          "info": {
+            "name": "PATCH /role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Edit the attributes of a given Role Category."
+        },
+        {
+          "info": {
+            "name": "DELETE /role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Delete a Role Category from the global scope."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/role-categories/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/role-categories/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List the Role Categories available in this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/role-categories/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/role-categories/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Role Category in this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Role Category."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a given Role Category."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/role-categories/{roleCategoryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/role-categories/:roleCategoryId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "roleCategoryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a RoleCategory object."
+              }
+            ]
+          },
+          "docs": "Delete a Role Category from this Environment."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

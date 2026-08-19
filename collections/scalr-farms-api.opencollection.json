@@ -1,0 +1,692 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Farms API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Farms",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{envId}/farms/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Farms available in this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Farm in this Environment. Farm and FarmTemplate objects are acceptable."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Farm."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/farms/{farmId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Farm."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/farms/{farmId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Delete a Farm from this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/actions/clone/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/clone/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Clone a given Farm."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/actions/generate-template/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/generate-template/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Get Farm Template body for given Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/actions/launch/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/launch/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Launch a Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/actions/lock/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/lock/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Lock a Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/actions/resume/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/resume/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Resume a suspended Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/actions/suspend/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/suspend/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Suspend a Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/actions/terminate/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/terminate/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Terminate a Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/actions/unlock/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/actions/unlock/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Unlock a Farm."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/cloud-services/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "List of the Cloud Services linked to the current Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/cloud-services/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Link Cloud Service to the current Farm."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/:farmCloudServiceLinkId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              },
+              {
+                "name": "farmCloudServiceLinkId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmCloudServiceLink object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about linked Cloud Service to the current Farm."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/:farmCloudServiceLinkId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              },
+              {
+                "name": "farmCloudServiceLinkId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmCloudServiceLink object."
+              }
+            ]
+          },
+          "docs": "Modify Cloud Service attributes."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/cloud-services/:farmCloudServiceLinkId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              },
+              {
+                "name": "farmCloudServiceLinkId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a FarmCloudServiceLink object."
+              }
+            ]
+          },
+          "docs": "Unlink Cloud Service from the current Farm."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/farm-roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/farm-roles/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "List all the Farm Roles in a Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/farm-roles/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/farm-roles/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Create a new Farm Role in a Farm. FarmRole and FarmRoleTemplate objects are acceptable."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "List all Global Variables associated to a Farm."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/farms/{farmId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "Declare a new Global Variable for this Farm."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Global Variable in the Farm's scope"
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/farms/{farmId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable's in the Farm's scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/farms/{farmId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Delete a Global Variable from a given Farm's scope."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/farms/{farmId}/servers/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/farms/:farmId/servers/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "farmId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Farm object."
+              }
+            ]
+          },
+          "docs": "List all the Servers associated to a Farm."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

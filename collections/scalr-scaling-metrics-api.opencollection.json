@@ -1,0 +1,244 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Scaling Metrics API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Scaling Metrics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/scaling-metrics/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/scaling-metrics/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List all Scaling metrics in the Account scope."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/scaling-metrics/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/scaling-metrics/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Add a new custom Scaling metric in the Account scope."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/scaling-metrics/{metricName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/scaling-metrics/:metricName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Scaling metric."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/scaling-metrics/{metricName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/scaling-metrics/:metricName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Modify the Scaling metric."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/scaling-metrics/{metricName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/scaling-metrics/:metricName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Delete a Scaling metric."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/scaling-metrics/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/scaling-metrics/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List all Scaling metrics available in this Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/scaling-metrics/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/scaling-metrics/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Add a new custom Scaling metric to this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/scaling-metrics/{metricName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/scaling-metrics/:metricName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given Scaling metric."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/scaling-metrics/{metricName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/scaling-metrics/:metricName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Scaling metric."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/scaling-metrics/{metricName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/scaling-metrics/:metricName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "metricName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Scaling Metric."
+              }
+            ]
+          },
+          "docs": "Delete a Scaling metric."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

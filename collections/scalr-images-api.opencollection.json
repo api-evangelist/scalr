@@ -1,0 +1,467 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Images API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Images",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/images/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Images available in this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/images/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Register a new Image in this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/images/:imageId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about an image."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/images/:imageId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of an Image. Currently only the name of the Image can be changed."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/images/:imageId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Remove an Image from this Account. This does not remove the underlying machine image from the Cloud it resides in."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/images/{imageId}/actions/copy/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/images/:imageId/actions/copy/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Copy an Image from one EC2 region to another."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/images/{imageId}/actions/replace/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/images/:imageId/actions/replace/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the old Image object."
+              }
+            ]
+          },
+          "docs": "Replace the current Image with a specified one for all Roles which use this Image."
+        },
+        {
+          "info": {
+            "name": "GET /images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/images/"
+          },
+          "docs": "List all the Images available in the global scope."
+        },
+        {
+          "info": {
+            "name": "POST /images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/images/"
+          },
+          "docs": "Register a new Image in the global scope."
+        },
+        {
+          "info": {
+            "name": "GET /images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/images/:imageId/",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about an Image."
+        },
+        {
+          "info": {
+            "name": "PATCH /images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/images/:imageId/",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of an Image. Currently only the name of the Image can be changed."
+        },
+        {
+          "info": {
+            "name": "DELETE /images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/images/:imageId/",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Deregisters an Image from the global scope."
+        },
+        {
+          "info": {
+            "name": "POST /images/{imageId}/actions/copy/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/images/:imageId/actions/copy/",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Copy an Image from one EC2 region to another."
+        },
+        {
+          "info": {
+            "name": "POST /images/{imageId}/actions/replace/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/images/:imageId/actions/replace/",
+            "params": [
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the old Image object."
+              }
+            ]
+          },
+          "docs": "Replace the current Image with a specified one for all Roles which use this Image."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/images/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Images available in the Environment."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/images/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/images/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Register a new Image in this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/images/:imageId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about an Image."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/images/:imageId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of an Images. Currently only the name of the Image be can changed."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/images/{imageId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/images/:imageId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              },
+              {
+                "name": "deleteFromCloud",
+                "value": "",
+                "type": "query",
+                "description": "Attempt to also delete this Image from the Cloud."
+              }
+            ]
+          },
+          "docs": "Remove an Image from the Environment. By default this does not delete the underlying machine image from the Cloud it resides in."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/images/{imageId}/actions/copy/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/images/:imageId/actions/copy/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Image object."
+              }
+            ]
+          },
+          "docs": "Copy an Image from one EC2 region to another."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/images/{imageId}/actions/replace/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/images/:imageId/actions/replace/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "imageId",
+                "value": "",
+                "type": "path",
+                "description": "The identifier of the old Image object."
+              }
+            ]
+          },
+          "docs": "Replace the current Image with a specified one for all Roles which use this Image. The Image will be replaced only within the Environment scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

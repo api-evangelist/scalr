@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Os API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Os",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/os/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/os/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Operating Systems definitions available in this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/os/{osId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/os/:osId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "osId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Os object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given OS."
+        },
+        {
+          "info": {
+            "name": "GET /os/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/os/"
+          },
+          "docs": "List all the Operating Systems definitions available in the global scope."
+        },
+        {
+          "info": {
+            "name": "GET /os/{osId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/os/:osId/",
+            "params": [
+              {
+                "name": "osId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Os object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given OS."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/os/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/os/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List all the Operating Systems definitions available in this Environment."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/os/{osId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/os/:osId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "osId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Os object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a given OS."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

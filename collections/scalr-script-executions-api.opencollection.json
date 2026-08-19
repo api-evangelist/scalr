@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Script Executions API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Script Executions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{envId}/script-executions/{scriptExecutionId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/script-executions/:scriptExecutionId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "scriptExecutionId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a ScriptExecution object."
+              }
+            ]
+          },
+          "docs": "Describes detailed information about a state of the script execution."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Event Logs API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Event Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{envId}/event-logs/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/event-logs/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List of all Event logs."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/event-logs/{eventLogEntryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/event-logs/:eventLogEntryId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "eventLogEntryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a EventLogEntry object."
+              }
+            ]
+          },
+          "docs": "Describes detailed information about the Event that has been fired."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

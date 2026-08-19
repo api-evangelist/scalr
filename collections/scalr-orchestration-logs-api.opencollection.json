@@ -1,0 +1,62 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Orchestration Logs API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Orchestration Logs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{envId}/orchestration-logs/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/orchestration-logs/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List of all Orchestration logs."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/orchestration-logs/{logEntryId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/orchestration-logs/:logEntryId/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "logEntryId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a LogEntry object."
+              }
+            ]
+          },
+          "docs": "Describes detailed information about a result of the orchestration."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

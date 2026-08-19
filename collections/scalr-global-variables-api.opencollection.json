@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Global Variables API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Global Variables",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/global-variables/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List Global Variables declared in account scope."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/global-variables/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Declare a new Global Variable for this account scope."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Global Variable declared in account scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable declared in account scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Delete a Global Variable from account scope."
+        },
+        {
+          "info": {
+            "name": "GET /global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/global-variables/"
+          },
+          "docs": "List Global Variables declared in global scope."
+        },
+        {
+          "info": {
+            "name": "POST /global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/global-variables/"
+          },
+          "docs": "Declare a new Global Variable for this global scope."
+        },
+        {
+          "info": {
+            "name": "GET /global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Global Variable declared in global scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable declared in global scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Delete a Global Variable from global scope."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "List Global Variables declared in environment scope."
+        },
+        {
+          "info": {
+            "name": "POST /{envId}/global-variables/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:envId/global-variables/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              }
+            ]
+          },
+          "docs": "Declare a new Global Variable for this environment scope."
+        },
+        {
+          "info": {
+            "name": "GET /{envId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:envId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Global Variable declared in environment scope."
+        },
+        {
+          "info": {
+            "name": "PATCH /{envId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:envId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of a Global Variable declared in environment scope."
+        },
+        {
+          "info": {
+            "name": "DELETE /{envId}/global-variables/{globalVariableName}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:envId/global-variables/:globalVariableName/",
+            "params": [
+              {
+                "name": "envId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Environment scoping this request."
+              },
+              {
+                "name": "globalVariableName",
+                "value": "",
+                "type": "path",
+                "description": "The name of the Global Variable being accessed."
+              }
+            ]
+          },
+          "docs": "Delete a Global Variable from environment scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

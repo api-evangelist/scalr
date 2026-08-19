@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Scalr Account Acl Roles Projects API",
+    "version": "1.0.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Projects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GET /{accountId}/projects/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/projects/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "List the Projects available in this Account."
+        },
+        {
+          "info": {
+            "name": "POST /{accountId}/projects/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/:accountId/projects/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              }
+            ]
+          },
+          "docs": "Create a new Project in this Account."
+        },
+        {
+          "info": {
+            "name": "GET /{accountId}/projects/{projectId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/:accountId/projects/:projectId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Project object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Project."
+        },
+        {
+          "info": {
+            "name": "PATCH /{accountId}/projects/{projectId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/:accountId/projects/:projectId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Project object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of the Project."
+        },
+        {
+          "info": {
+            "name": "DELETE /{accountId}/projects/{projectId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/:accountId/projects/:projectId/",
+            "params": [
+              {
+                "name": "accountId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of the Account scoping this request."
+              },
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Project object."
+              }
+            ]
+          },
+          "docs": "Delete a Project from this Account."
+        },
+        {
+          "info": {
+            "name": "GET /projects/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects/"
+          },
+          "docs": "List the Projects available in the global scope."
+        },
+        {
+          "info": {
+            "name": "POST /projects/",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "{{baseUrl}}/projects/"
+          },
+          "docs": "Create a new Project in the global scope."
+        },
+        {
+          "info": {
+            "name": "GET /projects/{projectId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "{{baseUrl}}/projects/:projectId/",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Project object."
+              }
+            ]
+          },
+          "docs": "Retrieve detailed information about a Project."
+        },
+        {
+          "info": {
+            "name": "PATCH /projects/{projectId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "{{baseUrl}}/projects/:projectId/",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Project object."
+              }
+            ]
+          },
+          "docs": "Modify the attributes of the Project."
+        },
+        {
+          "info": {
+            "name": "DELETE /projects/{projectId}/",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "{{baseUrl}}/projects/:projectId/",
+            "params": [
+              {
+                "name": "projectId",
+                "value": "",
+                "type": "path",
+                "description": "The ID of a Project object."
+              }
+            ]
+          },
+          "docs": "Delete a Project from global scope."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
