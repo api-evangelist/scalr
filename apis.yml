@@ -139,6 +139,8 @@ apis:
   description: The Events API from Scalr — 5 operation(s) for events.
   humanURL: https://api-explorer.scalr.com/
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -183,6 +185,8 @@ apis:
   description: The Images API from Scalr — 12 operation(s) for images.
   humanURL: https://api-explorer.scalr.com/
   tags:
+  - Image
+  tags_raw:
   - Images
   properties:
   - type: OpenAPI
@@ -227,6 +231,8 @@ apis:
   description: The Projects API from Scalr — 4 operation(s) for projects.
   humanURL: https://api-explorer.scalr.com/
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
@@ -304,6 +310,8 @@ apis:
   description: The Teams API from Scalr — 2 operation(s) for teams.
   humanURL: https://api-explorer.scalr.com/
   tags:
+  - Team
+  tags_raw:
   - Teams
   properties:
   - type: OpenAPI
@@ -315,6 +323,8 @@ apis:
   description: The Users API from Scalr — 2 operation(s) for users.
   humanURL: https://api-explorer.scalr.com/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
