@@ -60,6 +60,14 @@ apis:
   - Runs
   - Scalr
   - Terraform
+  - Workspace
+  tags_raw:
+  - Infrastructure as Code
+  - OpenTofu
+  - Policy
+  - Runs
+  - Scalr
+  - Terraform
   - Workspaces
   properties:
   - type: Documentation
@@ -128,6 +136,8 @@ apis:
   description: The Environments API from Scalr — 6 operation(s) for environments.
   humanURL: https://api-explorer.scalr.com/
   tags:
+  - Environment
+  tags_raw:
   - Environments
   properties:
   - type: OpenAPI
