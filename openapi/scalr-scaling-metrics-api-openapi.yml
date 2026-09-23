@@ -1,11 +1,11 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  description: Manage Roles, Images, Environments and etc.
-  title: Scalr Account Acl Roles Scaling Metrics API
+  title: Scalr Scaling Metrics API
   version: 1.0.0
-basePath: /api/v1beta0/account
-produces:
-- application/json
+  description: 'Operations tagged Scaling Metrics across 2 of this provider''s published API definitions: scalr-account-openapi.yml, scalr-user-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /api/v1beta0/account
+- url: /api/v1beta0/user
 tags:
 - name: Scaling Metrics
 paths:
@@ -15,18 +15,19 @@ paths:
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List all Scaling metrics in the Account scope.
       responses:
         200:
           description: A list of ScalingMetric objects.
-          schema:
-            $ref: '#/definitions/ScalingMetricListResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricListResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -34,17 +35,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -58,20 +63,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -87,45 +96,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Scaling Metrics
+      summary: Get by account id scaling metrics
+      x-summary-source: derived
+      operationId: getByAccountIdScalingMetrics
+      x-operation-id-source: derived
     post:
       description: Add a new custom Scaling metric in the Account scope.
-      parameters:
-      - description: The JSON representation of a ScalingMetric object.
-        in: body
-        name: scalingMetricObject
-        required: true
-        schema:
-          $ref: '#/definitions/ScalingMetric'
       responses:
         201:
           description: The JSON representation of a ScalingMetric object.
-          schema:
-            $ref: '#/definitions/ScalingMetricDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -133,17 +151,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -157,20 +179,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -186,42 +212,69 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScalingMetric'
+        description: The JSON representation of a ScalingMetric object.
+        required: true
       tags:
       - Scaling Metrics
+      summary: Create by account id scaling metrics
+      x-summary-source: derived
+      operationId: postByAccountIdScalingMetrics
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/account
   /{accountId}/scaling-metrics/{metricName}/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The name of the Scaling Metric.
       in: path
-      maxLength: 50
-      minLength: 5
       name: metricName
-      pattern: '[A-Za-z0-9]+'
       required: true
-      type: string
+      schema:
+        type: string
+        maxLength: 50
+        minLength: 5
+        pattern: '[A-Za-z0-9]+'
     delete:
       description: Delete a Scaling metric.
       responses:
@@ -229,8 +282,6 @@ paths:
           description: Successful deletion.
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -238,17 +289,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -262,20 +317,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -291,38 +350,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Scaling Metrics
+      summary: Delete by account id scaling metrics by metric name
+      x-summary-source: derived
+      operationId: deleteByAccountIdScalingMetricsByMetricName
+      x-operation-id-source: derived
     get:
       description: Retrieve detailed information about a given Scaling metric.
       responses:
         200:
           description: The JSON representation of a ScalingMetric object.
-          schema:
-            $ref: '#/definitions/ScalingMetricDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -330,17 +405,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -354,20 +433,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -383,45 +466,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Scaling Metrics
+      summary: Get by account id scaling metrics by metric name
+      x-summary-source: derived
+      operationId: getByAccountIdScalingMetricsByMetricName
+      x-operation-id-source: derived
     patch:
       description: Modify the Scaling metric.
-      parameters:
-      - description: The JSON representation of a ScalingMetric object.
-        in: body
-        name: scalingMetricObject
-        required: true
-        schema:
-          $ref: '#/definitions/ScalingMetric'
       responses:
         200:
           description: The JSON representation of a ScalingMetric object.
-          schema:
-            $ref: '#/definitions/ScalingMetricDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -429,17 +521,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -453,20 +549,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -482,45 +582,71 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScalingMetric'
+        description: The JSON representation of a ScalingMetric object.
+        required: true
       tags:
       - Scaling Metrics
+      summary: Update by account id scaling metrics by metric name
+      x-summary-source: derived
+      operationId: patchByAccountIdScalingMetricsByMetricName
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/account
   /{envId}/scaling-metrics/:
     parameters:
     - description: The ID of the Environment scoping this request.
       in: path
       name: envId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List all Scaling metrics available in this Environment.
       responses:
         200:
           description: A list of ScalingMetric objects.
-          schema:
-            $ref: '#/definitions/ScalingMetricListResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricListResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -528,17 +654,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -552,20 +682,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -587,45 +721,54 @@ paths:
             name: ObjectNotFoundOnCloud
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
       tags:
       - Scaling Metrics
+      summary: Get by env id scaling metrics
+      x-summary-source: derived
+      operationId: getByEnvIdScalingMetrics
+      x-operation-id-source: derived
     post:
       description: Add a new custom Scaling metric to this Environment.
-      parameters:
-      - description: The JSON representation of a ScalingMetric object.
-        in: body
-        name: scalingMetricObject
-        required: true
-        schema:
-          $ref: '#/definitions/ScalingMetric_2'
       responses:
         201:
           description: The JSON representation of a ScalingMetric object.
-          schema:
-            $ref: '#/definitions/ScalingMetricDetailsResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricDetailsResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -633,17 +776,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -657,20 +804,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -692,42 +843,69 @@ paths:
             name: ObjectNotFoundOnCloud
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScalingMetric_2'
+        description: The JSON representation of a ScalingMetric object.
+        required: true
       tags:
       - Scaling Metrics
+      summary: Create by env id scaling metrics
+      x-summary-source: derived
+      operationId: postByEnvIdScalingMetrics
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/user
   /{envId}/scaling-metrics/{metricName}/:
     parameters:
     - description: The ID of the Environment scoping this request.
       in: path
       name: envId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The name of the Scaling Metric.
       in: path
-      maxLength: 50
-      minLength: 5
       name: metricName
-      pattern: '[A-Za-z0-9]+'
       required: true
-      type: string
+      schema:
+        type: string
+        maxLength: 50
+        minLength: 5
+        pattern: '[A-Za-z0-9]+'
     delete:
       description: Delete a Scaling metric.
       responses:
@@ -735,8 +913,6 @@ paths:
           description: Successful deletion.
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -744,17 +920,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -768,20 +948,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -803,38 +987,54 @@ paths:
             name: ObjectNotFoundOnCloud
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
       tags:
       - Scaling Metrics
+      summary: Delete by env id scaling metrics by metric name
+      x-summary-source: derived
+      operationId: deleteByEnvIdScalingMetricsByMetricName
+      x-operation-id-source: derived
     get:
       description: Retrieve detailed information about a given Scaling metric.
       responses:
         200:
           description: The JSON representation of a ScalingMetric object.
-          schema:
-            $ref: '#/definitions/ScalingMetricDetailsResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricDetailsResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -842,17 +1042,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -866,20 +1070,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -901,45 +1109,54 @@ paths:
             name: ObjectNotFoundOnCloud
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
       tags:
       - Scaling Metrics
+      summary: Get by env id scaling metrics by metric name
+      x-summary-source: derived
+      operationId: getByEnvIdScalingMetricsByMetricName
+      x-operation-id-source: derived
     patch:
       description: Modify the attributes of a Scaling metric.
-      parameters:
-      - description: The JSON representation of a ScalingMetric object.
-        in: body
-        name: scalingMetricObject
-        required: true
-        schema:
-          $ref: '#/definitions/ScalingMetric_2'
       responses:
         200:
           description: The JSON representation of a ScalingMetric object.
-          schema:
-            $ref: '#/definitions/ScalingMetricDetailsResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ScalingMetricDetailsResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -947,17 +1164,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -971,20 +1192,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -1006,427 +1231,456 @@ paths:
             name: ObjectNotFoundOnCloud
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/ScalingMetric_2'
+        description: The JSON representation of a ScalingMetric object.
+        required: true
       tags:
       - Scaling Metrics
-definitions:
-  ApiErrorResponse:
-    description: Common response for erroneous requests.
-    properties:
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-usedIn:
-    - /account/{accountId}/global-variables/
-    - /account/{accountId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/orchestration-rules/
-    - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/cost-centers/
-    - /account/{accountId}/cost-centers/{costCenterId}/
-    - /account/{accountId}/environments/
-    - /account/{accountId}/environments/{envId}/
-    - /account/{accountId}/environments/{envId}/clouds/
-    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-    - /account/{accountId}/environments/{envId}/teams/
-    - /account/{accountId}/environments/{envId}/teams/{teamId}/
-    - /account/{accountId}/teams/
-    - /account/{accountId}/teams/{teamId}/
-    - /account/{accountId}/acl-roles/
-    - /account/{accountId}/role-categories/
-    - /account/{accountId}/role-categories/{roleCategoryId}/
-    - /account/{accountId}/roles/
-    - /account/{accountId}/roles/{roleId}/
-    - /account/{accountId}/roles/{roleId}/actions/clone/
-    - /account/{accountId}/roles/{roleId}/actions/deprecate/
-    - /account/{accountId}/roles/{roleId}/images/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/roles/{roleId}/global-variables/
-    - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/images/
-    - /account/{accountId}/images/{imageId}/
-    - /account/{accountId}/images/{imageId}/actions/copy/
-    - /account/{accountId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/projects/
-    - /account/{accountId}/projects/{projectId}/
-    - /account/{accountId}/scripts/
-    - /account/{accountId}/scripts/{scriptId}/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
-    - /account/{accountId}/webhook-endpoints/
-    - /account/{accountId}/os/
-    - /account/{accountId}/os/{osId}/
-    - /account/{accountId}/events/
-    - /account/{accountId}/events/{eventId}/
-    - /account/{accountId}/cloud-credentials/
-    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-    - /account/{accountId}/scaling-metrics/
-    - /account/{accountId}/scaling-metrics/{metricName}/
-    - /account/{accountId}/users/
-    - /account/{accountId}/ansible-tower/servers/
-    - /account/{accountId}/ansible-tower/configurations/
-    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  ApiMessage:
-    properties:
-      code:
-        description: A machine-readable representation of the message.
-        type: string
-      message:
-        description: A human-readable representation of the message.
-        type: string
-  ScalingMetricListResponse_2:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/ScalingMetric_2'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/ScalingMetric_2'
-    x-usedIn:
-    - /user/{envId}/scaling-metrics/
-  ApiErrorResponse_2:
-    description: Common response for erroneous requests.
-    properties:
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-usedIn:
-    - /user/{envId}/global-variables/
-    - /user/{envId}/global-variables/{globalVariableName}/
-    - /user/{envId}/orchestration-rules/
-    - /user/{envId}/orchestration-rules/{orchestrationRuleId}/
-    - /user/{envId}/projects/
-    - /user/{envId}/projects/{projectId}/
-    - /user/{envId}/cost-centers/
-    - /user/{envId}/cost-centers/{costCenterId}/
-    - /user/{envId}/role-categories/
-    - /user/{envId}/role-categories/{roleCategoryId}/
-    - /user/{envId}/roles/
-    - /user/{envId}/roles/{roleId}/
-    - /user/{envId}/roles/{roleId}/actions/promote/
-    - /user/{envId}/roles/{roleId}/actions/clone/
-    - /user/{envId}/roles/{roleId}/actions/deprecate/
-    - /user/{envId}/roles/{roleId}/images/
-    - /user/{envId}/roles/{roleId}/images/{imageId}/
-    - /user/{envId}/roles/{roleId}/images/{imageId}/actions/replace/
-    - /user/{envId}/roles/{roleId}/global-variables/
-    - /user/{envId}/roles/{roleId}/global-variables/{globalVariableName}/
-    - /user/{envId}/roles/{roleId}/orchestration-rules/
-    - /user/{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-    - /user/{envId}/images/
-    - /user/{envId}/images/{imageId}/
-    - /user/{envId}/images/{imageId}/actions/copy/
-    - /user/{envId}/images/{imageId}/actions/replace/
-    - /user/{envId}/servers/
-    - /user/{envId}/servers/{serverId}/
-    - /user/{envId}/servers/{serverId}/actions/suspend/
-    - /user/{envId}/servers/{serverId}/actions/terminate/
-    - /user/{envId}/servers/{serverId}/actions/resume/
-    - /user/{envId}/servers/{serverId}/actions/reboot/
-    - /user/{envId}/servers/{serverId}/actions/sync/
-    - /user/{envId}/servers/{serverId}/global-variables/
-    - /user/{envId}/servers/{serverId}/global-variables/{globalVariableName}/
-    - /user/{envId}/farms/{farmId}/servers/
-    - /user/{envId}/farm-roles/{farmRoleId}/servers/
-    - /user/{envId}/scripts/
-    - /user/{envId}/scripts/{scriptId}/
-    - /user/{envId}/scripts/{scriptId}/actions/execute/
-    - /user/{envId}/scripts/{scriptId}/script-versions/
-    - /user/{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
-    - /user/{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/actions/execute/
-    - /user/{envId}/script-executions/{scriptExecutionId}/
-    - /user/{envId}/orchestration-logs/
-    - /user/{envId}/orchestration-logs/{logEntryId}/
-    - /user/{envId}/event-logs/
-    - /user/{envId}/event-logs/{eventLogEntryId}/
-    - /user/{envId}/webhook-endpoints/
-    - /user/{envId}/os/
-    - /user/{envId}/os/{osId}/
-    - /user/{envId}/events/
-    - /user/{envId}/events/{eventId}/
-    - /user/{envId}/events/{eventId}/actions/fire/
-    - /user/{envId}/farms/
-    - /user/{envId}/farms/{farmId}/
-    - /user/{envId}/farms/{farmId}/cloud-services/
-    - /user/{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/
-    - /user/{envId}/farms/{farmId}/actions/generate-template/
-    - /user/{envId}/farms/{farmId}/actions/launch/
-    - /user/{envId}/farms/{farmId}/actions/suspend/
-    - /user/{envId}/farms/{farmId}/actions/resume/
-    - /user/{envId}/farms/{farmId}/actions/terminate/
-    - /user/{envId}/farms/{farmId}/actions/lock/
-    - /user/{envId}/farms/{farmId}/actions/unlock/
-    - /user/{envId}/farms/{farmId}/actions/clone/
-    - /user/{envId}/farms/{farmId}/global-variables/
-    - /user/{envId}/farms/{farmId}/global-variables/{globalVariableName}/
-    - /user/{envId}/farms/{farmId}/farm-roles/
-    - /user/{envId}/farm-roles/{farmRoleId}/
-    - /user/{envId}/farm-roles/{farmRoleId}/actions/import-server/
-    - /user/{envId}/farm-roles/{farmRoleId}/actions/generate-template/
-    - /user/{envId}/farm-roles/{farmRoleId}/actions/clone/
-    - /user/{envId}/farm-roles/{farmRoleId}/scaling/
-    - /user/{envId}/farm-roles/{farmRoleId}/scaling/{metricName}/
-    - /user/{envId}/farm-roles/{farmRoleId}/storage/
-    - /user/{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/
-    - /user/{envId}/scaling-metrics/
-    - /user/{envId}/scaling-metrics/{metricName}/
-    - /user/{envId}/farm-roles/{farmRoleId}/global-variables/
-    - /user/{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/
-    - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/
-    - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
-    - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
-    - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-  ScalingMetricListResponse:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/ScalingMetric'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/ScalingMetric'
-    x-usedIn:
-    - /account/{accountId}/scaling-metrics/
-  ApiMetaContainer:
-    properties:
-      sample:
-        description: Actual properties TBD.
-        type: string
-  ScalingMetricDetailsResponse:
-    properties:
-      data:
-        $ref: '#/definitions/ScalingMetric'
-        readOnly: true
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/ScalingMetric'
-    x-usedIn:
-    - /account/{accountId}/scaling-metrics/
-    - /account/{accountId}/scaling-metrics/{metricName}/
-  ScalingMetric:
-    properties:
-      filePath:
-        description: Path to the File
-        type: string
-      function:
-        description: Aggregate function to use when executing decision logic.
-        enum:
-        - average
-        - sum
-        - min
-        - max
-        type: string
-      inverted:
-        description: Whether this metric should be inverted. By default Farm Roles scale up when the value goes above the scale up threshold. If this is true, Farm Roles will scale up when the value goes below the scale up threshold.
-        type: boolean
-      name:
-        description: The name of a Scaling Metric.
-        type: string
-      retrieveMethod:
-        description: The operation that should be performed on the File to obtain the value of the Metric.
-        enum:
-        - read
-        - execute
-        - url-request
-        type: string
-      scope:
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-    required:
-    - name
-    - retrieveMethod
-    - filePath
-    - function
-    x-filterable:
-    - name
-    - retrieveMethod
-    - function
-    - inverted
-    - scope
-    x-usedIn:
-    - /account/{accountId}/scaling-metrics/
-    - /account/{accountId}/scaling-metrics/{metricName}/
-  ApiPagination:
-    properties:
-      first:
-        readOnly: true
-        type: string
-      last:
-        readOnly: true
-        type: string
-      next:
-        readOnly: true
-        type: string
-      prev:
-        readOnly: true
-        type: string
-  ScalingMetric_2:
-    properties:
-      filePath:
-        description: Path to the File
-        type: string
-      function:
-        description: Aggregate function to use when executing decision logic.
-        enum:
-        - average
-        - sum
-        - min
-        - max
-        type: string
-      inverted:
-        description: Whether this metric should be inverted. By default Farm Roles scale up when the value goes above the scale up threshold. If this is true, Farm Roles will scale up when the value goes below the scale up threshold.
-        type: boolean
-      name:
-        description: The name of a Scaling Metric.
-        type: string
-      retrieveMethod:
-        description: The operation that should be performed on the File to obtain the value of the Metric.
-        enum:
-        - read
-        - execute
-        - url-request
-        type: string
-      scope:
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-    required:
-    - name
-    - retrieveMethod
-    - filePath
-    - function
-    x-filterable:
-    - name
-    - retrieveMethod
-    - function
-    - inverted
-    - scope
-    x-usedIn:
-    - /user/{envId}/scaling-metrics/
-    - /user/{envId}/scaling-metrics/{metricName}/
-  ScalingMetricDetailsResponse_2:
-    properties:
-      data:
-        $ref: '#/definitions/ScalingMetric_2'
-        readOnly: true
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/ScalingMetric_2'
-    x-usedIn:
-    - /user/{envId}/scaling-metrics/
-    - /user/{envId}/scaling-metrics/{metricName}/
+      summary: Update by env id scaling metrics by metric name
+      x-summary-source: derived
+      operationId: patchByEnvIdScalingMetricsByMetricName
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/user
+components:
+  schemas:
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    ScalingMetricDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ScalingMetric'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/ScalingMetric'
+      x-usedIn:
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+    ApiErrorResponse:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /account/{accountId}/global-variables/
+      - /account/{accountId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/orchestration-rules/
+      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/cost-centers/
+      - /account/{accountId}/cost-centers/{costCenterId}/
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+      - /account/{accountId}/environments/{envId}/clouds/
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+      - /account/{accountId}/acl-roles/
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+      - /account/{accountId}/roles/
+      - /account/{accountId}/roles/{roleId}/
+      - /account/{accountId}/roles/{roleId}/actions/clone/
+      - /account/{accountId}/roles/{roleId}/actions/deprecate/
+      - /account/{accountId}/roles/{roleId}/images/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/roles/{roleId}/global-variables/
+      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/images/
+      - /account/{accountId}/images/{imageId}/
+      - /account/{accountId}/images/{imageId}/actions/copy/
+      - /account/{accountId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/projects/
+      - /account/{accountId}/projects/{projectId}/
+      - /account/{accountId}/scripts/
+      - /account/{accountId}/scripts/{scriptId}/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      - /account/{accountId}/webhook-endpoints/
+      - /account/{accountId}/os/
+      - /account/{accountId}/os/{osId}/
+      - /account/{accountId}/events/
+      - /account/{accountId}/events/{eventId}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+      - /account/{accountId}/users/
+      - /account/{accountId}/ansible-tower/servers/
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    ScalingMetricListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ScalingMetric'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/ScalingMetric'
+      x-usedIn:
+      - /account/{accountId}/scaling-metrics/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    ScalingMetric:
+      properties:
+        filePath:
+          description: Path to the File
+          type: string
+        function:
+          description: Aggregate function to use when executing decision logic.
+          enum:
+          - average
+          - sum
+          - min
+          - max
+          type: string
+        inverted:
+          description: Whether this metric should be inverted. By default Farm Roles scale up when the value goes above the scale up threshold. If this is true, Farm Roles will scale up when the value goes below the scale up threshold.
+          type: boolean
+        name:
+          description: The name of a Scaling Metric.
+          type: string
+        retrieveMethod:
+          description: The operation that should be performed on the File to obtain the value of the Metric.
+          enum:
+          - read
+          - execute
+          - url-request
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+      required:
+      - name
+      - retrieveMethod
+      - filePath
+      - function
+      x-filterable:
+      - name
+      - retrieveMethod
+      - function
+      - inverted
+      - scope
+      x-usedIn:
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    ScalingMetricDetailsResponse_2:
+      properties:
+        data:
+          $ref: '#/components/schemas/ScalingMetric_2'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/ScalingMetric_2'
+      x-usedIn:
+      - /user/{envId}/scaling-metrics/
+      - /user/{envId}/scaling-metrics/{metricName}/
+    ApiErrorResponse_2:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /user/{envId}/global-variables/
+      - /user/{envId}/global-variables/{globalVariableName}/
+      - /user/{envId}/orchestration-rules/
+      - /user/{envId}/orchestration-rules/{orchestrationRuleId}/
+      - /user/{envId}/projects/
+      - /user/{envId}/projects/{projectId}/
+      - /user/{envId}/cost-centers/
+      - /user/{envId}/cost-centers/{costCenterId}/
+      - /user/{envId}/role-categories/
+      - /user/{envId}/role-categories/{roleCategoryId}/
+      - /user/{envId}/roles/
+      - /user/{envId}/roles/{roleId}/
+      - /user/{envId}/roles/{roleId}/actions/promote/
+      - /user/{envId}/roles/{roleId}/actions/clone/
+      - /user/{envId}/roles/{roleId}/actions/deprecate/
+      - /user/{envId}/roles/{roleId}/images/
+      - /user/{envId}/roles/{roleId}/images/{imageId}/
+      - /user/{envId}/roles/{roleId}/images/{imageId}/actions/replace/
+      - /user/{envId}/roles/{roleId}/global-variables/
+      - /user/{envId}/roles/{roleId}/global-variables/{globalVariableName}/
+      - /user/{envId}/roles/{roleId}/orchestration-rules/
+      - /user/{envId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /user/{envId}/images/
+      - /user/{envId}/images/{imageId}/
+      - /user/{envId}/images/{imageId}/actions/copy/
+      - /user/{envId}/images/{imageId}/actions/replace/
+      - /user/{envId}/servers/
+      - /user/{envId}/servers/{serverId}/
+      - /user/{envId}/servers/{serverId}/actions/suspend/
+      - /user/{envId}/servers/{serverId}/actions/terminate/
+      - /user/{envId}/servers/{serverId}/actions/resume/
+      - /user/{envId}/servers/{serverId}/actions/reboot/
+      - /user/{envId}/servers/{serverId}/actions/sync/
+      - /user/{envId}/servers/{serverId}/global-variables/
+      - /user/{envId}/servers/{serverId}/global-variables/{globalVariableName}/
+      - /user/{envId}/farms/{farmId}/servers/
+      - /user/{envId}/farm-roles/{farmRoleId}/servers/
+      - /user/{envId}/scripts/
+      - /user/{envId}/scripts/{scriptId}/
+      - /user/{envId}/scripts/{scriptId}/actions/execute/
+      - /user/{envId}/scripts/{scriptId}/script-versions/
+      - /user/{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      - /user/{envId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/actions/execute/
+      - /user/{envId}/script-executions/{scriptExecutionId}/
+      - /user/{envId}/orchestration-logs/
+      - /user/{envId}/orchestration-logs/{logEntryId}/
+      - /user/{envId}/event-logs/
+      - /user/{envId}/event-logs/{eventLogEntryId}/
+      - /user/{envId}/webhook-endpoints/
+      - /user/{envId}/os/
+      - /user/{envId}/os/{osId}/
+      - /user/{envId}/events/
+      - /user/{envId}/events/{eventId}/
+      - /user/{envId}/events/{eventId}/actions/fire/
+      - /user/{envId}/farms/
+      - /user/{envId}/farms/{farmId}/
+      - /user/{envId}/farms/{farmId}/cloud-services/
+      - /user/{envId}/farms/{farmId}/cloud-services/{farmCloudServiceLinkId}/
+      - /user/{envId}/farms/{farmId}/actions/generate-template/
+      - /user/{envId}/farms/{farmId}/actions/launch/
+      - /user/{envId}/farms/{farmId}/actions/suspend/
+      - /user/{envId}/farms/{farmId}/actions/resume/
+      - /user/{envId}/farms/{farmId}/actions/terminate/
+      - /user/{envId}/farms/{farmId}/actions/lock/
+      - /user/{envId}/farms/{farmId}/actions/unlock/
+      - /user/{envId}/farms/{farmId}/actions/clone/
+      - /user/{envId}/farms/{farmId}/global-variables/
+      - /user/{envId}/farms/{farmId}/global-variables/{globalVariableName}/
+      - /user/{envId}/farms/{farmId}/farm-roles/
+      - /user/{envId}/farm-roles/{farmRoleId}/
+      - /user/{envId}/farm-roles/{farmRoleId}/actions/import-server/
+      - /user/{envId}/farm-roles/{farmRoleId}/actions/generate-template/
+      - /user/{envId}/farm-roles/{farmRoleId}/actions/clone/
+      - /user/{envId}/farm-roles/{farmRoleId}/scaling/
+      - /user/{envId}/farm-roles/{farmRoleId}/scaling/{metricName}/
+      - /user/{envId}/farm-roles/{farmRoleId}/storage/
+      - /user/{envId}/farm-roles/{farmRoleId}/storage/{storageConfigurationId}/
+      - /user/{envId}/scaling-metrics/
+      - /user/{envId}/scaling-metrics/{metricName}/
+      - /user/{envId}/farm-roles/{farmRoleId}/global-variables/
+      - /user/{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/
+      - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/
+      - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
+      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
+      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    ScalingMetricListResponse_2:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ScalingMetric_2'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/ScalingMetric_2'
+      x-usedIn:
+      - /user/{envId}/scaling-metrics/
+    ScalingMetric_2:
+      properties:
+        filePath:
+          description: Path to the File
+          type: string
+        function:
+          description: Aggregate function to use when executing decision logic.
+          enum:
+          - average
+          - sum
+          - min
+          - max
+          type: string
+        inverted:
+          description: Whether this metric should be inverted. By default Farm Roles scale up when the value goes above the scale up threshold. If this is true, Farm Roles will scale up when the value goes below the scale up threshold.
+          type: boolean
+        name:
+          description: The name of a Scaling Metric.
+          type: string
+        retrieveMethod:
+          description: The operation that should be performed on the File to obtain the value of the Metric.
+          enum:
+          - read
+          - execute
+          - url-request
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+      required:
+      - name
+      - retrieveMethod
+      - filePath
+      - function
+      x-filterable:
+      - name
+      - retrieveMethod
+      - function
+      - inverted
+      - scope
+      x-usedIn:
+      - /user/{envId}/scaling-metrics/
+      - /user/{envId}/scaling-metrics/{metricName}/
+x-refined-from:
+- scalr-account-openapi.yml
+- scalr-user-openapi.yml
 x-dry-yaml-definitions:
   architecture:
     enum:

@@ -1,11 +1,11 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
-  description: Manage Roles, Images, Environments and etc.
-  title: Scalr Account Acl Roles Ansible Tower API
+  title: Scalr Ansible Tower API
   version: 1.0.0
-basePath: /api/v1beta0/account
-produces:
-- application/json
+  description: 'Operations tagged Ansible Tower across 2 of this provider''s published API definitions: scalr-account-openapi.yml, scalr-global-openapi.yml. Each path carries the servers of the definition it was published in.'
+servers:
+- url: /api/v1beta0/account
+- url: /api/v1beta0/global
 tags:
 - name: Ansible Tower
 paths:
@@ -15,18 +15,19 @@ paths:
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List all Ansible Tower Configurations in the Account scope.
       responses:
         200:
           description: A list of AnsibleTowerConfiguration objects.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationListResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationListResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -34,17 +35,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -58,20 +63,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -87,45 +96,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Ansible Tower
+      summary: Get by account id ansible tower configurations
+      x-summary-source: derived
+      operationId: getByAccountIdAnsibleTowerConfigurations
+      x-operation-id-source: derived
     post:
       description: Add a new Ansible Tower Configuration in the Account scope.
-      parameters:
-      - description: The JSON representation of a AnsibleTowerConfiguration object.
-        in: body
-        name: ansibleTowerConfigurationObject
-        required: true
-        schema:
-          $ref: '#/definitions/AnsibleTowerConfiguration'
       responses:
         201:
           description: The JSON representation of a AnsibleTowerConfiguration object.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -133,17 +151,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -157,20 +179,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -186,44 +212,71 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnsibleTowerConfiguration'
+        description: The JSON representation of a AnsibleTowerConfiguration object.
+        required: true
       tags:
       - Ansible Tower
+      summary: Create by account id ansible tower configurations
+      x-summary-source: derived
+      operationId: postByAccountIdAnsibleTowerConfigurations
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/account
   /{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The ID of a AnsibleTowerConfiguration object.
       in: path
-      maxLength: 36
-      minLength: 36
       name: ansibleTowerConfigurationId
-      pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
       required: true
-      type: string
       x-references:
-        $ref: '#/definitions/AnsibleTowerConfiguration'
+        $ref: '#/components/schemas/AnsibleTowerConfiguration'
+      schema:
+        type: string
+        maxLength: 36
+        minLength: 36
+        pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
     delete:
       description: Delete the Ansible Tower Configuration.
       responses:
@@ -231,8 +284,6 @@ paths:
           description: Successful deletion.
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -240,17 +291,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -264,20 +319,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -293,38 +352,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Ansible Tower
+      summary: Delete by account id ansible tower configurations by ansible tower…
+      x-summary-source: derived
+      operationId: deleteByAccountIdAnsibleTowerConfigurationsByAnsibleTowerConfigurationId
+      x-operation-id-source: derived
     get:
       description: Retrieve detailed information about a given Ansible Tower Configuration.
       responses:
         200:
           description: The JSON representation of a AnsibleTowerConfiguration object.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -332,17 +407,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -356,20 +435,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -385,45 +468,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Ansible Tower
+      summary: Get by account id ansible tower configurations by ansible tower configuration id
+      x-summary-source: derived
+      operationId: getByAccountIdAnsibleTowerConfigurationsByAnsibleTowerConfigurationId
+      x-operation-id-source: derived
     patch:
       description: Modify the Ansible Tower Configuration.
-      parameters:
-      - description: The JSON representation of a AnsibleTowerConfiguration object.
-        in: body
-        name: ansibleTowerConfigurationObject
-        required: true
-        schema:
-          $ref: '#/definitions/AnsibleTowerConfiguration'
       responses:
         200:
           description: The JSON representation of a AnsibleTowerConfiguration object.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -431,17 +523,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -455,20 +551,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -484,45 +584,71 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnsibleTowerConfiguration'
+        description: The JSON representation of a AnsibleTowerConfiguration object.
+        required: true
       tags:
       - Ansible Tower
+      summary: Update by account id ansible tower configurations by ansible tower…
+      x-summary-source: derived
+      operationId: patchByAccountIdAnsibleTowerConfigurationsByAnsibleTowerConfigurationId
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/account
   /{accountId}/ansible-tower/servers/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List all Ansible Tower Servers in the Account scope.
       responses:
         200:
           description: A list of AnsibleTowerServer objects.
-          schema:
-            $ref: '#/definitions/AnsibleTowerServerListResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerServerListResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -530,17 +656,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -554,20 +684,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -583,39 +717,57 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Ansible Tower
+      summary: Get by account id ansible tower servers
+      x-summary-source: derived
+      operationId: getByAccountIdAnsibleTowerServers
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/account
   /ansible-tower/configurations/:
     get:
       description: List all Ansible Tower Configurations in the global scope.
       responses:
         200:
           description: A list of AnsibleTowerConfiguration objects.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationListResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationListResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -623,17 +775,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -647,20 +803,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -674,45 +834,54 @@ paths:
             name: NotEnabledPlatform
           - description: The Operating System does not match.
             name: OperatingSystemMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
       tags:
       - Ansible Tower
+      summary: Get ansible tower configurations
+      x-summary-source: derived
+      operationId: getAnsibleTowerConfigurations
+      x-operation-id-source: derived
     post:
       description: Add a new Ansible Tower Configuration in the global scope.
-      parameters:
-      - description: The JSON representation of a AnsibleTowerConfiguration object.
-        in: body
-        name: ansibleTowerConfigurationObject
-        required: true
-        schema:
-          $ref: '#/definitions/AnsibleTowerConfiguration_2'
       responses:
         201:
           description: The JSON representation of a AnsibleTowerConfiguration object.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationDetailsResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationDetailsResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -720,17 +889,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -744,20 +917,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -771,39 +948,65 @@ paths:
             name: NotEnabledPlatform
           - description: The Operating System does not match.
             name: OperatingSystemMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+        description: The JSON representation of a AnsibleTowerConfiguration object.
+        required: true
       tags:
       - Ansible Tower
+      summary: Create ansible tower configurations
+      x-summary-source: derived
+      operationId: postAnsibleTowerConfigurations
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/global
   /ansible-tower/configurations/{ansibleTowerConfigurationId}/:
     parameters:
     - description: The ID of a AnsibleTowerConfiguration object.
       in: path
-      maxLength: 36
-      minLength: 36
       name: ansibleTowerConfigurationId
-      pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
       required: true
-      type: string
       x-references:
-        $ref: '#/definitions/AnsibleTowerConfiguration_2'
+        $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+      schema:
+        type: string
+        maxLength: 36
+        minLength: 36
+        pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
     delete:
       description: Delete the Ansible Tower Configuration.
       responses:
@@ -811,8 +1014,6 @@ paths:
           description: Successful deletion.
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -820,17 +1021,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -844,20 +1049,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -871,38 +1080,54 @@ paths:
             name: NotEnabledPlatform
           - description: The Operating System does not match.
             name: OperatingSystemMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
       tags:
       - Ansible Tower
+      summary: Delete ansible tower configurations by ansible tower configuration id
+      x-summary-source: derived
+      operationId: deleteAnsibleTowerConfigurationsByAnsibleTowerConfigurationId
+      x-operation-id-source: derived
     get:
       description: Retrieve detailed information about a given Ansible Tower Configuration.
       responses:
         200:
           description: The JSON representation of a AnsibleTowerConfiguration object.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationDetailsResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationDetailsResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -910,17 +1135,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -934,20 +1163,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -961,45 +1194,54 @@ paths:
             name: NotEnabledPlatform
           - description: The Operating System does not match.
             name: OperatingSystemMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
       tags:
       - Ansible Tower
+      summary: Get ansible tower configurations by ansible tower configuration id
+      x-summary-source: derived
+      operationId: getAnsibleTowerConfigurationsByAnsibleTowerConfigurationId
+      x-operation-id-source: derived
     patch:
       description: Modify the Ansible Tower Configuration.
-      parameters:
-      - description: The JSON representation of a AnsibleTowerConfiguration object.
-        in: body
-        name: ansibleTowerConfigurationObject
-        required: true
-        schema:
-          $ref: '#/definitions/AnsibleTowerConfiguration_2'
       responses:
         200:
           description: The JSON representation of a AnsibleTowerConfiguration object.
-          schema:
-            $ref: '#/definitions/AnsibleTowerConfigurationDetailsResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerConfigurationDetailsResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -1007,17 +1249,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -1031,20 +1277,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -1058,39 +1308,64 @@ paths:
             name: NotEnabledPlatform
           - description: The Operating System does not match.
             name: OperatingSystemMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+        description: The JSON representation of a AnsibleTowerConfiguration object.
+        required: true
       tags:
       - Ansible Tower
+      summary: Update ansible tower configurations by ansible tower configuration id
+      x-summary-source: derived
+      operationId: patchAnsibleTowerConfigurationsByAnsibleTowerConfigurationId
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/global
   /ansible-tower/servers/:
     get:
       description: List all Ansible Tower Servers in the global scope.
       responses:
         200:
           description: A list of AnsibleTowerServer objects.
-          schema:
-            $ref: '#/definitions/AnsibleTowerServerListResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnsibleTowerServerListResponse_2'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -1098,17 +1373,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -1122,20 +1401,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -1149,687 +1432,712 @@ paths:
             name: NotEnabledPlatform
           - description: The Operating System does not match.
             name: OperatingSystemMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse_2'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse_2'
       tags:
       - Ansible Tower
-definitions:
-  ComposedAnsibleTowerOrganizationIdentity:
-    properties:
-      id:
-        description: Unique identifier of the Ansible Tower Organization object.
-        type: integer
-      name:
-        description: The name of the Ansible Tower Organization object.
-        type: string
-  ApiPagination:
-    properties:
-      first:
-        readOnly: true
-        type: string
-      last:
-        readOnly: true
-        type: string
-      next:
-        readOnly: true
-        type: string
-      prev:
-        readOnly: true
-        type: string
-  AnsibleTowerConfigurationListResponse_2:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/AnsibleTowerConfiguration_2'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/AnsibleTowerConfiguration_2'
-    x-usedIn:
-    - /global/ansible-tower/configurations/
-  AnsibleTowerConfigurationDetailsResponse_2:
-    properties:
-      data:
-        $ref: '#/definitions/AnsibleTowerConfiguration_2'
-        readOnly: true
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/AnsibleTowerConfiguration_2'
-    x-usedIn:
-    - /global/ansible-tower/configurations/
-    - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  ApiErrorResponse:
-    description: Common response for erroneous requests.
-    properties:
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-usedIn:
-    - /account/{accountId}/global-variables/
-    - /account/{accountId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/orchestration-rules/
-    - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/cost-centers/
-    - /account/{accountId}/cost-centers/{costCenterId}/
-    - /account/{accountId}/environments/
-    - /account/{accountId}/environments/{envId}/
-    - /account/{accountId}/environments/{envId}/clouds/
-    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-    - /account/{accountId}/environments/{envId}/teams/
-    - /account/{accountId}/environments/{envId}/teams/{teamId}/
-    - /account/{accountId}/teams/
-    - /account/{accountId}/teams/{teamId}/
-    - /account/{accountId}/acl-roles/
-    - /account/{accountId}/role-categories/
-    - /account/{accountId}/role-categories/{roleCategoryId}/
-    - /account/{accountId}/roles/
-    - /account/{accountId}/roles/{roleId}/
-    - /account/{accountId}/roles/{roleId}/actions/clone/
-    - /account/{accountId}/roles/{roleId}/actions/deprecate/
-    - /account/{accountId}/roles/{roleId}/images/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/roles/{roleId}/global-variables/
-    - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/images/
-    - /account/{accountId}/images/{imageId}/
-    - /account/{accountId}/images/{imageId}/actions/copy/
-    - /account/{accountId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/projects/
-    - /account/{accountId}/projects/{projectId}/
-    - /account/{accountId}/scripts/
-    - /account/{accountId}/scripts/{scriptId}/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
-    - /account/{accountId}/webhook-endpoints/
-    - /account/{accountId}/os/
-    - /account/{accountId}/os/{osId}/
-    - /account/{accountId}/events/
-    - /account/{accountId}/events/{eventId}/
-    - /account/{accountId}/cloud-credentials/
-    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-    - /account/{accountId}/scaling-metrics/
-    - /account/{accountId}/scaling-metrics/{metricName}/
-    - /account/{accountId}/users/
-    - /account/{accountId}/ansible-tower/servers/
-    - /account/{accountId}/ansible-tower/configurations/
-    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  AnsibleTowerGroup:
-    discriminator: type
-    properties:
-      type:
-        enum:
-        - AnsibleTowerGroupRegular
-        - AnsibleTowerGroupTemplate
-        type: string
-    required:
-    - type
-    x-concreteTypes:
-    - $ref: '#/definitions/AnsibleTowerGroupRegular'
-    - $ref: '#/definitions/AnsibleTowerGroupTemplate'
-  ApiMetaContainer:
-    properties:
-      sample:
-        description: Actual properties TBD.
-        type: string
-  AnsibleTowerServerListResponse:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/AnsibleTowerServer'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/AnsibleTowerServer'
-    x-usedIn:
-    - /account/{accountId}/ansible-tower/servers/
-  AnsibleTowerMachineCredentials:
-    discriminator: type
-    properties:
-      id:
-        description: The identifier of the Machine Credentials.
-        type: integer
-      name:
-        description: Name of the Machine Credentials.
-        type: string
-      type:
-        description: Type of the Machine Credentials.
-        enum:
-        - AnsibleTowerMachineCredentialsWindows
-        - AnsibleTowerMachineCredentialsLinux
-        type: string
-    required:
-    - type
-    x-concreteTypes:
-    - $ref: '#/definitions/AnsibleTowerMachineCredentialsLinux'
-    - $ref: '#/definitions/AnsibleTowerMachineCredentialsWindows'
-  AnsibleTowerMachineCredentialsWindows_2:
-    properties:
-      id:
-        description: The identifier of the Machine Credentials.
-        type: integer
-      name:
-        description: Name of the Machine Credentials
-        type: string
-      password:
-        format: password
-        type: string
-      type:
-        description: Type of the Machine Credentials.
-        enum:
-        - AnsibleTowerMachineCredentialsWindows
-        - AnsibleTowerMachineCredentialsLinux
-        type: string
-    required:
-    - type
-    x-abstractType:
-      $ref: '#/definitions/AnsibleTowerMachineCredentials_2'
-    x-discriminator: type
-  AnsibleTowerConfigurationListResponse:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/AnsibleTowerConfiguration'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/AnsibleTowerConfiguration'
-    x-usedIn:
-    - /account/{accountId}/ansible-tower/configurations/
-  AnsibleTowerConfigurationDetailsResponse:
-    properties:
-      data:
-        $ref: '#/definitions/AnsibleTowerConfiguration'
-        readOnly: true
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/AnsibleTowerConfiguration'
-    x-usedIn:
-    - /account/{accountId}/ansible-tower/configurations/
-    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  AnsibleTowerMachineCredentialsLinux:
-    properties:
-      id:
-        description: The identifier of the Machine Credentials.
-        type: integer
-      name:
-        description: Name of the Machine Credentials.
-        type: string
-      publicKey:
-        type: string
-      type:
-        description: Type of the Machine Credentials.
-        enum:
-        - AnsibleTowerMachineCredentialsWindows
-        - AnsibleTowerMachineCredentialsLinux
-        type: string
-    required:
-    - type
-    x-abstractType:
-      $ref: '#/definitions/AnsibleTowerMachineCredentials'
-    x-discriminator: type
-  AnsibleTowerConfiguration:
-    properties:
-      allowOverride:
-        description: Indicates whether the Configuration variables could be overridden on lower scopes.
-        type: boolean
-      credentials:
-        items:
-          $ref: '#/definitions/AnsibleTowerMachineCredentials'
-        type: array
-      groups:
-        description: List of Ansible Tower Groups.
-        items:
-          $ref: '#/definitions/AnsibleTowerGroup'
-        type: array
-      id:
-        description: The Ansible Tower configuration identifier.
-        maxLength: 36
-        minLength: 36
-        pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
-        readOnly: true
-        type: string
-      inventory:
-        $ref: '#/definitions/ComposedAnsibleTowerInventoryIdentity'
-      isShared:
-        default: true
-        description: Indicates whether the Configuration is available on lower scopes.
-        type: boolean
-      name:
-        description: The Ansible Tower configuration name.
-        type: string
-      organization:
-        $ref: '#/definitions/ComposedAnsibleTowerOrganizationIdentity'
-      scope:
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      server:
-        $ref: '#/definitions/AnsibleTowerServerForeignKey'
-        description: Ansible Tower Server foreign key.
-      variables:
-        description: The Ansible Tower variables to override. JSON or YAML representation.
-        type: string
-    required:
-    - name
-    - server
-    - organization
-    - inventory
-    x-filterable:
-    - id
-    - server
-    - organization
-    - inventory
-    x-usedIn:
-    - /account/{accountId}/ansible-tower/configurations/
-    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  AnsibleTowerServer:
-    properties:
-      certificate:
-        type: string
-      id:
-        maxLength: 36
-        minLength: 36
-        pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
-        readOnly: true
-        type: string
-      scope:
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      sslVerification:
-        description: Specifies whether it should verify SSL Certificate.
-        type: boolean
-      url:
-        description: The Ansible Tower Server API url.
-        type: string
-      userName:
-        description: The ID of the Ansible Tower user.
-        type: string
-    required:
-    - url
-    - userName
-    x-filterable:
-    - id
-    - url
-    - scope
-  AnsibleTowerMachineCredentialsWindows:
-    properties:
-      id:
-        description: The identifier of the Machine Credentials.
-        type: integer
-      name:
-        description: Name of the Machine Credentials.
-        type: string
-      password:
-        format: password
-        type: string
-      type:
-        description: Type of the Machine Credentials.
-        enum:
-        - AnsibleTowerMachineCredentialsWindows
-        - AnsibleTowerMachineCredentialsLinux
-        type: string
-    required:
-    - type
-    x-abstractType:
-      $ref: '#/definitions/AnsibleTowerMachineCredentials'
-    x-discriminator: type
-  ApiMessage:
-    properties:
-      code:
-        description: A machine-readable representation of the message.
-        type: string
-      message:
-        description: A human-readable representation of the message.
-        type: string
-  AnsibleTowerGroupRegular:
-    properties:
-      id:
-        description: Unique identifier of the Ansible Tower Regular Group.
-        type: integer
-      name:
-        description: The name of the Ansible Tower Regular Group.
-        type: string
-      type:
-        enum:
-        - AnsibleTowerGroupRegular
-        - AnsibleTowerGroupTemplate
-        type: string
-    required:
-    - type
-    x-abstractType:
-      $ref: '#/definitions/AnsibleTowerGroup'
-    x-discriminator: type
-  AnsibleTowerMachineCredentials_2:
-    discriminator: type
-    properties:
-      id:
-        description: The identifier of the Machine Credentials.
-        type: integer
-      name:
-        description: Name of the Machine Credentials
-        type: string
-      type:
-        description: Type of the Machine Credentials.
-        enum:
-        - AnsibleTowerMachineCredentialsWindows
-        - AnsibleTowerMachineCredentialsLinux
-        type: string
-    required:
-    - type
-    x-concreteTypes:
-    - $ref: '#/definitions/AnsibleTowerMachineCredentialsLinux_2'
-    - $ref: '#/definitions/AnsibleTowerMachineCredentialsWindows_2'
-  AnsibleTowerServerForeignKey:
-    properties:
-      id:
-        type: string
-    required:
-    - id
-    x-derived:
-      $ref: '#/definitions/AnsibleTowerServer'
-    x-references:
-      $ref: '#/definitions/AnsibleTowerServer'
-  AnsibleTowerConfiguration_2:
-    properties:
-      allowOverride:
-        description: Indicates whether the Configuration variables could be overridden on lower scopes.
-        type: boolean
-      credentials:
-        items:
-          $ref: '#/definitions/AnsibleTowerMachineCredentials_2'
-        type: array
-      groups:
-        description: List of Ansible Tower Groups.
-        items:
-          $ref: '#/definitions/AnsibleTowerGroup'
-        type: array
-      id:
-        description: The Ansible Tower configuration identifier.
-        maxLength: 36
-        minLength: 36
-        pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
-        readOnly: true
-        type: string
-      inventory:
-        $ref: '#/definitions/ComposedAnsibleTowerInventoryIdentity'
-      isShared:
-        default: true
-        description: Indicates whether the Configuration is available on lower scopes.
-        type: boolean
-      name:
-        description: The Ansible Tower configuration name.
-        type: string
-      organization:
-        $ref: '#/definitions/ComposedAnsibleTowerOrganizationIdentity'
-      scope:
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      server:
-        $ref: '#/definitions/AnsibleTowerServerForeignKey'
-        description: Ansible Tower Server foreign key.
-      variables:
-        description: The Ansible Tower variables to override. JSON or YAML representation.
-        type: string
-    required:
-    - name
-    - server
-    - organization
-    - inventory
-    x-filterable:
-    - id
-    - server
-    - organization
-    - inventory
-    x-usedIn:
-    - /global/ansible-tower/configurations/
-    - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  ApiErrorResponse_2:
-    description: Common response for erroneous requests.
-    properties:
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-usedIn:
-    - /global/global-variables/
-    - /global/global-variables/{globalVariableName}/
-    - /global/role-categories/
-    - /global/role-categories/{roleCategoryId}/
-    - /global/roles/
-    - /global/roles/{roleId}/
-    - /global/roles/{roleId}/actions/deprecate/
-    - /global/roles/{roleId}/images/
-    - /global/roles/{roleId}/images/{imageId}/
-    - /global/roles/{roleId}/images/{imageId}/actions/replace/
-    - /global/roles/{roleId}/global-variables/
-    - /global/roles/{roleId}/global-variables/{globalVariableName}/
-    - /global/roles/{roleId}/orchestration-rules/
-    - /global/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-    - /global/images/
-    - /global/images/{imageId}/
-    - /global/images/{imageId}/actions/copy/
-    - /global/images/{imageId}/actions/replace/
-    - /global/os/
-    - /global/os/{osId}/
-    - /global/projects/
-    - /global/projects/{projectId}/
-    - /global/cloud-credentials/
-    - /global/cloud-credentials/{cloudCredentialsId}/
-    - /global/users/
-    - /global/ansible-tower/servers/
-    - /global/ansible-tower/configurations/
-    - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  ComposedAnsibleTowerInventoryIdentity:
-    properties:
-      id:
-        description: Unique identifier of the Ansible Tower Inventory object.
-        type: integer
-      name:
-        description: The name of the Ansible Tower Inventory object.
-        type: string
-  AnsibleTowerMachineCredentialsLinux_2:
-    properties:
-      id:
-        description: The identifier of the Machine Credentials.
-        type: integer
-      name:
-        description: Name of the Machine Credentials
-        type: string
-      publicKey:
-        type: string
-      type:
-        description: Type of the Machine Credentials.
-        enum:
-        - AnsibleTowerMachineCredentialsWindows
-        - AnsibleTowerMachineCredentialsLinux
-        type: string
-    required:
-    - type
-    x-abstractType:
-      $ref: '#/definitions/AnsibleTowerMachineCredentials_2'
-    x-discriminator: type
-  AnsibleTowerGroupTemplate:
-    properties:
-      id:
-        description: Unique identifier of the Ansible Tower Template Group.
-        maxLength: 36
-        minLength: 36
-        pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
-        type: string
-      name:
-        description: The name of the Ansible Tower Template Group.
-        type: string
-      type:
-        enum:
-        - AnsibleTowerGroupRegular
-        - AnsibleTowerGroupTemplate
-        type: string
-    required:
-    - type
-    x-abstractType:
-      $ref: '#/definitions/AnsibleTowerGroup'
-    x-discriminator: type
-  AnsibleTowerServerListResponse_2:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/AnsibleTowerServer'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/AnsibleTowerServer'
-    x-usedIn:
-    - /global/ansible-tower/servers/
+      summary: Get ansible tower servers
+      x-summary-source: derived
+      operationId: getAnsibleTowerServers
+      x-operation-id-source: derived
+    servers:
+    - url: /api/v1beta0/global
+components:
+  schemas:
+    AnsibleTowerConfiguration:
+      properties:
+        allowOverride:
+          description: Indicates whether the Configuration variables could be overridden on lower scopes.
+          type: boolean
+        credentials:
+          items:
+            $ref: '#/components/schemas/AnsibleTowerMachineCredentials'
+          type: array
+        groups:
+          description: List of Ansible Tower Groups.
+          items:
+            $ref: '#/components/schemas/AnsibleTowerGroup'
+          type: array
+        id:
+          description: The Ansible Tower configuration identifier.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          readOnly: true
+          type: string
+        inventory:
+          $ref: '#/components/schemas/ComposedAnsibleTowerInventoryIdentity'
+        isShared:
+          default: true
+          description: Indicates whether the Configuration is available on lower scopes.
+          type: boolean
+        name:
+          description: The Ansible Tower configuration name.
+          type: string
+        organization:
+          $ref: '#/components/schemas/ComposedAnsibleTowerOrganizationIdentity'
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        server:
+          $ref: '#/components/schemas/AnsibleTowerServerForeignKey'
+          description: Ansible Tower Server foreign key.
+        variables:
+          description: The Ansible Tower variables to override. JSON or YAML representation.
+          type: string
+      required:
+      - name
+      - server
+      - organization
+      - inventory
+      x-filterable:
+      - id
+      - server
+      - organization
+      - inventory
+      x-usedIn:
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    AnsibleTowerGroupTemplate:
+      properties:
+        id:
+          description: Unique identifier of the Ansible Tower Template Group.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          type: string
+        name:
+          description: The name of the Ansible Tower Template Group.
+          type: string
+        type:
+          enum:
+          - AnsibleTowerGroupRegular
+          - AnsibleTowerGroupTemplate
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerGroup'
+      x-discriminator: type
+    AnsibleTowerServerForeignKey:
+      properties:
+        id:
+          type: string
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerServer'
+      x-references:
+        $ref: '#/components/schemas/AnsibleTowerServer'
+    AnsibleTowerMachineCredentials:
+      discriminator:
+        propertyName: type
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials.
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsLinux'
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsWindows'
+    AnsibleTowerServerListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AnsibleTowerServer'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerServer'
+      x-usedIn:
+      - /account/{accountId}/ansible-tower/servers/
+    AnsibleTowerMachineCredentialsLinux:
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials.
+          type: string
+        publicKey:
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerMachineCredentials'
+      x-discriminator: type
+    AnsibleTowerConfigurationDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/AnsibleTowerConfiguration'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerConfiguration'
+      x-usedIn:
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    AnsibleTowerGroupRegular:
+      properties:
+        id:
+          description: Unique identifier of the Ansible Tower Regular Group.
+          type: integer
+        name:
+          description: The name of the Ansible Tower Regular Group.
+          type: string
+        type:
+          enum:
+          - AnsibleTowerGroupRegular
+          - AnsibleTowerGroupTemplate
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerGroup'
+      x-discriminator: type
+    AnsibleTowerGroup:
+      discriminator:
+        propertyName: type
+      properties:
+        type:
+          enum:
+          - AnsibleTowerGroupRegular
+          - AnsibleTowerGroupTemplate
+          type: string
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AnsibleTowerGroupRegular'
+      - $ref: '#/components/schemas/AnsibleTowerGroupTemplate'
+    ComposedAnsibleTowerOrganizationIdentity:
+      properties:
+        id:
+          description: Unique identifier of the Ansible Tower Organization object.
+          type: integer
+        name:
+          description: The name of the Ansible Tower Organization object.
+          type: string
+    AnsibleTowerMachineCredentialsWindows:
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials.
+          type: string
+        password:
+          format: password
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerMachineCredentials'
+      x-discriminator: type
+    AnsibleTowerConfigurationListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AnsibleTowerConfiguration'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerConfiguration'
+      x-usedIn:
+      - /account/{accountId}/ansible-tower/configurations/
+    ApiErrorResponse:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /account/{accountId}/global-variables/
+      - /account/{accountId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/orchestration-rules/
+      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/cost-centers/
+      - /account/{accountId}/cost-centers/{costCenterId}/
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+      - /account/{accountId}/environments/{envId}/clouds/
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+      - /account/{accountId}/acl-roles/
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+      - /account/{accountId}/roles/
+      - /account/{accountId}/roles/{roleId}/
+      - /account/{accountId}/roles/{roleId}/actions/clone/
+      - /account/{accountId}/roles/{roleId}/actions/deprecate/
+      - /account/{accountId}/roles/{roleId}/images/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/roles/{roleId}/global-variables/
+      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/images/
+      - /account/{accountId}/images/{imageId}/
+      - /account/{accountId}/images/{imageId}/actions/copy/
+      - /account/{accountId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/projects/
+      - /account/{accountId}/projects/{projectId}/
+      - /account/{accountId}/scripts/
+      - /account/{accountId}/scripts/{scriptId}/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      - /account/{accountId}/webhook-endpoints/
+      - /account/{accountId}/os/
+      - /account/{accountId}/os/{osId}/
+      - /account/{accountId}/events/
+      - /account/{accountId}/events/{eventId}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+      - /account/{accountId}/users/
+      - /account/{accountId}/ansible-tower/servers/
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    AnsibleTowerServer:
+      properties:
+        certificate:
+          type: string
+        id:
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          readOnly: true
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        sslVerification:
+          description: Specifies whether it should verify SSL Certificate.
+          type: boolean
+        url:
+          description: The Ansible Tower Server API url.
+          type: string
+        userName:
+          description: The ID of the Ansible Tower user.
+          type: string
+      required:
+      - url
+      - userName
+      x-filterable:
+      - id
+      - url
+      - scope
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    ComposedAnsibleTowerInventoryIdentity:
+      properties:
+        id:
+          description: Unique identifier of the Ansible Tower Inventory object.
+          type: integer
+        name:
+          description: The name of the Ansible Tower Inventory object.
+          type: string
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    AnsibleTowerConfiguration_2:
+      properties:
+        allowOverride:
+          description: Indicates whether the Configuration variables could be overridden on lower scopes.
+          type: boolean
+        credentials:
+          items:
+            $ref: '#/components/schemas/AnsibleTowerMachineCredentials_2'
+          type: array
+        groups:
+          description: List of Ansible Tower Groups.
+          items:
+            $ref: '#/components/schemas/AnsibleTowerGroup'
+          type: array
+        id:
+          description: The Ansible Tower configuration identifier.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          readOnly: true
+          type: string
+        inventory:
+          $ref: '#/components/schemas/ComposedAnsibleTowerInventoryIdentity'
+        isShared:
+          default: true
+          description: Indicates whether the Configuration is available on lower scopes.
+          type: boolean
+        name:
+          description: The Ansible Tower configuration name.
+          type: string
+        organization:
+          $ref: '#/components/schemas/ComposedAnsibleTowerOrganizationIdentity'
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        server:
+          $ref: '#/components/schemas/AnsibleTowerServerForeignKey'
+          description: Ansible Tower Server foreign key.
+        variables:
+          description: The Ansible Tower variables to override. JSON or YAML representation.
+          type: string
+      required:
+      - name
+      - server
+      - organization
+      - inventory
+      x-filterable:
+      - id
+      - server
+      - organization
+      - inventory
+      x-usedIn:
+      - /global/ansible-tower/configurations/
+      - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    AnsibleTowerMachineCredentials_2:
+      discriminator:
+        propertyName: type
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsLinux_2'
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsWindows_2'
+    AnsibleTowerServerListResponse_2:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AnsibleTowerServer'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerServer'
+      x-usedIn:
+      - /global/ansible-tower/servers/
+    AnsibleTowerMachineCredentialsLinux_2:
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials
+          type: string
+        publicKey:
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerMachineCredentials_2'
+      x-discriminator: type
+    AnsibleTowerConfigurationDetailsResponse_2:
+      properties:
+        data:
+          $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+      x-usedIn:
+      - /global/ansible-tower/configurations/
+      - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    AnsibleTowerMachineCredentialsWindows_2:
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials
+          type: string
+        password:
+          format: password
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerMachineCredentials_2'
+      x-discriminator: type
+    AnsibleTowerConfigurationListResponse_2:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+      x-usedIn:
+      - /global/ansible-tower/configurations/
+    ApiErrorResponse_2:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /global/global-variables/
+      - /global/global-variables/{globalVariableName}/
+      - /global/role-categories/
+      - /global/role-categories/{roleCategoryId}/
+      - /global/roles/
+      - /global/roles/{roleId}/
+      - /global/roles/{roleId}/actions/deprecate/
+      - /global/roles/{roleId}/images/
+      - /global/roles/{roleId}/images/{imageId}/
+      - /global/roles/{roleId}/images/{imageId}/actions/replace/
+      - /global/roles/{roleId}/global-variables/
+      - /global/roles/{roleId}/global-variables/{globalVariableName}/
+      - /global/roles/{roleId}/orchestration-rules/
+      - /global/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /global/images/
+      - /global/images/{imageId}/
+      - /global/images/{imageId}/actions/copy/
+      - /global/images/{imageId}/actions/replace/
+      - /global/os/
+      - /global/os/{osId}/
+      - /global/projects/
+      - /global/projects/{projectId}/
+      - /global/cloud-credentials/
+      - /global/cloud-credentials/{cloudCredentialsId}/
+      - /global/users/
+      - /global/ansible-tower/servers/
+      - /global/ansible-tower/configurations/
+      - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+x-refined-from:
+- scalr-account-openapi.yml
+- scalr-global-openapi.yml
 x-dry-yaml-definitions:
   architecture:
     enum:

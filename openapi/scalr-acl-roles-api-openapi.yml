@@ -1,11 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: Manage Roles, Images, Environments and etc.
   title: Scalr Account Acl Roles API
   version: 1.0.0
-basePath: /api/v1beta0/account
-produces:
-- application/json
+servers:
+- url: /api/v1beta0/account
 tags:
 - name: Acl Roles
 paths:
@@ -15,18 +14,19 @@ paths:
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List the ACL Roles in this account.
       responses:
         200:
           description: A list of AclRole objects.
-          schema:
-            $ref: '#/definitions/AclRoleListResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AclRoleListResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -34,17 +34,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -58,20 +62,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -87,177 +95,194 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Acl Roles
-definitions:
-  ApiErrorResponse:
-    description: Common response for erroneous requests.
-    properties:
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-usedIn:
-    - /account/{accountId}/global-variables/
-    - /account/{accountId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/orchestration-rules/
-    - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/cost-centers/
-    - /account/{accountId}/cost-centers/{costCenterId}/
-    - /account/{accountId}/environments/
-    - /account/{accountId}/environments/{envId}/
-    - /account/{accountId}/environments/{envId}/clouds/
-    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-    - /account/{accountId}/environments/{envId}/teams/
-    - /account/{accountId}/environments/{envId}/teams/{teamId}/
-    - /account/{accountId}/teams/
-    - /account/{accountId}/teams/{teamId}/
-    - /account/{accountId}/acl-roles/
-    - /account/{accountId}/role-categories/
-    - /account/{accountId}/role-categories/{roleCategoryId}/
-    - /account/{accountId}/roles/
-    - /account/{accountId}/roles/{roleId}/
-    - /account/{accountId}/roles/{roleId}/actions/clone/
-    - /account/{accountId}/roles/{roleId}/actions/deprecate/
-    - /account/{accountId}/roles/{roleId}/images/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/roles/{roleId}/global-variables/
-    - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/images/
-    - /account/{accountId}/images/{imageId}/
-    - /account/{accountId}/images/{imageId}/actions/copy/
-    - /account/{accountId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/projects/
-    - /account/{accountId}/projects/{projectId}/
-    - /account/{accountId}/scripts/
-    - /account/{accountId}/scripts/{scriptId}/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
-    - /account/{accountId}/webhook-endpoints/
-    - /account/{accountId}/os/
-    - /account/{accountId}/os/{osId}/
-    - /account/{accountId}/events/
-    - /account/{accountId}/events/{eventId}/
-    - /account/{accountId}/cloud-credentials/
-    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-    - /account/{accountId}/scaling-metrics/
-    - /account/{accountId}/scaling-metrics/{metricName}/
-    - /account/{accountId}/users/
-    - /account/{accountId}/ansible-tower/servers/
-    - /account/{accountId}/ansible-tower/configurations/
-    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  ApiMessage:
-    properties:
-      code:
-        description: A machine-readable representation of the message.
-        type: string
-      message:
-        description: A human-readable representation of the message.
-        type: string
-  ApiMetaContainer:
-    properties:
-      sample:
-        description: Actual properties TBD.
-        type: string
-  AclRole:
-    properties:
-      baseRole:
-        description: Base ACL Role to override.
-        enum:
-        - no-access
-        - full-access
-        - read-only
-        type: string
-      id:
-        description: Unique identifier for this ACL Role object.
-        maxLength: 20
-        minLength: 20
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Name of this ACL Role.
-        type: string
-    required:
-    - name
-    x-createOnly:
-    - baseRole
-    x-filterable:
-    - id
-    - name
-    - baseRole
-  ApiPagination:
-    properties:
-      first:
-        readOnly: true
-        type: string
-      last:
-        readOnly: true
-        type: string
-      next:
-        readOnly: true
-        type: string
-      prev:
-        readOnly: true
-        type: string
-  AclRoleListResponse:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/AclRole'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/AclRole'
-    x-usedIn:
-    - /account/{accountId}/acl-roles/
+      summary: Get by account id acl roles
+      x-summary-source: derived
+      operationId: getByAccountIdAclRoles
+      x-operation-id-source: derived
+components:
+  schemas:
+    AclRole:
+      properties:
+        baseRole:
+          description: Base ACL Role to override.
+          enum:
+          - no-access
+          - full-access
+          - read-only
+          type: string
+        id:
+          description: Unique identifier for this ACL Role object.
+          maxLength: 20
+          minLength: 20
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Name of this ACL Role.
+          type: string
+      required:
+      - name
+      x-createOnly:
+      - baseRole
+      x-filterable:
+      - id
+      - name
+      - baseRole
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    AclRoleListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AclRole'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AclRole'
+      x-usedIn:
+      - /account/{accountId}/acl-roles/
+    ApiErrorResponse:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /account/{accountId}/global-variables/
+      - /account/{accountId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/orchestration-rules/
+      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/cost-centers/
+      - /account/{accountId}/cost-centers/{costCenterId}/
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+      - /account/{accountId}/environments/{envId}/clouds/
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+      - /account/{accountId}/acl-roles/
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+      - /account/{accountId}/roles/
+      - /account/{accountId}/roles/{roleId}/
+      - /account/{accountId}/roles/{roleId}/actions/clone/
+      - /account/{accountId}/roles/{roleId}/actions/deprecate/
+      - /account/{accountId}/roles/{roleId}/images/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/roles/{roleId}/global-variables/
+      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/images/
+      - /account/{accountId}/images/{imageId}/
+      - /account/{accountId}/images/{imageId}/actions/copy/
+      - /account/{accountId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/projects/
+      - /account/{accountId}/projects/{projectId}/
+      - /account/{accountId}/scripts/
+      - /account/{accountId}/scripts/{scriptId}/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      - /account/{accountId}/webhook-endpoints/
+      - /account/{accountId}/os/
+      - /account/{accountId}/os/{osId}/
+      - /account/{accountId}/events/
+      - /account/{accountId}/events/{eventId}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+      - /account/{accountId}/users/
+      - /account/{accountId}/ansible-tower/servers/
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
 x-dry-yaml-definitions:
   architecture:
     enum:

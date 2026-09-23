@@ -1,11 +1,10 @@
-swagger: '2.0'
+openapi: 3.2.0
 info:
   description: Manage Roles, Images, Environments and etc.
-  title: Scalr Account Acl Roles Environments API
+  title: Scalr Account Environments API
   version: 1.0.0
-basePath: /api/v1beta0/account
-produces:
-- application/json
+servers:
+- url: /api/v1beta0/account
 tags:
 - name: Environments
 paths:
@@ -15,18 +14,19 @@ paths:
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List Environments available in this Account.
       responses:
         200:
           description: A list of Environment objects.
-          schema:
-            $ref: '#/definitions/EnvironmentListResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentListResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -34,17 +34,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -58,20 +62,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -87,45 +95,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Get by account id environments
+      x-summary-source: derived
+      operationId: getByAccountIdEnvironments
+      x-operation-id-source: derived
     post:
       description: Create a new Environment in the Account.
-      parameters:
-      - description: The JSON representation of a Environment object.
-        in: body
-        name: environmentObject
-        required: true
-        schema:
-          $ref: '#/definitions/Environment'
       responses:
         201:
           description: The JSON representation of a Environment object.
-          schema:
-            $ref: '#/definitions/EnvironmentDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -133,17 +150,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -157,20 +178,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -186,39 +211,64 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Environment'
+        description: The JSON representation of a Environment object.
+        required: true
       tags:
       - Environments
+      summary: Create by account id environments
+      x-summary-source: derived
+      operationId: postByAccountIdEnvironments
+      x-operation-id-source: derived
   /{accountId}/environments/{envId}/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The ID of the Environment being accessed.
       in: path
       name: envId
       required: true
-      type: integer
+      schema:
+        type: integer
     delete:
       description: Delete an Environment from the Account.
       responses:
@@ -226,8 +276,6 @@ paths:
           description: Successful deletion.
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -235,17 +283,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -259,20 +311,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -288,38 +344,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Delete by account id environments by env id
+      x-summary-source: derived
+      operationId: deleteByAccountIdEnvironmentsByEnvId
+      x-operation-id-source: derived
     get:
       description: Retrieve detailed information about a given Environment.
       responses:
         200:
           description: The JSON representation of a Environment object.
-          schema:
-            $ref: '#/definitions/EnvironmentDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -327,17 +399,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -351,20 +427,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -380,45 +460,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Get by account id environments by env id
+      x-summary-source: derived
+      operationId: getByAccountIdEnvironmentsByEnvId
+      x-operation-id-source: derived
     patch:
       description: Update the attributes of an Environment.
-      parameters:
-      - description: The JSON representation of a Environment object.
-        in: body
-        name: environmentObject
-        required: true
-        schema:
-          $ref: '#/definitions/Environment'
       responses:
         200:
           description: The JSON representation of a Environment object.
-          schema:
-            $ref: '#/definitions/EnvironmentDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -426,17 +515,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -450,20 +543,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -479,50 +576,75 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Environment'
+        description: The JSON representation of a Environment object.
+        required: true
       tags:
       - Environments
+      summary: Update by account id environments by env id
+      x-summary-source: derived
+      operationId: patchByAccountIdEnvironmentsByEnvId
+      x-operation-id-source: derived
   /{accountId}/environments/{envId}/clouds/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The ID of the Environment being accessed.
       in: path
       name: envId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List the Clouds this environment has access to.
       responses:
         200:
           description: A list of Cloud objects.
-          schema:
-            $ref: '#/definitions/CloudListResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudListResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -530,17 +652,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -554,20 +680,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -583,45 +713,64 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Get by account id environments by env id clouds
+      x-summary-source: derived
+      operationId: getByAccountIdEnvironmentsByEnvIdClouds
+      x-operation-id-source: derived
   /{accountId}/environments/{envId}/clouds/{cloud}/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The ID of the Environment being accessed.
       in: path
       name: envId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The name of the cloud.
       in: path
       name: cloud
-      pattern: \w+
       required: true
-      type: string
+      schema:
+        type: string
+        pattern: \w+
     delete:
       description: Detaches Cloud Credentials from this Environment.
       responses:
@@ -629,8 +778,6 @@ paths:
           description: Successful deletion.
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -638,17 +785,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -662,20 +813,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -691,38 +846,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Delete by account id environments by env id clouds by cloud
+      x-summary-source: derived
+      operationId: deleteByAccountIdEnvironmentsByEnvIdCloudsByCloud
+      x-operation-id-source: derived
     get:
       description: Retrieve detailed information about given Cloud Credentials that this Environment is using.
       responses:
         200:
           description: The JSON representation of a CloudCredentials object.
-          schema:
-            $ref: '#/definitions/CloudCredentialsDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudCredentialsDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -730,17 +901,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -754,20 +929,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -783,45 +962,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Get by account id environments by env id clouds by cloud
+      x-summary-source: derived
+      operationId: getByAccountIdEnvironmentsByEnvIdCloudsByCloud
+      x-operation-id-source: derived
     post:
       description: Associate or replace Cloud Credentials with this Environment for the given Cloud.
-      parameters:
-      - description: The JSON representation of a CloudCredentialsForeignKey object.
-        in: body
-        name: cloudCredentialsForeignKeyObject
-        required: true
-        schema:
-          $ref: '#/definitions/CloudCredentialsForeignKey'
       responses:
         200:
           description: The JSON representation of a CloudCredentials object.
-          schema:
-            $ref: '#/definitions/CloudCredentialsDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CloudCredentialsDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -829,17 +1017,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -853,20 +1045,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -882,50 +1078,75 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CloudCredentialsForeignKey'
+        description: The JSON representation of a CloudCredentialsForeignKey object.
+        required: true
       tags:
       - Environments
+      summary: Create by account id environments by env id clouds by cloud
+      x-summary-source: derived
+      operationId: postByAccountIdEnvironmentsByEnvIdCloudsByCloud
+      x-operation-id-source: derived
   /{accountId}/environments/{envId}/teams/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The ID of the Environment being accessed.
       in: path
       name: envId
       required: true
-      type: integer
+      schema:
+        type: integer
     get:
       description: List the Teams that have access to this Environment.
       responses:
         200:
           description: A list of EnvironmentTeam objects.
-          schema:
-            $ref: '#/definitions/EnvironmentTeamListResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentTeamListResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -933,17 +1154,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -957,20 +1182,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -986,45 +1215,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Get by account id environments by env id teams
+      x-summary-source: derived
+      operationId: getByAccountIdEnvironmentsByEnvIdTeams
+      x-operation-id-source: derived
     post:
       description: Grants a Team access to this Environment.
-      parameters:
-      - description: The JSON representation of a EnvironmentTeam object.
-        in: body
-        name: environmentTeamObject
-        required: true
-        schema:
-          $ref: '#/definitions/EnvironmentTeam'
       responses:
         201:
           description: The JSON representation of a EnvironmentTeam object.
-          schema:
-            $ref: '#/definitions/EnvironmentTeamDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentTeamDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -1032,17 +1270,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -1056,20 +1298,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -1085,46 +1331,72 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentTeam'
+        description: The JSON representation of a EnvironmentTeam object.
+        required: true
       tags:
       - Environments
+      summary: Create by account id environments by env id teams
+      x-summary-source: derived
+      operationId: postByAccountIdEnvironmentsByEnvIdTeams
+      x-operation-id-source: derived
   /{accountId}/environments/{envId}/teams/{teamId}/:
     parameters:
     - description: The ID of the Account scoping this request.
       in: path
       name: accountId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The ID of the Environment being accessed.
       in: path
       name: envId
       required: true
-      type: integer
+      schema:
+        type: integer
     - description: The ID of a Team object.
       in: path
       name: teamId
       required: true
-      type: integer
       x-references:
-        $ref: '#/definitions/Team'
+        $ref: '#/components/schemas/Team'
+      schema:
+        type: integer
     delete:
       description: Withhold a Team's access to this Environment.
       responses:
@@ -1132,8 +1404,6 @@ paths:
           description: Successful deletion.
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -1141,17 +1411,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -1165,20 +1439,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -1194,45 +1472,54 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
       tags:
       - Environments
+      summary: Delete by account id environments by env id teams by team id
+      x-summary-source: derived
+      operationId: deleteByAccountIdEnvironmentsByEnvIdTeamsByTeamId
+      x-operation-id-source: derived
     patch:
       description: Update the attributes of an Team access on this Environment.
-      parameters:
-      - description: The JSON representation of a EnvironmentTeam object.
-        in: body
-        name: environmentTeamObject
-        required: true
-        schema:
-          $ref: '#/definitions/EnvironmentTeam'
       responses:
         200:
           description: The JSON representation of a EnvironmentTeam object.
-          schema:
-            $ref: '#/definitions/EnvironmentTeamDetailsResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/EnvironmentTeamDetailsResponse'
         400:
           description: A client-side error was made.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was structurally incorrect, and was not understood by the API.
             name: InvalidStructure
@@ -1240,17 +1527,21 @@ paths:
             name: InvalidValue
           - description: The request wasn't understood by the API.
             name: BadRequest
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         401:
           description: The request was not authenticated.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: The request was not properly authenticated.
             name: BadAuthentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         403:
           description: Insufficient permissions.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This request should be made in a different Scope.
             name: ScopeViolation
@@ -1264,20 +1555,24 @@ paths:
             name: ServersQuotaExceeded
           - description: The maximum number of the Servers that you can launch or resume on current Farm has been reached.
             name: ServersPerFarmQuotaExceeded
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         404:
           description: Resource not found.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: This endpoint does not exist.
             name: EndpointNotFound
             noDoc: true
           - description: The object you are trying to access does not exist.
             name: ObjectNotFound
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         409:
           description: Conflict with current state.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: These changes aren't possible while this object is in use.
             name: ObjectInUse
@@ -1293,1085 +1588,1110 @@ paths:
             name: OperatingSystemMismatch
           - description: Some of these settings cannot be applied, they either conflict with the current state or are invalid.
             name: UnacceptableObjectConfiguration
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         422:
           description: This request was well-formed but was rejected due to semantic errors.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
           x-errorCodes:
           - description: Some of the configuration settings cannot be applied because they conflict with the current state.
             name: ConfigurationMismatch
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         500:
           description: A server-side error occurred.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         501:
           description: This feature is not implemented in Scalr.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
         503:
           description: The service is currently unavailable.
-          schema:
-            $ref: '#/definitions/ApiErrorResponse'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiErrorResponse'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EnvironmentTeam'
+        description: The JSON representation of a EnvironmentTeam object.
+        required: true
       tags:
       - Environments
-definitions:
-  Environment:
-    properties:
-      added:
-        format: date-time
-        readOnly: true
-        type: string
-      costCenter:
-        $ref: '#/definitions/CostCenterForeignKey'
-      id:
-        readOnly: true
-        type: integer
-      name:
-        type: string
-      status:
-        enum:
-        - active
-        - inactive
-        type: string
-      type:
-        default: cmp
-        enum:
-        - cmp
-        - iacp
-        type: string
-    required:
-    - name
-    x-createOnly:
-    - type
-    x-filterable:
-    - id
-    - name
-    - added
-    - status
-    - type
-    - costCenter
-    x-usedIn:
-    - /account/{accountId}/environments/
-    - /account/{accountId}/environments/{envId}/
-  CloudstackCloudCredentials:
-    properties:
-      apiKey:
-        description: The API key.
-        type: string
-      apiUrl:
-        description: 'The URL like: http(s)://<cloudstack_ip>:<cloudstack_port>/client/api.'
-        type: string
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      provider:
-        description: Cloud provider that should be specified for CloudStack based clouds.
-        enum:
-        - cloudstack
-        - idcf
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      secretKey:
-        description: The secret key.
-        type: string
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    - provider
-    - apiUrl
-    - apiKey
-    - secretKey
-    x-abstractType:
-      $ref: '#/definitions/CloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    - provider
-    x-discriminator: cloudCredentialsType
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
-  ApiPagination:
-    properties:
-      first:
-        readOnly: true
-        type: string
-      last:
-        readOnly: true
-        type: string
-      next:
-        readOnly: true
-        type: string
-      prev:
-        readOnly: true
-        type: string
-  AclRoleForeignKey:
-    properties:
-      id:
-        description: Unique identifier for this ACL Role object.
-        type: string
-    required:
-    - id
-    x-derived:
-      $ref: '#/definitions/AclRole'
-    x-references:
-      $ref: '#/definitions/AclRole'
-  ComposedTeamIdentity:
-    properties:
-      id:
-        description: Unique identifier for a Team.
-        type: integer
-      name:
-        description: Team name.
-        readOnly: true
-        type: string
-    required:
-    - id
-  VmwareCloudCredentials:
-    properties:
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      password:
-        description: The password for the user.
-        format: password
-        type: string
-      provider:
-        description: Cloud provider for Openstack or Cloudstack based clouds.
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      sslVerification:
-        description: Specifies whether it should verify SSL Certificate.
-        type: boolean
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-      url:
-        description: vSphere Web Services SDK Server URL.
-        type: string
-      userName:
-        description: The ID of the user.
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    - url
-    - userName
-    - password
-    x-abstractType:
-      $ref: '#/definitions/CloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    x-discriminator: cloudCredentialsType
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
-  ApiErrorResponse:
-    description: Common response for erroneous requests.
-    properties:
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-usedIn:
-    - /account/{accountId}/global-variables/
-    - /account/{accountId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/orchestration-rules/
-    - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/cost-centers/
-    - /account/{accountId}/cost-centers/{costCenterId}/
-    - /account/{accountId}/environments/
-    - /account/{accountId}/environments/{envId}/
-    - /account/{accountId}/environments/{envId}/clouds/
-    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-    - /account/{accountId}/environments/{envId}/teams/
-    - /account/{accountId}/environments/{envId}/teams/{teamId}/
-    - /account/{accountId}/teams/
-    - /account/{accountId}/teams/{teamId}/
-    - /account/{accountId}/acl-roles/
-    - /account/{accountId}/role-categories/
-    - /account/{accountId}/role-categories/{roleCategoryId}/
-    - /account/{accountId}/roles/
-    - /account/{accountId}/roles/{roleId}/
-    - /account/{accountId}/roles/{roleId}/actions/clone/
-    - /account/{accountId}/roles/{roleId}/actions/deprecate/
-    - /account/{accountId}/roles/{roleId}/images/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/
-    - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/roles/{roleId}/global-variables/
-    - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/
-    - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-    - /account/{accountId}/images/
-    - /account/{accountId}/images/{imageId}/
-    - /account/{accountId}/images/{imageId}/actions/copy/
-    - /account/{accountId}/images/{imageId}/actions/replace/
-    - /account/{accountId}/projects/
-    - /account/{accountId}/projects/{projectId}/
-    - /account/{accountId}/scripts/
-    - /account/{accountId}/scripts/{scriptId}/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/
-    - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
-    - /account/{accountId}/webhook-endpoints/
-    - /account/{accountId}/os/
-    - /account/{accountId}/os/{osId}/
-    - /account/{accountId}/events/
-    - /account/{accountId}/events/{eventId}/
-    - /account/{accountId}/cloud-credentials/
-    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-    - /account/{accountId}/scaling-metrics/
-    - /account/{accountId}/scaling-metrics/{metricName}/
-    - /account/{accountId}/users/
-    - /account/{accountId}/ansible-tower/servers/
-    - /account/{accountId}/ansible-tower/configurations/
-    - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-  EnvironmentTeamListResponse:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/EnvironmentTeam'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/EnvironmentTeam'
-    x-usedIn:
-    - /account/{accountId}/environments/{envId}/teams/
-  Team:
-    properties:
-      defaultAclRole:
-        $ref: '#/definitions/AclRoleForeignKey'
-        description: Default ACL Role for the Team. This ACL Role is applied by default to all the members of the Team, but it can be overridden for specific users.
-      description:
-        description: Description of the Team.
-        type: string
-      id:
-        description: Identifier of the Team.
-        readOnly: true
-        type: integer
-      name:
-        description: Name of the Team.
-        type: string
-    required:
-    - defaultAclRole
-    - name
-    x-filterable:
-    - id
-    - name
-    - defaultAclRole
-    x-usedIn:
-    - /account/{accountId}/environments/{envId}/teams/{teamId}/
-    - /account/{accountId}/teams/
-    - /account/{accountId}/teams/{teamId}/
-  ApiMetaContainer:
-    properties:
-      sample:
-        description: Actual properties TBD.
-        type: string
-  CloudCredentials:
-    discriminator: cloudCredentialsType
-    properties:
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      provider:
-        description: Cloud provider for Openstack or Cloudstack based clouds.
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    x-concreteTypes:
-    - $ref: '#/definitions/AwsCloudCredentials'
-    - $ref: '#/definitions/GceCloudCredentials'
-    - $ref: '#/definitions/OpenstackCloudCredentials'
-    - $ref: '#/definitions/CloudstackCloudCredentials'
-    - $ref: '#/definitions/RackspaceCloudCredentials'
-    - $ref: '#/definitions/AzureCloudCredentials'
-    - $ref: '#/definitions/VmwareCloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
-    x-usedIn:
-    - /account/{accountId}/cloud-credentials/
-    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-  EnvironmentListResponse:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/Environment'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/Environment'
-    x-usedIn:
-    - /account/{accountId}/environments/
-  EnvironmentTeamDetailsResponse:
-    properties:
-      data:
-        $ref: '#/definitions/EnvironmentTeam'
-        readOnly: true
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/EnvironmentTeam'
-    x-usedIn:
-    - /account/{accountId}/environments/{envId}/teams/
-    - /account/{accountId}/environments/{envId}/teams/{teamId}/
-  OpenstackCloudCredentials:
-    properties:
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      domainName:
-        description: Domain name. It must be provided for the Identity API v3.
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      keystoneUrl:
-        description: Keystone URL.
-        type: string
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      password:
-        description: The password for the user.
-        format: password
-        type: string
-      provider:
-        description: Cloud provider that should be specified for OpenStack based clouds.
-        enum:
-        - openstack
-        - ocs
-        - hpcloud
-        - mirantis
-        - vio
-        - cisco
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      sslVerification:
-        description: Specifies whether it should verify SSL Certificate.
-        type: boolean
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-      tenantName:
-        description: The tenant name.
-        type: string
-      userName:
-        description: The user name.
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    - provider
-    - keystoneUrl
-    - userName
-    - password
-    - tenantName
-    x-abstractType:
-      $ref: '#/definitions/CloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    - provider
-    x-discriminator: cloudCredentialsType
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
-  CloudCredentialsForeignKey:
-    properties:
-      id:
-        description: Unique identifier of a Cloud Credentials object.
-        type: string
-    required:
-    - id
-    x-usedIn:
-    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-  GceCloudCredentials:
-    properties:
-      accountName:
-        description: The service account name.
-        type: string
-      clientId:
-        description: GCE client ID.
-        type: string
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      privateKey:
-        description: Private key with boundary.
-        format: byte
-        type: string
-      projectId:
-        description: GCE project ID.
-        type: string
-      provider:
-        description: Cloud provider for Openstack or Cloudstack based clouds.
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    - projectId
-    - clientId
-    - accountName
-    - privateKey
-    x-abstractType:
-      $ref: '#/definitions/CloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    x-discriminator: cloudCredentialsType
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
-  AwsCloudCredentials:
-    properties:
-      accessKey:
-        description: Access key ID.
-        type: string
-      accountId:
-        description: AWS Account ID.
-        readOnly: true
-        type: string
-      accountType:
-        description: AWS Account type.
-        enum:
-        - regular
-        - govcloud
-        - china
-        type: string
-      billing:
-        $ref: '#/definitions/AwsDetailedBilling'
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      provider:
-        description: Cloud provider for Openstack or Cloudstack based clouds.
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      secretKey:
-        description: The secret key.
-        type: string
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    - accountType
-    - accessKey
-    - secretKey
-    x-abstractType:
-      $ref: '#/definitions/CloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    x-discriminator: cloudCredentialsType
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
-    - accountType
-  CloudListResponse:
-    properties:
-      data:
-        items:
-          $ref: '#/definitions/Cloud'
-        readOnly: true
-        type: array
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      pagination:
-        $ref: '#/definitions/ApiPagination'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/Cloud'
-    x-usedIn:
-    - /account/{accountId}/environments/{envId}/clouds/
-  Cloud:
-    properties:
-      cloud:
-        description: The Cloud Platform this resource resides in.
-        enum:
-        - ec2
-        - gce
-        type: string
-      credentials:
-        $ref: '#/definitions/CloudCredentialsForeignKey'
-  AclRole:
-    properties:
-      baseRole:
-        description: Base ACL Role to override.
-        enum:
-        - no-access
-        - full-access
-        - read-only
-        type: string
-      id:
-        description: Unique identifier for this ACL Role object.
-        maxLength: 20
-        minLength: 20
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Name of this ACL Role.
-        type: string
-    required:
-    - name
-    x-createOnly:
-    - baseRole
-    x-filterable:
-    - id
-    - name
-    - baseRole
-  CloudCredentialsDetailsResponse:
-    properties:
-      data:
-        $ref: '#/definitions/CloudCredentials'
-        readOnly: true
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/CloudCredentials'
-    x-usedIn:
-    - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-    - /account/{accountId}/cloud-credentials/
-    - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-  EnvironmentDetailsResponse:
-    properties:
-      data:
-        $ref: '#/definitions/Environment'
-        readOnly: true
-      errors:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-      meta:
-        $ref: '#/definitions/ApiMetaContainer'
-        readOnly: true
-      warnings:
-        items:
-          $ref: '#/definitions/ApiMessage'
-        readOnly: true
-        type: array
-    x-derived:
-      $ref: '#/definitions/Environment'
-    x-usedIn:
-    - /account/{accountId}/environments/
-    - /account/{accountId}/environments/{envId}/
-  AzureCloudCredentials:
-    properties:
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      provider:
-        description: Cloud provider for Openstack or Cloudstack based clouds.
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-      subscription:
-        description: The Azure Subscription ID.
-        type: string
-      tenantId:
-        description: The Azure Active Directory identifier.
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    - tenantId
-    - subscription
-    x-abstractType:
-      $ref: '#/definitions/CloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    x-discriminator: cloudCredentialsType
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
-  AwsDetailedBilling:
-    properties:
-      bucket:
-        description: Billing bucket name.
-        type: string
-      cloudCredentials:
-        $ref: '#/definitions/CloudCredentialsForeignKey'
-        description: Payer AWS Cloud Credentials.
-      cloudLocation:
-        description: Billing bucket region.
-        type: string
-      enabled:
-        default: false
-        description: Whether detailed billing is enabled.
-        type: boolean
-  EnvironmentTeam:
-    properties:
-      defaultAclRole:
-        $ref: '#/definitions/AclRoleForeignKey'
-        description: Default ACL Role to override the Team's default ACL Role for this Environment. If it is omitted Team's default ACL Role will be used. Note that this default ACL Role is only applied for members of the Team that don't have an explicitly defined ACL Role.
-      team:
-        $ref: '#/definitions/ComposedTeamIdentity'
-        description: Identifier and name of the Team.
-    required:
-    - team
-    x-createOnly:
-    - team
-    x-filterable:
-    - team
-    - defaultAclRole
-    x-usedIn:
-    - /account/{accountId}/environments/{envId}/teams/
-    - /account/{accountId}/environments/{envId}/teams/{teamId}/
-  ApiMessage:
-    properties:
-      code:
-        description: A machine-readable representation of the message.
-        type: string
-      message:
-        description: A human-readable representation of the message.
-        type: string
-  RackspaceCloudCredentials:
-    properties:
-      apiKey:
-        description: The API access key.
-        type: string
-      cloudCredentialsType:
-        description: The Cloud Platform these credentials allow access to.
-        enum:
-        - AwsCloudCredentials
-        - GceCloudCredentials
-        - AzureCloudCredentials
-        - CloudstackCloudCredentials
-        - OpenstackCloudCredentials
-        - RackspaceCloudCredentials
-        - VmwareCloudCredentials
-        type: string
-      description:
-        type: string
-      id:
-        description: Unique identifier for this Cloud Credentials object.
-        maxLength: 12
-        minLength: 12
-        pattern: '[A-Fa-f0-9]+'
-        readOnly: true
-        type: string
-      isUk:
-        description: Indicates if these credentials are for Rackspace UK (true) or Rackspace US (false).
-        type: boolean
-      name:
-        description: Unique name of these Cloud Credentials.
-        type: string
-      provider:
-        description: Cloud provider for Openstack or Cloudstack based clouds.
-        type: string
-      scope:
-        description: The scope in which these Cloud Credentials were added.
-        enum:
-        - scalr
-        - account
-        - environment
-        - farm
-        - farmrole
-        - role
-        - server
-        readOnly: true
-        type: string
-      status:
-        description: The status of these Cloud Credentials.
-        enum:
-        - disabled
-        - enabled
-        - suspended
-        readOnly: true
-        type: string
-      userName:
-        description: The user name.
-        type: string
-    required:
-    - name
-    - cloudCredentialsType
-    - userName
-    - apiKey
-    x-abstractType:
-      $ref: '#/definitions/CloudCredentials'
-    x-createOnly:
-    - cloudCredentialsType
-    - provider
-    - isUk
-    x-discriminator: cloudCredentialsType
-    x-filterable:
-    - id
-    - name
-    - cloudCredentialsType
-    - status
-    - scope
-    - provider
+      summary: Update by account id environments by env id teams by team id
+      x-summary-source: derived
+      operationId: patchByAccountIdEnvironmentsByEnvIdTeamsByTeamId
+      x-operation-id-source: derived
+components:
+  schemas:
+    AzureCloudCredentials:
+      properties:
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+        subscription:
+          description: The Azure Subscription ID.
+          type: string
+        tenantId:
+          description: The Azure Active Directory identifier.
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - tenantId
+      - subscription
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    CloudCredentialsDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CloudCredentials'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+    CloudListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Cloud'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Cloud'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/clouds/
+    EnvironmentTeamListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/EnvironmentTeam'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/EnvironmentTeam'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/
+    AclRoleForeignKey:
+      properties:
+        id:
+          description: Unique identifier for this ACL Role object.
+          type: string
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/AclRole'
+      x-references:
+        $ref: '#/components/schemas/AclRole'
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    ComposedTeamIdentity:
+      properties:
+        id:
+          description: Unique identifier for a Team.
+          type: integer
+        name:
+          description: Team name.
+          readOnly: true
+          type: string
+      required:
+      - id
+    GceCloudCredentials:
+      properties:
+        accountName:
+          description: The service account name.
+          type: string
+        clientId:
+          description: GCE client ID.
+          type: string
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        privateKey:
+          description: Private key with boundary.
+          format: byte
+          type: string
+        projectId:
+          description: GCE project ID.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - projectId
+      - clientId
+      - accountName
+      - privateKey
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    AclRole:
+      properties:
+        baseRole:
+          description: Base ACL Role to override.
+          enum:
+          - no-access
+          - full-access
+          - read-only
+          type: string
+        id:
+          description: Unique identifier for this ACL Role object.
+          maxLength: 20
+          minLength: 20
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Name of this ACL Role.
+          type: string
+      required:
+      - name
+      x-createOnly:
+      - baseRole
+      x-filterable:
+      - id
+      - name
+      - baseRole
+    EnvironmentDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/Environment'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Environment'
+      x-usedIn:
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+    EnvironmentListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Environment'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Environment'
+      x-usedIn:
+      - /account/{accountId}/environments/
+    CloudCredentials:
+      discriminator:
+        propertyName: cloudCredentialsType
+      properties:
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AwsCloudCredentials'
+      - $ref: '#/components/schemas/GceCloudCredentials'
+      - $ref: '#/components/schemas/OpenstackCloudCredentials'
+      - $ref: '#/components/schemas/CloudstackCloudCredentials'
+      - $ref: '#/components/schemas/RackspaceCloudCredentials'
+      - $ref: '#/components/schemas/AzureCloudCredentials'
+      - $ref: '#/components/schemas/VmwareCloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+      x-usedIn:
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+    Cloud:
+      properties:
+        cloud:
+          description: The Cloud Platform this resource resides in.
+          enum:
+          - ec2
+          - gce
+          type: string
+        credentials:
+          $ref: '#/components/schemas/CloudCredentialsForeignKey'
+    EnvironmentTeam:
+      properties:
+        defaultAclRole:
+          $ref: '#/components/schemas/AclRoleForeignKey'
+          description: Default ACL Role to override the Team's default ACL Role for this Environment. If it is omitted Team's default ACL Role will be used. Note that this default ACL Role is only applied for members of the Team that don't have an explicitly defined ACL Role.
+        team:
+          $ref: '#/components/schemas/ComposedTeamIdentity'
+          description: Identifier and name of the Team.
+      required:
+      - team
+      x-createOnly:
+      - team
+      x-filterable:
+      - team
+      - defaultAclRole
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+    CloudCredentialsForeignKey:
+      properties:
+        id:
+          description: Unique identifier of a Cloud Credentials object.
+          type: string
+      required:
+      - id
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+    CloudstackCloudCredentials:
+      properties:
+        apiKey:
+          description: The API key.
+          type: string
+        apiUrl:
+          description: 'The URL like: http(s)://<cloudstack_ip>:<cloudstack_port>/client/api.'
+          type: string
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider that should be specified for CloudStack based clouds.
+          enum:
+          - cloudstack
+          - idcf
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        secretKey:
+          description: The secret key.
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - provider
+      - apiUrl
+      - apiKey
+      - secretKey
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    AwsDetailedBilling:
+      properties:
+        bucket:
+          description: Billing bucket name.
+          type: string
+        cloudCredentials:
+          $ref: '#/components/schemas/CloudCredentialsForeignKey'
+          description: Payer AWS Cloud Credentials.
+        cloudLocation:
+          description: Billing bucket region.
+          type: string
+        enabled:
+          default: false
+          description: Whether detailed billing is enabled.
+          type: boolean
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    AwsCloudCredentials:
+      properties:
+        accessKey:
+          description: Access key ID.
+          type: string
+        accountId:
+          description: AWS Account ID.
+          readOnly: true
+          type: string
+        accountType:
+          description: AWS Account type.
+          enum:
+          - regular
+          - govcloud
+          - china
+          type: string
+        billing:
+          $ref: '#/components/schemas/AwsDetailedBilling'
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        secretKey:
+          description: The secret key.
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - accountType
+      - accessKey
+      - secretKey
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+      - accountType
+    EnvironmentTeamDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/EnvironmentTeam'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/EnvironmentTeam'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    RackspaceCloudCredentials:
+      properties:
+        apiKey:
+          description: The API access key.
+          type: string
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        isUk:
+          description: Indicates if these credentials are for Rackspace UK (true) or Rackspace US (false).
+          type: boolean
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+        userName:
+          description: The user name.
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - userName
+      - apiKey
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      - isUk
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    Team:
+      properties:
+        defaultAclRole:
+          $ref: '#/components/schemas/AclRoleForeignKey'
+          description: Default ACL Role for the Team. This ACL Role is applied by default to all the members of the Team, but it can be overridden for specific users.
+        description:
+          description: Description of the Team.
+          type: string
+        id:
+          description: Identifier of the Team.
+          readOnly: true
+          type: integer
+        name:
+          description: Name of the Team.
+          type: string
+      required:
+      - defaultAclRole
+      - name
+      x-filterable:
+      - id
+      - name
+      - defaultAclRole
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+    ApiErrorResponse:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /account/{accountId}/global-variables/
+      - /account/{accountId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/orchestration-rules/
+      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/cost-centers/
+      - /account/{accountId}/cost-centers/{costCenterId}/
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+      - /account/{accountId}/environments/{envId}/clouds/
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+      - /account/{accountId}/acl-roles/
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+      - /account/{accountId}/roles/
+      - /account/{accountId}/roles/{roleId}/
+      - /account/{accountId}/roles/{roleId}/actions/clone/
+      - /account/{accountId}/roles/{roleId}/actions/deprecate/
+      - /account/{accountId}/roles/{roleId}/images/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/roles/{roleId}/global-variables/
+      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/images/
+      - /account/{accountId}/images/{imageId}/
+      - /account/{accountId}/images/{imageId}/actions/copy/
+      - /account/{accountId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/projects/
+      - /account/{accountId}/projects/{projectId}/
+      - /account/{accountId}/scripts/
+      - /account/{accountId}/scripts/{scriptId}/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      - /account/{accountId}/webhook-endpoints/
+      - /account/{accountId}/os/
+      - /account/{accountId}/os/{osId}/
+      - /account/{accountId}/events/
+      - /account/{accountId}/events/{eventId}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+      - /account/{accountId}/users/
+      - /account/{accountId}/ansible-tower/servers/
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    Environment:
+      properties:
+        added:
+          format: date-time
+          readOnly: true
+          type: string
+        costCenter:
+          $ref: '#/components/schemas/CostCenterForeignKey'
+        id:
+          readOnly: true
+          type: integer
+        name:
+          type: string
+        status:
+          enum:
+          - active
+          - inactive
+          type: string
+        type:
+          default: cmp
+          enum:
+          - cmp
+          - iacp
+          type: string
+      required:
+      - name
+      x-createOnly:
+      - type
+      x-filterable:
+      - id
+      - name
+      - added
+      - status
+      - type
+      - costCenter
+      x-usedIn:
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+    OpenstackCloudCredentials:
+      properties:
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        domainName:
+          description: Domain name. It must be provided for the Identity API v3.
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        keystoneUrl:
+          description: Keystone URL.
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        password:
+          description: The password for the user.
+          format: password
+          type: string
+        provider:
+          description: Cloud provider that should be specified for OpenStack based clouds.
+          enum:
+          - openstack
+          - ocs
+          - hpcloud
+          - mirantis
+          - vio
+          - cisco
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        sslVerification:
+          description: Specifies whether it should verify SSL Certificate.
+          type: boolean
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+        tenantName:
+          description: The tenant name.
+          type: string
+        userName:
+          description: The user name.
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - provider
+      - keystoneUrl
+      - userName
+      - password
+      - tenantName
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    VmwareCloudCredentials:
+      properties:
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        password:
+          description: The password for the user.
+          format: password
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        sslVerification:
+          description: Specifies whether it should verify SSL Certificate.
+          type: boolean
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+        url:
+          description: vSphere Web Services SDK Server URL.
+          type: string
+        userName:
+          description: The ID of the user.
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - url
+      - userName
+      - password
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
 x-dry-yaml-definitions:
   architecture:
     enum:
