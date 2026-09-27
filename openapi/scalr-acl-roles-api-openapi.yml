@@ -134,68 +134,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AclRole:
-      properties:
-        baseRole:
-          description: Base ACL Role to override.
-          enum:
-          - no-access
-          - full-access
-          - read-only
-          type: string
-        id:
-          description: Unique identifier for this ACL Role object.
-          maxLength: 20
-          minLength: 20
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Name of this ACL Role.
-          type: string
-      required:
-      - name
-      x-createOnly:
-      - baseRole
-      x-filterable:
-      - id
-      - name
-      - baseRole
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    AclRoleListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/AclRole'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/AclRole'
-      x-usedIn:
-      - /account/{accountId}/acl-roles/
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -264,11 +202,33 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMetaContainer:
+    AclRoleListResponse:
       properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/AclRole'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AclRole'
+      x-usedIn:
+      - /account/{accountId}/acl-roles/
     ApiPagination:
       properties:
         first:
@@ -282,6 +242,46 @@ components:
           type: string
         prev:
           readOnly: true
+          type: string
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    AclRole:
+      properties:
+        baseRole:
+          description: Base ACL Role to override.
+          enum:
+          - no-access
+          - full-access
+          - read-only
+          type: string
+        id:
+          description: Unique identifier for this ACL Role object.
+          maxLength: 20
+          minLength: 20
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Name of this ACL Role.
+          type: string
+      required:
+      - name
+      x-createOnly:
+      - baseRole
+      x-filterable:
+      - id
+      - name
+      - baseRole
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
           type: string
 x-dry-yaml-definitions:
   architecture:

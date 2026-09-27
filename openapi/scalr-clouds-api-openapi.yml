@@ -320,112 +320,6 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    AwsInstanceTypeCloudFeatures:
-      description: AWS instance type configuration.
-      properties:
-        ebsEncryption:
-          description: Whether current instance type supports EBS encryption.
-          type: boolean
-        ebsOptimized:
-          description: EBS-optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O.
-          type: boolean
-        enhancedNetworking:
-          description: Enhanced networking uses single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities on supported instance types.
-          type: boolean
-        hvmOnly:
-          description: Instance type supports only HVM images.
-          type: boolean
-        type:
-          enum:
-          - AwsInstanceTypeCloudFeatures
-          type: string
-        vpcOnly:
-          description: Instance type can be launched only in VPC.
-          type: boolean
-      required:
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/InstanceTypeCloudFeatures'
-      x-discriminator: type
-    InstanceType:
-      properties:
-        cloudFeatures:
-          $ref: '#/components/schemas/InstanceTypeCloudFeatures'
-          description: Cloud specific parameters related to Instance Type.
-          readOnly: true
-        id:
-          description: Identifier of the InstanceType object.
-          readOnly: true
-          type: string
-        memory:
-          description: Memory in GB allocated for the Instance.
-          readOnly: true
-          type: number
-        name:
-          description: The Instance Type Name in the Cloud.
-          readOnly: true
-          type: string
-        storage:
-          description: Total disks size in GB.
-          readOnly: true
-          type: integer
-        vcpus:
-          description: Virtual CPUs count.
-          readOnly: true
-          type: integer
-      x-filterable:
-      - id
-      - name
-      - storage
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    CloudLocationListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CloudLocation'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/CloudLocation'
-      x-usedIn:
-      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -528,26 +422,6 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
-    CloudLocation:
-      properties:
-        cloudLocation:
-          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
-          type: string
-        cloudPlatform:
-          description: The Cloud Platform this resource resides in.
-          enum:
-          - ec2
-          - gce
-          type: string
-      required:
-      - cloudPlatform
-      x-usedIn:
-      - /user/{envId}/images/{imageId}/actions/copy/
     InstanceTypeListResponse:
       properties:
         data:
@@ -575,6 +449,65 @@ components:
         $ref: '#/components/schemas/InstanceType'
       x-usedIn:
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    CloudLocation:
+      properties:
+        cloudLocation:
+          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+          type: string
+        cloudPlatform:
+          description: The Cloud Platform this resource resides in.
+          enum:
+          - ec2
+          - gce
+          type: string
+      required:
+      - cloudPlatform
+      x-usedIn:
+      - /user/{envId}/images/{imageId}/actions/copy/
+    InstanceType:
+      properties:
+        cloudFeatures:
+          $ref: '#/components/schemas/InstanceTypeCloudFeatures'
+          description: Cloud specific parameters related to Instance Type.
+          readOnly: true
+        id:
+          description: Identifier of the InstanceType object.
+          readOnly: true
+          type: string
+        memory:
+          description: Memory in GB allocated for the Instance.
+          readOnly: true
+          type: number
+        name:
+          description: The Instance Type Name in the Cloud.
+          readOnly: true
+          type: string
+        storage:
+          description: Total disks size in GB.
+          readOnly: true
+          type: integer
+        vcpus:
+          description: Virtual CPUs count.
+          readOnly: true
+          type: integer
+      x-filterable:
+      - id
+      - name
+      - storage
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
     InstanceTypeCloudFeatures:
       description: Cloud specific Instance type configuration.
       discriminator:
@@ -588,6 +521,73 @@ components:
       - type
       x-concreteTypes:
       - $ref: '#/components/schemas/AwsInstanceTypeCloudFeatures'
+    AwsInstanceTypeCloudFeatures:
+      description: AWS instance type configuration.
+      properties:
+        ebsEncryption:
+          description: Whether current instance type supports EBS encryption.
+          type: boolean
+        ebsOptimized:
+          description: EBS-optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O.
+          type: boolean
+        enhancedNetworking:
+          description: Enhanced networking uses single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities on supported instance types.
+          type: boolean
+        hvmOnly:
+          description: Instance type supports only HVM images.
+          type: boolean
+        type:
+          enum:
+          - AwsInstanceTypeCloudFeatures
+          type: string
+        vpcOnly:
+          description: Instance type can be launched only in VPC.
+          type: boolean
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/InstanceTypeCloudFeatures'
+      x-discriminator: type
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    CloudLocationListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CloudLocation'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/CloudLocation'
+      x-usedIn:
+      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
 x-dry-yaml-definitions:
   FarmRoleExpandProperites:
     advancedConfiguration:

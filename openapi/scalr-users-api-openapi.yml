@@ -254,44 +254,6 @@ paths:
     - url: /api/v1beta0/global
 components:
   schemas:
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    UserSummary:
-      properties:
-        email:
-          description: Email of the User.
-          format: email
-          readOnly: true
-          type: string
-        fullname:
-          description: The full name of the User.
-          type: string
-        id:
-          description: Unique identifier of the User.
-          type: integer
-        status:
-          description: User status.
-          enum:
-          - active
-          - pending
-          - inactive
-          readOnly: true
-          type: string
-        username:
-          description: Unique user login identifier.
-          type: string
-      required:
-      - id
-      - username
-      x-filterable:
-      - id
-      - email
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -360,11 +322,36 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMetaContainer:
+    UserSummary:
       properties:
-        sample:
-          description: Actual properties TBD.
+        email:
+          description: Email of the User.
+          format: email
+          readOnly: true
           type: string
+        fullname:
+          description: The full name of the User.
+          type: string
+        id:
+          description: Unique identifier of the User.
+          type: integer
+        status:
+          description: User status.
+          enum:
+          - active
+          - pending
+          - inactive
+          readOnly: true
+          type: string
+        username:
+          description: Unique user login identifier.
+          type: string
+      required:
+      - id
+      - username
+      x-filterable:
+      - id
+      - email
     UserSummaryListResponse:
       properties:
         data:
@@ -405,6 +392,19 @@ components:
           type: string
         prev:
           readOnly: true
+          type: string
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
           type: string
     ApiErrorResponse_2:
       description: Common response for erroneous requests.

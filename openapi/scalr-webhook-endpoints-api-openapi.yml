@@ -269,41 +269,6 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    WebhookEndpointListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/WebhookEndpoint'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/WebhookEndpoint'
-      x-usedIn:
-      - /account/{accountId}/webhook-endpoints/
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -372,10 +337,27 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMetaContainer:
+    ApiPagination:
       properties:
-        sample:
-          description: Actual properties TBD.
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
           type: string
     WebhookEndpoint:
       description: Webhook endpoint summary.
@@ -399,25 +381,11 @@ components:
         url:
           description: Endpoint URL.
           type: string
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    WebhookEndpointListResponse_2:
+    WebhookEndpointListResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/WebhookEndpoint_2'
+            $ref: '#/components/schemas/WebhookEndpoint'
           readOnly: true
           type: array
         errors:
@@ -437,9 +405,14 @@ components:
           readOnly: true
           type: array
       x-derived:
-        $ref: '#/components/schemas/WebhookEndpoint_2'
+        $ref: '#/components/schemas/WebhookEndpoint'
       x-usedIn:
-      - /user/{envId}/webhook-endpoints/
+      - /account/{accountId}/webhook-endpoints/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -564,6 +537,33 @@ components:
         url:
           description: Endpoint URL.
           type: string
+    WebhookEndpointListResponse_2:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/WebhookEndpoint_2'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/WebhookEndpoint_2'
+      x-usedIn:
+      - /user/{envId}/webhook-endpoints/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-user-openapi.yml

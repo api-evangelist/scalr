@@ -417,41 +417,6 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
-    CostCenterListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CostCenter'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/CostCenter'
-      x-usedIn:
-      - /account/{accountId}/cost-centers/
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -520,10 +485,54 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMetaContainer:
+    CostCenterListResponse:
       properties:
-        sample:
-          description: Actual properties TBD.
+        data:
+          items:
+            $ref: '#/components/schemas/CostCenter'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/CostCenter'
+      x-usedIn:
+      - /account/{accountId}/cost-centers/
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
           type: string
     CostCenterDetailsResponse:
       properties:
@@ -547,20 +556,33 @@ components:
         $ref: '#/components/schemas/CostCenter'
       x-usedIn:
       - /account/{accountId}/cost-centers/{costCenterId}/
-    ApiPagination:
+    ApiMetaContainer:
       properties:
-        first:
-          readOnly: true
+        sample:
+          description: Actual properties TBD.
           type: string
-        last:
+    CostCenterDetailsResponse_2:
+      properties:
+        data:
+          $ref: '#/components/schemas/CostCenter'
           readOnly: true
-          type: string
-        next:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
           readOnly: true
-          type: string
-        prev:
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
           readOnly: true
-          type: string
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/CostCenter'
+      x-usedIn:
+      - /user/{envId}/cost-centers/{costCenterId}/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -663,28 +685,6 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    CostCenterDetailsResponse_2:
-      properties:
-        data:
-          $ref: '#/components/schemas/CostCenter'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/CostCenter'
-      x-usedIn:
-      - /user/{envId}/cost-centers/{costCenterId}/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-user-openapi.yml

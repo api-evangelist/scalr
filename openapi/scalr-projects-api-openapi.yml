@@ -1230,6 +1230,37 @@ paths:
     - url: /api/v1beta0/global
 components:
   schemas:
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    ProjectDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/Project'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Project'
+      x-usedIn:
+      - /account/{accountId}/projects/
+      - /account/{accountId}/projects/{projectId}/
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -1298,7 +1329,12 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ProjectDetailsResponse:
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    ProjectDetailsResponse_2:
       properties:
         data:
           $ref: '#/components/schemas/Project'
@@ -1319,21 +1355,8 @@ components:
       x-derived:
         $ref: '#/components/schemas/Project'
       x-usedIn:
-      - /account/{accountId}/projects/
-      - /account/{accountId}/projects/{projectId}/
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
+      - /global/projects/
+      - /global/projects/{projectId}/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -1379,29 +1402,6 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ProjectDetailsResponse_2:
-      properties:
-        data:
-          $ref: '#/components/schemas/Project'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Project'
-      x-usedIn:
-      - /global/projects/
-      - /global/projects/{projectId}/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-global-openapi.yml

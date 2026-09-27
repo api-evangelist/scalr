@@ -1873,64 +1873,6 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
-    RoleCategoryListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/RoleCategory'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory'
-      x-usedIn:
-      - /account/{accountId}/role-categories/
-    RoleCategoryDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleCategory'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory'
-      x-usedIn:
-      - /account/{accountId}/role-categories/
-      - /account/{accountId}/role-categories/{roleCategoryId}/
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -1999,11 +1941,78 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMetaContainer:
+    ApiPagination:
       properties:
-        sample:
-          description: Actual properties TBD.
+        first:
+          readOnly: true
           type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    RoleCategoryListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/RoleCategory'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory'
+      x-usedIn:
+      - /account/{accountId}/role-categories/
+    RoleCategoryDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleCategory'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory'
+      x-usedIn:
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
     RoleCategory:
       properties:
         id:
@@ -2034,20 +2043,56 @@ components:
       x-usedIn:
       - /account/{accountId}/role-categories/
       - /account/{accountId}/role-categories/{roleCategoryId}/
-    ApiPagination:
+    ApiMetaContainer:
       properties:
-        first:
-          readOnly: true
+        sample:
+          description: Actual properties TBD.
           type: string
-        last:
+    ApiErrorResponse_2:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
           readOnly: true
-          type: string
-        next:
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
           readOnly: true
-          type: string
-        prev:
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
           readOnly: true
-          type: string
+          type: array
+      x-usedIn:
+      - /global/global-variables/
+      - /global/global-variables/{globalVariableName}/
+      - /global/role-categories/
+      - /global/role-categories/{roleCategoryId}/
+      - /global/roles/
+      - /global/roles/{roleId}/
+      - /global/roles/{roleId}/actions/deprecate/
+      - /global/roles/{roleId}/images/
+      - /global/roles/{roleId}/images/{imageId}/
+      - /global/roles/{roleId}/images/{imageId}/actions/replace/
+      - /global/roles/{roleId}/global-variables/
+      - /global/roles/{roleId}/global-variables/{globalVariableName}/
+      - /global/roles/{roleId}/orchestration-rules/
+      - /global/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /global/images/
+      - /global/images/{imageId}/
+      - /global/images/{imageId}/actions/copy/
+      - /global/images/{imageId}/actions/replace/
+      - /global/os/
+      - /global/os/{osId}/
+      - /global/projects/
+      - /global/projects/{projectId}/
+      - /global/cloud-credentials/
+      - /global/cloud-credentials/{cloudCredentialsId}/
+      - /global/users/
+      - /global/ansible-tower/servers/
+      - /global/ansible-tower/configurations/
+      - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
     RoleCategoryListResponse_2:
       properties:
         data:
@@ -2098,51 +2143,6 @@ components:
       x-usedIn:
       - /global/role-categories/
       - /global/role-categories/{roleCategoryId}/
-    ApiErrorResponse_2:
-      description: Common response for erroneous requests.
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-usedIn:
-      - /global/global-variables/
-      - /global/global-variables/{globalVariableName}/
-      - /global/role-categories/
-      - /global/role-categories/{roleCategoryId}/
-      - /global/roles/
-      - /global/roles/{roleId}/
-      - /global/roles/{roleId}/actions/deprecate/
-      - /global/roles/{roleId}/images/
-      - /global/roles/{roleId}/images/{imageId}/
-      - /global/roles/{roleId}/images/{imageId}/actions/replace/
-      - /global/roles/{roleId}/global-variables/
-      - /global/roles/{roleId}/global-variables/{globalVariableName}/
-      - /global/roles/{roleId}/orchestration-rules/
-      - /global/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-      - /global/images/
-      - /global/images/{imageId}/
-      - /global/images/{imageId}/actions/copy/
-      - /global/images/{imageId}/actions/replace/
-      - /global/os/
-      - /global/os/{osId}/
-      - /global/projects/
-      - /global/projects/{projectId}/
-      - /global/cloud-credentials/
-      - /global/cloud-credentials/{cloudCredentialsId}/
-      - /global/users/
-      - /global/ansible-tower/servers/
-      - /global/ansible-tower/configurations/
-      - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
     RoleCategory_2:
       properties:
         id:
@@ -2173,56 +2173,6 @@ components:
       x-usedIn:
       - /global/role-categories/
       - /global/role-categories/{roleCategoryId}/
-    RoleCategoryListResponse_3:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/RoleCategory_3'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory_3'
-      x-usedIn:
-      - /user/{envId}/role-categories/
-    RoleCategoryDetailsResponse_3:
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleCategory_3'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory_3'
-      x-usedIn:
-      - /user/{envId}/role-categories/
-      - /user/{envId}/role-categories/{roleCategoryId}/
     ApiErrorResponse_3:
       description: Common response for erroneous requests.
       properties:
@@ -2325,6 +2275,56 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    RoleCategoryListResponse_3:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/RoleCategory_3'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory_3'
+      x-usedIn:
+      - /user/{envId}/role-categories/
+    RoleCategoryDetailsResponse_3:
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleCategory_3'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory_3'
+      x-usedIn:
+      - /user/{envId}/role-categories/
+      - /user/{envId}/role-categories/{roleCategoryId}/
     RoleCategory_3:
       properties:
         id:

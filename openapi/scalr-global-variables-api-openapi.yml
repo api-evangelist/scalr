@@ -1901,6 +1901,157 @@ components:
       - /account/{accountId}/global-variables/{globalVariableName}/
       - /account/{accountId}/roles/{roleId}/global-variables/
       - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+    ApiErrorResponse:
+      description: Common response for erroneous requests.
+      properties:
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /account/{accountId}/global-variables/
+      - /account/{accountId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/orchestration-rules/
+      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/cost-centers/
+      - /account/{accountId}/cost-centers/{costCenterId}/
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+      - /account/{accountId}/environments/{envId}/clouds/
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+      - /account/{accountId}/acl-roles/
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+      - /account/{accountId}/roles/
+      - /account/{accountId}/roles/{roleId}/
+      - /account/{accountId}/roles/{roleId}/actions/clone/
+      - /account/{accountId}/roles/{roleId}/actions/deprecate/
+      - /account/{accountId}/roles/{roleId}/images/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/roles/{roleId}/global-variables/
+      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/images/
+      - /account/{accountId}/images/{imageId}/
+      - /account/{accountId}/images/{imageId}/actions/copy/
+      - /account/{accountId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/projects/
+      - /account/{accountId}/projects/{projectId}/
+      - /account/{accountId}/scripts/
+      - /account/{accountId}/scripts/{scriptId}/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      - /account/{accountId}/webhook-endpoints/
+      - /account/{accountId}/os/
+      - /account/{accountId}/os/{osId}/
+      - /account/{accountId}/events/
+      - /account/{accountId}/events/{eventId}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+      - /account/{accountId}/users/
+      - /account/{accountId}/ansible-tower/servers/
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    WebhookEndpointForeignKey:
+      properties:
+        id:
+          description: Webhook endpoint identifier.
+          type: string
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/WebhookEndpoint'
+      x-references:
+        $ref: '#/components/schemas/WebhookEndpoint'
+    GlobalVariableListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/GlobalVariable'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/GlobalVariable'
+      x-usedIn:
+      - /account/{accountId}/global-variables/
+      - /account/{accountId}/roles/{roleId}/global-variables/
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    WebhookEndpoint:
+      description: Webhook endpoint summary.
+      properties:
+        id:
+          description: Identifier of the Webhook endpoint.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          type: string
+        url:
+          description: Endpoint URL.
+          type: string
     GlobalVariableList:
       properties:
         allowedValues:
@@ -1981,287 +2132,6 @@ components:
       x-createOnly:
       - name
       x-discriminator: type
-    GlobalVariableListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/GlobalVariable'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/GlobalVariable'
-      x-usedIn:
-      - /account/{accountId}/global-variables/
-      - /account/{accountId}/roles/{roleId}/global-variables/
-    GlobalVariableString:
-      properties:
-        category:
-          description: The category of this Global Variable.
-          type: string
-        computedValue:
-          description: The value computed by Scalr for this Global Variable.
-          readOnly: true
-          type: string
-        declaredIn:
-          description: The Scope in which this Global Variable is declared.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        definedIn:
-          description: The Scope in which this Global Variable is given a value.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        description:
-          description: A description that explains what this Global Variable is used for.
-          type: string
-        hidden:
-          description: Whether this Global Variable is hidden in inner scopes. This is read-only if `declaredIn` is not the current scope.
-          type: boolean
-        locked:
-          description: Whether this Global Variable is locked in inner scopes. This is read-only if `declaredIn` is not the current scope.
-          type: boolean
-        name:
-          type: string
-        outputFormat:
-          description: The formatting to apply when displaying this variable. This is read-only if `declaredIn` is not the current scope.
-          type: string
-        requiredIn:
-          description: The scope where this Global Variable is required. This is read-only if `declaredIn` is not the current scope.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          type: string
-        type:
-          description: The type of Global Variable.
-          enum:
-          - GlobalVariableJson
-          - GlobalVariableString
-          - GlobalVariableList
-          - GlobalVariableRemoteList
-          type: string
-        validationPattern:
-          type: string
-        value:
-          description: The value declared in the current scope for this Global Variable. If it is null, the value will be inherited from higher scopes. This field is ignored if `declaredIn` is not the current scope.
-          type: string
-      required:
-      - name
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/GlobalVariable'
-      x-createOnly:
-      - name
-      x-discriminator: type
-    GlobalVariableRemoteList:
-      properties:
-        category:
-          description: The category of this Global Variable.
-          type: string
-        computedValue:
-          description: The value computed by Scalr for this Global Variable.
-          readOnly: true
-          type: string
-        declaredIn:
-          description: The Scope in which this Global Variable is declared.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        definedIn:
-          description: The Scope in which this Global Variable is given a value.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        description:
-          description: A description that explains what this Global Variable is used for.
-          type: string
-        hidden:
-          description: Whether this Global Variable is hidden in inner scopes. This is read-only if `declaredIn` is not the current scope.
-          type: boolean
-        integrationEndpoint:
-          $ref: '#/components/schemas/WebhookEndpointForeignKey'
-        locked:
-          description: Whether this Global Variable is locked in inner scopes. This is read-only if `declaredIn` is not the current scope.
-          type: boolean
-        name:
-          type: string
-        requiredIn:
-          description: The scope where this Global Variable is required. This is read-only if `declaredIn` is not the current scope.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          type: string
-        type:
-          description: The type of Global Variable.
-          enum:
-          - GlobalVariableJson
-          - GlobalVariableString
-          - GlobalVariableList
-          - GlobalVariableRemoteList
-          type: string
-        value:
-          description: The value declared in the current scope for this Global Variable. If it is null, the value will be inherited from higher scopes. This field is ignored if `declaredIn` is not the current scope.
-          type: string
-      required:
-      - name
-      - type
-      - integrationEndpoint
-      x-abstractType:
-        $ref: '#/components/schemas/GlobalVariable'
-      x-createOnly:
-      - name
-      x-discriminator: type
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    WebhookEndpointForeignKey:
-      properties:
-        id:
-          description: Webhook endpoint identifier.
-          type: string
-      required:
-      - id
-      x-derived:
-        $ref: '#/components/schemas/WebhookEndpoint'
-      x-references:
-        $ref: '#/components/schemas/WebhookEndpoint'
-    VariableAllowedValue:
-      properties:
-        label:
-          description: The Global Variable Value label
-          type: string
-        value:
-          description: The Global Variable value
-          type: string
-      required:
-      - value
-    ApiErrorResponse:
-      description: Common response for erroneous requests.
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-usedIn:
-      - /account/{accountId}/global-variables/
-      - /account/{accountId}/global-variables/{globalVariableName}/
-      - /account/{accountId}/orchestration-rules/
-      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
-      - /account/{accountId}/cost-centers/
-      - /account/{accountId}/cost-centers/{costCenterId}/
-      - /account/{accountId}/environments/
-      - /account/{accountId}/environments/{envId}/
-      - /account/{accountId}/environments/{envId}/clouds/
-      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-      - /account/{accountId}/environments/{envId}/teams/
-      - /account/{accountId}/environments/{envId}/teams/{teamId}/
-      - /account/{accountId}/teams/
-      - /account/{accountId}/teams/{teamId}/
-      - /account/{accountId}/acl-roles/
-      - /account/{accountId}/role-categories/
-      - /account/{accountId}/role-categories/{roleCategoryId}/
-      - /account/{accountId}/roles/
-      - /account/{accountId}/roles/{roleId}/
-      - /account/{accountId}/roles/{roleId}/actions/clone/
-      - /account/{accountId}/roles/{roleId}/actions/deprecate/
-      - /account/{accountId}/roles/{roleId}/images/
-      - /account/{accountId}/roles/{roleId}/images/{imageId}/
-      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
-      - /account/{accountId}/roles/{roleId}/global-variables/
-      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
-      - /account/{accountId}/roles/{roleId}/orchestration-rules/
-      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-      - /account/{accountId}/images/
-      - /account/{accountId}/images/{imageId}/
-      - /account/{accountId}/images/{imageId}/actions/copy/
-      - /account/{accountId}/images/{imageId}/actions/replace/
-      - /account/{accountId}/projects/
-      - /account/{accountId}/projects/{projectId}/
-      - /account/{accountId}/scripts/
-      - /account/{accountId}/scripts/{scriptId}/
-      - /account/{accountId}/scripts/{scriptId}/script-versions/
-      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
-      - /account/{accountId}/webhook-endpoints/
-      - /account/{accountId}/os/
-      - /account/{accountId}/os/{osId}/
-      - /account/{accountId}/events/
-      - /account/{accountId}/events/{eventId}/
-      - /account/{accountId}/cloud-credentials/
-      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-      - /account/{accountId}/scaling-metrics/
-      - /account/{accountId}/scaling-metrics/{metricName}/
-      - /account/{accountId}/users/
-      - /account/{accountId}/ansible-tower/servers/
-      - /account/{accountId}/ansible-tower/configurations/
-      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
     GlobalVariableJson:
       properties:
         category:
@@ -2336,11 +2206,6 @@ components:
       x-createOnly:
       - name
       x-discriminator: type
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
     GlobalVariable:
       discriminator:
         propertyName: type
@@ -2424,16 +2289,64 @@ components:
       - /account/{accountId}/global-variables/{globalVariableName}/
       - /account/{accountId}/roles/{roleId}/global-variables/
       - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
-    WebhookEndpoint:
-      description: Webhook endpoint summary.
+    VariableAllowedValue:
       properties:
-        id:
-          description: Identifier of the Webhook endpoint.
-          maxLength: 36
-          minLength: 36
-          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+        label:
+          description: The Global Variable Value label
           type: string
-        scope:
+        value:
+          description: The Global Variable value
+          type: string
+      required:
+      - value
+    GlobalVariableRemoteList:
+      properties:
+        category:
+          description: The category of this Global Variable.
+          type: string
+        computedValue:
+          description: The value computed by Scalr for this Global Variable.
+          readOnly: true
+          type: string
+        declaredIn:
+          description: The Scope in which this Global Variable is declared.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        definedIn:
+          description: The Scope in which this Global Variable is given a value.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        description:
+          description: A description that explains what this Global Variable is used for.
+          type: string
+        hidden:
+          description: Whether this Global Variable is hidden in inner scopes. This is read-only if `declaredIn` is not the current scope.
+          type: boolean
+        integrationEndpoint:
+          $ref: '#/components/schemas/WebhookEndpointForeignKey'
+        locked:
+          description: Whether this Global Variable is locked in inner scopes. This is read-only if `declaredIn` is not the current scope.
+          type: boolean
+        name:
+          type: string
+        requiredIn:
+          description: The scope where this Global Variable is required. This is read-only if `declaredIn` is not the current scope.
           enum:
           - scalr
           - account
@@ -2443,22 +2356,109 @@ components:
           - role
           - server
           type: string
-        url:
-          description: Endpoint URL.
+        type:
+          description: The type of Global Variable.
+          enum:
+          - GlobalVariableJson
+          - GlobalVariableString
+          - GlobalVariableList
+          - GlobalVariableRemoteList
           type: string
-    ApiPagination:
+        value:
+          description: The value declared in the current scope for this Global Variable. If it is null, the value will be inherited from higher scopes. This field is ignored if `declaredIn` is not the current scope.
+          type: string
+      required:
+      - name
+      - type
+      - integrationEndpoint
+      x-abstractType:
+        $ref: '#/components/schemas/GlobalVariable'
+      x-createOnly:
+      - name
+      x-discriminator: type
+    GlobalVariableString:
       properties:
-        first:
+        category:
+          description: The category of this Global Variable.
+          type: string
+        computedValue:
+          description: The value computed by Scalr for this Global Variable.
           readOnly: true
           type: string
-        last:
+        declaredIn:
+          description: The Scope in which this Global Variable is declared.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
           readOnly: true
           type: string
-        next:
+        definedIn:
+          description: The Scope in which this Global Variable is given a value.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
           readOnly: true
           type: string
-        prev:
-          readOnly: true
+        description:
+          description: A description that explains what this Global Variable is used for.
+          type: string
+        hidden:
+          description: Whether this Global Variable is hidden in inner scopes. This is read-only if `declaredIn` is not the current scope.
+          type: boolean
+        locked:
+          description: Whether this Global Variable is locked in inner scopes. This is read-only if `declaredIn` is not the current scope.
+          type: boolean
+        name:
+          type: string
+        outputFormat:
+          description: The formatting to apply when displaying this variable. This is read-only if `declaredIn` is not the current scope.
+          type: string
+        requiredIn:
+          description: The scope where this Global Variable is required. This is read-only if `declaredIn` is not the current scope.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          type: string
+        type:
+          description: The type of Global Variable.
+          enum:
+          - GlobalVariableJson
+          - GlobalVariableString
+          - GlobalVariableList
+          - GlobalVariableRemoteList
+          type: string
+        validationPattern:
+          type: string
+        value:
+          description: The value declared in the current scope for this Global Variable. If it is null, the value will be inherited from higher scopes. This field is ignored if `declaredIn` is not the current scope.
+          type: string
+      required:
+      - name
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/GlobalVariable'
+      x-createOnly:
+      - name
+      x-discriminator: type
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
           type: string
     GlobalVariableDetailsResponse_2:
       properties:
@@ -2485,34 +2485,6 @@ components:
       - /global/global-variables/{globalVariableName}/
       - /global/roles/{roleId}/global-variables/
       - /global/roles/{roleId}/global-variables/{globalVariableName}/
-    GlobalVariableListResponse_2:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/GlobalVariable_2'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/GlobalVariable_2'
-      x-usedIn:
-      - /global/global-variables/
-      - /global/roles/{roleId}/global-variables/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -2558,6 +2530,34 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    GlobalVariableListResponse_2:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/GlobalVariable_2'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/GlobalVariable_2'
+      x-usedIn:
+      - /global/global-variables/
+      - /global/roles/{roleId}/global-variables/
     GlobalVariable_2:
       discriminator:
         propertyName: type
@@ -2672,47 +2672,6 @@ components:
       - /user/{envId}/farms/{farmId}/global-variables/{globalVariableName}/
       - /user/{envId}/farm-roles/{farmRoleId}/global-variables/
       - /user/{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/
-    GlobalVariableListResponse_3:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/GlobalVariable_3'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/GlobalVariable_3'
-      x-usedIn:
-      - /user/{envId}/global-variables/
-      - /user/{envId}/roles/{roleId}/global-variables/
-      - /user/{envId}/servers/{serverId}/global-variables/
-      - /user/{envId}/farms/{farmId}/global-variables/
-      - /user/{envId}/farm-roles/{farmRoleId}/global-variables/
-    VariableAllowedValue_2:
-      properties:
-        label:
-          description: The Variable Value label.
-          type: string
-        value:
-          description: The Variable value.
-          type: string
-      required:
-      - value
     ApiErrorResponse_3:
       description: Common response for erroneous requests.
       properties:
@@ -2815,6 +2774,59 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    GlobalVariableListResponse_3:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/GlobalVariable_3'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/GlobalVariable_3'
+      x-usedIn:
+      - /user/{envId}/global-variables/
+      - /user/{envId}/roles/{roleId}/global-variables/
+      - /user/{envId}/servers/{serverId}/global-variables/
+      - /user/{envId}/farms/{farmId}/global-variables/
+      - /user/{envId}/farm-roles/{farmRoleId}/global-variables/
+    WebhookEndpoint_2:
+      description: Webhook endpoint summary.
+      properties:
+        id:
+          description: Webhook endpoint identifier.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          type: string
+        url:
+          description: Endpoint URL.
+          type: string
     GlobalVariable_3:
       discriminator:
         propertyName: type
@@ -2904,28 +2916,16 @@ components:
       - /user/{envId}/farms/{farmId}/global-variables/{globalVariableName}/
       - /user/{envId}/farm-roles/{farmRoleId}/global-variables/
       - /user/{envId}/farm-roles/{farmRoleId}/global-variables/{globalVariableName}/
-    WebhookEndpoint_2:
-      description: Webhook endpoint summary.
+    VariableAllowedValue_2:
       properties:
-        id:
-          description: Webhook endpoint identifier.
-          maxLength: 36
-          minLength: 36
-          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+        label:
+          description: The Variable Value label.
           type: string
-        scope:
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
+        value:
+          description: The Variable value.
           type: string
-        url:
-          description: Endpoint URL.
-          type: string
+      required:
+      - value
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-global-openapi.yml
