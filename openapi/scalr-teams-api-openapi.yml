@@ -624,6 +624,41 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AclRole:
+      properties:
+        baseRole:
+          description: Base ACL Role to override.
+          enum:
+          - no-access
+          - full-access
+          - read-only
+          type: string
+        id:
+          description: Unique identifier for this ACL Role object.
+          maxLength: 20
+          minLength: 20
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Name of this ACL Role.
+          type: string
+      required:
+      - name
+      x-createOnly:
+      - baseRole
+      x-filterable:
+      - id
+      - name
+      - baseRole
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
     AclRoleForeignKey:
       properties:
         id:
@@ -635,6 +670,11 @@ components:
         $ref: '#/components/schemas/AclRole'
       x-references:
         $ref: '#/components/schemas/AclRole'
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -717,14 +757,29 @@ components:
         prev:
           readOnly: true
           type: string
-    ApiMessage:
+    TeamDetailsResponse:
       properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
+        data:
+          $ref: '#/components/schemas/Team'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Team'
+      x-usedIn:
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
     Team:
       properties:
         defaultAclRole:
@@ -749,56 +804,6 @@ components:
       - defaultAclRole
       x-usedIn:
       - /account/{accountId}/environments/{envId}/teams/{teamId}/
-      - /account/{accountId}/teams/
-      - /account/{accountId}/teams/{teamId}/
-    AclRole:
-      properties:
-        baseRole:
-          description: Base ACL Role to override.
-          enum:
-          - no-access
-          - full-access
-          - read-only
-          type: string
-        id:
-          description: Unique identifier for this ACL Role object.
-          maxLength: 20
-          minLength: 20
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Name of this ACL Role.
-          type: string
-      required:
-      - name
-      x-createOnly:
-      - baseRole
-      x-filterable:
-      - id
-      - name
-      - baseRole
-    TeamDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/Team'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Team'
-      x-usedIn:
       - /account/{accountId}/teams/
       - /account/{accountId}/teams/{teamId}/
     TeamListResponse:
@@ -828,11 +833,6 @@ components:
         $ref: '#/components/schemas/Team'
       x-usedIn:
       - /account/{accountId}/teams/
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
 x-dry-yaml-definitions:
   architecture:
     enum:

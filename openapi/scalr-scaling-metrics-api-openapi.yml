@@ -1279,6 +1279,70 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    ScalingMetric:
+      properties:
+        filePath:
+          description: Path to the File
+          type: string
+        function:
+          description: Aggregate function to use when executing decision logic.
+          enum:
+          - average
+          - sum
+          - min
+          - max
+          type: string
+        inverted:
+          description: Whether this metric should be inverted. By default Farm Roles scale up when the value goes above the scale up threshold. If this is true, Farm Roles will scale up when the value goes below the scale up threshold.
+          type: boolean
+        name:
+          description: The name of a Scaling Metric.
+          type: string
+        retrieveMethod:
+          description: The operation that should be performed on the File to obtain the value of the Metric.
+          enum:
+          - read
+          - execute
+          - url-request
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+      required:
+      - name
+      - retrieveMethod
+      - filePath
+      - function
+      x-filterable:
+      - name
+      - retrieveMethod
+      - function
+      - inverted
+      - scope
+      x-usedIn:
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -1347,7 +1411,71 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ScalingMetric:
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
+    ScalingMetricListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ScalingMetric'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/ScalingMetric'
+      x-usedIn:
+      - /account/{accountId}/scaling-metrics/
+    ScalingMetricDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/ScalingMetric'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/ScalingMetric'
+      x-usedIn:
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+    ScalingMetric_2:
       properties:
         filePath:
           description: Path to the File
@@ -1396,85 +1524,8 @@ components:
       - inverted
       - scope
       x-usedIn:
-      - /account/{accountId}/scaling-metrics/
-      - /account/{accountId}/scaling-metrics/{metricName}/
-    ScalingMetricListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ScalingMetric'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/ScalingMetric'
-      x-usedIn:
-      - /account/{accountId}/scaling-metrics/
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    ScalingMetricDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/ScalingMetric'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/ScalingMetric'
-      x-usedIn:
-      - /account/{accountId}/scaling-metrics/
-      - /account/{accountId}/scaling-metrics/{metricName}/
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
+      - /user/{envId}/scaling-metrics/
+      - /user/{envId}/scaling-metrics/{metricName}/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -1577,57 +1628,6 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    ScalingMetric_2:
-      properties:
-        filePath:
-          description: Path to the File
-          type: string
-        function:
-          description: Aggregate function to use when executing decision logic.
-          enum:
-          - average
-          - sum
-          - min
-          - max
-          type: string
-        inverted:
-          description: Whether this metric should be inverted. By default Farm Roles scale up when the value goes above the scale up threshold. If this is true, Farm Roles will scale up when the value goes below the scale up threshold.
-          type: boolean
-        name:
-          description: The name of a Scaling Metric.
-          type: string
-        retrieveMethod:
-          description: The operation that should be performed on the File to obtain the value of the Metric.
-          enum:
-          - read
-          - execute
-          - url-request
-          type: string
-        scope:
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-      required:
-      - name
-      - retrieveMethod
-      - filePath
-      - function
-      x-filterable:
-      - name
-      - retrieveMethod
-      - function
-      - inverted
-      - scope
-      x-usedIn:
-      - /user/{envId}/scaling-metrics/
-      - /user/{envId}/scaling-metrics/{metricName}/
     ScalingMetricListResponse_2:
       properties:
         data:

@@ -1230,14 +1230,6 @@ paths:
     - url: /api/v1beta0/global
 components:
   schemas:
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
     ProjectDetailsResponse:
       properties:
         data:
@@ -1261,6 +1253,11 @@ components:
       x-usedIn:
       - /account/{accountId}/projects/
       - /account/{accountId}/projects/{projectId}/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -1329,10 +1326,13 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMetaContainer:
+    ApiMessage:
       properties:
-        sample:
-          description: Actual properties TBD.
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
           type: string
     ProjectDetailsResponse_2:
       properties:

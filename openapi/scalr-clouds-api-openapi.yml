@@ -320,6 +320,32 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    InstanceTypeCloudFeatures:
+      description: Cloud specific Instance type configuration.
+      discriminator:
+        propertyName: type
+      properties:
+        type:
+          enum:
+          - AwsInstanceTypeCloudFeatures
+          type: string
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AwsInstanceTypeCloudFeatures'
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -449,21 +475,20 @@ components:
         $ref: '#/components/schemas/InstanceType'
       x-usedIn:
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    CloudLocation:
+    ApiPagination:
       properties:
-        cloudLocation:
-          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+        first:
+          readOnly: true
           type: string
-        cloudPlatform:
-          description: The Cloud Platform this resource resides in.
-          enum:
-          - ec2
-          - gce
+        last:
+          readOnly: true
           type: string
-      required:
-      - cloudPlatform
-      x-usedIn:
-      - /user/{envId}/images/{imageId}/actions/copy/
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
     InstanceType:
       properties:
         cloudFeatures:
@@ -494,68 +519,6 @@ components:
       - id
       - name
       - storage
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    InstanceTypeCloudFeatures:
-      description: Cloud specific Instance type configuration.
-      discriminator:
-        propertyName: type
-      properties:
-        type:
-          enum:
-          - AwsInstanceTypeCloudFeatures
-          type: string
-      required:
-      - type
-      x-concreteTypes:
-      - $ref: '#/components/schemas/AwsInstanceTypeCloudFeatures'
-    AwsInstanceTypeCloudFeatures:
-      description: AWS instance type configuration.
-      properties:
-        ebsEncryption:
-          description: Whether current instance type supports EBS encryption.
-          type: boolean
-        ebsOptimized:
-          description: EBS-optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O.
-          type: boolean
-        enhancedNetworking:
-          description: Enhanced networking uses single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities on supported instance types.
-          type: boolean
-        hvmOnly:
-          description: Instance type supports only HVM images.
-          type: boolean
-        type:
-          enum:
-          - AwsInstanceTypeCloudFeatures
-          type: string
-        vpcOnly:
-          description: Instance type can be launched only in VPC.
-          type: boolean
-      required:
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/InstanceTypeCloudFeatures'
-      x-discriminator: type
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
     CloudLocationListResponse:
       properties:
         data:
@@ -583,11 +546,48 @@ components:
         $ref: '#/components/schemas/CloudLocation'
       x-usedIn:
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
-    ApiMetaContainer:
+    AwsInstanceTypeCloudFeatures:
+      description: AWS instance type configuration.
       properties:
-        sample:
-          description: Actual properties TBD.
+        ebsEncryption:
+          description: Whether current instance type supports EBS encryption.
+          type: boolean
+        ebsOptimized:
+          description: EBS-optimized instance uses an optimized configuration stack and provides additional, dedicated capacity for Amazon EBS I/O.
+          type: boolean
+        enhancedNetworking:
+          description: Enhanced networking uses single root I/O virtualization (SR-IOV) to provide high-performance networking capabilities on supported instance types.
+          type: boolean
+        hvmOnly:
+          description: Instance type supports only HVM images.
+          type: boolean
+        type:
+          enum:
+          - AwsInstanceTypeCloudFeatures
           type: string
+        vpcOnly:
+          description: Instance type can be launched only in VPC.
+          type: boolean
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/InstanceTypeCloudFeatures'
+      x-discriminator: type
+    CloudLocation:
+      properties:
+        cloudLocation:
+          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+          type: string
+        cloudPlatform:
+          description: The Cloud Platform this resource resides in.
+          enum:
+          - ec2
+          - gce
+          type: string
+      required:
+      - cloudPlatform
+      x-usedIn:
+      - /user/{envId}/images/{imageId}/actions/copy/
 x-dry-yaml-definitions:
   FarmRoleExpandProperites:
     advancedConfiguration:

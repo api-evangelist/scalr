@@ -417,6 +417,19 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -526,14 +539,6 @@ components:
         prev:
           readOnly: true
           type: string
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
     CostCenterDetailsResponse:
       properties:
         data:
@@ -556,11 +561,6 @@ components:
         $ref: '#/components/schemas/CostCenter'
       x-usedIn:
       - /account/{accountId}/cost-centers/{costCenterId}/
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
     CostCenterDetailsResponse_2:
       properties:
         data:

@@ -134,6 +134,46 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    AclRole:
+      properties:
+        baseRole:
+          description: Base ACL Role to override.
+          enum:
+          - no-access
+          - full-access
+          - read-only
+          type: string
+        id:
+          description: Unique identifier for this ACL Role object.
+          maxLength: 20
+          minLength: 20
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Name of this ACL Role.
+          type: string
+      required:
+      - name
+      x-createOnly:
+      - baseRole
+      x-filterable:
+      - id
+      - name
+      - baseRole
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -202,6 +242,20 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
     AclRoleListResponse:
       properties:
         data:
@@ -229,60 +283,6 @@ components:
         $ref: '#/components/schemas/AclRole'
       x-usedIn:
       - /account/{accountId}/acl-roles/
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    AclRole:
-      properties:
-        baseRole:
-          description: Base ACL Role to override.
-          enum:
-          - no-access
-          - full-access
-          - read-only
-          type: string
-        id:
-          description: Unique identifier for this ACL Role object.
-          maxLength: 20
-          minLength: 20
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Name of this ACL Role.
-          type: string
-      required:
-      - name
-      x-createOnly:
-      - baseRole
-      x-filterable:
-      - id
-      - name
-      - baseRole
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
 x-dry-yaml-definitions:
   architecture:
     enum:

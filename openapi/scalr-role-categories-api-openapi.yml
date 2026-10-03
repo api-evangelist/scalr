@@ -1873,6 +1873,99 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
+    RoleCategory:
+      properties:
+        id:
+          description: Identifier of the Role Category.
+          readOnly: true
+          type: integer
+        name:
+          description: The name of the Role Category.
+          type: string
+        scope:
+          description: The Scope in which this Role Category is defined.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+      required:
+      - name
+      x-filterable:
+      - id
+      - name
+      - scope
+      x-usedIn:
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    RoleCategoryDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleCategory'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory'
+      x-usedIn:
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    RoleCategoryListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/RoleCategory'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory'
+      x-usedIn:
+      - /account/{accountId}/role-categories/
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -1955,65 +2048,7 @@ components:
         prev:
           readOnly: true
           type: string
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    RoleCategoryListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/RoleCategory'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory'
-      x-usedIn:
-      - /account/{accountId}/role-categories/
-    RoleCategoryDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleCategory'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory'
-      x-usedIn:
-      - /account/{accountId}/role-categories/
-      - /account/{accountId}/role-categories/{roleCategoryId}/
-    RoleCategory:
+    RoleCategory_2:
       properties:
         id:
           description: Identifier of the Role Category.
@@ -2041,13 +2076,58 @@ components:
       - name
       - scope
       x-usedIn:
-      - /account/{accountId}/role-categories/
-      - /account/{accountId}/role-categories/{roleCategoryId}/
-    ApiMetaContainer:
+      - /global/role-categories/
+      - /global/role-categories/{roleCategoryId}/
+    RoleCategoryDetailsResponse_2:
       properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
+        data:
+          $ref: '#/components/schemas/RoleCategory_2'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory_2'
+      x-usedIn:
+      - /global/role-categories/
+      - /global/role-categories/{roleCategoryId}/
+    RoleCategoryListResponse_2:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/RoleCategory_2'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory_2'
+      x-usedIn:
+      - /global/role-categories/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -2093,57 +2173,7 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    RoleCategoryListResponse_2:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/RoleCategory_2'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory_2'
-      x-usedIn:
-      - /global/role-categories/
-    RoleCategoryDetailsResponse_2:
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleCategory_2'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory_2'
-      x-usedIn:
-      - /global/role-categories/
-      - /global/role-categories/{roleCategoryId}/
-    RoleCategory_2:
+    RoleCategory_3:
       properties:
         id:
           description: Identifier of the Role Category.
@@ -2171,8 +2201,58 @@ components:
       - name
       - scope
       x-usedIn:
-      - /global/role-categories/
-      - /global/role-categories/{roleCategoryId}/
+      - /user/{envId}/role-categories/
+      - /user/{envId}/role-categories/{roleCategoryId}/
+    RoleCategoryDetailsResponse_3:
+      properties:
+        data:
+          $ref: '#/components/schemas/RoleCategory_3'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory_3'
+      x-usedIn:
+      - /user/{envId}/role-categories/
+      - /user/{envId}/role-categories/{roleCategoryId}/
+    RoleCategoryListResponse_3:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/RoleCategory_3'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleCategory_3'
+      x-usedIn:
+      - /user/{envId}/role-categories/
     ApiErrorResponse_3:
       description: Common response for erroneous requests.
       properties:
@@ -2275,86 +2355,6 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    RoleCategoryListResponse_3:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/RoleCategory_3'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory_3'
-      x-usedIn:
-      - /user/{envId}/role-categories/
-    RoleCategoryDetailsResponse_3:
-      properties:
-        data:
-          $ref: '#/components/schemas/RoleCategory_3'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleCategory_3'
-      x-usedIn:
-      - /user/{envId}/role-categories/
-      - /user/{envId}/role-categories/{roleCategoryId}/
-    RoleCategory_3:
-      properties:
-        id:
-          description: Identifier of the Role Category.
-          readOnly: true
-          type: integer
-        name:
-          description: The name of the Role Category.
-          type: string
-        scope:
-          description: The Scope in which this Role Category is defined.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-      required:
-      - name
-      x-filterable:
-      - id
-      - name
-      - scope
-      x-usedIn:
-      - /user/{envId}/role-categories/
-      - /user/{envId}/role-categories/{roleCategoryId}/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-global-openapi.yml

@@ -254,6 +254,76 @@ paths:
     - url: /api/v1beta0/global
 components:
   schemas:
+    UserSummary:
+      properties:
+        email:
+          description: Email of the User.
+          format: email
+          readOnly: true
+          type: string
+        fullname:
+          description: The full name of the User.
+          type: string
+        id:
+          description: Unique identifier of the User.
+          type: integer
+        status:
+          description: User status.
+          enum:
+          - active
+          - pending
+          - inactive
+          readOnly: true
+          type: string
+        username:
+          description: Unique user login identifier.
+          type: string
+      required:
+      - id
+      - username
+      x-filterable:
+      - id
+      - email
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    UserSummaryListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/UserSummary'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/UserSummary'
+      x-usedIn:
+      - /account/{accountId}/users/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -322,37 +392,21 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    UserSummary:
+    ApiPagination:
       properties:
-        email:
-          description: Email of the User.
-          format: email
+        first:
           readOnly: true
           type: string
-        fullname:
-          description: The full name of the User.
-          type: string
-        id:
-          description: Unique identifier of the User.
-          type: integer
-        status:
-          description: User status.
-          enum:
-          - active
-          - pending
-          - inactive
+        last:
           readOnly: true
           type: string
-        username:
-          description: Unique user login identifier.
+        next:
+          readOnly: true
           type: string
-      required:
-      - id
-      - username
-      x-filterable:
-      - id
-      - email
-    UserSummaryListResponse:
+        prev:
+          readOnly: true
+          type: string
+    UserSummaryListResponse_2:
       properties:
         data:
           items:
@@ -378,34 +432,7 @@ components:
       x-derived:
         $ref: '#/components/schemas/UserSummary'
       x-usedIn:
-      - /account/{accountId}/users/
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
+      - /global/users/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -451,33 +478,6 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    UserSummaryListResponse_2:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/UserSummary'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/UserSummary'
-      x-usedIn:
-      - /global/users/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-global-openapi.yml

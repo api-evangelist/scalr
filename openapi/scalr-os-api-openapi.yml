@@ -790,6 +790,48 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    Os:
+      properties:
+        family:
+          description: OS family.
+          type: string
+        generation:
+          type: string
+        id:
+          description: An ID uniquely identifying this OS in Scalr.
+          pattern: '[A-Za-z0-9-]+'
+          type: string
+        name:
+          description: A human-readable name for this OS.
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - name
+      - family
+      - generation
+      - version
+      x-filterable:
+      - id
+      - name
+      - family
+      - generation
+      x-usedIn:
+      - /account/{accountId}/os/{osId}/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -872,65 +914,6 @@ components:
         prev:
           readOnly: true
           type: string
-    OsDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/Os'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Os'
-      x-usedIn:
-      - /account/{accountId}/os/{osId}/
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    Os:
-      properties:
-        family:
-          description: OS family.
-          type: string
-        generation:
-          type: string
-        id:
-          description: An ID uniquely identifying this OS in Scalr.
-          pattern: '[A-Za-z0-9-]+'
-          type: string
-        name:
-          description: A human-readable name for this OS.
-          type: string
-        version:
-          type: string
-      required:
-      - id
-      - name
-      - family
-      - generation
-      - version
-      x-filterable:
-      - id
-      - name
-      - family
-      - generation
-      x-usedIn:
-      - /account/{accountId}/os/{osId}/
     OsListResponse:
       properties:
         data:
@@ -958,11 +941,57 @@ components:
         $ref: '#/components/schemas/Os'
       x-usedIn:
       - /account/{accountId}/os/
-    ApiMetaContainer:
+    OsDetailsResponse:
       properties:
-        sample:
-          description: Actual properties TBD.
+        data:
+          $ref: '#/components/schemas/Os'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Os'
+      x-usedIn:
+      - /account/{accountId}/os/{osId}/
+    Os_2:
+      properties:
+        family:
+          description: OS family.
           type: string
+        generation:
+          type: string
+        id:
+          description: An ID uniquely identifying this OS in Scalr.
+          pattern: '[A-Za-z0-9-]+'
+          type: string
+        name:
+          description: A human-readable name for this OS.
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - name
+      - family
+      - generation
+      - version
+      x-filterable:
+      - id
+      - name
+      - family
+      - generation
+      x-usedIn:
+      - /global/os/{osId}/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -1008,57 +1037,6 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    OsDetailsResponse_2:
-      properties:
-        data:
-          $ref: '#/components/schemas/Os_2'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Os_2'
-      x-usedIn:
-      - /global/os/{osId}/
-    Os_2:
-      properties:
-        family:
-          description: OS family.
-          type: string
-        generation:
-          type: string
-        id:
-          description: An ID uniquely identifying this OS in Scalr.
-          pattern: '[A-Za-z0-9-]+'
-          type: string
-        name:
-          description: A human-readable name for this OS.
-          type: string
-        version:
-          type: string
-      required:
-      - id
-      - name
-      - family
-      - generation
-      - version
-      x-filterable:
-      - id
-      - name
-      - family
-      - generation
-      x-usedIn:
-      - /global/os/{osId}/
     OsListResponse_2:
       properties:
         data:
@@ -1086,6 +1064,57 @@ components:
         $ref: '#/components/schemas/Os_2'
       x-usedIn:
       - /global/os/
+    OsDetailsResponse_2:
+      properties:
+        data:
+          $ref: '#/components/schemas/Os_2'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Os_2'
+      x-usedIn:
+      - /global/os/{osId}/
+    Os_3:
+      properties:
+        family:
+          description: OS family.
+          type: string
+        generation:
+          type: string
+        id:
+          description: An ID uniquely identifying this OS in Scalr.
+          pattern: '[A-Za-z0-9-]+'
+          type: string
+        name:
+          description: A human-readable name for this OS.
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - name
+      - family
+      - generation
+      - version
+      x-filterable:
+      - id
+      - name
+      - family
+      - generation
+      x-usedIn:
+      - /user/{envId}/os/{osId}/
     ApiErrorResponse_3:
       description: Common response for erroneous requests.
       properties:
@@ -1188,57 +1217,6 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    OsDetailsResponse_3:
-      properties:
-        data:
-          $ref: '#/components/schemas/Os_3'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Os_3'
-      x-usedIn:
-      - /user/{envId}/os/{osId}/
-    Os_3:
-      properties:
-        family:
-          description: OS family.
-          type: string
-        generation:
-          type: string
-        id:
-          description: An ID uniquely identifying this OS in Scalr.
-          pattern: '[A-Za-z0-9-]+'
-          type: string
-        name:
-          description: A human-readable name for this OS.
-          type: string
-        version:
-          type: string
-      required:
-      - id
-      - name
-      - family
-      - generation
-      - version
-      x-filterable:
-      - id
-      - name
-      - family
-      - generation
-      x-usedIn:
-      - /user/{envId}/os/{osId}/
     OsListResponse_3:
       properties:
         data:
@@ -1266,6 +1244,28 @@ components:
         $ref: '#/components/schemas/Os_3'
       x-usedIn:
       - /user/{envId}/os/
+    OsDetailsResponse_3:
+      properties:
+        data:
+          $ref: '#/components/schemas/Os_3'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Os_3'
+      x-usedIn:
+      - /user/{envId}/os/{osId}/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-global-openapi.yml
