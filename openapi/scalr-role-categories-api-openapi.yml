@@ -1873,44 +1873,6 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
-    RoleCategory:
-      properties:
-        id:
-          description: Identifier of the Role Category.
-          readOnly: true
-          type: integer
-        name:
-          description: The name of the Role Category.
-          type: string
-        scope:
-          description: The Scope in which this Role Category is defined.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-      required:
-      - name
-      x-filterable:
-      - id
-      - name
-      - scope
-      x-usedIn:
-      - /account/{accountId}/role-categories/
-      - /account/{accountId}/role-categories/{roleCategoryId}/
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
     RoleCategoryDetailsResponse:
       properties:
         data:
@@ -1934,10 +1896,19 @@ components:
       x-usedIn:
       - /account/{accountId}/role-categories/
       - /account/{accountId}/role-categories/{roleCategoryId}/
-    ApiMetaContainer:
+    ApiPagination:
       properties:
-        sample:
-          description: Actual properties TBD.
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
           type: string
     RoleCategoryListResponse:
       properties:
@@ -2034,21 +2005,12 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiPagination:
+    ApiMetaContainer:
       properties:
-        first:
-          readOnly: true
+        sample:
+          description: Actual properties TBD.
           type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    RoleCategory_2:
+    RoleCategory:
       properties:
         id:
           description: Identifier of the Role Category.
@@ -2076,8 +2038,16 @@ components:
       - name
       - scope
       x-usedIn:
-      - /global/role-categories/
-      - /global/role-categories/{roleCategoryId}/
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
     RoleCategoryDetailsResponse_2:
       properties:
         data:
@@ -2173,7 +2143,7 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    RoleCategory_3:
+    RoleCategory_2:
       properties:
         id:
           description: Identifier of the Role Category.
@@ -2201,8 +2171,8 @@ components:
       - name
       - scope
       x-usedIn:
-      - /user/{envId}/role-categories/
-      - /user/{envId}/role-categories/{roleCategoryId}/
+      - /global/role-categories/
+      - /global/role-categories/{roleCategoryId}/
     RoleCategoryDetailsResponse_3:
       properties:
         data:
@@ -2355,6 +2325,36 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    RoleCategory_3:
+      properties:
+        id:
+          description: Identifier of the Role Category.
+          readOnly: true
+          type: integer
+        name:
+          description: The name of the Role Category.
+          type: string
+        scope:
+          description: The Scope in which this Role Category is defined.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+      required:
+      - name
+      x-filterable:
+      - id
+      - name
+      - scope
+      x-usedIn:
+      - /user/{envId}/role-categories/
+      - /user/{envId}/role-categories/{roleCategoryId}/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-global-openapi.yml

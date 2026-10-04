@@ -624,6 +624,43 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    Team:
+      properties:
+        defaultAclRole:
+          $ref: '#/components/schemas/AclRoleForeignKey'
+          description: Default ACL Role for the Team. This ACL Role is applied by default to all the members of the Team, but it can be overridden for specific users.
+        description:
+          description: Description of the Team.
+          type: string
+        id:
+          description: Identifier of the Team.
+          readOnly: true
+          type: integer
+        name:
+          description: Name of the Team.
+          type: string
+      required:
+      - defaultAclRole
+      - name
+      x-filterable:
+      - id
+      - name
+      - defaultAclRole
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+    AclRoleForeignKey:
+      properties:
+        id:
+          description: Unique identifier for this ACL Role object.
+          type: string
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/AclRole'
+      x-references:
+        $ref: '#/components/schemas/AclRole'
     AclRole:
       properties:
         baseRole:
@@ -651,29 +688,19 @@ components:
       - id
       - name
       - baseRole
-    ApiMessage:
+    ApiPagination:
       properties:
-        code:
-          description: A machine-readable representation of the message.
+        first:
+          readOnly: true
           type: string
-        message:
-          description: A human-readable representation of the message.
+        last:
+          readOnly: true
           type: string
-    AclRoleForeignKey:
-      properties:
-        id:
-          description: Unique identifier for this ACL Role object.
+        next:
+          readOnly: true
           type: string
-      required:
-      - id
-      x-derived:
-        $ref: '#/components/schemas/AclRole'
-      x-references:
-        $ref: '#/components/schemas/AclRole'
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
+        prev:
+          readOnly: true
           type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
@@ -743,19 +770,10 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiPagination:
+    ApiMetaContainer:
       properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
+        sample:
+          description: Actual properties TBD.
           type: string
     TeamDetailsResponse:
       properties:
@@ -778,32 +796,6 @@ components:
       x-derived:
         $ref: '#/components/schemas/Team'
       x-usedIn:
-      - /account/{accountId}/teams/
-      - /account/{accountId}/teams/{teamId}/
-    Team:
-      properties:
-        defaultAclRole:
-          $ref: '#/components/schemas/AclRoleForeignKey'
-          description: Default ACL Role for the Team. This ACL Role is applied by default to all the members of the Team, but it can be overridden for specific users.
-        description:
-          description: Description of the Team.
-          type: string
-        id:
-          description: Identifier of the Team.
-          readOnly: true
-          type: integer
-        name:
-          description: Name of the Team.
-          type: string
-      required:
-      - defaultAclRole
-      - name
-      x-filterable:
-      - id
-      - name
-      - defaultAclRole
-      x-usedIn:
-      - /account/{accountId}/environments/{envId}/teams/{teamId}/
       - /account/{accountId}/teams/
       - /account/{accountId}/teams/{teamId}/
     TeamListResponse:
@@ -833,6 +825,14 @@ components:
         $ref: '#/components/schemas/Team'
       x-usedIn:
       - /account/{accountId}/teams/
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
 x-dry-yaml-definitions:
   architecture:
     enum:

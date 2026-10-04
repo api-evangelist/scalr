@@ -1473,6 +1473,55 @@ paths:
     - url: /api/v1beta0/global
 components:
   schemas:
+    AnsibleTowerMachineCredentialsWindows:
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials.
+          type: string
+        password:
+          format: password
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerMachineCredentials'
+      x-discriminator: type
+    AnsibleTowerConfigurationListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/AnsibleTowerConfiguration'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerConfiguration'
+      x-usedIn:
+      - /account/{accountId}/ansible-tower/configurations/
     AnsibleTowerServer:
       properties:
         certificate:
@@ -1510,62 +1559,6 @@ components:
       - id
       - url
       - scope
-    AnsibleTowerGroupTemplate:
-      properties:
-        id:
-          description: Unique identifier of the Ansible Tower Template Group.
-          maxLength: 36
-          minLength: 36
-          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
-          type: string
-        name:
-          description: The name of the Ansible Tower Template Group.
-          type: string
-        type:
-          enum:
-          - AnsibleTowerGroupRegular
-          - AnsibleTowerGroupTemplate
-          type: string
-      required:
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/AnsibleTowerGroup'
-      x-discriminator: type
-    AnsibleTowerGroup:
-      discriminator:
-        propertyName: type
-      properties:
-        type:
-          enum:
-          - AnsibleTowerGroupRegular
-          - AnsibleTowerGroupTemplate
-          type: string
-      required:
-      - type
-      x-concreteTypes:
-      - $ref: '#/components/schemas/AnsibleTowerGroupRegular'
-      - $ref: '#/components/schemas/AnsibleTowerGroupTemplate'
-    AnsibleTowerMachineCredentialsLinux:
-      properties:
-        id:
-          description: The identifier of the Machine Credentials.
-          type: integer
-        name:
-          description: Name of the Machine Credentials.
-          type: string
-        publicKey:
-          type: string
-        type:
-          description: Type of the Machine Credentials.
-          enum:
-          - AnsibleTowerMachineCredentialsWindows
-          - AnsibleTowerMachineCredentialsLinux
-          type: string
-      required:
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/AnsibleTowerMachineCredentials'
-      x-discriminator: type
     AnsibleTowerConfiguration:
       properties:
         allowOverride:
@@ -1628,47 +1621,54 @@ components:
       x-usedIn:
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMessage:
+    AnsibleTowerGroupTemplate:
       properties:
-        code:
-          description: A machine-readable representation of the message.
+        id:
+          description: Unique identifier of the Ansible Tower Template Group.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
           type: string
-        message:
-          description: A human-readable representation of the message.
+        name:
+          description: The name of the Ansible Tower Template Group.
           type: string
-    AnsibleTowerMachineCredentials:
+        type:
+          enum:
+          - AnsibleTowerGroupRegular
+          - AnsibleTowerGroupTemplate
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerGroup'
+      x-discriminator: type
+    AnsibleTowerGroup:
       discriminator:
         propertyName: type
       properties:
-        id:
-          description: The identifier of the Machine Credentials.
-          type: integer
-        name:
-          description: Name of the Machine Credentials.
-          type: string
         type:
-          description: Type of the Machine Credentials.
           enum:
-          - AnsibleTowerMachineCredentialsWindows
-          - AnsibleTowerMachineCredentialsLinux
+          - AnsibleTowerGroupRegular
+          - AnsibleTowerGroupTemplate
           type: string
       required:
       - type
       x-concreteTypes:
-      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsLinux'
-      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsWindows'
-    ComposedAnsibleTowerOrganizationIdentity:
+      - $ref: '#/components/schemas/AnsibleTowerGroupRegular'
+      - $ref: '#/components/schemas/AnsibleTowerGroupTemplate'
+    ApiPagination:
       properties:
-        id:
-          description: Unique identifier of the Ansible Tower Organization object.
-          type: integer
-        name:
-          description: The name of the Ansible Tower Organization object.
+        first:
+          readOnly: true
           type: string
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
           type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
@@ -1738,30 +1738,20 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    AnsibleTowerConfigurationDetailsResponse:
+    ApiMetaContainer:
       properties:
-        data:
-          $ref: '#/components/schemas/AnsibleTowerConfiguration'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/AnsibleTowerConfiguration'
-      x-usedIn:
-      - /account/{accountId}/ansible-tower/configurations/
-      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    AnsibleTowerMachineCredentialsWindows:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    ComposedAnsibleTowerOrganizationIdentity:
+      properties:
+        id:
+          description: Unique identifier of the Ansible Tower Organization object.
+          type: integer
+        name:
+          description: The name of the Ansible Tower Organization object.
+          type: string
+    AnsibleTowerMachineCredentialsLinux:
       properties:
         id:
           description: The identifier of the Machine Credentials.
@@ -1769,8 +1759,7 @@ components:
         name:
           description: Name of the Machine Credentials.
           type: string
-        password:
-          format: password
+        publicKey:
           type: string
         type:
           description: Type of the Machine Credentials.
@@ -1783,19 +1772,34 @@ components:
       x-abstractType:
         $ref: '#/components/schemas/AnsibleTowerMachineCredentials'
       x-discriminator: type
-    ApiPagination:
+    AnsibleTowerMachineCredentials:
+      discriminator:
+        propertyName: type
       properties:
-        first:
-          readOnly: true
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials.
           type: string
-        last:
-          readOnly: true
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
           type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsLinux'
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsWindows'
+    ComposedAnsibleTowerInventoryIdentity:
+      properties:
+        id:
+          description: Unique identifier of the Ansible Tower Inventory object.
+          type: integer
+        name:
+          description: The name of the Ansible Tower Inventory object.
           type: string
     AnsibleTowerServerListResponse:
       properties:
@@ -1824,24 +1828,37 @@ components:
         $ref: '#/components/schemas/AnsibleTowerServer'
       x-usedIn:
       - /account/{accountId}/ansible-tower/servers/
-    ComposedAnsibleTowerInventoryIdentity:
+    AnsibleTowerConfigurationDetailsResponse:
       properties:
-        id:
-          description: Unique identifier of the Ansible Tower Inventory object.
-          type: integer
-        name:
-          description: The name of the Ansible Tower Inventory object.
-          type: string
-    AnsibleTowerServerForeignKey:
-      properties:
-        id:
-          type: string
-      required:
-      - id
+        data:
+          $ref: '#/components/schemas/AnsibleTowerConfiguration'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
       x-derived:
-        $ref: '#/components/schemas/AnsibleTowerServer'
-      x-references:
-        $ref: '#/components/schemas/AnsibleTowerServer'
+        $ref: '#/components/schemas/AnsibleTowerConfiguration'
+      x-usedIn:
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
     AnsibleTowerGroupRegular:
       properties:
         id:
@@ -1860,11 +1877,43 @@ components:
       x-abstractType:
         $ref: '#/components/schemas/AnsibleTowerGroup'
       x-discriminator: type
-    AnsibleTowerConfigurationListResponse:
+    AnsibleTowerServerForeignKey:
+      properties:
+        id:
+          type: string
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/AnsibleTowerServer'
+      x-references:
+        $ref: '#/components/schemas/AnsibleTowerServer'
+    AnsibleTowerMachineCredentialsWindows_2:
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials
+          type: string
+        password:
+          format: password
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/AnsibleTowerMachineCredentials_2'
+      x-discriminator: type
+    AnsibleTowerConfigurationListResponse_2:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/AnsibleTowerConfiguration'
+            $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
           readOnly: true
           type: array
         errors:
@@ -1884,30 +1933,9 @@ components:
           readOnly: true
           type: array
       x-derived:
-        $ref: '#/components/schemas/AnsibleTowerConfiguration'
+        $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
       x-usedIn:
-      - /account/{accountId}/ansible-tower/configurations/
-    AnsibleTowerMachineCredentialsLinux_2:
-      properties:
-        id:
-          description: The identifier of the Machine Credentials.
-          type: integer
-        name:
-          description: Name of the Machine Credentials
-          type: string
-        publicKey:
-          type: string
-        type:
-          description: Type of the Machine Credentials.
-          enum:
-          - AnsibleTowerMachineCredentialsWindows
-          - AnsibleTowerMachineCredentialsLinux
-          type: string
-      required:
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/AnsibleTowerMachineCredentials_2'
-      x-discriminator: type
+      - /global/ansible-tower/configurations/
     AnsibleTowerConfiguration_2:
       properties:
         allowOverride:
@@ -1970,27 +1998,6 @@ components:
       x-usedIn:
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    AnsibleTowerMachineCredentials_2:
-      discriminator:
-        propertyName: type
-      properties:
-        id:
-          description: The identifier of the Machine Credentials.
-          type: integer
-        name:
-          description: Name of the Machine Credentials
-          type: string
-        type:
-          description: Type of the Machine Credentials.
-          enum:
-          - AnsibleTowerMachineCredentialsWindows
-          - AnsibleTowerMachineCredentialsLinux
-          type: string
-      required:
-      - type
-      x-concreteTypes:
-      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsLinux_2'
-      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsWindows_2'
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -2036,30 +2043,7 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    AnsibleTowerConfigurationDetailsResponse_2:
-      properties:
-        data:
-          $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
-      x-usedIn:
-      - /global/ansible-tower/configurations/
-      - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    AnsibleTowerMachineCredentialsWindows_2:
+    AnsibleTowerMachineCredentialsLinux_2:
       properties:
         id:
           description: The identifier of the Machine Credentials.
@@ -2067,8 +2051,7 @@ components:
         name:
           description: Name of the Machine Credentials
           type: string
-        password:
-          format: password
+        publicKey:
           type: string
         type:
           description: Type of the Machine Credentials.
@@ -2081,6 +2064,27 @@ components:
       x-abstractType:
         $ref: '#/components/schemas/AnsibleTowerMachineCredentials_2'
       x-discriminator: type
+    AnsibleTowerMachineCredentials_2:
+      discriminator:
+        propertyName: type
+      properties:
+        id:
+          description: The identifier of the Machine Credentials.
+          type: integer
+        name:
+          description: Name of the Machine Credentials
+          type: string
+        type:
+          description: Type of the Machine Credentials.
+          enum:
+          - AnsibleTowerMachineCredentialsWindows
+          - AnsibleTowerMachineCredentialsLinux
+          type: string
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsLinux_2'
+      - $ref: '#/components/schemas/AnsibleTowerMachineCredentialsWindows_2'
     AnsibleTowerServerListResponse_2:
       properties:
         data:
@@ -2108,13 +2112,11 @@ components:
         $ref: '#/components/schemas/AnsibleTowerServer'
       x-usedIn:
       - /global/ansible-tower/servers/
-    AnsibleTowerConfigurationListResponse_2:
+    AnsibleTowerConfigurationDetailsResponse_2:
       properties:
         data:
-          items:
-            $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
+          $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
           readOnly: true
-          type: array
         errors:
           items:
             $ref: '#/components/schemas/ApiMessage'
@@ -2122,9 +2124,6 @@ components:
           type: array
         meta:
           $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
           readOnly: true
         warnings:
           items:
@@ -2135,6 +2134,7 @@ components:
         $ref: '#/components/schemas/AnsibleTowerConfiguration_2'
       x-usedIn:
       - /global/ansible-tower/configurations/
+      - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-global-openapi.yml

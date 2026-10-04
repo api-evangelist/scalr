@@ -320,14 +320,36 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    ApiMessage:
+    InstanceType:
       properties:
-        code:
-          description: A machine-readable representation of the message.
+        cloudFeatures:
+          $ref: '#/components/schemas/InstanceTypeCloudFeatures'
+          description: Cloud specific parameters related to Instance Type.
+          readOnly: true
+        id:
+          description: Identifier of the InstanceType object.
+          readOnly: true
           type: string
-        message:
-          description: A human-readable representation of the message.
+        memory:
+          description: Memory in GB allocated for the Instance.
+          readOnly: true
+          type: number
+        name:
+          description: The Instance Type Name in the Cloud.
+          readOnly: true
           type: string
+        storage:
+          description: Total disks size in GB.
+          readOnly: true
+          type: integer
+        vcpus:
+          description: Virtual CPUs count.
+          readOnly: true
+          type: integer
+      x-filterable:
+      - id
+      - name
+      - storage
     InstanceTypeCloudFeatures:
       description: Cloud specific Instance type configuration.
       discriminator:
@@ -341,10 +363,46 @@ components:
       - type
       x-concreteTypes:
       - $ref: '#/components/schemas/AwsInstanceTypeCloudFeatures'
-    ApiMetaContainer:
+    InstanceTypeListResponse:
       properties:
-        sample:
-          description: Actual properties TBD.
+        data:
+          items:
+            $ref: '#/components/schemas/InstanceType'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/InstanceType'
+      x-usedIn:
+      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
           type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
@@ -448,104 +506,26 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    InstanceTypeListResponse:
+    ApiMetaContainer:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/InstanceType'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/InstanceType'
+        sample:
+          description: Actual properties TBD.
+          type: string
+    CloudLocation:
+      properties:
+        cloudLocation:
+          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+          type: string
+        cloudPlatform:
+          description: The Cloud Platform this resource resides in.
+          enum:
+          - ec2
+          - gce
+          type: string
+      required:
+      - cloudPlatform
       x-usedIn:
-      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    InstanceType:
-      properties:
-        cloudFeatures:
-          $ref: '#/components/schemas/InstanceTypeCloudFeatures'
-          description: Cloud specific parameters related to Instance Type.
-          readOnly: true
-        id:
-          description: Identifier of the InstanceType object.
-          readOnly: true
-          type: string
-        memory:
-          description: Memory in GB allocated for the Instance.
-          readOnly: true
-          type: number
-        name:
-          description: The Instance Type Name in the Cloud.
-          readOnly: true
-          type: string
-        storage:
-          description: Total disks size in GB.
-          readOnly: true
-          type: integer
-        vcpus:
-          description: Virtual CPUs count.
-          readOnly: true
-          type: integer
-      x-filterable:
-      - id
-      - name
-      - storage
-    CloudLocationListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/CloudLocation'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/CloudLocation'
-      x-usedIn:
-      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
+      - /user/{envId}/images/{imageId}/actions/copy/
     AwsInstanceTypeCloudFeatures:
       description: AWS instance type configuration.
       properties:
@@ -573,21 +553,41 @@ components:
       x-abstractType:
         $ref: '#/components/schemas/InstanceTypeCloudFeatures'
       x-discriminator: type
-    CloudLocation:
+    ApiMessage:
       properties:
-        cloudLocation:
-          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+        code:
+          description: A machine-readable representation of the message.
           type: string
-        cloudPlatform:
-          description: The Cloud Platform this resource resides in.
-          enum:
-          - ec2
-          - gce
+        message:
+          description: A human-readable representation of the message.
           type: string
-      required:
-      - cloudPlatform
+    CloudLocationListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/CloudLocation'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/CloudLocation'
       x-usedIn:
-      - /user/{envId}/images/{imageId}/actions/copy/
+      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
 x-dry-yaml-definitions:
   FarmRoleExpandProperites:
     advancedConfiguration:

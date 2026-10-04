@@ -2815,77 +2815,6 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
-    RoleScopeIdentityListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/RoleScopeIdentity'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/RoleScopeIdentity'
-      x-usedIn:
-      - /account/{accountId}/images/{imageId}/actions/replace/
-    VmwareImageCloudFeatures:
-      description: Cloud specifics Image configuration.
-      properties:
-        type:
-          enum:
-          - AwsImageCloudFeatures
-          - VmwareImageCloudFeatures
-          - OpenstackImageCloudFeatures
-          type: string
-        vCenterHost:
-          description: The vCenter host where the current Image exists. At the Environment scope this property is read-only.
-          type: string
-      required:
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/ImageCloudFeatures'
-      x-discriminator: type
-    ImageListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Image'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Image'
-      x-usedIn:
-      - /account/{accountId}/images/
     OpenstackImageCloudFeatures:
       description: Cloud specifics Image configuration.
       properties:
@@ -2907,6 +2836,20 @@ components:
       x-abstractType:
         $ref: '#/components/schemas/ImageCloudFeatures'
       x-discriminator: type
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
     Image:
       properties:
         added:
@@ -3030,112 +2973,6 @@ components:
       - /account/{accountId}/images/{imageId}/
       - /account/{accountId}/images/{imageId}/actions/copy/
       - /account/{accountId}/images/{imageId}/actions/replace/
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    Os:
-      properties:
-        family:
-          description: OS family.
-          type: string
-        generation:
-          type: string
-        id:
-          description: An ID uniquely identifying this OS in Scalr.
-          pattern: '[A-Za-z0-9-]+'
-          type: string
-        name:
-          description: A human-readable name for this OS.
-          type: string
-        version:
-          type: string
-      required:
-      - id
-      - name
-      - family
-      - generation
-      - version
-      x-filterable:
-      - id
-      - name
-      - family
-      - generation
-      x-usedIn:
-      - /account/{accountId}/os/{osId}/
-    RoleScopeIdentity:
-      description: The Role Scope identity relation.
-      properties:
-        accountId:
-          description: Account identifier.
-          readOnly: true
-          type: integer
-        envId:
-          description: Environment identifier.
-          readOnly: true
-          type: integer
-        id:
-          description: Identifier of the Role.
-          readOnly: true
-          type: integer
-        scope:
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-    ImageForeignKey:
-      properties:
-        id:
-          type: string
-      required:
-      - id
-      x-derived:
-        $ref: '#/components/schemas/Image'
-      x-references:
-        $ref: '#/components/schemas/Image'
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
-    OsForeignKey:
-      properties:
-        id:
-          description: An ID uniquely identifying this OS in Scalr.
-          type: string
-      required:
-      - id
-      x-derived:
-        $ref: '#/components/schemas/Os'
-      x-references:
-        $ref: '#/components/schemas/Os'
-    ImageCloudFeatures:
-      description: Cloud specifics Image configuration.
-      discriminator:
-        propertyName: type
-      properties:
-        type:
-          enum:
-          - AwsImageCloudFeatures
-          - VmwareImageCloudFeatures
-          - OpenstackImageCloudFeatures
-          type: string
-      required:
-      - type
-      x-concreteTypes:
-      - $ref: '#/components/schemas/AwsImageCloudFeatures'
-      - $ref: '#/components/schemas/VmwareImageCloudFeatures'
-      - $ref: '#/components/schemas/OpenstackImageCloudFeatures'
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -3204,78 +3041,41 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ImageDetailsResponse:
+    ApiMetaContainer:
       properties:
-        data:
-          $ref: '#/components/schemas/Image'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Image'
-      x-usedIn:
-      - /account/{accountId}/roles/{roleId}/images/{imageId}/
-      - /account/{accountId}/images/
-      - /account/{accountId}/images/{imageId}/
-      - /account/{accountId}/images/{imageId}/actions/copy/
-    ApiPagination:
+        sample:
+          description: Actual properties TBD.
+          type: string
+    Os:
       properties:
-        first:
-          readOnly: true
+        family:
+          description: OS family.
           type: string
-        last:
-          readOnly: true
+        generation:
           type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    AwsImageCloudFeatures:
-      description: Cloud specifics Image configuration.
-      properties:
-        accountId:
-          description: AWS account ID
-          type: string
-        type:
-          enum:
-          - AwsImageCloudFeatures
-          - VmwareImageCloudFeatures
-          - OpenstackImageCloudFeatures
-          type: string
-        virtualization:
-          description: 'The Image virtualization type. Can be one of two types of virtualization: paravirtual (pv) or hardware virtual machine (hvm). At the Environment scope this property is read-only.'
-          enum:
-          - hvm
-          - paravirtual
-          type: string
-      required:
-      - type
-      x-abstractType:
-        $ref: '#/components/schemas/ImageCloudFeatures'
-      x-discriminator: type
-    CloudCredentialsForeignKey:
-      properties:
         id:
-          description: Unique identifier of a Cloud Credentials object.
+          description: An ID uniquely identifying this OS in Scalr.
+          pattern: '[A-Za-z0-9-]+'
+          type: string
+        name:
+          description: A human-readable name for this OS.
+          type: string
+        version:
           type: string
       required:
       - id
+      - name
+      - family
+      - generation
+      - version
+      x-filterable:
+      - id
+      - name
+      - family
+      - generation
       x-usedIn:
-      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-    RoleScopeIdentityListResponse_2:
+      - /account/{accountId}/os/{osId}/
+    RoleScopeIdentityListResponse:
       properties:
         data:
           items:
@@ -3301,12 +3101,45 @@ components:
       x-derived:
         $ref: '#/components/schemas/RoleScopeIdentity'
       x-usedIn:
-      - /global/images/{imageId}/actions/replace/
-    ImageListResponse_2:
+      - /account/{accountId}/images/{imageId}/actions/replace/
+    AwsImageCloudFeatures:
+      description: Cloud specifics Image configuration.
+      properties:
+        accountId:
+          description: AWS account ID
+          type: string
+        type:
+          enum:
+          - AwsImageCloudFeatures
+          - VmwareImageCloudFeatures
+          - OpenstackImageCloudFeatures
+          type: string
+        virtualization:
+          description: 'The Image virtualization type. Can be one of two types of virtualization: paravirtual (pv) or hardware virtual machine (hvm). At the Environment scope this property is read-only.'
+          enum:
+          - hvm
+          - paravirtual
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/ImageCloudFeatures'
+      x-discriminator: type
+    ImageForeignKey:
+      properties:
+        id:
+          type: string
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/Image'
+      x-references:
+        $ref: '#/components/schemas/Image'
+    ImageListResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/Image_2'
+            $ref: '#/components/schemas/Image'
           readOnly: true
           type: array
         errors:
@@ -3326,9 +3159,122 @@ components:
           readOnly: true
           type: array
       x-derived:
-        $ref: '#/components/schemas/Image_2'
+        $ref: '#/components/schemas/Image'
       x-usedIn:
-      - /global/images/
+      - /account/{accountId}/images/
+    RoleScopeIdentity:
+      description: The Role Scope identity relation.
+      properties:
+        accountId:
+          description: Account identifier.
+          readOnly: true
+          type: integer
+        envId:
+          description: Environment identifier.
+          readOnly: true
+          type: integer
+        id:
+          description: Identifier of the Role.
+          readOnly: true
+          type: integer
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+    CloudCredentialsForeignKey:
+      properties:
+        id:
+          description: Unique identifier of a Cloud Credentials object.
+          type: string
+      required:
+      - id
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+    OsForeignKey:
+      properties:
+        id:
+          description: An ID uniquely identifying this OS in Scalr.
+          type: string
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/Os'
+      x-references:
+        $ref: '#/components/schemas/Os'
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    ImageDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/Image'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Image'
+      x-usedIn:
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/
+      - /account/{accountId}/images/
+      - /account/{accountId}/images/{imageId}/
+      - /account/{accountId}/images/{imageId}/actions/copy/
+    VmwareImageCloudFeatures:
+      description: Cloud specifics Image configuration.
+      properties:
+        type:
+          enum:
+          - AwsImageCloudFeatures
+          - VmwareImageCloudFeatures
+          - OpenstackImageCloudFeatures
+          type: string
+        vCenterHost:
+          description: The vCenter host where the current Image exists. At the Environment scope this property is read-only.
+          type: string
+      required:
+      - type
+      x-abstractType:
+        $ref: '#/components/schemas/ImageCloudFeatures'
+      x-discriminator: type
+    ImageCloudFeatures:
+      description: Cloud specifics Image configuration.
+      discriminator:
+        propertyName: type
+      properties:
+        type:
+          enum:
+          - AwsImageCloudFeatures
+          - VmwareImageCloudFeatures
+          - OpenstackImageCloudFeatures
+          type: string
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AwsImageCloudFeatures'
+      - $ref: '#/components/schemas/VmwareImageCloudFeatures'
+      - $ref: '#/components/schemas/OpenstackImageCloudFeatures'
     Image_2:
       properties:
         added:
@@ -3465,35 +3411,6 @@ components:
       - /global/images/{imageId}/
       - /global/images/{imageId}/actions/copy/
       - /global/images/{imageId}/actions/replace/
-    Os_2:
-      properties:
-        family:
-          description: OS family.
-          type: string
-        generation:
-          type: string
-        id:
-          description: An ID uniquely identifying this OS in Scalr.
-          pattern: '[A-Za-z0-9-]+'
-          type: string
-        name:
-          description: A human-readable name for this OS.
-          type: string
-        version:
-          type: string
-      required:
-      - id
-      - name
-      - family
-      - generation
-      - version
-      x-filterable:
-      - id
-      - name
-      - family
-      - generation
-      x-usedIn:
-      - /global/os/{osId}/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -3539,39 +3456,36 @@ components:
       - /global/ansible-tower/servers/
       - /global/ansible-tower/configurations/
       - /global/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ImageDetailsResponse_2:
+    Os_2:
       properties:
-        data:
-          $ref: '#/components/schemas/Image_2'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Image_2'
-      x-usedIn:
-      - /global/roles/{roleId}/images/{imageId}/
-      - /global/images/
-      - /global/images/{imageId}/
-      - /global/images/{imageId}/actions/copy/
-    CloudCredentialsForeignKey_2:
-      properties:
+        family:
+          description: OS family.
+          type: string
+        generation:
+          type: string
         id:
-          description: Unique identifier of Cloud Credentials object.
+          description: An ID uniquely identifying this OS in Scalr.
+          pattern: '[A-Za-z0-9-]+'
+          type: string
+        name:
+          description: A human-readable name for this OS.
+          type: string
+        version:
           type: string
       required:
       - id
-    RoleScopeIdentityListResponse_3:
+      - name
+      - family
+      - generation
+      - version
+      x-filterable:
+      - id
+      - name
+      - family
+      - generation
+      x-usedIn:
+      - /global/os/{osId}/
+    RoleScopeIdentityListResponse_2:
       properties:
         data:
           items:
@@ -3597,12 +3511,12 @@ components:
       x-derived:
         $ref: '#/components/schemas/RoleScopeIdentity'
       x-usedIn:
-      - /user/{envId}/images/{imageId}/actions/replace/
-    ImageListResponse_3:
+      - /global/images/{imageId}/actions/replace/
+    ImageListResponse_2:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/Image_3'
+            $ref: '#/components/schemas/Image_2'
           readOnly: true
           type: array
         errors:
@@ -3622,9 +3536,41 @@ components:
           readOnly: true
           type: array
       x-derived:
-        $ref: '#/components/schemas/Image_3'
+        $ref: '#/components/schemas/Image_2'
       x-usedIn:
-      - /user/{envId}/images/
+      - /global/images/
+    CloudCredentialsForeignKey_2:
+      properties:
+        id:
+          description: Unique identifier of Cloud Credentials object.
+          type: string
+      required:
+      - id
+    ImageDetailsResponse_2:
+      properties:
+        data:
+          $ref: '#/components/schemas/Image_2'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Image_2'
+      x-usedIn:
+      - /global/roles/{roleId}/images/{imageId}/
+      - /global/images/
+      - /global/images/{imageId}/
+      - /global/images/{imageId}/actions/copy/
     Image_3:
       properties:
         added:
@@ -3748,35 +3694,21 @@ components:
       - /user/{envId}/images/{imageId}/
       - /user/{envId}/images/{imageId}/actions/copy/
       - /user/{envId}/images/{imageId}/actions/replace/
-    Os_3:
+    CloudLocation:
       properties:
-        family:
-          description: OS family.
+        cloudLocation:
+          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
           type: string
-        generation:
-          type: string
-        id:
-          description: An ID uniquely identifying this OS in Scalr.
-          pattern: '[A-Za-z0-9-]+'
-          type: string
-        name:
-          description: A human-readable name for this OS.
-          type: string
-        version:
+        cloudPlatform:
+          description: The Cloud Platform this resource resides in.
+          enum:
+          - ec2
+          - gce
           type: string
       required:
-      - id
-      - name
-      - family
-      - generation
-      - version
-      x-filterable:
-      - id
-      - name
-      - family
-      - generation
+      - cloudPlatform
       x-usedIn:
-      - /user/{envId}/os/{osId}/
+      - /user/{envId}/images/{imageId}/actions/copy/
     ApiErrorResponse_3:
       description: Common response for erroneous requests.
       properties:
@@ -3879,6 +3811,89 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    Os_3:
+      properties:
+        family:
+          description: OS family.
+          type: string
+        generation:
+          type: string
+        id:
+          description: An ID uniquely identifying this OS in Scalr.
+          pattern: '[A-Za-z0-9-]+'
+          type: string
+        name:
+          description: A human-readable name for this OS.
+          type: string
+        version:
+          type: string
+      required:
+      - id
+      - name
+      - family
+      - generation
+      - version
+      x-filterable:
+      - id
+      - name
+      - family
+      - generation
+      x-usedIn:
+      - /user/{envId}/os/{osId}/
+    RoleScopeIdentityListResponse_3:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/RoleScopeIdentity'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/RoleScopeIdentity'
+      x-usedIn:
+      - /user/{envId}/images/{imageId}/actions/replace/
+    ImageListResponse_3:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Image_3'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Image_3'
+      x-usedIn:
+      - /user/{envId}/images/
     ImageDetailsResponse_3:
       properties:
         data:
@@ -3903,21 +3918,6 @@ components:
       - /user/{envId}/roles/{roleId}/images/{imageId}/
       - /user/{envId}/images/
       - /user/{envId}/images/{imageId}/
-      - /user/{envId}/images/{imageId}/actions/copy/
-    CloudLocation:
-      properties:
-        cloudLocation:
-          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
-          type: string
-        cloudPlatform:
-          description: The Cloud Platform this resource resides in.
-          enum:
-          - ec2
-          - gce
-          type: string
-      required:
-      - cloudPlatform
-      x-usedIn:
       - /user/{envId}/images/{imageId}/actions/copy/
 x-refined-from:
 - scalr-account-openapi.yml

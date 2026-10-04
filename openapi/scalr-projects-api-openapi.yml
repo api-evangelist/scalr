@@ -1253,10 +1253,13 @@ components:
       x-usedIn:
       - /account/{accountId}/projects/
       - /account/{accountId}/projects/{projectId}/
-    ApiMetaContainer:
+    ApiMessage:
       properties:
-        sample:
-          description: Actual properties TBD.
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
           type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
@@ -1326,13 +1329,10 @@ components:
       - /account/{accountId}/ansible-tower/servers/
       - /account/{accountId}/ansible-tower/configurations/
       - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    ApiMessage:
+    ApiMetaContainer:
       properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
+        sample:
+          description: Actual properties TBD.
           type: string
     ProjectDetailsResponse_2:
       properties:
