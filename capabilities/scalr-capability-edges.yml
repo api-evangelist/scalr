@@ -1,0 +1,77 @@
+slug: scalr
+provider: Scalr
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: Servers
+  spec_file: scalr-servers-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.85
+  evidence: 'POST /{envId}/servers/{serverId}/actions/reboot/ , .../actions/suspend/ , .../actions/terminate/
+    ; schemas: ServerSummaryDetailsResponse, ScalrAgent, AwsSpotInstanceConfiguration'
+  reason: Operations provision and control cloud compute instances (reboot, suspend, resume, terminate,
+    sync) with cloud-specific instance configuration — unambiguously compute/cloud IT Infrastructure Management.
+- tag: Images
+  spec_file: scalr-images-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.78
+  evidence: 'schemas: AwsImageCloudFeatures, OpenstackImageCloudFeatures, VmwareImageCloudFeatures, Image,
+    Os; POST /{accountId}/images/{imageId}/actions/copy/'
+  reason: The operations manage cloud machine images (AWS/OpenStack/VMware) including copy and replace
+    actions — this is compute/cloud infrastructure asset management, i.e. IT Infrastructure Management,
+    not any business-domain 'images'.
+- tag: Farms
+  spec_file: scalr-farms-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.72
+  evidence: POST /{envId}/farms/{farmId}/actions/launch/; actions/suspend/; actions/terminate/
+  reason: Lifecycle control of farms (clusters of cloud servers) — launch, suspend, resume, terminate,
+    clone — which is operation of compute/cloud infrastructure rather than any business-domain capability.
+- tag: Roles
+  spec_file: scalr-roles-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.72
+  evidence: 'schemas: RoleImage, RoleImageListResponse, RoleDeprecatedOptions, FarmRoleIdentity; POST
+    /{accountId}/roles/{roleId}/actions/deprecate/'
+  reason: 'Despite the homograph, these are not access-control roles: a Scalr Role is a server template
+    composed of images, scripts, orchestration rules and global variables, with clone/deprecate lifecycle
+    actions. That is cloud compute infrastructure definition — IT Infrastructure Management.'
+- tag: Clouds
+  spec_file: scalr-clouds-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: Get by env id clouds by cloud platform cloud locations by cloud location instance types; schemas
+    InstanceType, CloudLocation, AwsInstanceTypeCloudFeatures
+  reason: Exposes the catalogue of cloud regions/locations and compute instance types available per cloud
+    platform — reference data for provisioning compute infrastructure, i.e. IT infrastructure management.
+- tag: Farm Roles
+  spec_file: scalr-farm-roles-api-openapi.yml
+  capability_id: BC-600.50
+  capability_id_l1: BC-600
+  capability_name: IT Infrastructure Management
+  confidence: 0.7
+  evidence: Get by env id farm roles by farm role id orchestration rules; schemas LoadAveragesScalingRule,
+    DateAndTimeScalingRule, EphemeralStorageConfiguration, BootstrapConfiguration
+  reason: Manages server-group (farm role) definitions including bootstrap/storage configuration, scaling
+    and orchestration rules and server import — provisioning and scaling of compute infrastructure, i.e.
+    IT infrastructure management.

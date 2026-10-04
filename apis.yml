@@ -364,6 +364,9 @@ apis:
   - type: Documentation
     url: https://api-explorer.scalr.com/
 common:
+  - type: CapabilityMap
+    url: capabilities/scalr-capability-edges.yml
+    name: Scalr Business Capability Map
   - type: AgenticAccess
     url: agentic-access/scalr-agentic-access.yml
   - type: DomainSecurity
