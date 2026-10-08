@@ -364,6 +364,12 @@ apis:
   - type: Documentation
     url: https://api-explorer.scalr.com/
 common:
+  - type: Plans
+    url: plans/scalr-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/scalr-rate-limits.yml
+  - type: FinOps
+    url: finops/scalr-finops.yml
   - type: CapabilityMap
     url: capabilities/scalr-capability-edges.yml
     name: Scalr Business Capability Map
