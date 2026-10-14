@@ -1,8 +1,10 @@
 generated: '2026-10-14'
 method: searched
 checked:
+- datadog/integrations/datadog-integration-edges.yml
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
+- okta/integrations/okta-integration-edges.yml
 marketplace_apps: []
 edges:
 - partner_name: GitHub Marketplace (apps)
@@ -40,6 +42,49 @@ edges:
   - Verified creator
   detected_by: sweep-devtools.py
   detected: '2026-10-14'
+- partner_name: Datadog (own)
+  partner: datadog
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/scalr
+  mirror_of: datadog/integrations/datadog-integration-edges.yml
+  apps:
+  - Scalr
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Automation
+- partner_name: Okta (own)
+  partner: okta
+  partner_match: mirror
+  mirror_match: domain
+  type: marketplace
+  relationship: platform-app
+  direction: third-party
+  channel: partner-built
+  marketplace: own
+  evidence: https://www.okta.com/integrations/scalrio/
+  mirror_of: okta/integrations/okta-integration-edges.yml
+  apps:
+  - scalr.io
+  listing_count: 1
+  detected: '2026-10-14'
+  detected_by: mirror-platform-listings.py
+  category: Single Sign-On
+  badges:
+  - OKTA_VERIFIED
+  features:
+  - CREATE
+  - DEACTIVATE
+  - GROUP_PUSH
+  - IDENTITY_SECURITY_POSTURE_MANAGEMENT
+  - SAML
+  - UPDATE
 source:
 - https://github.com/marketplace?type=actions
 - https://github.com/marketplace?type=apps
