@@ -320,76 +320,29 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    InstanceType:
+    ApiMessage:
       properties:
-        cloudFeatures:
-          $ref: '#/components/schemas/InstanceTypeCloudFeatures'
-          description: Cloud specific parameters related to Instance Type.
-          readOnly: true
-        id:
-          description: Identifier of the InstanceType object.
-          readOnly: true
+        code:
+          description: A machine-readable representation of the message.
           type: string
-        memory:
-          description: Memory in GB allocated for the Instance.
-          readOnly: true
-          type: number
-        name:
-          description: The Instance Type Name in the Cloud.
-          readOnly: true
+        message:
+          description: A human-readable representation of the message.
           type: string
-        storage:
-          description: Total disks size in GB.
-          readOnly: true
-          type: integer
-        vcpus:
-          description: Virtual CPUs count.
-          readOnly: true
-          type: integer
-      x-filterable:
-      - id
-      - name
-      - storage
-    InstanceTypeCloudFeatures:
-      description: Cloud specific Instance type configuration.
-      discriminator:
-        propertyName: type
+    CloudLocation:
       properties:
-        type:
+        cloudLocation:
+          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+          type: string
+        cloudPlatform:
+          description: The Cloud Platform this resource resides in.
           enum:
-          - AwsInstanceTypeCloudFeatures
+          - ec2
+          - gce
           type: string
       required:
-      - type
-      x-concreteTypes:
-      - $ref: '#/components/schemas/AwsInstanceTypeCloudFeatures'
-    InstanceTypeListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/InstanceType'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/InstanceType'
+      - cloudPlatform
       x-usedIn:
-      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+      - /user/{envId}/images/{imageId}/actions/copy/
     ApiPagination:
       properties:
         first:
@@ -506,26 +459,81 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    InstanceTypeListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/InstanceType'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/InstanceType'
+      x-usedIn:
+      - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    InstanceTypeCloudFeatures:
+      description: Cloud specific Instance type configuration.
+      discriminator:
+        propertyName: type
+      properties:
+        type:
+          enum:
+          - AwsInstanceTypeCloudFeatures
+          type: string
+      required:
+      - type
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AwsInstanceTypeCloudFeatures'
     ApiMetaContainer:
       properties:
         sample:
           description: Actual properties TBD.
           type: string
-    CloudLocation:
+    InstanceType:
       properties:
-        cloudLocation:
-          description: 'Cloud Location, inside a given Cloud Platform, for this resource. May be null if this resource does not have a specific location. Note: if you would like to filter on this property, you **must** also filter on `cloudPlatform`.'
+        cloudFeatures:
+          $ref: '#/components/schemas/InstanceTypeCloudFeatures'
+          description: Cloud specific parameters related to Instance Type.
+          readOnly: true
+        id:
+          description: Identifier of the InstanceType object.
+          readOnly: true
           type: string
-        cloudPlatform:
-          description: The Cloud Platform this resource resides in.
-          enum:
-          - ec2
-          - gce
+        memory:
+          description: Memory in GB allocated for the Instance.
+          readOnly: true
+          type: number
+        name:
+          description: The Instance Type Name in the Cloud.
+          readOnly: true
           type: string
-      required:
-      - cloudPlatform
-      x-usedIn:
-      - /user/{envId}/images/{imageId}/actions/copy/
+        storage:
+          description: Total disks size in GB.
+          readOnly: true
+          type: integer
+        vcpus:
+          description: Virtual CPUs count.
+          readOnly: true
+          type: integer
+      x-filterable:
+      - id
+      - name
+      - storage
     AwsInstanceTypeCloudFeatures:
       description: AWS instance type configuration.
       properties:
@@ -553,14 +561,6 @@ components:
       x-abstractType:
         $ref: '#/components/schemas/InstanceTypeCloudFeatures'
       x-discriminator: type
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
     CloudLocationListResponse:
       properties:
         data:

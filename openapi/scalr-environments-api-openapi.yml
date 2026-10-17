@@ -1634,6 +1634,109 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
+    RackspaceCloudCredentials:
+      properties:
+        apiKey:
+          description: The API access key.
+          type: string
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        isUk:
+          description: Indicates if these credentials are for Rackspace UK (true) or Rackspace US (false).
+          type: boolean
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+        userName:
+          description: The user name.
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - userName
+      - apiKey
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      - isUk
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    EnvironmentTeamListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/EnvironmentTeam'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/EnvironmentTeam'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/
     Environment:
       properties:
         added:
@@ -1672,74 +1775,146 @@ components:
       x-usedIn:
       - /account/{accountId}/environments/
       - /account/{accountId}/environments/{envId}/
-    AwsDetailedBilling:
+    CloudListResponse:
       properties:
-        bucket:
-          description: Billing bucket name.
+        data:
+          items:
+            $ref: '#/components/schemas/Cloud'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Cloud'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/clouds/
+    ApiMetaContainer:
+      properties:
+        sample:
+          description: Actual properties TBD.
           type: string
-        cloudCredentials:
-          $ref: '#/components/schemas/CloudCredentialsForeignKey'
-          description: Payer AWS Cloud Credentials.
-        cloudLocation:
-          description: Billing bucket region.
+    EnvironmentListResponse:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/Environment'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Environment'
+      x-usedIn:
+      - /account/{accountId}/environments/
+    AclRoleForeignKey:
+      properties:
+        id:
+          description: Unique identifier for this ACL Role object.
           type: string
-        enabled:
-          default: false
-          description: Whether detailed billing is enabled.
+      required:
+      - id
+      x-derived:
+        $ref: '#/components/schemas/AclRole'
+      x-references:
+        $ref: '#/components/schemas/AclRole'
+    EnvironmentTeamDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/EnvironmentTeam'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/EnvironmentTeam'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+    VmwareCloudCredentials:
+      properties:
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        password:
+          description: The password for the user.
+          format: password
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        sslVerification:
+          description: Specifies whether it should verify SSL Certificate.
           type: boolean
-    GceCloudCredentials:
-      properties:
-        accountName:
-          description: The service account name.
-          type: string
-        clientId:
-          description: GCE client ID.
-          type: string
-        cloudCredentialsType:
-          description: The Cloud Platform these credentials allow access to.
-          enum:
-          - AwsCloudCredentials
-          - GceCloudCredentials
-          - AzureCloudCredentials
-          - CloudstackCloudCredentials
-          - OpenstackCloudCredentials
-          - RackspaceCloudCredentials
-          - VmwareCloudCredentials
-          type: string
-        description:
-          type: string
-        id:
-          description: Unique identifier for this Cloud Credentials object.
-          maxLength: 12
-          minLength: 12
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Unique name of these Cloud Credentials.
-          type: string
-        privateKey:
-          description: Private key with boundary.
-          format: byte
-          type: string
-        projectId:
-          description: GCE project ID.
-          type: string
-        provider:
-          description: Cloud provider for Openstack or Cloudstack based clouds.
-          type: string
-        scope:
-          description: The scope in which these Cloud Credentials were added.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
         status:
           description: The status of these Cloud Credentials.
           enum:
@@ -1748,13 +1923,18 @@ components:
           - suspended
           readOnly: true
           type: string
+        url:
+          description: vSphere Web Services SDK Server URL.
+          type: string
+        userName:
+          description: The ID of the user.
+          type: string
       required:
       - name
       - cloudCredentialsType
-      - projectId
-      - clientId
-      - accountName
-      - privateKey
+      - url
+      - userName
+      - password
       x-abstractType:
         $ref: '#/components/schemas/CloudCredentials'
       x-createOnly:
@@ -1768,88 +1948,100 @@ components:
       - status
       - scope
       - provider
-    AzureCloudCredentials:
+    Team:
       properties:
-        cloudCredentialsType:
-          description: The Cloud Platform these credentials allow access to.
-          enum:
-          - AwsCloudCredentials
-          - GceCloudCredentials
-          - AzureCloudCredentials
-          - CloudstackCloudCredentials
-          - OpenstackCloudCredentials
-          - RackspaceCloudCredentials
-          - VmwareCloudCredentials
-          type: string
+        defaultAclRole:
+          $ref: '#/components/schemas/AclRoleForeignKey'
+          description: Default ACL Role for the Team. This ACL Role is applied by default to all the members of the Team, but it can be overridden for specific users.
         description:
+          description: Description of the Team.
           type: string
         id:
-          description: Unique identifier for this Cloud Credentials object.
-          maxLength: 12
-          minLength: 12
-          pattern: '[A-Fa-f0-9]+'
+          description: Identifier of the Team.
           readOnly: true
-          type: string
+          type: integer
         name:
-          description: Unique name of these Cloud Credentials.
-          type: string
-        provider:
-          description: Cloud provider for Openstack or Cloudstack based clouds.
-          type: string
-        scope:
-          description: The scope in which these Cloud Credentials were added.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        status:
-          description: The status of these Cloud Credentials.
-          enum:
-          - disabled
-          - enabled
-          - suspended
-          readOnly: true
-          type: string
-        subscription:
-          description: The Azure Subscription ID.
-          type: string
-        tenantId:
-          description: The Azure Active Directory identifier.
+          description: Name of the Team.
           type: string
       required:
+      - defaultAclRole
       - name
-      - cloudCredentialsType
-      - tenantId
-      - subscription
-      x-abstractType:
-        $ref: '#/components/schemas/CloudCredentials'
-      x-createOnly:
-      - cloudCredentialsType
-      - provider
-      x-discriminator: cloudCredentialsType
       x-filterable:
       - id
       - name
-      - cloudCredentialsType
-      - status
-      - scope
-      - provider
-    Cloud:
+      - defaultAclRole
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+    ApiErrorResponse:
+      description: Common response for erroneous requests.
       properties:
-        cloud:
-          description: The Cloud Platform this resource resides in.
-          enum:
-          - ec2
-          - gce
-          type: string
-        credentials:
-          $ref: '#/components/schemas/CloudCredentialsForeignKey'
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-usedIn:
+      - /account/{accountId}/global-variables/
+      - /account/{accountId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/orchestration-rules/
+      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/cost-centers/
+      - /account/{accountId}/cost-centers/{costCenterId}/
+      - /account/{accountId}/environments/
+      - /account/{accountId}/environments/{envId}/
+      - /account/{accountId}/environments/{envId}/clouds/
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/environments/{envId}/teams/
+      - /account/{accountId}/environments/{envId}/teams/{teamId}/
+      - /account/{accountId}/teams/
+      - /account/{accountId}/teams/{teamId}/
+      - /account/{accountId}/acl-roles/
+      - /account/{accountId}/role-categories/
+      - /account/{accountId}/role-categories/{roleCategoryId}/
+      - /account/{accountId}/roles/
+      - /account/{accountId}/roles/{roleId}/
+      - /account/{accountId}/roles/{roleId}/actions/clone/
+      - /account/{accountId}/roles/{roleId}/actions/deprecate/
+      - /account/{accountId}/roles/{roleId}/images/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/
+      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/roles/{roleId}/global-variables/
+      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/
+      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
+      - /account/{accountId}/images/
+      - /account/{accountId}/images/{imageId}/
+      - /account/{accountId}/images/{imageId}/actions/copy/
+      - /account/{accountId}/images/{imageId}/actions/replace/
+      - /account/{accountId}/projects/
+      - /account/{accountId}/projects/{projectId}/
+      - /account/{accountId}/scripts/
+      - /account/{accountId}/scripts/{scriptId}/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/
+      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
+      - /account/{accountId}/webhook-endpoints/
+      - /account/{accountId}/os/
+      - /account/{accountId}/os/{osId}/
+      - /account/{accountId}/events/
+      - /account/{accountId}/events/{eventId}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
+      - /account/{accountId}/users/
+      - /account/{accountId}/ansible-tower/servers/
+      - /account/{accountId}/ansible-tower/configurations/
+      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
     OpenstackCloudCredentials:
       properties:
         cloudCredentialsType:
@@ -1964,6 +2156,432 @@ components:
       x-usedIn:
       - /account/{accountId}/environments/{envId}/teams/
       - /account/{accountId}/environments/{envId}/teams/{teamId}/
+    CloudstackCloudCredentials:
+      properties:
+        apiKey:
+          description: The API key.
+          type: string
+        apiUrl:
+          description: 'The URL like: http(s)://<cloudstack_ip>:<cloudstack_port>/client/api.'
+          type: string
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider that should be specified for CloudStack based clouds.
+          enum:
+          - cloudstack
+          - idcf
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        secretKey:
+          description: The secret key.
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - provider
+      - apiUrl
+      - apiKey
+      - secretKey
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    CloudCredentials:
+      discriminator:
+        propertyName: cloudCredentialsType
+      properties:
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      x-concreteTypes:
+      - $ref: '#/components/schemas/AwsCloudCredentials'
+      - $ref: '#/components/schemas/GceCloudCredentials'
+      - $ref: '#/components/schemas/OpenstackCloudCredentials'
+      - $ref: '#/components/schemas/CloudstackCloudCredentials'
+      - $ref: '#/components/schemas/RackspaceCloudCredentials'
+      - $ref: '#/components/schemas/AzureCloudCredentials'
+      - $ref: '#/components/schemas/VmwareCloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+      x-usedIn:
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+    AwsDetailedBilling:
+      properties:
+        bucket:
+          description: Billing bucket name.
+          type: string
+        cloudCredentials:
+          $ref: '#/components/schemas/CloudCredentialsForeignKey'
+          description: Payer AWS Cloud Credentials.
+        cloudLocation:
+          description: Billing bucket region.
+          type: string
+        enabled:
+          default: false
+          description: Whether detailed billing is enabled.
+          type: boolean
+    GceCloudCredentials:
+      properties:
+        accountName:
+          description: The service account name.
+          type: string
+        clientId:
+          description: GCE client ID.
+          type: string
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        privateKey:
+          description: Private key with boundary.
+          format: byte
+          type: string
+        projectId:
+          description: GCE project ID.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - projectId
+      - clientId
+      - accountName
+      - privateKey
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    ComposedTeamIdentity:
+      properties:
+        id:
+          description: Unique identifier for a Team.
+          type: integer
+        name:
+          description: Team name.
+          readOnly: true
+          type: string
+      required:
+      - id
+    CloudCredentialsDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/CloudCredentials'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+      - /account/{accountId}/cloud-credentials/
+      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
+    AzureCloudCredentials:
+      properties:
+        cloudCredentialsType:
+          description: The Cloud Platform these credentials allow access to.
+          enum:
+          - AwsCloudCredentials
+          - GceCloudCredentials
+          - AzureCloudCredentials
+          - CloudstackCloudCredentials
+          - OpenstackCloudCredentials
+          - RackspaceCloudCredentials
+          - VmwareCloudCredentials
+          type: string
+        description:
+          type: string
+        id:
+          description: Unique identifier for this Cloud Credentials object.
+          maxLength: 12
+          minLength: 12
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Unique name of these Cloud Credentials.
+          type: string
+        provider:
+          description: Cloud provider for Openstack or Cloudstack based clouds.
+          type: string
+        scope:
+          description: The scope in which these Cloud Credentials were added.
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          readOnly: true
+          type: string
+        status:
+          description: The status of these Cloud Credentials.
+          enum:
+          - disabled
+          - enabled
+          - suspended
+          readOnly: true
+          type: string
+        subscription:
+          description: The Azure Subscription ID.
+          type: string
+        tenantId:
+          description: The Azure Active Directory identifier.
+          type: string
+      required:
+      - name
+      - cloudCredentialsType
+      - tenantId
+      - subscription
+      x-abstractType:
+        $ref: '#/components/schemas/CloudCredentials'
+      x-createOnly:
+      - cloudCredentialsType
+      - provider
+      x-discriminator: cloudCredentialsType
+      x-filterable:
+      - id
+      - name
+      - cloudCredentialsType
+      - status
+      - scope
+      - provider
+    CloudCredentialsForeignKey:
+      properties:
+        id:
+          description: Unique identifier of a Cloud Credentials object.
+          type: string
+      required:
+      - id
+      x-usedIn:
+      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    Cloud:
+      properties:
+        cloud:
+          description: The Cloud Platform this resource resides in.
+          enum:
+          - ec2
+          - gce
+          type: string
+        credentials:
+          $ref: '#/components/schemas/CloudCredentialsForeignKey'
+    AclRole:
+      properties:
+        baseRole:
+          description: Base ACL Role to override.
+          enum:
+          - no-access
+          - full-access
+          - read-only
+          type: string
+        id:
+          description: Unique identifier for this ACL Role object.
+          maxLength: 20
+          minLength: 20
+          pattern: '[A-Fa-f0-9]+'
+          readOnly: true
+          type: string
+        name:
+          description: Name of this ACL Role.
+          type: string
+      required:
+      - name
+      x-createOnly:
+      - baseRole
+      x-filterable:
+      - id
+      - name
+      - baseRole
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
     AwsCloudCredentials:
       properties:
         accessKey:
@@ -2051,71 +2669,6 @@ components:
       - scope
       - provider
       - accountType
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
-          type: string
-    AclRole:
-      properties:
-        baseRole:
-          description: Base ACL Role to override.
-          enum:
-          - no-access
-          - full-access
-          - read-only
-          type: string
-        id:
-          description: Unique identifier for this ACL Role object.
-          maxLength: 20
-          minLength: 20
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Name of this ACL Role.
-          type: string
-      required:
-      - name
-      x-createOnly:
-      - baseRole
-      x-filterable:
-      - id
-      - name
-      - baseRole
-    CloudCredentialsDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/CloudCredentials'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/CloudCredentials'
-      x-usedIn:
-      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-      - /account/{accountId}/cloud-credentials/
-      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
     EnvironmentDetailsResponse:
       properties:
         data:
@@ -2139,559 +2692,6 @@ components:
       x-usedIn:
       - /account/{accountId}/environments/
       - /account/{accountId}/environments/{envId}/
-    EnvironmentTeamDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/EnvironmentTeam'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/EnvironmentTeam'
-      x-usedIn:
-      - /account/{accountId}/environments/{envId}/teams/
-      - /account/{accountId}/environments/{envId}/teams/{teamId}/
-    ApiErrorResponse:
-      description: Common response for erroneous requests.
-      properties:
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-usedIn:
-      - /account/{accountId}/global-variables/
-      - /account/{accountId}/global-variables/{globalVariableName}/
-      - /account/{accountId}/orchestration-rules/
-      - /account/{accountId}/orchestration-rules/{orchestrationRuleId}/
-      - /account/{accountId}/cost-centers/
-      - /account/{accountId}/cost-centers/{costCenterId}/
-      - /account/{accountId}/environments/
-      - /account/{accountId}/environments/{envId}/
-      - /account/{accountId}/environments/{envId}/clouds/
-      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
-      - /account/{accountId}/environments/{envId}/teams/
-      - /account/{accountId}/environments/{envId}/teams/{teamId}/
-      - /account/{accountId}/teams/
-      - /account/{accountId}/teams/{teamId}/
-      - /account/{accountId}/acl-roles/
-      - /account/{accountId}/role-categories/
-      - /account/{accountId}/role-categories/{roleCategoryId}/
-      - /account/{accountId}/roles/
-      - /account/{accountId}/roles/{roleId}/
-      - /account/{accountId}/roles/{roleId}/actions/clone/
-      - /account/{accountId}/roles/{roleId}/actions/deprecate/
-      - /account/{accountId}/roles/{roleId}/images/
-      - /account/{accountId}/roles/{roleId}/images/{imageId}/
-      - /account/{accountId}/roles/{roleId}/images/{imageId}/actions/replace/
-      - /account/{accountId}/roles/{roleId}/global-variables/
-      - /account/{accountId}/roles/{roleId}/global-variables/{globalVariableName}/
-      - /account/{accountId}/roles/{roleId}/orchestration-rules/
-      - /account/{accountId}/roles/{roleId}/orchestration-rules/{orchestrationRuleId}/
-      - /account/{accountId}/images/
-      - /account/{accountId}/images/{imageId}/
-      - /account/{accountId}/images/{imageId}/actions/copy/
-      - /account/{accountId}/images/{imageId}/actions/replace/
-      - /account/{accountId}/projects/
-      - /account/{accountId}/projects/{projectId}/
-      - /account/{accountId}/scripts/
-      - /account/{accountId}/scripts/{scriptId}/
-      - /account/{accountId}/scripts/{scriptId}/script-versions/
-      - /account/{accountId}/scripts/{scriptId}/script-versions/{scriptVersionNumber}/
-      - /account/{accountId}/webhook-endpoints/
-      - /account/{accountId}/os/
-      - /account/{accountId}/os/{osId}/
-      - /account/{accountId}/events/
-      - /account/{accountId}/events/{eventId}/
-      - /account/{accountId}/cloud-credentials/
-      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-      - /account/{accountId}/scaling-metrics/
-      - /account/{accountId}/scaling-metrics/{metricName}/
-      - /account/{accountId}/users/
-      - /account/{accountId}/ansible-tower/servers/
-      - /account/{accountId}/ansible-tower/configurations/
-      - /account/{accountId}/ansible-tower/configurations/{ansibleTowerConfigurationId}/
-    EnvironmentListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Environment'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Environment'
-      x-usedIn:
-      - /account/{accountId}/environments/
-    ComposedTeamIdentity:
-      properties:
-        id:
-          description: Unique identifier for a Team.
-          type: integer
-        name:
-          description: Team name.
-          readOnly: true
-          type: string
-      required:
-      - id
-    Team:
-      properties:
-        defaultAclRole:
-          $ref: '#/components/schemas/AclRoleForeignKey'
-          description: Default ACL Role for the Team. This ACL Role is applied by default to all the members of the Team, but it can be overridden for specific users.
-        description:
-          description: Description of the Team.
-          type: string
-        id:
-          description: Identifier of the Team.
-          readOnly: true
-          type: integer
-        name:
-          description: Name of the Team.
-          type: string
-      required:
-      - defaultAclRole
-      - name
-      x-filterable:
-      - id
-      - name
-      - defaultAclRole
-      x-usedIn:
-      - /account/{accountId}/environments/{envId}/teams/{teamId}/
-      - /account/{accountId}/teams/
-      - /account/{accountId}/teams/{teamId}/
-    CloudstackCloudCredentials:
-      properties:
-        apiKey:
-          description: The API key.
-          type: string
-        apiUrl:
-          description: 'The URL like: http(s)://<cloudstack_ip>:<cloudstack_port>/client/api.'
-          type: string
-        cloudCredentialsType:
-          description: The Cloud Platform these credentials allow access to.
-          enum:
-          - AwsCloudCredentials
-          - GceCloudCredentials
-          - AzureCloudCredentials
-          - CloudstackCloudCredentials
-          - OpenstackCloudCredentials
-          - RackspaceCloudCredentials
-          - VmwareCloudCredentials
-          type: string
-        description:
-          type: string
-        id:
-          description: Unique identifier for this Cloud Credentials object.
-          maxLength: 12
-          minLength: 12
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Unique name of these Cloud Credentials.
-          type: string
-        provider:
-          description: Cloud provider that should be specified for CloudStack based clouds.
-          enum:
-          - cloudstack
-          - idcf
-          type: string
-        scope:
-          description: The scope in which these Cloud Credentials were added.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        secretKey:
-          description: The secret key.
-          type: string
-        status:
-          description: The status of these Cloud Credentials.
-          enum:
-          - disabled
-          - enabled
-          - suspended
-          readOnly: true
-          type: string
-      required:
-      - name
-      - cloudCredentialsType
-      - provider
-      - apiUrl
-      - apiKey
-      - secretKey
-      x-abstractType:
-        $ref: '#/components/schemas/CloudCredentials'
-      x-createOnly:
-      - cloudCredentialsType
-      - provider
-      - provider
-      x-discriminator: cloudCredentialsType
-      x-filterable:
-      - id
-      - name
-      - cloudCredentialsType
-      - status
-      - scope
-      - provider
-    ApiMetaContainer:
-      properties:
-        sample:
-          description: Actual properties TBD.
-          type: string
-    VmwareCloudCredentials:
-      properties:
-        cloudCredentialsType:
-          description: The Cloud Platform these credentials allow access to.
-          enum:
-          - AwsCloudCredentials
-          - GceCloudCredentials
-          - AzureCloudCredentials
-          - CloudstackCloudCredentials
-          - OpenstackCloudCredentials
-          - RackspaceCloudCredentials
-          - VmwareCloudCredentials
-          type: string
-        description:
-          type: string
-        id:
-          description: Unique identifier for this Cloud Credentials object.
-          maxLength: 12
-          minLength: 12
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Unique name of these Cloud Credentials.
-          type: string
-        password:
-          description: The password for the user.
-          format: password
-          type: string
-        provider:
-          description: Cloud provider for Openstack or Cloudstack based clouds.
-          type: string
-        scope:
-          description: The scope in which these Cloud Credentials were added.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        sslVerification:
-          description: Specifies whether it should verify SSL Certificate.
-          type: boolean
-        status:
-          description: The status of these Cloud Credentials.
-          enum:
-          - disabled
-          - enabled
-          - suspended
-          readOnly: true
-          type: string
-        url:
-          description: vSphere Web Services SDK Server URL.
-          type: string
-        userName:
-          description: The ID of the user.
-          type: string
-      required:
-      - name
-      - cloudCredentialsType
-      - url
-      - userName
-      - password
-      x-abstractType:
-        $ref: '#/components/schemas/CloudCredentials'
-      x-createOnly:
-      - cloudCredentialsType
-      - provider
-      x-discriminator: cloudCredentialsType
-      x-filterable:
-      - id
-      - name
-      - cloudCredentialsType
-      - status
-      - scope
-      - provider
-    EnvironmentTeamListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/EnvironmentTeam'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/EnvironmentTeam'
-      x-usedIn:
-      - /account/{accountId}/environments/{envId}/teams/
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    RackspaceCloudCredentials:
-      properties:
-        apiKey:
-          description: The API access key.
-          type: string
-        cloudCredentialsType:
-          description: The Cloud Platform these credentials allow access to.
-          enum:
-          - AwsCloudCredentials
-          - GceCloudCredentials
-          - AzureCloudCredentials
-          - CloudstackCloudCredentials
-          - OpenstackCloudCredentials
-          - RackspaceCloudCredentials
-          - VmwareCloudCredentials
-          type: string
-        description:
-          type: string
-        id:
-          description: Unique identifier for this Cloud Credentials object.
-          maxLength: 12
-          minLength: 12
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        isUk:
-          description: Indicates if these credentials are for Rackspace UK (true) or Rackspace US (false).
-          type: boolean
-        name:
-          description: Unique name of these Cloud Credentials.
-          type: string
-        provider:
-          description: Cloud provider for Openstack or Cloudstack based clouds.
-          type: string
-        scope:
-          description: The scope in which these Cloud Credentials were added.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        status:
-          description: The status of these Cloud Credentials.
-          enum:
-          - disabled
-          - enabled
-          - suspended
-          readOnly: true
-          type: string
-        userName:
-          description: The user name.
-          type: string
-      required:
-      - name
-      - cloudCredentialsType
-      - userName
-      - apiKey
-      x-abstractType:
-        $ref: '#/components/schemas/CloudCredentials'
-      x-createOnly:
-      - cloudCredentialsType
-      - provider
-      - isUk
-      x-discriminator: cloudCredentialsType
-      x-filterable:
-      - id
-      - name
-      - cloudCredentialsType
-      - status
-      - scope
-      - provider
-    AclRoleForeignKey:
-      properties:
-        id:
-          description: Unique identifier for this ACL Role object.
-          type: string
-      required:
-      - id
-      x-derived:
-        $ref: '#/components/schemas/AclRole'
-      x-references:
-        $ref: '#/components/schemas/AclRole'
-    CloudListResponse:
-      properties:
-        data:
-          items:
-            $ref: '#/components/schemas/Cloud'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Cloud'
-      x-usedIn:
-      - /account/{accountId}/environments/{envId}/clouds/
-    CloudCredentials:
-      discriminator:
-        propertyName: cloudCredentialsType
-      properties:
-        cloudCredentialsType:
-          description: The Cloud Platform these credentials allow access to.
-          enum:
-          - AwsCloudCredentials
-          - GceCloudCredentials
-          - AzureCloudCredentials
-          - CloudstackCloudCredentials
-          - OpenstackCloudCredentials
-          - RackspaceCloudCredentials
-          - VmwareCloudCredentials
-          type: string
-        description:
-          type: string
-        id:
-          description: Unique identifier for this Cloud Credentials object.
-          maxLength: 12
-          minLength: 12
-          pattern: '[A-Fa-f0-9]+'
-          readOnly: true
-          type: string
-        name:
-          description: Unique name of these Cloud Credentials.
-          type: string
-        provider:
-          description: Cloud provider for Openstack or Cloudstack based clouds.
-          type: string
-        scope:
-          description: The scope in which these Cloud Credentials were added.
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          readOnly: true
-          type: string
-        status:
-          description: The status of these Cloud Credentials.
-          enum:
-          - disabled
-          - enabled
-          - suspended
-          readOnly: true
-          type: string
-      required:
-      - name
-      - cloudCredentialsType
-      x-concreteTypes:
-      - $ref: '#/components/schemas/AwsCloudCredentials'
-      - $ref: '#/components/schemas/GceCloudCredentials'
-      - $ref: '#/components/schemas/OpenstackCloudCredentials'
-      - $ref: '#/components/schemas/CloudstackCloudCredentials'
-      - $ref: '#/components/schemas/RackspaceCloudCredentials'
-      - $ref: '#/components/schemas/AzureCloudCredentials'
-      - $ref: '#/components/schemas/VmwareCloudCredentials'
-      x-createOnly:
-      - cloudCredentialsType
-      - provider
-      x-filterable:
-      - id
-      - name
-      - cloudCredentialsType
-      - status
-      - scope
-      - provider
-      x-usedIn:
-      - /account/{accountId}/cloud-credentials/
-      - /account/{accountId}/cloud-credentials/{cloudCredentialsId}/
-    CloudCredentialsForeignKey:
-      properties:
-        id:
-          description: Unique identifier of a Cloud Credentials object.
-          type: string
-      required:
-      - id
-      x-usedIn:
-      - /account/{accountId}/environments/{envId}/clouds/{cloud}/
 x-dry-yaml-definitions:
   architecture:
     enum:

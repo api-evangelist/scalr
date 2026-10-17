@@ -254,49 +254,13 @@ paths:
     - url: /api/v1beta0/global
 components:
   schemas:
-    UserSummary:
+    ApiMessage:
       properties:
-        email:
-          description: Email of the User.
-          format: email
-          readOnly: true
+        code:
+          description: A machine-readable representation of the message.
           type: string
-        fullname:
-          description: The full name of the User.
-          type: string
-        id:
-          description: Unique identifier of the User.
-          type: integer
-        status:
-          description: User status.
-          enum:
-          - active
-          - pending
-          - inactive
-          readOnly: true
-          type: string
-        username:
-          description: Unique user login identifier.
-          type: string
-      required:
-      - id
-      - username
-      x-filterable:
-      - id
-      - email
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
-          type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
+        message:
+          description: A human-readable representation of the message.
           type: string
     UserSummaryListResponse:
       properties:
@@ -325,6 +289,20 @@ components:
         $ref: '#/components/schemas/UserSummary'
       x-usedIn:
       - /account/{accountId}/users/
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -398,14 +376,36 @@ components:
         sample:
           description: Actual properties TBD.
           type: string
-    ApiMessage:
+    UserSummary:
       properties:
-        code:
-          description: A machine-readable representation of the message.
+        email:
+          description: Email of the User.
+          format: email
+          readOnly: true
           type: string
-        message:
-          description: A human-readable representation of the message.
+        fullname:
+          description: The full name of the User.
           type: string
+        id:
+          description: Unique identifier of the User.
+          type: integer
+        status:
+          description: User status.
+          enum:
+          - active
+          - pending
+          - inactive
+          readOnly: true
+          type: string
+        username:
+          description: Unique user login identifier.
+          type: string
+      required:
+      - id
+      - username
+      x-filterable:
+      - id
+      - email
     UserSummaryListResponse_2:
       properties:
         data:

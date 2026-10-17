@@ -790,6 +790,36 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
+    ApiMessage:
+      properties:
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    OsDetailsResponse:
+      properties:
+        data:
+          $ref: '#/components/schemas/Os'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Os'
+      x-usedIn:
+      - /account/{accountId}/os/{osId}/
     OsListResponse:
       properties:
         data:
@@ -831,28 +861,6 @@ components:
         prev:
           readOnly: true
           type: string
-    OsDetailsResponse:
-      properties:
-        data:
-          $ref: '#/components/schemas/Os'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Os'
-      x-usedIn:
-      - /account/{accountId}/os/{osId}/
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -955,14 +963,28 @@ components:
       - generation
       x-usedIn:
       - /account/{accountId}/os/{osId}/
-    ApiMessage:
+    OsDetailsResponse_2:
       properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
+        data:
+          $ref: '#/components/schemas/Os_2'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Os_2'
+      x-usedIn:
+      - /global/os/{osId}/
     OsListResponse_2:
       properties:
         data:
@@ -990,28 +1012,6 @@ components:
         $ref: '#/components/schemas/Os_2'
       x-usedIn:
       - /global/os/
-    OsDetailsResponse_2:
-      properties:
-        data:
-          $ref: '#/components/schemas/Os_2'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Os_2'
-      x-usedIn:
-      - /global/os/{osId}/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -1086,6 +1086,28 @@ components:
       - generation
       x-usedIn:
       - /global/os/{osId}/
+    OsDetailsResponse_3:
+      properties:
+        data:
+          $ref: '#/components/schemas/Os_3'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/Os_3'
+      x-usedIn:
+      - /user/{envId}/os/{osId}/
     OsListResponse_3:
       properties:
         data:
@@ -1113,28 +1135,6 @@ components:
         $ref: '#/components/schemas/Os_3'
       x-usedIn:
       - /user/{envId}/os/
-    OsDetailsResponse_3:
-      properties:
-        data:
-          $ref: '#/components/schemas/Os_3'
-          readOnly: true
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/Os_3'
-      x-usedIn:
-      - /user/{envId}/os/{osId}/
     ApiErrorResponse_3:
       description: Common response for erroneous requests.
       properties:

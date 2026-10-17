@@ -269,33 +269,36 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
-    WebhookEndpointListResponse:
+    ApiMessage:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/WebhookEndpoint'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/WebhookEndpoint'
-      x-usedIn:
-      - /account/{accountId}/webhook-endpoints/
+        code:
+          description: A machine-readable representation of the message.
+          type: string
+        message:
+          description: A human-readable representation of the message.
+          type: string
+    WebhookEndpoint:
+      description: Webhook endpoint summary.
+      properties:
+        id:
+          description: Identifier of the Webhook endpoint.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          type: string
+        url:
+          description: Endpoint URL.
+          type: string
     ApiPagination:
       properties:
         first:
@@ -383,41 +386,11 @@ components:
         sample:
           description: Actual properties TBD.
           type: string
-    WebhookEndpoint:
-      description: Webhook endpoint summary.
-      properties:
-        id:
-          description: Identifier of the Webhook endpoint.
-          maxLength: 36
-          minLength: 36
-          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
-          type: string
-        scope:
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          type: string
-        url:
-          description: Endpoint URL.
-          type: string
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    WebhookEndpointListResponse_2:
+    WebhookEndpointListResponse:
       properties:
         data:
           items:
-            $ref: '#/components/schemas/WebhookEndpoint_2'
+            $ref: '#/components/schemas/WebhookEndpoint'
           readOnly: true
           type: array
         errors:
@@ -437,9 +410,31 @@ components:
           readOnly: true
           type: array
       x-derived:
-        $ref: '#/components/schemas/WebhookEndpoint_2'
+        $ref: '#/components/schemas/WebhookEndpoint'
       x-usedIn:
-      - /user/{envId}/webhook-endpoints/
+      - /account/{accountId}/webhook-endpoints/
+    WebhookEndpoint_2:
+      description: Webhook endpoint summary.
+      properties:
+        id:
+          description: Webhook endpoint identifier.
+          maxLength: 36
+          minLength: 36
+          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
+          type: string
+        scope:
+          enum:
+          - scalr
+          - account
+          - environment
+          - farm
+          - farmrole
+          - role
+          - server
+          type: string
+        url:
+          description: Endpoint URL.
+          type: string
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -542,28 +537,33 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
-    WebhookEndpoint_2:
-      description: Webhook endpoint summary.
+    WebhookEndpointListResponse_2:
       properties:
-        id:
-          description: Webhook endpoint identifier.
-          maxLength: 36
-          minLength: 36
-          pattern: '[A-Fa-f0-9]{8}-([A-Fa-f0-9]{4}-){3}[A-Fa-f0-9]{12}'
-          type: string
-        scope:
-          enum:
-          - scalr
-          - account
-          - environment
-          - farm
-          - farmrole
-          - role
-          - server
-          type: string
-        url:
-          description: Endpoint URL.
-          type: string
+        data:
+          items:
+            $ref: '#/components/schemas/WebhookEndpoint_2'
+          readOnly: true
+          type: array
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/WebhookEndpoint_2'
+      x-usedIn:
+      - /user/{envId}/webhook-endpoints/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-user-openapi.yml

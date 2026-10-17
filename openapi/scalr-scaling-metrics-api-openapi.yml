@@ -1279,46 +1279,13 @@ paths:
     - url: /api/v1beta0/user
 components:
   schemas:
-    ScalingMetricListResponse:
+    ApiMessage:
       properties:
-        data:
-          items:
-            $ref: '#/components/schemas/ScalingMetric'
-          readOnly: true
-          type: array
-        errors:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-        meta:
-          $ref: '#/components/schemas/ApiMetaContainer'
-          readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
-        warnings:
-          items:
-            $ref: '#/components/schemas/ApiMessage'
-          readOnly: true
-          type: array
-      x-derived:
-        $ref: '#/components/schemas/ScalingMetric'
-      x-usedIn:
-      - /account/{accountId}/scaling-metrics/
-    ApiPagination:
-      properties:
-        first:
-          readOnly: true
+        code:
+          description: A machine-readable representation of the message.
           type: string
-        last:
-          readOnly: true
-          type: string
-        next:
-          readOnly: true
-          type: string
-        prev:
-          readOnly: true
+        message:
+          description: A human-readable representation of the message.
           type: string
     ScalingMetric:
       properties:
@@ -1371,11 +1338,13 @@ components:
       x-usedIn:
       - /account/{accountId}/scaling-metrics/
       - /account/{accountId}/scaling-metrics/{metricName}/
-    ScalingMetricDetailsResponse:
+    ScalingMetricListResponse:
       properties:
         data:
-          $ref: '#/components/schemas/ScalingMetric'
+          items:
+            $ref: '#/components/schemas/ScalingMetric'
           readOnly: true
+          type: array
         errors:
           items:
             $ref: '#/components/schemas/ApiMessage'
@@ -1383,6 +1352,9 @@ components:
           type: array
         meta:
           $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
           readOnly: true
         warnings:
           items:
@@ -1393,7 +1365,20 @@ components:
         $ref: '#/components/schemas/ScalingMetric'
       x-usedIn:
       - /account/{accountId}/scaling-metrics/
-      - /account/{accountId}/scaling-metrics/{metricName}/
+    ApiPagination:
+      properties:
+        first:
+          readOnly: true
+          type: string
+        last:
+          readOnly: true
+          type: string
+        next:
+          readOnly: true
+          type: string
+        prev:
+          readOnly: true
+          type: string
     ApiErrorResponse:
       description: Common response for erroneous requests.
       properties:
@@ -1467,21 +1452,11 @@ components:
         sample:
           description: Actual properties TBD.
           type: string
-    ApiMessage:
-      properties:
-        code:
-          description: A machine-readable representation of the message.
-          type: string
-        message:
-          description: A human-readable representation of the message.
-          type: string
-    ScalingMetricListResponse_2:
+    ScalingMetricDetailsResponse:
       properties:
         data:
-          items:
-            $ref: '#/components/schemas/ScalingMetric_2'
+          $ref: '#/components/schemas/ScalingMetric'
           readOnly: true
-          type: array
         errors:
           items:
             $ref: '#/components/schemas/ApiMessage'
@@ -1490,18 +1465,16 @@ components:
         meta:
           $ref: '#/components/schemas/ApiMetaContainer'
           readOnly: true
-        pagination:
-          $ref: '#/components/schemas/ApiPagination'
-          readOnly: true
         warnings:
           items:
             $ref: '#/components/schemas/ApiMessage'
           readOnly: true
           type: array
       x-derived:
-        $ref: '#/components/schemas/ScalingMetric_2'
+        $ref: '#/components/schemas/ScalingMetric'
       x-usedIn:
-      - /user/{envId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/
+      - /account/{accountId}/scaling-metrics/{metricName}/
     ScalingMetric_2:
       properties:
         filePath:
@@ -1553,11 +1526,13 @@ components:
       x-usedIn:
       - /user/{envId}/scaling-metrics/
       - /user/{envId}/scaling-metrics/{metricName}/
-    ScalingMetricDetailsResponse_2:
+    ScalingMetricListResponse_2:
       properties:
         data:
-          $ref: '#/components/schemas/ScalingMetric_2'
+          items:
+            $ref: '#/components/schemas/ScalingMetric_2'
           readOnly: true
+          type: array
         errors:
           items:
             $ref: '#/components/schemas/ApiMessage'
@@ -1565,6 +1540,9 @@ components:
           type: array
         meta:
           $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        pagination:
+          $ref: '#/components/schemas/ApiPagination'
           readOnly: true
         warnings:
           items:
@@ -1575,7 +1553,6 @@ components:
         $ref: '#/components/schemas/ScalingMetric_2'
       x-usedIn:
       - /user/{envId}/scaling-metrics/
-      - /user/{envId}/scaling-metrics/{metricName}/
     ApiErrorResponse_2:
       description: Common response for erroneous requests.
       properties:
@@ -1678,6 +1655,29 @@ components:
       - /user/{envId}/farm-roles/{farmRoleId}/orchestration-rules/{orchestrationRuleId}/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/
       - /user/{envId}/clouds/{cloudPlatform}/cloud-locations/{cloudLocation}/instance-types/
+    ScalingMetricDetailsResponse_2:
+      properties:
+        data:
+          $ref: '#/components/schemas/ScalingMetric_2'
+          readOnly: true
+        errors:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+        meta:
+          $ref: '#/components/schemas/ApiMetaContainer'
+          readOnly: true
+        warnings:
+          items:
+            $ref: '#/components/schemas/ApiMessage'
+          readOnly: true
+          type: array
+      x-derived:
+        $ref: '#/components/schemas/ScalingMetric_2'
+      x-usedIn:
+      - /user/{envId}/scaling-metrics/
+      - /user/{envId}/scaling-metrics/{metricName}/
 x-refined-from:
 - scalr-account-openapi.yml
 - scalr-user-openapi.yml
